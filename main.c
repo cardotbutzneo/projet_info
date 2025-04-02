@@ -1,7 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
+
+#include "en-tete.h"
 
 int main(){
-    printf("hello word\n");
+    srand(time(NULL));
+    FILE *fichier = NULL;
+    fichier = fopen("character.txt", "rw");
+    champion matheo;
+    champion champ;
+    int valeur;
+    char buffer[100];
+    fgets(buffer, sizeof(buffer), fichier);
+    // initialisation des stats
+    
+    printf("programme fini\n");
+    fclose(fichier);
     return 0;
 }
