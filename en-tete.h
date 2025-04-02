@@ -15,4 +15,5 @@ typedef struct
     float pv_courrant;
     float pv_max;
     float attaque;
+    float attaque_spe;
 }champion;
