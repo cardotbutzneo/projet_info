@@ -1,7 +1,7 @@
 #include "en-tete.h"
 
 
-void degat(champion *champion1, champion *champion2){ 
+void degat(Champion *champion1, Champion *champion2){ 
 
     // calcul les degats des champion et modifie les pv apres attaque du champion attaqué
 
@@ -10,7 +10,7 @@ void degat(champion *champion1, champion *champion2){
     champion1->pv_courrant = vie;
 }
 
-int initialisation_champion(FILE *fichier, champion champion){
+int initialisation_champion(FILE *fichier, Champion champion){
 
     // lecture des statistiques du champion
 

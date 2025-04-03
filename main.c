@@ -5,8 +5,8 @@ int main(){
     srand(time(NULL));
     FILE *fichier = NULL;
     fichier = fopen("character.txt", "rw");
-    champion matheo;
-    champion champ;
+    Champion matheo;
+    Champion champ;
     int valeur;
     char buffer[100];
     fgets(buffer, sizeof(buffer), fichier);
