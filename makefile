@@ -2,6 +2,7 @@
 
 # Règle par défaut
 all: main
+	./main
 
 # Règle pour générer l'exécutable
 main: main.o fonction.o

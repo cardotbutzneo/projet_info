@@ -4,16 +4,23 @@
 int main(){
     srand(time(NULL));
     FILE *fichier = NULL;
-    fichier = fopen("character.txt", "rw");
+    fichier = fopen("personnage/gandalf.txt", "r+");
     Champion Gandalf;
-    Champion champ;
-    int valeur;
-    char buffer[100];
-    fgets(buffer, sizeof(buffer), fichier);
+    int pv_max, pv, attaque, attaque_spe;
+
+    sauter_ligne(fichier);
+    fscanf(fichier,"%d",&pv_max);
+    sauter_ligne(fichier);
+    fscanf(fichier,"%d",&pv);
+    sauter_ligne(fichier);
+    fscanf(fichier,"%d",&attaque);
+    sauter_ligne(fichier);
+    fscanf(fichier,"%d",&attaque_spe);
+
     // initialisation des stats
-    Gandalf.pv_courrant = pv_max;
-    Gandalf.pv_courrant = pv;
-    Gandalf.attaque = attaque;
+    Gandalf.pv_max = pv_max;
+    Gandalf.stat.pv_courant = pv;
+    Gandalf.stat.attaque= attaque;
     Gandalf.attaque_spe = attaque_spe;
 
     afficher_personnage(Gandalf);

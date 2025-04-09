@@ -1,14 +1,7 @@
 #include "en-tete.h"
 
 
-void degat(Champion *champion1, Champion *champion2){ 
 
-    // calcul les degats des champion et modifie les pv apres attaque du champion attaqué
-
-    float degat = champion2->attaque;
-    float vie = champion1->pv_courrant - degat;
-    champion1->pv_courrant = vie;
-}
 
 int initialisation_champion(FILE *fichier, Champion champion){
 
@@ -17,9 +10,9 @@ int initialisation_champion(FILE *fichier, Champion champion){
     int valeur;
 
     fscanf(fichier,"%d",&valeur);
-    champion.pv_courrant = valeur;
+    champion.stat.pv_courant = valeur;
     
-    printf("pv : %f\n",champion.pv_courrant); // on affiche les stats pour le degub
+    printf("pv : %f\n",champion.stat.pv_courant); // on affiche les stats pour le degub
 }
 
 void sauter_ligne(FILE *fichier){
@@ -29,9 +22,8 @@ void sauter_ligne(FILE *fichier){
 }
 
 void afficher_personnage(Champion champion){
-    printf("pv_courrant : %f\n", champion.pv_courrant);
     printf("pv_max : %f\n", champion.pv_max);
-    printf("attaque : %f\n", champion.attaque);
+    printf("pv_courrant : %f\n", champion.stat.pv_courant);
+    printf("attaque : %f\n", champion.stat.attaque);
     printf("attaque_spe : %f\n", champion.attaque_spe);
-    
 }
