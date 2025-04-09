@@ -7,11 +7,24 @@
 
 typedef struct 
 {
-    float pv_courrant;
+    char nom;
     float pv_max;
-    float attaque;
-    float attaque_spe;
+    Propriete stat;
+    char attaque_spe;
+    char effet_spe[5];
+    char classe;
 }Champion;
+
+
+typedef struct 
+{
+    float pv_courant;
+    float attaque;
+    float defense;
+    float esquive;
+    float agilite;
+    float vitesse;
+}Propriete;
 
 
 // initialisation des fonctions
