@@ -1,4 +1,0 @@
-matheo:
-10 // pv actuel
-10 // pv max
-2  // degat

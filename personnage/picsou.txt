@@ -1,0 +1,7 @@
+Picsou:
+10 // pv actuel
+10 // pv max
+2  // degat
+5 // attaque spe
+
+//perso soutien
