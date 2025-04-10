@@ -10,7 +10,6 @@ typedef struct
     float pv_courant;
     float attaque;
     float defense;
-    float esquive;
     float agilite;
     float vitesse;
 }Propriete;
