@@ -8,4 +8,5 @@ DR Tenma // nom
 10 // vitesse
 enattente // attaque spe
 Soutien // classe
-
+enattente // description attaque spe
+enattente // description du personnage
