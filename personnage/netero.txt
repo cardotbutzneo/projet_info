@@ -8,4 +8,5 @@ Netero // nom
 10 // vitesse
 Les 100 formes de Kanon // attaque spe
 Soutien // classe
-
+enattente // description attaque spe
+enattente // description du personnage
