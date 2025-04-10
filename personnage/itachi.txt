@@ -8,4 +8,5 @@ Itachi // nom
 10 // vitesse
 Susano // attaque spe
 Dps // classe
-
+enattente // description attaque spe
+enattente // description du personnage
