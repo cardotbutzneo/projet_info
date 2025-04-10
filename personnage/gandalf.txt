@@ -1,5 +1,9 @@
 Gandalf:
 10 // pv actuel
 10 // pv max
-2  // degat
-5 // attaque spe
+10 // attaque
+10 // defense
+10 // agilite
+10 // vitesse
+enattente // attaque spe
+enattente // classe
