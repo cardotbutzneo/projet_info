@@ -8,4 +8,5 @@ Golem de fer // nom
 10 // vitesse
 Double Uppercut // attaque spe
 Tank // classe
-
+enattente // description attaque spe
+enattente // description du personnage
