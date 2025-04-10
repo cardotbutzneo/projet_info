@@ -1,1 +1,11 @@
+Golem de fer:
+Golem de fer // nom
+10 // pv actuel
+10 // pv max
+10 // attaque
+10 // defense
+10 // agilite
+10 // vitesse
+Double Uppercut // attaque spe
+Tank // classe
 
