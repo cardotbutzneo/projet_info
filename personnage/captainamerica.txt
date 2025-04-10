@@ -8,4 +8,5 @@ Captain America // nom
 10 // vitesse
 Bouclier // attaque spe
 Tank // classe
-
+enattente // description attaque spe
+enattente // description du personnage
