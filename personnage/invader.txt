@@ -8,4 +8,5 @@ Invader // nom
 10 // vitesse
 enattente // attaque spe
 enattente // classe
-
+enattente // description attaque spe
+enattente // description du personnage
