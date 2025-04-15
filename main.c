@@ -5,26 +5,29 @@ int main()
 {
     srand(time(NULL));
     FILE *fichier = NULL;
-    fichier = fopen("personnage/gandalf.txt", "r+");
-    Champion Gandalf;
-    int pv_max, pv, attaque, attaque_spe;
+    char *base_chemin = "personnage/";
+    char chemin_acces[100];
 
-    sauter_ligne(fichier);
-    sauter_ligne(fichier);
-    fscanf(fichier, "%d", &pv_max);
-    sauter_ligne(fichier);
-    fscanf(fichier, "%d", &pv);
-    sauter_ligne(fichier);
-    fscanf(fichier, "%d", &attaque);
-    sauter_ligne(fichier);
-    fscanf(fichier, "%d", &attaque_spe);
+    snprintf(chemin_acces, sizeof(chemin_acces), "%s%s", base_chemin, "Gandalf.txt"); // actuellement je sais pas ce que fait cette ligne (IA à 100%)
+
+    fichier = fopen(chemin_acces, "r+");
+    if (fichier == NULL) {
+        printf("Erreur d'ouverture du fichier\n");
+        return 1;
+    }
+    Champion *Gandalf = malloc(sizeof(Champion));
+
+    if (Gandalf == NULL) {
+        printf("Erreur d'allocation de mémoire\n");
+        fclose(fichier);
+        return 1;
+    }
+    
 
     // initialisation des stats
-    Gandalf.pv_max = pv_max;
-    Gandalf.stat.pv_courant = pv;
-    Gandalf.stat.attaque = attaque;
-    Gandalf.attaque_spe = attaque_spe;
+    initialisation_champion(fichier, Gandalf);
 
+    // affichage des stats
     afficher_personnage(Gandalf);
 
     fclose(fichier);

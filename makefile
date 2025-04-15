@@ -21,6 +21,6 @@ affichage.o: affichage.c
 
 # Règle pour nettoyer les fichiers générés
 clean:
-	rm -f main main.o fonction.o
+	rm -f main main.o fonction.o affichage.o
 
 .PHONY: all clean
