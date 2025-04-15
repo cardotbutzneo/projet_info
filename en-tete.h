@@ -27,7 +27,13 @@ typedef struct
     char *classe;
 }Champion;
 
-
+typedef struct 
+{
+    char *nom;
+    Champion perso1;
+    Champion perso2;
+    Champion perso3;
+}Equipe;
 
 
 // initialisation des fonctions
