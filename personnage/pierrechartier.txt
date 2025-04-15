@@ -1,5 +1,5 @@
-Pierre Chartier:
-Pierre Chartier // nom
+Pierre_Chartier:
+Pierre_Chartier // nom
 10 // pv actuel
 10 // pv max
 10 // attaque

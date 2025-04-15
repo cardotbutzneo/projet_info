@@ -2,6 +2,9 @@
 
 // affichges des champions
 
+
+
+
 void sauter_ligne(FILE *fichier) {
     char buffer[100];
     while (fgets(buffer, sizeof(buffer), fichier)) {
@@ -44,7 +47,7 @@ void affichage_initial(){
 
     for (int i=0;i<buffer;i++){
         chargement = rand()%10 * val_systemeOS;
-        Sleep(chargement);
+        //Sleep(chargement);
         printf("---");
     }
 

@@ -1,5 +1,5 @@
-Johnny Hallyday:
-Johnny Hallyday // nom
+Johnny_Hallyday:
+Johnny_Hallyday // nom
 10 // pv actuel
 10 // pv max
 10 // attaque

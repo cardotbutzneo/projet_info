@@ -100,7 +100,7 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
     }
     strcpy(champion->effet_spe, effet_spe);
 }
-
+/*
 void vitesse(Equipe *equipe1, Equipe *equipe2){ //tri les champion par leur vitesse
     Champion *ordreAttaque[6];
     Champion min;
@@ -132,3 +132,39 @@ void attaque (Equipe *equipe1, Equipe *equipe2){//actualiser la vie des personna
 
 
 }
+*/
+
+int chaine_caractere_egales(char *chaine1, char *chaine2){
+
+    if (chaine1 == NULL || chaine2 == NULL){
+        printf("une des chaines pointe vers NULL");
+        return -1;
+    }
+    for (int i=0;i<strlen(chaine1);i++){
+        if (chaine1[i] != chaine2[i] ){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+
+int trie (Champion *champion, Champion tableau_champion){
+    if (chaine_caractere_egales(champion->classe,"enattente")){
+        printf("erreur lors de l'attribution des classes");
+        return -1;
+    }
+    else if (chaine_caractere_egales(champion->classe,"tank") == 0){
+        return 1;
+    }
+    else if (chaine_caractere_egales(champion->classe,"dps") == 0){
+        return 2;
+    }
+    else if (chaine_caractere_egales(champion->classe,"soutien") == 0){
+        return 3;
+    }
+    else{
+        return -1;
+    }
+}
+

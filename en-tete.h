@@ -44,3 +44,4 @@ void initialisation_champion(FILE *fichier, Champion *champion);
 void sauter_ligne(FILE *fichier);
 void afficher_personnage(Champion *champion);
 void affichage_initial();
+int trouver_position_fichier(const char *dossier, const char *nom_fichier);

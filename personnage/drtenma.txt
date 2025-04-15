@@ -1,5 +1,5 @@
-Dr Tenma:
-DR Tenma // nom
+Dr_Tenma:
+DR_Tenma // nom
 10 // pv actuel
 10 // pv max
 10 // attaque
