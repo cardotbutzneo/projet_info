@@ -33,6 +33,7 @@ typedef struct
     Champion perso1;
     Champion perso2;
     Champion perso3;
+    float synergie;
 }Equipe;
 
 
