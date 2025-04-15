@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>  
 #include <math.h>
+#include <string.h>
+#include <windows.h>
 
 // initialisation des structures
 
@@ -17,12 +19,12 @@ typedef struct
 
 typedef struct 
 {
-    char nom;
+    char *nom;
     float pv_max;
     Propriete stat;
-    char attaque_spe;
-    char effet_spe[5];
-    char classe;
+    char *attaque_spe;
+    char *effet_spe;
+    char *classe;
 }Champion;
 
 
@@ -34,3 +36,4 @@ void afficher();
 void initialisation_champion(FILE *fichier, Champion *champion);
 void sauter_ligne(FILE *fichier);
 void afficher_personnage(Champion *champion);
+void affichage_initial();

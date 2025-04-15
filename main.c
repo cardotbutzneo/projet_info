@@ -27,9 +27,22 @@ int main()
     // initialisation des stats
     initialisation_champion(fichier, Gandalf);
 
+   
+
+    // affichage de l'initialisation
+
+    
+    affichage_initial(); // passer cette ligne en commentaire pour ne pas afficher le chargement du jeu
+
+    for(int i = 0; i < 10; i++) {
+        printf("\n");
+    }
+
     // affichage des stats
-    afficher_personnage(Gandalf);
+     afficher_personnage(Gandalf);
 
     fclose(fichier);
+
+    printf("code fini");
     return 0;
 }
