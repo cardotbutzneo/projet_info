@@ -5,8 +5,8 @@ all: main
 	./main
 
 # Règle pour générer l'exécutable
-main: main.o fonction.o
-	gcc -o main main.o fonction.o
+main: main.o fonction.o affichage.o
+	gcc -o main main.o fonction.o affichage.o
 
 # Règle pour générer les fichiers objets
 main.o: main.c
@@ -14,6 +14,10 @@ main.o: main.c
 
 fonction.o: fonction.c
 	gcc -c fonction.c -o fonction.o
+
+affichage.o: affichage.c
+	gcc -c affichage.c -o affichage.o
+
 
 # Règle pour nettoyer les fichiers générés
 clean:
