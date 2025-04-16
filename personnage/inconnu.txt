@@ -1,5 +1,5 @@
-Among_us:
-Among_us // nom
+inconnu:
+inconnu // nom
 10 // pv actuel
 10 // pv max
 10 // attaque
@@ -7,6 +7,6 @@ Among_us // nom
 10 // agilite
 10 // vitesse
 enattente // attaque spe
-soutien // classe
+tank // classe
 enattente // description attaque spe
 enattente // description du personnage

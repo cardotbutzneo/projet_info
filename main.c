@@ -1,6 +1,6 @@
 #include "en-tete.h"
-#define Nb_champion 16
-#define Nb_champion_cachee 3
+
+
 int main() {
     srand(time(NULL));
     FILE *fichier = NULL;
@@ -18,7 +18,7 @@ int main() {
         return 1;
     }
 
-    char *tableau_nom_personnage[Nb_champion] = {"amongus.txt", "captainamerica.txt", "drtenma.txt", "gandalf.txt", "golemdefer.txt", "invader.txt", "itachi.txt", "jackfrost.txt", "jay.txt", "johnnyhallyday.txt", "netero.txt", "nox.txt", "picsou.txt", "pierrechartier.txt", "shrek.txt", "tux.txt","zelda.txt"};
+    char *tableau_nom_personnage[Nb_champion] = {"amongus.txt", "captainamerica.txt", "drtenma.txt", "gandalf.txt", "golemdefer.txt","inconnu.txt", "invader.txt", "itachi.txt", "jackfrost.txt", "jay.txt", "johnnyhallyday.txt", "netero.txt", "nox.txt", "picsou.txt", "pierrechartier.txt", "shrek.txt", "tux.txt","zelda.txt"};
 
     char *personnage_cachee[Nb_champion_cachee] = {"adchayan.txt","garrigusprimus.txt","grossinge.txt"};
 
@@ -47,11 +47,13 @@ int main() {
         printf("%s\n", (champion_soutien + i)->nom);
     }
     printf("\n");
+    Sleep(2000);
     printf("Les champions de classe tank sont : \n");
     for (int i = 0; i < tank_count; i++) {
         printf("%s\n", (champion_tank + i)->nom);
     }
     printf("\n");
+    Sleep(2000);
     printf("Les champions de classe dps sont : \n");
     for (int i = 0; i < dps_count; i++) {
         printf("%s\n", (champion_dps + i)->nom);
@@ -63,6 +65,6 @@ int main() {
     free(champion_dps);
     free(tableau_champion);
 
-    printf("Code fini\n");
+    printf("\nCode fini\n");
     return 0;
 }

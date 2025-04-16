@@ -47,7 +47,7 @@ void affichage_initial(){
 
     for (int i=0;i<buffer;i++){
         chargement = rand()%10 * val_systemeOS;
-        //Sleep(chargement); // passer cette ligne en commentaire pour ne pas avoir les temps de chargement
+        Sleep(1000); // passer cette ligne en commentaire pour ne pas avoir les temps de chargement
         printf("---");
     }
 
@@ -85,3 +85,5 @@ void separation_des_partie(){
         printf("\n");
     }
 }
+
+void afficher_equipe()

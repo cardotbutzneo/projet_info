@@ -146,10 +146,10 @@ void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, C
     *tank_count = 0;
     *dps_count = 0;
 
-    for (int i = 0; i < 19; i++) {
+    for (int i = 0; i < Nb_champion; i++) {
         switch (trie(tab + i)) {
         case 1: // Tank
-            if (*tank_count < 6) {
+            if (*tank_count < 7) {
                 copie_champion(tab + i, tab_tank + *tank_count);
                 (*tank_count)++;
             } else {
@@ -158,7 +158,7 @@ void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, C
             break;
 
         case 2: // DPS
-            if (*dps_count < 6) {
+            if (*dps_count < 7) {
                 copie_champion(tab + i, tab_dps + *dps_count);
                 (*dps_count)++;
             } else {
@@ -167,7 +167,7 @@ void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, C
             break;
 
         case 3: // Soutien
-            if (*soutien_count < 6) {
+            if (*soutien_count < 7) {
                 copie_champion(tab + i, tab_soutien + *soutien_count);
                 (*soutien_count)++;
             } else {
@@ -229,4 +229,4 @@ void copie_champion(Champion *source, Champion *destination) {
 
 
 
-persoenjeu=malloc(sizeof(Champion)*6);
+//persoenjeu=malloc(sizeof(Champion)*6);

@@ -5,6 +5,9 @@
 #include <string.h>
 #include <windows.h>
 
+#define Nb_champion 18
+#define Nb_champion_cachee 3
+
 // initialisation des structures
 
 typedef struct 
