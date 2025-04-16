@@ -1,3 +1,6 @@
+#include "en-tete.h"
+
+
 /*
 void vitesse(Equipe *equipe1, Equipe *equipe2){ //tri les champion par leur vitesse
     Champion *ordreAttaque[6];
