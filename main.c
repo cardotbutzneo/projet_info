@@ -52,8 +52,9 @@ int main() {
     
 
 
-    printf("Fin de l'initialisation des personnages\n");
     affichage_initial();
+    printf("Fin de l'initialisation des personnages\n");
+
 
     // Classement des champions
     int soutien_count = 0, tank_count = 0, dps_count = 0;
@@ -84,27 +85,26 @@ int main() {
     
 
     if (choix_nb_joueur == 2){
-        int index = 1;
         printf("saisir un nom du joueur 1: \n");
         scanf("%s",nom_equipe1);
         printf("saisir un nom du joueur 2: \n");
         scanf("%s",nom_equipe2);
 
-        printf("Equipe 1 choisissez vos champion : \n");
+        printf("Equipe 1 choisissez vos champions : \n");
         int temp;
         for (int i=0;i<3;i++){
             temp = -1;
             do {
-                printf("champion %d : ",index);
+                printf("champion %d : ",i+1);
                 scanf("%d",&temp);
             }while(temp > 18 || temp <=0);
             *(equipe1 + i) = *(tableau_champion + (temp - 1));
         }
-        printf("Equipe 2 choisissez vos champion : \n");
+        printf("Equipe 2 choisissez vos champions : \n");
         for (int i=0;i<3;i++){
             temp = -1;
             do {
-                printf("champion %d : ",index);
+                printf("champion %d : ",i+1);
                 scanf("%d",&temp);
             }while(temp > 18 || temp <=0);
             *(equipe2 + i) = *(tableau_champion + (temp - 1));

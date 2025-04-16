@@ -120,15 +120,21 @@ void afficher_equipes_cote_a_cote(Champion *equipe1, Champion *equipe2, char *no
     // Calculer les positions centrées pour les noms des équipes
     int espace_gauche_equipe1 = (largeur_colonne - strlen(nom_equipe1)) / 2;
     int espace_gauche_equipe2 = (largeur_colonne - strlen(nom_equipe2)) / 2;
-    separation_des_partie();
-    // Afficher les noms des équipes alignés avec les colonnes des personnages
-    printf("%*s%*s\n",  + strlen(nom_equipe1), nom_equipe1,
-    espace_gauche_equipe1 + largeur_colonne + espace_gauche_equipe2 + espace_entre_equipes, nom_equipe2);
 
-    // Afficher les champions des deux équipes côte à côte
+    separation_des_partie();
+
+    // Afficher les noms des équipes alignés avec les colonnes des personnages
+    printf("%*s%*s\n", strlen(nom_equipe1), nom_equipe1, espace_gauche_equipe1 +
+           largeur_colonne + espace_gauche_equipe2 + espace_entre_equipes, nom_equipe2);
+
+    // Afficher les champions des deux équipes côte à côte avec leurs points de vie
     for (int i = 0; i < 3; i++) {
         char *nom_champion1 = (equipe1 + i)->stat.pv_courant >= 0 ? (equipe1 + i)->nom : " ";
         char *nom_champion2 = (equipe2 + i)->stat.pv_courant >= 0 ? (equipe2 + i)->nom : " ";
-        printf("%-*s%*s\n", largeur_colonne, nom_champion1, espace_entre_equipes + largeur_colonne, nom_champion2);
+        float pv_champion1 = (equipe1 + i)->stat.pv_courant >= 0 ? (equipe1 + i)->stat.pv_courant : 0;
+        float pv_champion2 = (equipe2 + i)->stat.pv_courant >= 0 ? (equipe2 + i)->stat.pv_courant : 0;
+
+        printf("%-*s (%.1f PV)%*s (%.1f PV)\n", largeur_colonne - 10, nom_champion1, pv_champion1,
+               espace_entre_equipes + largeur_colonne - 10, nom_champion2, pv_champion2);
     }
 }
