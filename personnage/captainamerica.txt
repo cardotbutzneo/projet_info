@@ -1,11 +1,11 @@
 Captain_America:
 Captain_America // nom
-10 // pv actuel
-10 // pv max
-10 // attaque
-10 // defense
-10 // agilite
-10 // vitesse
+160 // pv actuel
+160 // pv max
+16 // attaque
+35 // defense
+6 // agilite
+4 // vitesse
 Bouclier // attaque spe
 tank // classe
 enattente // description attaque spe
