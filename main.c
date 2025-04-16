@@ -18,7 +18,7 @@ int main() {
         return 1;
     }
 
-    char *tableau_nom_personnage[Nb_champion] = {"amongus.txt", "captainamerica.txt", "drtenma.txt", "gandalf.txt", "golemdefer.txt", "invader.txt", "itachi.txt", "jackfrost.txt", "jay.txt", "johnnyhallyday.txt", "netero.txt", "nox.txt", "picsou.txt", "pierrechartier.txt", "shrek.txt", "tux.txt"};
+    char *tableau_nom_personnage[Nb_champion] = {"amongus.txt", "captainamerica.txt", "drtenma.txt", "gandalf.txt", "golemdefer.txt", "invader.txt", "itachi.txt", "jackfrost.txt", "jay.txt", "johnnyhallyday.txt", "netero.txt", "nox.txt", "picsou.txt", "pierrechartier.txt", "shrek.txt", "tux.txt","zelda.txt"};
 
     char *personnage_cachee[Nb_champion_cachee] = {"adchayan.txt","garrigusprimus.txt","grossinge.txt"};
 
