@@ -1,10 +1,10 @@
 Netero:
 Netero // nom
-10 // pv actuel
-10 // pv max
-10 // attaque
-10 // defense
-10 // agilite
+120 // pv actuel
+120 // pv max
+18 // attaque
+18 // defense
+15 // agilite
 10 // vitesse
 Les 100 formes de Kanon // attaque spe
 soutien // classe
