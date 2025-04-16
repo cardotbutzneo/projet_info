@@ -1,11 +1,11 @@
 Dr_Tenma:
 DR_Tenma // nom
-10 // pv actuel
-10 // pv max
-10 // attaque
-10 // defense
-10 // agilite
-10 // vitesse
+120 // pv actuel
+120 // pv max
+15 // attaque
+5 // defense
+11 // agilite
+7 // vitesse
 enattente // attaque spe
 soutien // classe
 enattente // description attaque spe
