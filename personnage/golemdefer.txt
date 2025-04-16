@@ -7,6 +7,6 @@ Golem_de_fer // nom
 10 // agilite
 10 // vitesse
 Double_Uppercut // attaque spe
-Tank // classe
+tank // classe
 enattente // description attaque spe
 enattente // description du personnage

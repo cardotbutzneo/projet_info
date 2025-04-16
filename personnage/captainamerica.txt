@@ -7,6 +7,6 @@ Captain_America // nom
 10 // agilite
 10 // vitesse
 Bouclier // attaque spe
-Tank // classe
+tank // classe
 enattente // description attaque spe
 enattente // description du personnage

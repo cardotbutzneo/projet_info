@@ -47,11 +47,41 @@ void affichage_initial(){
 
     for (int i=0;i<buffer;i++){
         chargement = rand()%10 * val_systemeOS;
-        //Sleep(chargement);
+        //Sleep(chargement); // passer cette ligne en commentaire pour ne pas avoir les temps de chargement
         printf("---");
     }
 
     printf("\nchargement fini\n");
     printf("Bienvenue dans MultiverSeus\n");
 
+}
+
+void afficher_classe(Champion *champion){
+    printf("%s est de ",champion->nom);
+    switch (trie(champion))
+    {
+    case 1:
+        printf("classe : tank\n");
+        break;
+    
+    case 2 :
+        printf("classe : dps\n");
+        break;
+    
+    case 3 :
+        printf("classe : soutien\n");
+        break;
+    
+    default:
+        printf("erreur classe non definie\n");
+        break;
+    }
+    printf("\n");
+}
+
+void separation_des_partie(){
+    int buffer = 10;
+    for (int i=0;i<buffer;i++){
+        printf("\n");
+    }
 }

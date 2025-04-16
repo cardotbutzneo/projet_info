@@ -7,6 +7,6 @@ Nox // nom
 10 // agilite
 10 // vitesse
 20 malheureuses minutes // attaque spe
-Dps // classe
+dps // classe
 enattente // description attaque spe
 enattente // description du personnage

@@ -42,15 +42,16 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
         exit(1);
     }
     sauter_ligne(fichier);
-    if (fscanf(fichier, "%s", classe) != 1) {
-        printf("Erreur lors de la lecture de la classe\n");
-        exit(1);
-    }
-    sauter_ligne(fichier);
     if (fscanf(fichier, "%s", attaque_spe) != 1) {
         printf("Erreur lors de la lecture de l'attaque spéciale\n");
         exit(1);
     }
+    sauter_ligne(fichier);
+    if (fscanf(fichier, "%s", classe) != 1) {
+        printf("Erreur lors de la lecture de la classe\n");
+        exit(1);
+    }
+    
     sauter_ligne(fichier);
     if (fscanf(fichier, "%s", effet_spe) != 1) {
         printf("Erreur lors de la lecture de l'effet spécial\n");
@@ -141,7 +142,7 @@ int chaine_caractere_egales(char *chaine1, char *chaine2){
         return -1;
     }
     for (int i=0;i<strlen(chaine1);i++){
-        if (chaine1[i] != chaine2[i] ){
+        if (chaine1[i] != chaine2[i]  ){
             return 1;
         }
     }
@@ -149,9 +150,9 @@ int chaine_caractere_egales(char *chaine1, char *chaine2){
 }
 
 
-int trie (Champion *champion, Champion tableau_champion){
-    if (chaine_caractere_egales(champion->classe,"enattente")){
-        printf("erreur lors de l'attribution des classes");
+int trie (Champion *champion){
+    if (chaine_caractere_egales(champion->classe,"enattente") == 0){
+        printf("erreur lors de l'attribution des classes\n");
         return -1;
     }
     else if (chaine_caractere_egales(champion->classe,"tank") == 0){
@@ -164,7 +165,93 @@ int trie (Champion *champion, Champion tableau_champion){
         return 3;
     }
     else{
+        printf("erreur inconnue\n");
         return -1;
     }
 }
 
+void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, Champion *tab_dps, int *soutien_count, int *tank_count, int *dps_count) {
+    *soutien_count = 0;
+    *tank_count = 0;
+    *dps_count = 0;
+
+    for (int i = 0; i < 19; i++) {
+        switch (trie(tab + i)) {
+        case 1: // Tank
+            if (*tank_count < 6) {
+                copie_champion(tab + i, tab_tank + *tank_count);
+                (*tank_count)++;
+            } else {
+                printf("Erreur : trop de tanks détectés\n");
+            }
+            break;
+
+        case 2: // DPS
+            if (*dps_count < 6) {
+                copie_champion(tab + i, tab_dps + *dps_count);
+                (*dps_count)++;
+            } else {
+                printf("Erreur : trop de DPS détectés\n");
+            }
+            break;
+
+        case 3: // Soutien
+            if (*soutien_count < 6) {
+                copie_champion(tab + i, tab_soutien + *soutien_count);
+                (*soutien_count)++;
+            } else {
+                printf("Erreur : trop de soutiens détectés\n");
+            }
+            break;
+
+        default:
+            printf("Classe inconnue pour le champion %s\n", (tab + i)->nom);
+            break;
+        }
+    }
+}
+
+void copie_champion(Champion *source, Champion *destination) {
+    // Copier les champs simples
+    destination->pv_max = source->pv_max;
+    destination->stat.pv_courant = source->stat.pv_courant;
+    destination->stat.defense = source->stat.defense;
+    destination->stat.attaque = source->stat.attaque;
+    destination->stat.agilite = source->stat.agilite;
+    destination->stat.vitesse = source->stat.vitesse;
+
+    // Copier les chaînes de caractères avec allocation dynamique
+    destination->nom = malloc(strlen(source->nom) + 1);
+    if (destination->nom == NULL) {
+        printf("Erreur d'allocation mémoire pour le nom\n");
+        exit(1);
+    }
+    strcpy(destination->nom, source->nom);
+
+    destination->classe = malloc(strlen(source->classe) + 1);
+    if (destination->classe == NULL) {
+        printf("Erreur d'allocation mémoire pour la classe\n");
+        free(destination->nom);
+        exit(1);
+    }
+    strcpy(destination->classe, source->classe);
+
+    destination->attaque_spe = malloc(strlen(source->attaque_spe) + 1);
+    if (destination->attaque_spe == NULL) {
+        printf("Erreur d'allocation mémoire pour l'attaque spéciale\n");
+        free(destination->nom);
+        free(destination->classe);
+        exit(1);
+    }
+    strcpy(destination->attaque_spe, source->attaque_spe);
+
+    destination->effet_spe = malloc(strlen(source->effet_spe) + 1);
+    if (destination->effet_spe == NULL) {
+        printf("Erreur d'allocation mémoire pour l'effet spécial\n");
+        free(destination->nom);
+        free(destination->classe);
+        free(destination->attaque_spe);
+        exit(1);
+    }
+    strcpy(destination->effet_spe, source->effet_spe);
+}

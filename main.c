@@ -1,54 +1,68 @@
 #include "en-tete.h"
-
-
-
-
-int main(){
-
+#define Nb_champion 16
+#define Nb_champion_cachee 3
+int main() {
     srand(time(NULL));
     FILE *fichier = NULL;
     char *base_chemin = "personnage/";
     char chemin_acces[100];
 
-    // création d'un tableau de tous les champions
-    Champion *tableau_champion = malloc(sizeof(Champion) * 19);
-    char *tableau_nom_personnage[19] = {"adchayan.txt","amongus.txt","captainamerica.txt","drtenma.txt","gandalf.txt","garrigusprimus.txt","golemdefer.txt","grossinge.txt","invader.txt","itachi.txt","jackfrost.txt","jay.txt","johnnyhallyday.txt","netero.txt","nox.txt","picsou.txt","pierrechartier.txt","shrek.txt","tux.txt"};
+    // Initialisation des tableaux
+    Champion *tableau_champion = malloc(sizeof(Champion) * Nb_champion);
+    Champion *champion_soutien = malloc(sizeof(Champion) * 6);
+    Champion *champion_tank = malloc(sizeof(Champion) * 6);
+    Champion *champion_dps = malloc(sizeof(Champion) * 6);
 
+    if (!tableau_champion || !champion_soutien || !champion_tank || !champion_dps) {
+        printf("Erreur d'allocation mémoire\n");
+        return 1;
+    }
 
-    for (int i = 0; i < 19; i++) {
-        snprintf(chemin_acces, sizeof(chemin_acces), "%s%s", base_chemin,tableau_nom_personnage[i]) ; // actuellement je sais pas ce que fait cette ligne (IA à 100%)
+    char *tableau_nom_personnage[Nb_champion] = {"amongus.txt", "captainamerica.txt", "drtenma.txt", "gandalf.txt", "golemdefer.txt", "invader.txt", "itachi.txt", "jackfrost.txt", "jay.txt", "johnnyhallyday.txt", "netero.txt", "nox.txt", "picsou.txt", "pierrechartier.txt", "shrek.txt", "tux.txt"};
 
+    char *personnage_cachee[Nb_champion_cachee] = {"adchayan.txt","garrigusprimus.txt","grossinge.txt"};
+
+    // Chargement des fichiers
+    for (int i = 0; i < Nb_champion; i++) {
+        snprintf(chemin_acces, sizeof(chemin_acces), "%s%s", base_chemin, tableau_nom_personnage[i]);
         fichier = fopen(chemin_acces, "r+");
-
         if (fichier == NULL) {
-            printf("Erreur d'ouverture du fichier\n");
-            //return 1;
+            printf("Erreur d'ouverture du fichier : %s\n", chemin_acces);
             continue;
         }
-
         initialisation_champion(fichier, tableau_champion + i);
-
         fclose(fichier);
     }
 
-    printf("fin de l'initialisation des personnages\n");
+    printf("Fin de l'initialisation des personnages\n");
+    affichage_initial();
 
+    // Classement des champions
+    int soutien_count = 0, tank_count = 0, dps_count = 0;
+    classe_champion(tableau_champion,champion_soutien,champion_tank,champion_dps, &soutien_count, &tank_count, &dps_count);
 
-
-    // affichage de l'initialisation
-    affichage_initial(); // passer cette ligne en commentaire pour ne pas afficher le chargement du jeu
-
-    for (int i = 0; i < 19; i++) {
-        printf("\n");
+    // Affichage des champions par classe
+    printf("Les champions de classe soutien sont : \n");
+    for (int i = 0; i < soutien_count; i++) {
+        printf("%s\n", (champion_soutien + i)->nom);
+    }
+    printf("\n");
+    printf("Les champions de classe tank sont : \n");
+    for (int i = 0; i < tank_count; i++) {
+        printf("%s\n", (champion_tank + i)->nom);
+    }
+    printf("\n");
+    printf("Les champions de classe dps sont : \n");
+    for (int i = 0; i < dps_count; i++) {
+        printf("%s\n", (champion_dps + i)->nom);
     }
 
-    // affichage des stats
+    // Libération de la mémoire
+    free(champion_soutien);
+    free(champion_tank);
+    free(champion_dps);
+    free(tableau_champion);
 
-    for (int i=0;i<19;i++){
-        afficher_personnage(tableau_champion+i);
-        printf("\n");
-    }
-
-    printf("code fini");
+    printf("Code fini\n");
     return 0;
 }

@@ -7,6 +7,6 @@ Picsou // nom
 10 // agilite
 10 // vitesse
 enattente // attaque spe
-Soutien // classe
+soutien // classe
 enattente // description attaque spe
 enattente // description du personnage
