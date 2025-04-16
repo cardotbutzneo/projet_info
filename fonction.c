@@ -1,6 +1,10 @@
 #include "en-tete.h"
 
 
+Champion *persoenjeu;
+
+
+
 void initialisation_champion(FILE *fichier, Champion *champion) {
     int pv_max, pv, attaque, defense, agilite, vitesse;
     char nom[50], classe[50], attaque_spe[50], effet_spe[50];
@@ -222,3 +226,7 @@ void copie_champion(Champion *source, Champion *destination) {
     }
     strcpy(destination->effet_spe, source->effet_spe);
 }
+
+
+
+persoenjeu=malloc(sizeof(Champion)*6);
