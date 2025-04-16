@@ -1,7 +1,7 @@
 #include "en-tete.h"
 
 
-Champion *persoenjeu;
+Champion *persoenjeu; // attention variable globale
 
 
 

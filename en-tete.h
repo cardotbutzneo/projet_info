@@ -40,6 +40,7 @@ typedef struct
 }Equipe;
 
 
+
 // initialisation des fonctions
 
 void afficher();
@@ -52,3 +53,4 @@ void afficher_classe(Champion *champion);
 void separation_des_partie();
 void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, Champion *tab_dps, int *soutien_count, int *tank_count, int *dps_count);
 void copie_champion(Champion *source, Champion *destination);
+void afficher_equipes_cote_a_cote(Champion *equipe1, Champion *equipe2, char *nom_equipe1, char *nom_equipe2);

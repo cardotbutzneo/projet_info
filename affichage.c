@@ -2,9 +2,6 @@
 
 // affichges des champions
 
-
-
-
 void sauter_ligne(FILE *fichier) {
     char buffer[100];
     while (fgets(buffer, sizeof(buffer), fichier)) {
@@ -86,4 +83,52 @@ void separation_des_partie(){
     }
 }
 
-void afficher_equipe()
+void centrer(){
+    
+}
+
+void afficher_equipe(Champion *equipe1, Champion *equipe2, char *nom_equipe1, char *nom_equipe2){
+    printf("Equipe 1 :\n");
+    for (int i=0;i<3;i++){
+        if ((equipe1+i)->stat.pv_courant >= 0){
+            printf("%s\n",*(equipe1+i)->nom);
+        }
+
+    }
+
+    printf("Equipe 2 :\n");
+    for (int i=0;i<3;i++){
+        if ((equipe1+i)->stat.pv_courant >= 0){
+            printf("%s\n",*(equipe1+i)->nom);
+        }
+
+    }
+}
+
+void afficher_equipes_cote_a_cote(Champion *equipe1, Champion *equipe2, char *nom_equipe1, char *nom_equipe2) {
+    // Obtenir la largeur du terminal
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    int largeur_terminal = 80; // Valeur par défaut
+    if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi)) {
+        largeur_terminal = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    }
+
+    // Calculer l'espacement pour centrer les équipes
+    int largeur_colonne = largeur_terminal / 2 - 5; // Diviser l'écran en deux colonnes
+    int espace_entre_equipes = 5; // Espacement entre les deux colonnes
+
+    // Calculer les positions centrées pour les noms des équipes
+    int espace_gauche_equipe1 = (largeur_colonne - strlen(nom_equipe1)) / 2;
+    int espace_gauche_equipe2 = (largeur_colonne - strlen(nom_equipe2)) / 2;
+    separation_des_partie();
+    // Afficher les noms des équipes alignés avec les colonnes des personnages
+    printf("%*s%*s\n",  + strlen(nom_equipe1), nom_equipe1,
+    espace_gauche_equipe1 + largeur_colonne + espace_gauche_equipe2 + espace_entre_equipes, nom_equipe2);
+
+    // Afficher les champions des deux équipes côte à côte
+    for (int i = 0; i < 3; i++) {
+        char *nom_champion1 = (equipe1 + i)->stat.pv_courant >= 0 ? (equipe1 + i)->nom : " ";
+        char *nom_champion2 = (equipe2 + i)->stat.pv_courant >= 0 ? (equipe2 + i)->nom : " ";
+        printf("%-*s%*s\n", largeur_colonne, nom_champion1, espace_entre_equipes + largeur_colonne, nom_champion2);
+    }
+}
