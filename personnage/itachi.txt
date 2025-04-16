@@ -1,11 +1,11 @@
 Itachi:
 Itachi // nom
-10 // pv actuel
-10 // pv max
-10 // attaque
-10 // defense
-10 // agilite
-10 // vitesse
+110 // pv actuel
+110 // pv max
+38 // attaque
+12 // defense
+17 // agilite
+17 // vitesse
 Susano // attaque spe
 dps // classe
 enattente // description attaque spe
