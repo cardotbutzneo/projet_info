@@ -9,6 +9,7 @@
 #define Nb_champion_cachee 3
 #define Nb_champion_par_equipe 3
 
+
 // initialisation des structures
 
 typedef struct 

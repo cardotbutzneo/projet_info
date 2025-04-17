@@ -24,33 +24,35 @@ void afficher_personnage(Champion *champion){
 
 // affichage global
 
-void affichage_initial(){
-    int buffer = 10;
-
-    int chargement = 0;
-    printf("Chargement du jeu...\n");
-
-    int val_systemeOS;
-
+int type_os(int type_OS){
     if (_WIN32 ){
-        val_systemeOS = 1000;
+        type_OS = 1000;
     }
 
     else {
         printf("Nous avons détecter que votre appareil n'est pas sous Windows, de ce fait les temps d'attente pourront etre long.\n");
-        val_systemeOS = 1;
+        type_OS = 1;
     }
+    return type_OS;
+}
+
+void affichage_initial(){
+    int buffer = 10;
+    int val_systemeOS;
+    val_systemeOS = type_os(val_systemeOS);
+    
+    printf("Chargement du jeu...\n");
+    Sleep(1000);
 
 
     for (int i=0;i<buffer;i++){
-        chargement = rand()%10 * val_systemeOS;
-        Sleep(1000); // passer cette ligne en commentaire pour ne pas avoir les temps de chargement
+        Sleep(val_systemeOS); // passer cette ligne en commentaire pour ne pas avoir les temps de chargement
         printf("---");
     }
 
     printf("\nchargement fini\n");
     printf("Bienvenue dans MultiverSeus\n");
-
+    Sleep(val_systemeOS);
 }
 
 void afficher_classe(Champion *champion){
