@@ -227,6 +227,35 @@ void copie_champion(Champion *source, Champion *destination) {
     strcpy(destination->effet_spe, source->effet_spe);
 }
 
+void choix_des_champion(Champion *tableau_champion, Champion *equipe1){
+    int temp;
+        for (int i=0;i<Nb_champion_par_equipe;i++){
+            temp = -1;
+            do {
+                printf("champion %d : ",i+1);
+                scanf("%d",&temp);
+            }while(temp > 18 || temp <=0);
+            *(equipe1 + i) = *(tableau_champion + (temp - 1));
+        }
+}
 
+void choix_champion_IA(Champion *tableau_champion, Champion *equipe2){
+    for (int i=0;i<Nb_champion_par_equipe;i++){
+        *(equipe2+i) = *(tableau_champion+rand()%18); // choix des champions aléatoirement
+    }
+}
+
+int longueur_nom_max(Champion *champions, int taille) {
+    int max_longueur = 0;
+    for (int i = 0; i < taille; i++) {
+        if (champions[i].nom != NULL) {
+            int longueur = strlen(champions[i].nom);
+            if (longueur > max_longueur) {
+                max_longueur = longueur;
+            }
+        }
+    }
+    return max_longueur;
+}
 
 //persoenjeu=malloc(sizeof(Champion)*6);

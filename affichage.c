@@ -106,35 +106,63 @@ void afficher_equipe(Champion *equipe1, Champion *equipe2, char *nom_equipe1, ch
 }
 
 void afficher_equipes_cote_a_cote(Champion *equipe1, Champion *equipe2, char *nom_equipe1, char *nom_equipe2) {
-    // Obtenir la largeur du terminal
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    int largeur_terminal = 80; // Valeur par défaut
-    if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi)) {
-        largeur_terminal = csbi.srWindow.Right - csbi.srWindow.Left + 1;
-    }
-
-    // Calculer l'espacement pour centrer les équipes
-    int largeur_colonne = largeur_terminal / 2 - 5; // Diviser l'écran en deux colonnes
-    int espace_entre_equipes = 5; // Espacement entre les deux colonnes
-
-    // Calculer les positions centrées pour les noms des équipes
-    int espace_gauche_equipe1 = (largeur_colonne - strlen(nom_equipe1)) / 2;
-    int espace_gauche_equipe2 = (largeur_colonne - strlen(nom_equipe2)) / 2;
-
     separation_des_partie();
 
-    // Afficher les noms des équipes alignés avec les colonnes des personnages
-    printf("%*s%*s\n", strlen(nom_equipe1), nom_equipe1, espace_gauche_equipe1 +
-           largeur_colonne + espace_gauche_equipe2 + espace_entre_equipes, nom_equipe2);
+    // Calculer la largeur maximale des noms pour ajuster l'affichage
+    int n = longueur_nom_max(equipe1, Nb_champion_par_equipe);
+    int m = longueur_nom_max(equipe2, Nb_champion_par_equipe);
+    int largeur_nom = max(n, m);
 
-    // Afficher les champions des deux équipes côte à côte avec leurs points de vie
+    // Ajouter un espacement fixe entre les deux équipes
+    int espacement = 12;
+
+    // Afficher les noms des équipes alignés
+    printf("%-*s%*s\n", largeur_nom + espacement, nom_equipe1, largeur_nom + espacement, nom_equipe2);
+
+    // Afficher les en-têtes des colonnes
+    printf("%-*s%-*s%-*s%*s%-*s%-*s\n", largeur_nom, "Nom", 10, "Classe", 10, "PV", espacement, " ", largeur_nom, "Nom", 10, "Classe", 10, "PV");
+
+    // Afficher les champions des deux équipes côte à côte
     for (int i = 0; i < 3; i++) {
-        char *nom_champion1 = (equipe1 + i)->stat.pv_courant >= 0 ? (equipe1 + i)->nom : " ";
-        char *nom_champion2 = (equipe2 + i)->stat.pv_courant >= 0 ? (equipe2 + i)->nom : " ";
-        float pv_champion1 = (equipe1 + i)->stat.pv_courant >= 0 ? (equipe1 + i)->stat.pv_courant : 0;
-        float pv_champion2 = (equipe2 + i)->stat.pv_courant >= 0 ? (equipe2 + i)->stat.pv_courant : 0;
+        // Équipe 1
+        if ((equipe1 + i)->nom != NULL) {
+            printf("%-*s%-*s%-*f", largeur_nom, (equipe1 + i)->nom, 10, (equipe1 + i)->classe, 10, (equipe1 + i)->stat.pv_courant);
+        } else {
+            printf("%-*s%-*s%-*s", largeur_nom, " ", 10, " ", 10, " ");
+        }
 
-        printf("%-*s (%.1f PV)%*s (%.1f PV)\n", largeur_colonne - 10, nom_champion1, pv_champion1,
-               espace_entre_equipes + largeur_colonne - 10, nom_champion2, pv_champion2);
+        // Espacement entre les deux équipes
+        printf("%*s", espacement, " ");
+
+        // Équipe 2
+        if ((equipe2 + i)->nom != NULL) {
+            printf("%-*s%-*s%-*f\n", largeur_nom, (equipe2 + i)->nom, 10, (equipe2 + i)->classe, 10, (equipe2 + i)->stat.pv_courant);
+        } else {
+            printf("%-*s%-*s%-*s\n", largeur_nom, " ", 10, " ", 10, " ");
+        }
+    }
+}
+
+void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank, Champion *champion_dps, int soutien_count, int tank_count, int dps_count){
+    
+    int index = 1;
+    printf("Les champions de classe soutien sont : \n");
+    for (int i = 0; i < soutien_count; i++) {
+        printf("%d : %s\n",index, (champion_soutien + i)->nom);
+        index++;
+    }
+    printf("\n");
+    Sleep(2000);
+    printf("Les champions de classe tank sont : \n");
+    for (int i = 0; i < tank_count; i++) {
+        printf("%d : %s\n",index, (champion_tank + i)->nom);
+        index++;
+    }
+    printf("\n");
+    Sleep(2000);
+    printf("Les champions de classe dps sont : \n");
+    for (int i = 0; i < dps_count; i++) {
+        printf("%d : %s\n",index, (champion_dps + i)->nom);
+        index++;
     }
 }
