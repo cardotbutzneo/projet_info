@@ -108,12 +108,11 @@ void afficher_equipe(Champion *equipe1, Champion *equipe2, char *nom_equipe1, ch
 }
 
 void afficher_equipes_cote_a_cote(Champion *equipe1, Champion *equipe2, char *nom_equipe1, char *nom_equipe2) {
-    separation_des_partie();
 
     // Calculer la largeur maximale des noms pour ajuster l'affichage
     int n = longueur_nom_max(equipe1, Nb_champion_par_equipe);
     int m = longueur_nom_max(equipe2, Nb_champion_par_equipe);
-    int largeur_nom = max(n, m);
+    int largeur_nom = max(n, m)+1;
 
     // Ajouter un espacement fixe entre les deux équipes
     int espacement = 12;
@@ -148,13 +147,8 @@ void afficher_equipes_cote_a_cote(Champion *equipe1, Champion *equipe2, char *no
 void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank, Champion *champion_dps, int soutien_count, int tank_count, int dps_count){
     
     int index = 1;
-    printf("Les champions de classe soutien sont : \n");
-    for (int i = 0; i < soutien_count; i++) {
-        printf("%d : %s\n",index, (champion_soutien + i)->nom);
-        index++;
-    }
-    printf("\n");
-    Sleep(2000);
+    
+
     printf("Les champions de classe tank sont : \n");
     for (int i = 0; i < tank_count; i++) {
         printf("%d : %s\n",index, (champion_tank + i)->nom);
@@ -167,4 +161,21 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
         printf("%d : %s\n",index, (champion_dps + i)->nom);
         index++;
     }
+    printf("\n");
+    Sleep(2000);
+    printf("Les champions de classe soutien sont : \n");
+    for (int i = 0; i < soutien_count; i++) {
+        printf("%d : %s\n",index, (champion_soutien + i)->nom);
+        index++;
+    }
+}
+
+void affichage_saisie_utilisateur(Champion *equipe){
+    for (int i=0;i<Nb_champion_par_equipe;i++){
+        printf("champion selectionner : \n");
+        printf("%s\n",(equipe+i)->nom);
+        printf("1 : attaquer  |  2 : technique speciale  |  3 : utiliser un objet  |  4 : passer son tour\n");
+
+    }
+
 }

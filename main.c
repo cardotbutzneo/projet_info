@@ -9,7 +9,7 @@ int main() {
 
     // Initialisation des tableaux
 
-    Champion *tableau_champion = malloc(sizeof(Champion) * Nb_champion);
+    Champion *tableau_champion= malloc(sizeof(Champion) * Nb_champion);
     Champion *champion_soutien = malloc(sizeof(Champion) * 6);
     Champion *champion_tank = malloc(sizeof(Champion) * 6);
     Champion *champion_dps = malloc(sizeof(Champion) * 6);
@@ -19,7 +19,7 @@ int main() {
         return 1;
     }
 
-    char *tableau_nom_personnage[Nb_champion] = {"amongus.txt", "captainamerica.txt", "drtenma.txt", "gandalf.txt", "golemdefer.txt","inconnu.txt", "invader.txt", "itachi.txt", "jackfrost.txt", "jay.txt", "johnnyhallyday.txt", "netero.txt", "nox.txt", "picsou.txt", "pierrechartier.txt", "shrek.txt", "tux.txt","zelda.txt"};
+    char *tableau_nom_personnage[Nb_champion] = {"amongus.txt", "captainamerica.txt","donkeykong.txt", "drtenma.txt", "gandalf.txt", "golemdefer.txt", "invader.txt", "itachi.txt", "jackfrost.txt", "jay.txt", "johnnyhallyday.txt", "netero.txt", "nox.txt", "picsou.txt", "pierrechartier.txt", "shrek.txt", "tux.txt","zelda.txt"};
 
     char *personnage_cachee[Nb_champion_cachee] = {"adchayan.txt","garrigusprimus.txt","grossinge.txt"};
 
@@ -70,41 +70,44 @@ int main() {
 
 
     // Classement des champions par classe
-    
-    classe_champion(tableau_champion,champion_soutien,champion_tank,champion_dps, &soutien_count, &tank_count, &dps_count);
+    qsort(tableau_champion, Nb_champion, sizeof(Champion), comparer_par_classe);
+
+    Champion temp[Nb_champion];
+    classe_champion(tableau_champion, champion_soutien, champion_tank, champion_dps, &soutien_count, &tank_count, &dps_count,temp);
+
 
     // Affichage des champions par classe
-    
-    afficher_champion_init(champion_soutien,champion_tank,champion_dps,soutien_count,tank_count,dps_count);
+    afficher_champion_init(champion_soutien, champion_tank, champion_dps, soutien_count, tank_count, dps_count);
 
     printf("Fin de l'initialisation des personnages\n");
 
     if (choix_nb_joueur == 1){
         
         printf("Equipe 1 choisissez vos champions : \n");
-        choix_des_champion(tableau_champion,equipe1);
+        choix_des_champion(temp,equipe1);
         nom_equipe2 = *(nom_IA+rand()%8);
-        choix_champion_IA(tableau_champion,equipe2);
+        choix_champion_IA(temp,equipe2);
 
     }
 
     if (choix_nb_joueur == 2){
         printf("Equipe 1 choisissez vos champions : \n");
-        choix_des_champion(tableau_champion,equipe1);
+        choix_des_champion(temp,equipe1);
 
         printf("Equipe 2 choisissez vos champions : \n");
-        choix_des_champion(tableau_champion,equipe2);
+        choix_des_champion(temp,equipe2);
             
     }
 
     // affichage des équipe tour par tour
 
-    for (int i=0;i<4;i++){
-        printf("tour %d : \n",i);
+    for (int i=0;i<Nb_tour;i++){
+        printf("tour %d : \n",i+1);
         afficher_equipes_cote_a_cote(equipe1,equipe2,nom_equipe1,nom_equipe2);
+        affichage_saisie_utilisateur(equipe1);
         Sleep(5000);
+        separation_des_partie();
     }
-
     
 
     // Libération de la mémoire
@@ -112,7 +115,8 @@ int main() {
     free(champion_tank);
     free(champion_dps);
     free(tableau_champion);
-
+    free(nom_equipe1);
+    free(nom_equipe2);
     printf("\nCode fini\n");
     return 0;
 }

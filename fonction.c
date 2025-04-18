@@ -141,43 +141,46 @@ int trie (Champion *champion){
     }
 }
 
-void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, Champion *tab_dps, int *soutien_count, int *tank_count, int *dps_count) {
+
+int ordre_classe(const char *classe) {
+    if (strcmp(classe, "tank") == 0) return 1;
+    if (strcmp(classe, "dps") == 0) return 2;
+    if (strcmp(classe, "soutien") == 0) return 3;
+    return 4; // Classe inconnue ou autre
+}
+
+int comparer_par_classe(const void *a, const void *b) {
+    Champion *champion1 = (Champion *)a;
+    Champion *champion2 = (Champion *)b;
+
+    // Définir un ordre pour les classes
+    
+
+    return ordre_classe(champion1->classe) - ordre_classe(champion2->classe);
+}
+
+void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, Champion *tab_dps, int *soutien_count, int *tank_count, int *dps_count, Champion *temp) {
+    memcpy(temp, tab, sizeof(Champion) * Nb_champion); // Copier les données dans un tableau temporaire
+
+    // Trier le tableau temporaire par classe
+    qsort(temp, Nb_champion, sizeof(Champion), comparer_par_classe);
+
+    // Réinitialiser les compteurs
     *soutien_count = 0;
     *tank_count = 0;
     *dps_count = 0;
 
+    // Parcourir le tableau trié et remplir les tableaux par classe
     for (int i = 0; i < Nb_champion; i++) {
-        switch (trie(tab + i)) {
-        case 1: // Tank
-            if (*tank_count < 7) {
-                copie_champion(tab + i, tab_tank + *tank_count);
-                (*tank_count)++;
-            } else {
-                printf("Erreur : trop de tanks détectés\n");
-            }
-            break;
-
-        case 2: // DPS
-            if (*dps_count < 7) {
-                copie_champion(tab + i, tab_dps + *dps_count);
-                (*dps_count)++;
-            } else {
-                printf("Erreur : trop de DPS détectés\n");
-            }
-            break;
-
-        case 3: // Soutien
-            if (*soutien_count < 7) {
-                copie_champion(tab + i, tab_soutien + *soutien_count);
-                (*soutien_count)++;
-            } else {
-                printf("Erreur : trop de soutiens détectés\n");
-            }
-            break;
-
-        default:
-            printf("Classe inconnue pour le champion %s\n", (tab + i)->nom);
-            break;
+        if (strcmp(temp[i].classe, "tank") == 0) {
+            copie_champion(&temp[i], &tab_tank[*tank_count]);
+            (*tank_count)++;
+        } else if (strcmp(temp[i].classe, "dps") == 0) {
+            copie_champion(&temp[i], &tab_dps[*dps_count]);
+            (*dps_count)++;
+        } else if (strcmp(temp[i].classe, "soutien") == 0) {
+            copie_champion(&temp[i], &tab_soutien[*soutien_count]);
+            (*soutien_count)++;
         }
     }
 }
