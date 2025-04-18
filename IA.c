@@ -1,6 +1,6 @@
 #include "en-tete.h"
 
-
+/*
 //à faire : créer fonction peut_utiliser_tech_spe(Equipe.combattant[]), fonction utiliser_tech_spe(), fonction pour choisir une cible 
 
 
@@ -62,3 +62,4 @@
 
 // Fonction pour choisir une cible (celle avec le moins de PV)
 //int choisir_cible(Equipe *equipe_adverse, char difficulte) {
+*/

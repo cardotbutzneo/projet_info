@@ -101,10 +101,17 @@ int main() {
 
     // affichage des équipe tour par tour
 
+    // corps du jeu
+
     for (int i=0;i<Nb_tour;i++){
         printf("tour %d : \n",i+1);
         afficher_equipes_cote_a_cote(equipe1,equipe2,nom_equipe1,nom_equipe2);
         affichage_saisie_utilisateur(equipe1);
+
+        // code de combat
+
+
+        // fin du code de combat
         Sleep(5000);
         separation_des_partie();
     }

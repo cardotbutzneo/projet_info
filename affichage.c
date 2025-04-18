@@ -24,7 +24,7 @@ void afficher_personnage(Champion *champion){
 
 // affichage global
 
-int type_os(int type_OS){
+int type_os(int type_OS){ // vérifie si l'utilisateur est sur windows ou linux
     if (_WIN32 ){
         type_OS = 1000;
     }
