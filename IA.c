@@ -42,15 +42,15 @@ void ia_moyen(Equipe *equipe_ia, Equipe *equipe_adverse) {
 }
 
 // Fonction principale de l'IA
-void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, char difficulte) {
+void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
     switch (difficulte) {
-        case 'n':
+        case 0:
             ia_noob(equipe_ia, equipe_adverse);
             break;
-        case 'f':
+        case 1:
             ia_facile(equipe_ia, equipe_adverse);
             break;
-        case 'm':
+        case 2:
             ia_moyen(equipe_ia, equipe_adverse);
             break;
         default:

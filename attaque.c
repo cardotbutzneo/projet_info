@@ -25,7 +25,6 @@ float degat(Equipe equipe1, Equipe equipe2){//calcule les degats
 
 
 }
-*/
 void attaque (Equipe *equipe1, Equipe *equipe2){//actualiser la vie des personnage apres une attaque classique
 
 

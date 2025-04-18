@@ -1,6 +1,5 @@
 #include "en-tete.h"
 
-
 int main() {
     srand(time(NULL));
     FILE *fichier = NULL;
@@ -102,8 +101,8 @@ int main() {
     // affichage des équipe tour par tour
 
     // corps du jeu
-
-    for (int i=0;i<Nb_tour;i++){
+    int finJeu=0;
+    for (int i=0;i<Nb_tour|| finJeu==1;;i++){
         printf("tour %d : \n",i+1);
         afficher_equipes_cote_a_cote(equipe1,equipe2,nom_equipe1,nom_equipe2);
         affichage_saisie_utilisateur(equipe1);
