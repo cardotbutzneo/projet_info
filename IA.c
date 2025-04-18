@@ -5,7 +5,7 @@
 
 
 // Fonction pour l'IA noob
-//void ia_noob(Equipe *equipe_ia, Equipe *equipe_adverse) {
+void ia_noob(Equipe *equipe_ia, Equipe *equipe_adverse) {
     for (int i = 0; i < 3; i++) {
         if (equipe_ia->combattants[i].points_vie_courants > 0) {
             int cible = rand() % 3; // Cible aléatoire
@@ -18,7 +18,7 @@
 }
 
 // Fonction pour l'IA facile
-//void ia_facile(Equipe *equipe_ia, Equipe *equipe_adverse) {
+void ia_facile(Equipe *equipe_ia, Equipe *equipe_adverse) {
     for (int i = 0; i < 3; i++) {
         if (equipe_ia->combattants[i].points_vie_courants > 0) {
             int cible = choisir_cible(equipe_adverse, 'f');
@@ -28,7 +28,7 @@
 }
 
 // Fonction pour l'IA moyen
-//void ia_moyen(Equipe *equipe_ia, Equipe *equipe_adverse) {
+void ia_moyen(Equipe *equipe_ia, Equipe *equipe_adverse) {
     for (int i = 0; i < 3; i++) {
         if (equipe_ia->combattants[i].points_vie_courants > 0) {
             int cible = choisir_cible(equipe_adverse, 'm');
@@ -42,7 +42,7 @@
 }
 
 // Fonction principale de l'IA
-//void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, char difficulte) {
+void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, char difficulte) {
     switch (difficulte) {
         case 'n':
             ia_noob(equipe_ia, equipe_adverse);

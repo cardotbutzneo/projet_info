@@ -1,7 +1,6 @@
 #include "en-tete.h"
 
 
-/*
 void vitesse(Equipe *equipe1, Equipe *equipe2){ //tri les champion par leur vitesse
     Champion *ordreAttaque[6];
     Champion min;
@@ -21,8 +20,8 @@ void vitesse(Equipe *equipe1, Equipe *equipe2){ //tri les champion par leur vite
         }
     } 
 }
-float degat(Equipe equipe1, Equipe equipe2){//calcule les degat
-
+float degat(Equipe equipe1, Equipe equipe2){//calcule les degats
+    
 
 
 }
@@ -33,4 +32,4 @@ void attaque (Equipe *equipe1, Equipe *equipe2){//actualiser la vie des personna
 
 
 }
-*/
+
