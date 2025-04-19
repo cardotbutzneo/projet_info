@@ -33,3 +33,4 @@ void attaque (Equipe *equipe1, Equipe *equipe2){//actualiser la vie des personna
 
 }
 
+*/

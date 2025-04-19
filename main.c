@@ -102,7 +102,7 @@ int main() {
 
     // corps du jeu
     int finJeu=0;
-    for (int i=0;i<Nb_tour|| finJeu==1;;i++){
+    for (int i=0;i<Nb_tour|| finJeu==1;i++){
         printf("tour %d : \n",i+1);
         afficher_equipes_cote_a_cote(equipe1,equipe2,nom_equipe1,nom_equipe2);
         affichage_saisie_utilisateur(equipe1);
