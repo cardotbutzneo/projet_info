@@ -71,11 +71,9 @@ void attaquesimple (Champion personnage, Equipe equipeAdverse[]){//actualiser la
         equipeAdverse[cible].stat.pvactuel-=(degat(personnage)/(equipeAdverse[cible].stat.defense)/100);
     }
     else{
-        printf("l attaque a ete esquive");
+        printf("%s esquive",personnage.nom);
+        printf("l attaque a ratée");
     }
 }
 
-
-
-}
 

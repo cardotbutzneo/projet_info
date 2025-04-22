@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>  
-#include <math.h>
 #include <string.h>
 #include <windows.h>
 
@@ -46,7 +45,6 @@ typedef struct
 
 // initialisation des fonctions
 
-void afficher();
 void initialisation_champion(FILE *fichier, Champion *champion);
 void sauter_ligne(FILE *fichier);
 void afficher_personnage(Champion *champion);
@@ -64,3 +62,4 @@ int longueur_nom_max(Champion *champions, int taille);
 int comparer_par_classe(const void *a, const void *b);
 int ordre_classe(const char *classe);
 void affichage_saisie_utilisateur(Champion *equipe);
+void afficher_degat_recu(Champion cible,Champion attaquant, int type_attaque);
