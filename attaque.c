@@ -70,6 +70,7 @@ void attaquesimple (Champion personnage, Equipe equipeAdverse[]){//actualiser la
     int cible=cibleAttaque(equipeAdverse[]);
     if (precision>equipeAdverse[cible].stat.agilite){//si l'attaque touche actualise les pv en prenant en compte la defense
         equipeAdverse[cible].stat.pvactuel-=(degat(personnage)/(equipeAdverse[cible].stat.defense)/100);
+        afficher_degat_recu(equipeAdverse[cible],personnage,0)
     }
     else{
         printf("%s esquive",personnage.nom);
