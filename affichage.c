@@ -46,7 +46,7 @@ void affichage_initial(){
 
 
     for (int i=0;i<buffer;i++){
-        Sleep(val_systemeOS); // passer cette ligne en commentaire pour ne pas avoir les temps de chargement
+       -// Sleep(val_systemeOS); // passer cette ligne en commentaire pour ne pas avoir les temps de chargement
         printf("---");
     }
 

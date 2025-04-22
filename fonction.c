@@ -231,9 +231,29 @@ void copie_champion(Champion *source, Champion *destination) {
 }
 
 void choix_des_champion(Champion *tableau_champion, Champion *equipe1, Champion *equipe2, int choix){
-    if (choix == 1){
-        int temp;
-        printf("Equipe 1 choisisez vos champions");
+    int temp;
+    if (choix == 2){
+        printf("Equipe 1 choisisez vos champions\n");
+        for (int i=0;i<Nb_champion_par_equipe;i++){
+            temp = -1;
+            do {
+                printf("champion %d : \n",i+1);
+                scanf("%d",&temp);
+            }while(temp > 18 || temp <=0);
+            *(equipe1 + i) = *(tableau_champion + (temp - 1));
+        }
+        printf("Equipe 2 choisisez vos champions\n");
+        for (int i=0;i<Nb_champion_par_equipe;i++){
+            temp = -1;
+            do {
+                printf("champion %d : \n",i+1);
+                scanf("%d",&temp);
+            }while(temp > 18 || temp <=0);
+            *(equipe2 + i) = *(tableau_champion + (temp - 1));
+        }
+    }
+    else if (choix == 1){
+        printf("Equipe 1 choisisez vos champions\n");
         for (int i=0;i<Nb_champion_par_equipe;i++){
             temp = -1;
             do {
@@ -242,20 +262,8 @@ void choix_des_champion(Champion *tableau_champion, Champion *equipe1, Champion 
             }while(temp > 18 || temp <=0);
             *(equipe1 + i) = *(tableau_champion + (temp - 1));
         }
-        printf("Equipe 2 choisisez vos champions");
-        for (int i=0;i<Nb_champion_par_equipe;i++){
-            temp = -1;
-            do {
-                printf("champion %d : ",i+1);
-                scanf("%d",&temp);
-            }while(temp > 18 || temp <=0);
-            *(equipe2 + i) = *(tableau_champion + (temp - 1));
-        }
-    }
-    else if (choix == 2){
         choix_champion_IA(tableau_champion,equipe2);
     }
-    
 }
 
 void choix_champion_IA(Champion *tableau_champion, Champion *equipe2){

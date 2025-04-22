@@ -71,7 +71,7 @@ int main() {
 
     // Classement des champions par classe
     qsort(tableau_champion, Nb_champion, sizeof(Champion), comparer_par_classe);
-    vitesse(ordre_attaque);
+    vitesse(ordre_attaque,tableau_champion);
 
     Champion temp[Nb_champion];
     classe_champion(tableau_champion, champion_soutien, champion_tank, champion_dps, &soutien_count, &tank_count, &dps_count,temp);
@@ -83,11 +83,14 @@ int main() {
     printf("Fin de l'initialisation des personnages\n");
 
         
-        printf("Equipe 1 choisissez vos champions : \n");
-        choix_des_champion(temp,equipe1,equipe2,choix_nb_joueur);
-        nom_equipe2 = *(nom_IA+rand()%8);
-        choix_champion_IA(temp,equipe2);
+    nom_equipe2 = *(nom_IA+rand()%8);
+    choix_des_champion(temp,equipe1,equipe2,choix_nb_joueur);
 
+    //debug
+    printf("debug\n");
+    for (int i=0;i<Nb_champion_par_equipe*2;i++){
+        afficher_personnage((ordre_attaque+i));
+    }
     
 
     // affichage des équipe tour par tour
@@ -96,10 +99,11 @@ int main() {
     int finJeu=0;
     for (int i=0;i<Nb_tour|| finJeu==1;i++){
         printf("tour %d : \n",i+1);
+        printf("afficher les champions\n");
         afficher_equipes_cote_a_cote(equipe1,equipe2,nom_equipe1,nom_equipe2);
         // faudrait faire une boucle avec les champions trié par vitesse
         for (int k=0;k<Nb_champion_par_equipe*2;k++){
-            affichage_saisie_utilisateur(*(ordre_attaque+i));
+            affichage_saisie_utilisateur(*(ordre_attaque+k));
         }
 
         // code de combat

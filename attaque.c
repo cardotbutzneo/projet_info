@@ -9,18 +9,26 @@ ordreAttaque[3]=equipe2[0];
 ordreAttaque[4]=equipe2[1];
 ordreAttaque[5]=equipe2[2];
 */
-void vitesse(Champion ordreAttaque[]){ //tri les champion par leur vitesse
-    Champion min;
-    for(int i=0;i<6;i++){
-        for(int j=i;j<6;j++){
-            if (ordreAttaque[i].stat.vitesse > ordreAttaque[j].stat.vitesse){
-                min=ordreAttaque[i];
-                ordreAttaque[i]=ordreAttaque[j];
-                ordreAttaque[j]=min;
+void vitesse(Champion *ordreAttaque, Champion *tableau_initial) { // Tri les champions par leur vitesse
+    // Remplir ordreAttaque avec les champions de tableau_initial
+    for (int i = 0; i < 6; i++) {
+        copie_champion(&tableau_initial[i], &ordreAttaque[i]);
+    }
+
+    // Trier ordreAttaque par vitesse croissante
+    Champion temp;
+    for (int i = 0; i < 6; i++) {
+        for (int j = i + 1; j < 6; j++) { // Commence à i + 1 pour éviter de comparer un élément avec lui-même
+            if (ordreAttaque[i].stat.vitesse > ordreAttaque[j].stat.vitesse) {
+                // Effectuer une deep copy pour échanger les éléments
+                copie_champion(&ordreAttaque[i], &temp);
+                copie_champion(&ordreAttaque[j], &ordreAttaque[i]);
+                copie_champion(&temp, &ordreAttaque[j]);
             }
         }
-    } 
+    }
 }
+
 int nbTank(Champion Equipe[]){
     int nombre;
     for(int i=0;i<3;i++){
@@ -33,7 +41,7 @@ int nbTank(Champion Equipe[]){
 
 int cibleAttaque(Champion Equipe[]){
     int cible=0;
-    if (nbTank==0){//si il n'y a pas de tank l'attaque cible l'adversaire le plus lent
+    if (nbTank(Equipe)==0){//si il n'y a pas de tank l'attaque cible l'adversaire le plus lent
         for(int i=0;i<3;i++){
             if (Equipe[i].stat.vitesse<Equipe[cible].stat.vitesse){
                 cible=i;
@@ -41,14 +49,14 @@ int cibleAttaque(Champion Equipe[]){
         }
     return cible; 
     }
-    if (nbTank==1){//si il n'y qu'un seul tank l'attaque cible le tank
+    if (nbTank(Equipe)==1){//si il n'y qu'un seul tank l'attaque cible le tank
         for(int i=0;i<3;i++){
             if (Equipe[i].classe=="tank"){
                 return i;
             }
         } 
     }
-    if (nbTank>1){//si il y a plusieurs tanks l'attaque cible le tank le plus lent
+    if (nbTank(Equipe)>1){//si il y a plusieurs tanks l'attaque cible le tank le plus lent
         if(Equipe[cible].classe!="tank"){//si le premier champion n'est pas un tank on selectionne le suivant
             cible=1;
         }
