@@ -1,15 +1,15 @@
 #include "en-tete.h"
 
-
-void vitesse(Equipe *equipe1, Equipe *equipe2){ //tri les champion par leur vitesse
-    Champion *ordreAttaque[6];
-    Champion min;
+    Champion ordreAttaque[6];
     ordreAttaque[0]=;
     ordreAttaque[1]=;
     ordreAttaque[2]=;
     ordreAttaque[3]=;
     ordreAttaque[4]=;
     ordreAttaque[5]=;
+
+void vitesse(Champion ordreAttaque[]){ //tri les champion par leur vitesse
+    Champion min;
     for(int i=0;i<6;i++){
         for(int j=i;j<6;j++){
             if (ordreAttaque[i]->stat->vitesse > ordreAttaque[j]->stat->vitesse){
