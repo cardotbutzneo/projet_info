@@ -183,11 +183,11 @@ int affichage_saisie_utilisateur(Champion champion){
 void afficher_degat_recu(Champion cible,Champion attaquant, int type_attaque){
     printf("%s attaque %s\n",attaquant.nom,cible.nom);
     if (type_attaque == 0){ // attaque classique
-        printf("attaque spéciale\n");
         printf("%s recoit : %d degats\n",cible.nom,attaquant.stat.attaque);
         printf("Les PV de %s sont maintenant de : %d\n",cible.nom,cible.stat.pv_courant);
     }
     if (type_attaque == 1){ // attaque spéciale
+        printf("attaque spéciale\n");
         printf("%s recoit : %d degats\n",cible.nom,attaquant.stat.attaque);
         printf("Les PV de %s sont maintenant de : %d\n",cible.nom,cible.stat.pv_courant);
     }
