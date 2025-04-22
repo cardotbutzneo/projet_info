@@ -64,14 +64,12 @@ int main() {
     }
         
     else if (choix_nb_joueur == 1){
-        char *difficulte;
+        int *difficulte;
         printf("Vous jouez contre une IA :\n");
         printf("saisir le nom du joueur 1 :\n");
         scanf("%s",nom_equipe1);
-        /*printf("Choisissez le niveau de %s :\n", nom_IA);
+        printf("Choisissez le niveau de %s :\n", nom_IA);
         scanf("%d", &difficulte); //peut-être prblèmes ici, à recheck
-        ia_principale(&nom_IA, &nom_equipe1, difficulte); //same
-        */
     }
     
 
