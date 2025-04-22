@@ -60,6 +60,4 @@ void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
     }
 }
 
-// Fonction pour choisir une cible (celle avec le moins de PV)
-//int choisir_cible(Equipe *equipe_adverse, char difficulte) {
 */
