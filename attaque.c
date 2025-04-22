@@ -13,7 +13,7 @@ void vitesse(Champion ordreAttaque[]){ //tri les champion par leur vitesse
     Champion min;
     for(int i=0;i<6;i++){
         for(int j=i;j<6;j++){
-            if (ordreAttaque[i]->stat->vitesse > ordreAttaque[j]->stat->vitesse){
+            if (ordreAttaque[i].stat.vitesse > ordreAttaque[j].stat.vitesse){
                 min=ordreAttaque[i];
                 ordreAttaque[i]=ordreAttaque[j];
                 ordreAttaque[j]=min;

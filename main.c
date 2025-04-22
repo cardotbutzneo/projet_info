@@ -12,6 +12,7 @@ int main() {
     Champion *champion_soutien = malloc(sizeof(Champion) * 6);
     Champion *champion_tank = malloc(sizeof(Champion) * 6);
     Champion *champion_dps = malloc(sizeof(Champion) * 6);
+    Champion *ordre_attaque = malloc(sizeof(Champion)*Nb_champion_par_equipe*2);
 
     if (!tableau_champion || !champion_soutien || !champion_tank || !champion_dps) {
         printf("Erreur d'allocation mémoire\n");
@@ -70,6 +71,7 @@ int main() {
 
     // Classement des champions par classe
     qsort(tableau_champion, Nb_champion, sizeof(Champion), comparer_par_classe);
+    vitesse(ordre_attaque);
 
     Champion temp[Nb_champion];
     classe_champion(tableau_champion, champion_soutien, champion_tank, champion_dps, &soutien_count, &tank_count, &dps_count,temp);
@@ -96,7 +98,9 @@ int main() {
         printf("tour %d : \n",i+1);
         afficher_equipes_cote_a_cote(equipe1,equipe2,nom_equipe1,nom_equipe2);
         // faudrait faire une boucle avec les champions trié par vitesse
-        affichage_saisie_utilisateur(equipe1);
+        for (int k=0;k<Nb_champion_par_equipe*2;k++){
+            affichage_saisie_utilisateur(*(ordre_attaque+i));
+        }
 
         // code de combat
 
