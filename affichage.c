@@ -30,7 +30,7 @@ int type_os(int type_OS){ // vérifie si l'utilisateur est sur windows ou linux
     }
 
     else {
-        printf("Nous avons détecter que votre appareil n'est pas sous Windows, de ce fait les temps d'attente pourront etre long.\n");
+        printf("Nous avons détecté que votre appareil n'est pas sous Windows, de ce fait les temps d'attente pourraient être plus long.\n");
         type_OS = 1;
     }
     return type_OS;
