@@ -1,7 +1,7 @@
 #include "en-tete.h"
 
 /*
-//à faire : créer fonction peut_utiliser_tech_spe(Equipe.combattant[]), fonction utiliser_tech_spe(), fonction pour choisir une cible 
+//à faire : créer fonction peut_utiliser_tech_spe(Equipe.combattant[]), fonction utiliser_tech_spe(), fonction choisir_cible(Equipe a, char a);
 
 
 // Fonction pour l'IA noob
