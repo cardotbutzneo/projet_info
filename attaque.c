@@ -76,6 +76,3 @@ void attaquesimple (Champion personnage, Equipe equipeAdverse[]){//actualiser la
 }
 
 
-
-}
-
