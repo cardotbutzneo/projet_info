@@ -53,18 +53,26 @@ int main() {
     char *nom_IA[8] = {"Wall-E","Atlas","Sentinelle","Factionnaire","Paperclip","Pnj","Nano","Arcade"};
     Champion equipe1[Nb_champion_par_equipe];
     Champion equipe2[Nb_champion_par_equipe];
-    
+
+    //choix jeu PvP ou PvE + difficulté de l'IA le cas échéant
+
     if (choix_nb_joueur == 2){
         printf("saisir un nom du joueur 1 : \n");
         scanf("%s",nom_equipe1);
         printf("saisir un nom du joueur 2 : \n");
         scanf("%s",nom_equipe2);
     }
+
     
     else if (choix_nb_joueur == 1){
+        //char *difficulte;
         printf("Vous jouez contre une IA :\n");
         printf("saisir le nom du joueur 1 :\n");
         scanf("%s",nom_equipe1);
+        /*printf("Choisissez le niveau de %s :\n", nom_IA);
+        scanf("%d", &difficulte);
+        ia_principale(&nom_IA, &nom_equipe1, difficulte);
+        */
     }
 
 
