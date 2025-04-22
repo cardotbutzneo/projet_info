@@ -72,7 +72,7 @@ int affichage_saisie_utilisateur(Champion champion);
 void afficher_degat_recu(Champion cible,Champion attaquant, int type_attaque);
 void attaquesimple (Champion personnage, Champion equipeAdverse[]);
 void vitesse(Champion *ordreAttaque, Champion *tableau_initial);
-//void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte);
+void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte);
 /*
 int peut_utiliser_tech_spe(&equipe_ia->combattants[]);
 int utiliser_tech_spe(&equipe_ia->combattants[], &equipe_adverse->combattants[]);
