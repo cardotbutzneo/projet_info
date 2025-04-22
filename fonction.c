@@ -261,4 +261,15 @@ int longueur_nom_max(Champion *champions, int taille) {
     return max_longueur;
 }
 
-//persoenjeu=malloc(sizeof(Champion)*6);
+void sasi_utilisateur(Champion equipe1, Champion equipe2){
+
+    switch (affichage_saisie_utilisateur())
+    {
+    case 1
+        attaquesimple()
+        break;
+    
+    default:
+        break;
+    }
+} 

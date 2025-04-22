@@ -61,5 +61,5 @@ void choix_champion_IA(Champion *tableau_champion, Champion *equipe2);
 int longueur_nom_max(Champion *champions, int taille);
 int comparer_par_classe(const void *a, const void *b);
 int ordre_classe(const char *classe);
-void affichage_saisie_utilisateur(Champion *equipe);
+int affichage_saisie_utilisateur(Champion *equipe);
 void afficher_degat_recu(Champion cible,Champion attaquant, int type_attaque);

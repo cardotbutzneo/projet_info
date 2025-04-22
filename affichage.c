@@ -170,14 +170,16 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
     }
 }
 
-void affichage_saisie_utilisateur(Champion *equipe){
+int affichage_saisie_utilisateur(Champion *equipe){
     for (int i=0;i<Nb_champion_par_equipe;i++){
         printf("champion selectionner : \n");
         printf("%s\n",(equipe+i)->nom);
         printf("1 : attaquer  |  2 : technique speciale  |  3 : utiliser un objet  |  4 : passer son tour\n");
 
     }
-
+    int saisi;
+    scanf("%d",&saisi);
+    return saisi;
 }
 
 void afficher_degat_recu(Champion cible,Champion attaquant, int type_attaque){
