@@ -109,7 +109,7 @@ int main() {
         for (int k=0;k<Nb_champion_par_equipe*2;k++){
             affichage_saisie_utilisateur(*(ordre_attaque+k));
         }
-        //appel de l'IA si 1 seul joueur 
+        // appel de l'IA si 1 seul joueur 
         if (choix_nb_joueur == 1) { 
             ia_principale(equipe2, equipe1, difficulte);
         }
