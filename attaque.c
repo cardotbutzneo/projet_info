@@ -1,12 +1,19 @@
 #include "en-tete.h"
 
-    Champion ordreAttaque[6];
-    ordreAttaque[0]=;
-    ordreAttaque[1]=;
-    ordreAttaque[2]=;
-    ordreAttaque[3]=;
-    ordreAttaque[4]=;
-    ordreAttaque[5]=;
+
+Personnage equipe1[3];
+Personnage equipe2[3];
+
+selection_champions(equipe1, 0);  // équipe 0
+selection_champions(equipe2, 1);  // équipe 1
+
+Champion ordreAttaque[6];
+ordreAttaque[0]=;
+ordreAttaque[1]=;
+ordreAttaque[2]=;
+ordreAttaque[3]=;
+ordreAttaque[4]=;
+ordreAttaque[5]=;
 
 void vitesse(Champion ordreAttaque[]){ //tri les champion par leur vitesse
     Champion min;
