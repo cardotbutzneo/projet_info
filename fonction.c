@@ -261,14 +261,18 @@ int longueur_nom_max(Champion *champions, int taille) {
     return max_longueur;
 }
 
-void sasi_utilisateur(Champion equipe1, Champion equipe2){
+void sasie_utilisateur(Champion champion, Champion *equipe2 ){
 
-    switch (affichage_saisie_utilisateur())
+    switch (affichage_saisie_utilisateur(champion))
     {
-    case 1
-        attaquesimple()
+    case 1:
+        attaquesimple(champion, equipe2);
         break;
-    
+    case 2:
+        printf("fonction pas encore definie");
+        break;
+    case 3:
+        printf("fonction pas encore definie");
     default:
         break;
     }

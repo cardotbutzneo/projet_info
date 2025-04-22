@@ -32,6 +32,12 @@ typedef struct
     char *classe;
 }Champion;
 
+typedef struct{
+    char *nom;
+    char *effet;
+    int numero; // numero pour repérer l'objet
+}Objet;
+
 typedef struct 
 {
     char *nom;
@@ -39,6 +45,7 @@ typedef struct
     Champion perso2;
     Champion perso3;
     float synergie;
+    Objet *objet;
 }Equipe;
 
 
@@ -61,5 +68,6 @@ void choix_champion_IA(Champion *tableau_champion, Champion *equipe2);
 int longueur_nom_max(Champion *champions, int taille);
 int comparer_par_classe(const void *a, const void *b);
 int ordre_classe(const char *classe);
-int affichage_saisie_utilisateur(Champion *equipe);
+int affichage_saisie_utilisateur(Champion champion);
 void afficher_degat_recu(Champion cible,Champion attaquant, int type_attaque);
+void attaquesimple (Champion personnage, Equipe equipeAdverse[]);
