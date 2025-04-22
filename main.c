@@ -80,23 +80,13 @@ int main() {
 
     printf("Fin de l'initialisation des personnages\n");
 
-    if (choix_nb_joueur == 1){
         
         printf("Equipe 1 choisissez vos champions : \n");
-        choix_des_champion(temp,equipe1);
+        choix_des_champion(temp,equipe1,equipe2,choix_nb_joueur);
         nom_equipe2 = *(nom_IA+rand()%8);
         choix_champion_IA(temp,equipe2);
 
-    }
-
-    if (choix_nb_joueur == 2){
-        printf("Equipe 1 choisissez vos champions : \n");
-        choix_des_champion(temp,equipe1);
-
-        printf("Equipe 2 choisissez vos champions : \n");
-        choix_des_champion(temp,equipe2);
-            
-    }
+    
 
     // affichage des équipe tour par tour
 
@@ -105,6 +95,7 @@ int main() {
     for (int i=0;i<Nb_tour|| finJeu==1;i++){
         printf("tour %d : \n",i+1);
         afficher_equipes_cote_a_cote(equipe1,equipe2,nom_equipe1,nom_equipe2);
+        // faudrait faire une boucle avec les champions trié par vitesse
         affichage_saisie_utilisateur(equipe1);
 
         // code de combat

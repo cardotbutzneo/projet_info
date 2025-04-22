@@ -63,7 +63,7 @@ void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, C
 void copie_champion(Champion *source, Champion *destination);
 void afficher_equipes_cote_a_cote(Champion *equipe1, Champion *equipe2, char *nom_equipe1, char *nom_equipe2);
 void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank, Champion *champion_dps, int soutien_count, int tank_count, int dps_count);
-void choix_des_champion(Champion *tableau_champion, Champion *equipe1);
+void choix_des_champion(Champion *tableau_champion, Champion *equipe1, Champion *equipe2, int choix);
 void choix_champion_IA(Champion *tableau_champion, Champion *equipe2);
 int longueur_nom_max(Champion *champions, int taille);
 int comparer_par_classe(const void *a, const void *b);
