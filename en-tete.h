@@ -72,6 +72,6 @@ int affichage_saisie_utilisateur(Champion champion);
 void afficher_degat_recu(Champion cible,Champion attaquant, int type_attaque);
 void attaquesimple (Champion personnage, Equipe equipeAdverse[]);
 /*
-int peut_utiliser_tech_spe(&equipe_ia->combattants[i]);
-
+int peut_utiliser_tech_spe(&equipe_ia->combattants[]);
+utiliser_tech_spe(&equipe_ia->combattants[], &equipe_adverse->combattants[])
 */
