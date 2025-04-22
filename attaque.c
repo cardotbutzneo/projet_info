@@ -1,12 +1,6 @@
 #include "en-tete.h"
 
 
-Personnage equipe1[3];
-Personnage equipe2[3];
-
-selection_champions(equipe1, 0);  // équipe 0
-selection_champions(equipe2, 1);  // équipe 1
-
 Champion ordreAttaque[6];
 ordreAttaque[0]=equipe1[0];
 ordreAttaque[1]=equipe1[1];
