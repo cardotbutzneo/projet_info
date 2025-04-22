@@ -64,12 +64,12 @@ int main() {
     }
         
     else if (choix_nb_joueur == 1){
-        int *difficulte;
+        int difficulte = 0; //noob par défault
         printf("Vous jouez contre une IA :\n");
         printf("saisir le nom du joueur 1 :\n");
         scanf("%s",nom_equipe1);
-        printf("Choisissez le niveau de %s :\n", nom_IA);
-        scanf("%d", &difficulte); //peut-être prblèmes ici, à recheck
+        printf("Choisissez le niveau de %s : 0 pour noob, 1 pour facile, 2 pour moyen :\n", nom_IA);
+        scanf("%d", &difficulte); 
     }
     
 
@@ -101,15 +101,18 @@ int main() {
 
     // corps du jeu
     int finJeu=0;
-    for (int i=0;i<Nb_tour|| finJeu==1;i++){
-        printf("tour %d : \n",i+1);
+    for (int i=0; i<Nb_tour || finJeu==1;i++) {
+        printf("tour %d : \n", i+1);
         printf("afficher les champions\n");
         afficher_equipes_cote_a_cote(equipe1,equipe2,nom_equipe1,nom_equipe2);
         // faudrait faire une boucle avec les champions trié par vitesse
         for (int k=0;k<Nb_champion_par_equipe*2;k++){
             affichage_saisie_utilisateur(*(ordre_attaque+k));
         }
-
+        //appel de l'IA si 1 seul joueur 
+        if (choix_nb_joueur == 1) { 
+            ia_principale(equipe2, equipe1, difficulte);
+        }
         // code de combat
 
 
