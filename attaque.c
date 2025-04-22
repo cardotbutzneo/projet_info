@@ -1,6 +1,6 @@
 #include "en-tete.h"
 
-
+/*
 Champion ordreAttaque[6];
 ordreAttaque[0]=equipe1[0];
 ordreAttaque[1]=equipe1[1];
@@ -8,7 +8,7 @@ ordreAttaque[2]=equipe1[2];
 ordreAttaque[3]=equipe2[0];
 ordreAttaque[4]=equipe2[1];
 ordreAttaque[5]=equipe2[2];
-
+*/
 void vitesse(Champion ordreAttaque[]){ //tri les champion par leur vitesse
     Champion min;
     for(int i=0;i<6;i++){
@@ -65,12 +65,12 @@ float degat(Champion personnage){//calcule les degats
     return personnage.stat.attaque;
 }
 
-void attaquesimple (Champion personnage, Equipe equipeAdverse[]){//actualiser la vie des personnage apres une attaque classique
+void attaquesimple (Champion personnage, Champion equipeAdverse[]){//actualiser la vie des personnage apres une attaque classique
     int precision;
-    int cible=cibleAttaque(equipeAdverse[]);
+    int cible=cibleAttaque(equipeAdverse);
     if (precision>equipeAdverse[cible].stat.agilite){//si l'attaque touche actualise les pv en prenant en compte la defense
-        equipeAdverse[cible].stat.pvactuel-=(degat(personnage)/(equipeAdverse[cible].stat.defense)/100);
-        afficher_degat_recu(equipeAdverse[cible],personnage,0)
+        equipeAdverse[cible].stat.pv_courant-=(degat(personnage)/(equipeAdverse[cible].stat.defense)/100);
+        afficher_degat_recu(equipeAdverse[cible],personnage,0);
     }
     else{
         printf("%s esquive",personnage.nom);
