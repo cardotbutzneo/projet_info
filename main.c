@@ -118,6 +118,7 @@ int main() {
     free(tableau_champion);
     free(nom_equipe1);
     free(nom_equipe2);
+    free(ordre_attaque);
     printf("\nCode fini\n");
     return 0;
 }
