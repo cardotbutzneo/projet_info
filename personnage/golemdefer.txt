@@ -6,7 +6,7 @@ Golem_de_fer // nom
 35 // defense
 1 // agilite
 3 // vitesse
-Double_Uppercut // attaque spe
+Double uppercut // attaque spe
 tank // classe
-enattente // description attaque spe
+Inflige le double de degat // description attaque spe
 enattente // description du personnage
