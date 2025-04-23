@@ -8,5 +8,5 @@ Captain_America // nom
 4 // vitesse
 Bouclier // attaque spe
 tank // classe
-enattente // description attaque spe
+Augmente la defense du champion // description attaque spe
 enattente // description du personnage
