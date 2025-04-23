@@ -1,6 +1,6 @@
 #include "en-tete.h"
 
-/*
+
 //à faire : créer fonction peut_utiliser_tech_spe(Equipe.combattant[]), fonction utiliser_tech_spe(), fonction choisir_cible(Equipe a, char a);
 
 
@@ -60,4 +60,4 @@ void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
     }
 }
 
-*/
+
