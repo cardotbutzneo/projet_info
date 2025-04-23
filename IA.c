@@ -5,7 +5,7 @@
 
 
 // Fonction pour l'IA noob
-void ia_noob(Equipe *equipe_ia, Equipe *equipe_adverse) {
+/*void ia_noob(Equipe *equipe_ia, Equipe *equipe_adverse) {
     for (int i = 0; i < 3; i++) {
         if (equipe_ia->combattants[i].points_vie_courants > 0) {
             int cible = rand() % 3; // Cible aléatoire
@@ -60,4 +60,4 @@ void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
     }
 }
 
-
+*/
