@@ -6,7 +6,7 @@ Jack_Frost // nom
 10 // defense
 10 // agilite
 10 // vitesse
-enattente // attaque spe
+Lames de glaces // attaque spe
 dps // classe
-enattente // description attaque spe
+Inflige des degats et reduits la defense // description attaque spe
 enattente // description du personnage
