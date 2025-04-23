@@ -8,5 +8,5 @@ Itachi // nom
 17 // vitesse
 Susano // attaque spe
 dps // classe
-enattente // description attaque spe
+Augmente l'attaque et la defense du champion // description attaque spe
 enattente // description du personnage
