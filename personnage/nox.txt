@@ -8,5 +8,5 @@ Nox // nom
 19 // vitesse
 20 malheureuses minutes // attaque spe
 dps // classe
-enattente // description attaque spe
+Augemnte l'agilite et la vitesse de toute l'equipe // description attaque spe
 enattente // description du personnage
