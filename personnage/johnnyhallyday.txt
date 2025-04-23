@@ -6,7 +6,7 @@ Johnny_Hallyday // nom
 10 // defense
 10 // agilite
 10 // vitesse
-enattente // attaque spe
+Allumez le feu// attaque spe
 tank // classe
-enattente // description attaque spe
+Brule la cible // description attaque spe
 enattente // description du personnage

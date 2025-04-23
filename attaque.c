@@ -74,7 +74,8 @@ float degat(Champion personnage){//calcule les degats
 }
 
 void attaquesimple (Champion personnage, Champion equipeAdverse[]){//actualiser la vie des personnage apres une attaque classique
-    int precision;
+    int precision=0;
+    precision=rand()%101;
     int cible=cibleAttaque(equipeAdverse);
     if (precision>equipeAdverse[cible].stat.agilite){//si l'attaque touche actualise les pv en prenant en compte la defense
         equipeAdverse[cible].stat.pv_courant-=(degat(personnage)/(equipeAdverse[cible].stat.defense)/100);

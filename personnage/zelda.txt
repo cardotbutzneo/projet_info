@@ -6,7 +6,7 @@ Zelda // nom
 10 // defense
 10 // agilite
 10 // vitesse
-enattente // attaque spe
+Tri force // attaque spe
 soutien // classe
-enattente // description attaque spe
+Soigne augmente la defense et la vitesse d'un allie // description attaque spe
 enattente // description du personnage

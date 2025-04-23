@@ -6,7 +6,7 @@ Donkey_kong // nom
 5 // defense
 11 // agilite
 7 // vitesse
-enattente // attaque spe
+Bannane geante // attaque spe
 tank // classe
-enattente // description attaque spe
+Inflige des degats a l'ennemie // description attaque spe
 enattente // description du personnage

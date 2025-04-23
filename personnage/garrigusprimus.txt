@@ -8,5 +8,5 @@ Garrigus_Primus // nom
 10 // vitesse
 ENS 66 // attaque spe
 dps // classe
-Reduit l'esquive de la cible // description attaque spe
+Reduit l'agilite de la cible // description attaque spe
 enattente // description du personnage
