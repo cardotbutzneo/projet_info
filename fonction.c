@@ -228,42 +228,61 @@ void copie_champion(Champion *source, Champion *destination) {
         exit(1);
     }
     strcpy(destination->effet_spe, source->effet_spe);
+    printf("copie fini");
 }
 
-void choix_des_champion(Champion *tableau_champion, Equipe equipe1, Equipe equipe2, int choix){
+void choix_des_champion(Champion *tableau_champion, Equipe equipe1, Equipe equipe2, int choix) {
     int tempp;
-    if (choix == 2){
-        printf("Equipe 1 choisisez vos champions\n");
-        for (int i=0;i<Nb_champion_par_equipe;i++){
-            tempp = -1;
+    if (choix == 2) {
+        printf("Equipe 1 choisissez vos champions\n");
+        for (int i = 0; i < Nb_champion_par_equipe; i++) {
+            tempp = -1; // Initialisation à une valeur invalide pour entrer dans la boucle
             do {
-                printf("champion %d : \n",i+1);
-                scanf("%d",&tempp);
-            }while(tempp > 18 || tempp <=0);
-            copie_champion((tableau_champion+(tempp-1)),&equipe1.perso[i]);
+                printf("Champion %d : \n", i + 1);
+                if (scanf("%d", &tempp) != 1) {
+                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18.\n");
+                    while (getchar() != '\n'); // Vide le buffer d'entrée
+                    tempp = -1; // Réinitialise tempp pour rester dans la boucle
+                } else if (tempp > 18 || tempp <= 0) {
+                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18.\n");
+                }
+            } while (tempp > 18 || tempp <= 0);
+            copie_champion((tableau_champion + (tempp - 1)), &equipe1.perso[i]);
         }
-        printf("Equipe 2 choisisez vos champions\n");
-        for (int i=0;i<Nb_champion_par_equipe;i++){
-            tempp = -1;
+        printf("Equipe 2 choisissez vos champions\n");
+        for (int i = 0; i < Nb_champion_par_equipe; i++) {
+            tempp = -1; // Initialisation à une valeur invalide pour entrer dans la boucle
             do {
-                printf("champion %d : \n",i+1);
-                scanf("%d",&tempp);
-            }while(tempp > 18 || tempp <=0);
-            copie_champion((tableau_champion+(tempp-1)),&equipe2.perso[i]);
+                printf("Champion %d : \n", i + 1);
+                if (scanf("%d", &tempp) != 1) {
+                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18.\n");
+                    while (getchar() != '\n'); // Vide le buffer d'entrée
+                    tempp = -1; // Réinitialise tempp pour rester dans la boucle
+                } else if (tempp > 18 || tempp <= 0) {
+                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18.\n");
+                }
+            } while (tempp > 18 || tempp <= 0);
+            copie_champion((tableau_champion + (tempp - 1)), &equipe2.perso[i]);
         }
-    }
-    else if (choix == 1){
-        printf("Equipe 1 choisisez vos champions\n");
-        for (int i=0;i<Nb_champion_par_equipe;i++){
-            tempp = 1;
+    } else if (choix == 1) {
+        printf("Equipe 1 choisissez vos champions\n");
+        for (int i = 0; i < Nb_champion_par_equipe; i++) {
+             // Initialisation à une valeur invalide pour entrer dans la boucle
             do {
-                printf("champion %d : ",i+1);
-                printf("temp : %d\n",tempp);
-                scanf("%d",&tempp);
-            }while(tempp > 18 || tempp <0);
-            copie_champion((tableau_champion+(tempp-1)),&equipe1.perso[i]);
+                printf("Champion %d : ", i + 1);
+                if (scanf("%d", &tempp) != 1) {
+                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18.\n");
+                    while (getchar() != '\n'); // Vide le buffer d'entrée
+                    tempp = -1; // Réinitialise tempp pour rester dans la boucle
+                } else if (tempp > 18 || tempp <= 0) {
+                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18.\n");
+                }
+            } while (tempp > 18 || tempp <= 0);
+            copie_champion((tableau_champion + (tempp - 1)), &equipe1.perso[i]);
         }
-        choix_champion_IA(tableau_champion,equipe2);
+        
+        choix_champion_IA(tableau_champion, equipe2);
+        afficher_equipe(equipe1,equipe2);
     }
 }
 

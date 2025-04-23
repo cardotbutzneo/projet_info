@@ -50,21 +50,31 @@ int main() {
     
 
     char *nom_IA[8] = {"Wall-E","Atlas","Sentinelle","Factionnaire","Paperclip","Pnj","Nano","Arcade"};
-    Champion equipe1[Nb_champion_par_equipe];
-    Champion equipe2[Nb_champion_par_equipe];
+    Equipe equipe1;
+    Equipe equipe2;
     
+    equipe1.nom = malloc(sizeof(char)*20);
+    if (equipe1.nom == NULL){
+        printf("erreur allocation de memoire\n");
+    }
+    equipe2.nom = malloc(sizeof(char)*20);
+    if (equipe2.nom == NULL){
+        printf("erreur allocation de memoire\n");
+    }
+
     if (choix_nb_joueur == 2){
         printf("saisir un nom du joueur 1 : \n");
         scanf("%s",equipe1.nom);
         printf("saisir un nom du joueur 2 : \n");
         scanf("%s",equipe2.nom);
     }
+    int difficulte;
         
-    else if (choix_nb_joueur == 1){
-        int difficulte = 0; //noob par défault
+    if (choix_nb_joueur == 1){
+        difficulte = 0; //noob par défault
         printf("Vous jouez contre une IA :\n");
         printf("saisir le nom du joueur 1 :\n");
-        scanf("%s",nom_equipe1);
+        scanf("%s",equipe1.nom);
     }
     
 
@@ -102,7 +112,7 @@ int main() {
         }
         // appel de l'IA si 1 seul joueur 
         if (choix_nb_joueur == 1) { 
-            ia_principale(equipe2, equipe1, difficulte);
+            ia_principale(&equipe2, &equipe1, difficulte);
         }
         // code de combat
 

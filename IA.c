@@ -1,18 +1,35 @@
 #include "en-tete.h"
 
+// Fonction pour choisir une cible valide
+int choisir_cible(Equipe *equipe_adverse, char mode) {
+    int cible = rand() % 3; // Cible aléatoire
+    while (equipe_adverse->perso[cible].stat.pv_courant <= 0) { // Vérifie si la cible est vivante
+        cible = rand() % 3;
+    }
+    return cible;
+}
 
-//à faire : créer fonction peut_utiliser_tech_spe(Equipe.combattant[]), fonction utiliser_tech_spe(), fonction choisir_cible(Equipe a, char a);
+// Fonction pour vérifier si une technique spéciale peut être utilisée
+/*
+int peut_utiliser_tech_spe(Champion *champion) {
+    // Exemple : Vérifiez si le champion a suffisamment d'énergie
+    return champion->stat. >= 10; // Remplacez par votre logique
+}
 
-
+// Fonction pour utiliser une technique spéciale
+void utiliser_tech_spe(Champion *attaquant, Champion *cible) {
+    printf("%s utilise une technique spéciale sur %s !\n", attaquant->nom, cible->nom);
+    // Exemple de logique : inflige des dégâts fixes et consomme de l'énergie
+    cible->stat.pv_courant -= 50; // Inflige 50 points de dégâts
+    attaquant->stat.energie -= 10; // Consomme 10 points d'énergie
+}
+*/
 // Fonction pour l'IA noob
 void ia_noob(Equipe *equipe_ia, Equipe *equipe_adverse) {
     for (int i = 0; i < 3; i++) {
-        if (equipe_ia->combattants[i].points_vie_courants > 0) {
-            int cible = rand() % 3; // Cible aléatoire
-            while (equipe_adverse->combattants[cible].points_vie_courants <= 0) {
-                cible = rand() % 3; // Trouver une cible vivante
-            }
-            attaque(&equipe_ia->combattants[i], &equipe_adverse->combattants[cible]);
+        if (equipe_ia->perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
+            int cible = choisir_cible(equipe_adverse, 'n'); // Mode 'n' pour noob
+            attaquesimple(equipe_ia->perso[i], &equipe_adverse->perso[cible]);
         }
     }
 }
@@ -20,9 +37,9 @@ void ia_noob(Equipe *equipe_ia, Equipe *equipe_adverse) {
 // Fonction pour l'IA facile
 void ia_facile(Equipe *equipe_ia, Equipe *equipe_adverse) {
     for (int i = 0; i < 3; i++) {
-        if (equipe_ia->combattants[i].points_vie_courants > 0) {
-            int cible = choisir_cible(equipe_adverse, 'f');
-            attaque(&equipe_ia->combattants[i], &equipe_adverse->combattants[cible]);
+        if (equipe_ia->perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
+            int cible = choisir_cible(equipe_adverse, 'f'); // Mode 'f' pour facile
+            attaquesimple(equipe_ia->perso[i], &equipe_adverse->perso[cible]);
         }
     }
 }
@@ -30,13 +47,15 @@ void ia_facile(Equipe *equipe_ia, Equipe *equipe_adverse) {
 // Fonction pour l'IA moyen
 void ia_moyen(Equipe *equipe_ia, Equipe *equipe_adverse) {
     for (int i = 0; i < 3; i++) {
-        if (equipe_ia->combattants[i].points_vie_courants > 0) {
-            int cible = choisir_cible(equipe_adverse, 'm');
-            if (peut_utiliser_tech_spe(&equipe_ia->combattants[i])) { 
-                utiliser_tech_spe(&equipe_ia->combattants[i], &equipe_adverse->combattants[cible]);
+        if (equipe_ia->perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
+            int cible = choisir_cible(equipe_adverse, 'm'); // Mode 'm' pour moyen
+            /*
+            if (peut_utiliser_tech_spe(&equipe_ia->perso[i])) {
+                utiliser_tech_spe(&equipe_ia->perso[i], &equipe_adverse->perso[cible]);
             } else {
-                attaque(&equipe_ia->combattants[i], &equipe_adverse->combattants[cible]);
+                attaquesimple(equipe_ia->perso[i], &equipe_adverse->perso[cible]);
             }
+            */
         }
     }
 }

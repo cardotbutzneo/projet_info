@@ -89,21 +89,23 @@ void centrer(){
     
 }
 
-void afficher_equipe(Champion *equipe1, Champion *equipe2, char *nom_equipe1, char *nom_equipe2){
-    printf("Equipe 1 :\n");
-    for (int i=0;i<3;i++){
-        if ((equipe1+i)->stat.pv_courant >= 0){
-            printf("%s\n",*(equipe1+i)->nom);
+void afficher_equipe(Equipe equipe1, Equipe equipe2) {
+    printf("Equipe 1 : %s\n", equipe1.nom);
+    for (int i = 0; i < Nb_champion_par_equipe; i++) {
+        if (equipe1.perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
+            printf("  - %s (PV : %.1f)\n", equipe1.perso[i].nom, equipe1.perso[i].stat.pv_courant);
+        } else {
+            printf("  - %s (KO)\n", equipe1.perso[i].nom);
         }
-
     }
 
-    printf("Equipe 2 :\n");
-    for (int i=0;i<3;i++){
-        if ((equipe1+i)->stat.pv_courant >= 0){
-            printf("%s\n",*(equipe1+i)->nom);
+    printf("\nEquipe 2 : %s\n", equipe2.nom);
+    for (int i = 0; i < Nb_champion_par_equipe; i++) {
+        if (equipe2.perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
+            printf("  - %s (PV : %.1f)\n", equipe2.perso[i].nom, equipe2.perso[i].stat.pv_courant);
+        } else {
+            printf("  - %s (KO)\n", equipe2.perso[i].nom);
         }
-
     }
 }
 
