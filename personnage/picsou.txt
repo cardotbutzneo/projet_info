@@ -6,7 +6,7 @@ Picsou // nom
 10 // defense
 10 // agilite
 10 // vitesse
-enattente // attaque spe
+Piscine de pieces // attaque spe
 soutien // classe
-enattente // description attaque spe
+Soigne et augmente la defense de l'equipe // description attaque spe
 enattente // description du personnage
