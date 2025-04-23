@@ -7,6 +7,6 @@ Adchayan // nom
 10 // agilite
 10 // vitesse
 Mathematiques // attaque spe
-Soutien // classe
+soutien // classe
 Diminue l'attaque de l'equipe adverse // description attaque spe
 enattente // description du personnage
