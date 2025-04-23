@@ -50,8 +50,8 @@ int main() {
     
 
     char *nom_IA[8] = {"Wall-E","Atlas","Sentinelle","Factionnaire","Paperclip","Pnj","Nano","Arcade"};
-    Equipe equipe1;
-    Equipe equipe2;
+    Champion equipe1[Nb_champion_par_equipe];
+    Champion equipe2[Nb_champion_par_equipe];
     
     if (choix_nb_joueur == 2){
         printf("saisir un nom du joueur 1 : \n");
@@ -59,14 +59,14 @@ int main() {
         printf("saisir un nom du joueur 2 : \n");
         scanf("%s",equipe2.nom);
     }
-    
+        
     else if (choix_nb_joueur == 1){
+        int difficulte = 0; //noob par défault
         printf("Vous jouez contre une IA :\n");
         printf("saisir le nom du joueur 1 :\n");
-        scanf("%s",equipe1.nom);
+        scanf("%s",nom_equipe1);
     }
-
-
+    
 
     // Classement des champions par classe
     qsort(tableau_champion, Nb_champion, sizeof(Champion), comparer_par_classe);
@@ -92,15 +92,18 @@ int main() {
 
     // corps du jeu
     int finJeu=0;
-    for (int i=0;i<Nb_tour|| finJeu==1;i++){
-        printf("tour %d : \n",i+1);
+    for (int i=0; i<Nb_tour || finJeu==1;i++) {
+        printf("tour %d : \n", i+1);
         printf("afficher les champions\n");
         afficher_equipes_cote_a_cote(equipe1,equipe2);
         // faudrait faire une boucle avec les champions trié par vitesse
         for (int k=0;k<Nb_champion_par_equipe*2;k++){
             saisie_utilisateur(*(ordre_attaque+k),*recuperer_equipe((ordre_attaque+k),&equipe1,&equipe2));
         }
-
+        // appel de l'IA si 1 seul joueur 
+        if (choix_nb_joueur == 1) { 
+            ia_principale(equipe2, equipe1, difficulte);
+        }
         // code de combat
 
 
