@@ -13,6 +13,8 @@ int main() {
     Champion *champion_tank = malloc(sizeof(Champion) * 6);
     Champion *champion_dps = malloc(sizeof(Champion) * 6);
     Champion *ordre_attaque = malloc(sizeof(Champion)*Nb_champion_par_equipe*2);
+    Champion *ordre_attaque_ind = malloc(sizeof(Champion)*Nb_champion_par_equipe*2);
+    Champion **champion_dans_equipe = malloc(sizeof(Champion*)*Nb_champion_par_equipe*2);
 
     if (!tableau_champion || !champion_soutien || !champion_tank || !champion_dps) {
         printf("Erreur d'allocation mémoire\n");
@@ -49,7 +51,7 @@ int main() {
     }while(choix_nb_joueur <=0 ||choix_nb_joueur > 2);
     
 
-    char *nom_IA[8] = {"Wall-E","Atlas","Sentinelle","Factionnaire","Paperclip","Pnj","Nano","Arcade"};
+    char *nom_IA[8] = {"Wall-E","Atlas","Sentinelle","Fonctionnaire","Paperclip","Pnj","Nano","Arcade"};
     Equipe equipe1;
     Equipe equipe2;
     
@@ -80,7 +82,7 @@ int main() {
 
     // Classement des champions par classe
     qsort(tableau_champion, Nb_champion, sizeof(Champion), comparer_par_classe);
-    vitesse(ordre_attaque,tableau_champion);
+
 
     Champion temp[Nb_champion];
     classe_champion(tableau_champion, champion_soutien, champion_tank, champion_dps, &soutien_count, &tank_count, &dps_count,temp);
@@ -93,31 +95,57 @@ int main() {
 
         
     equipe2.nom = *(nom_IA+rand()%8);
-    choix_des_champion(temp,equipe1,equipe2,choix_nb_joueur);
+    choix_des_champion(temp,&equipe1,&equipe2,choix_nb_joueur, champion_dans_equipe);
 
+    if (ordre_attaque_ind == NULL){
+        printf("erreur allocation de memoire\n");
+        return 1;
+    }
+
+    trier_par_vitesse(ordre_attaque_ind, &equipe1, &equipe2);
+    vitesse(ordre_attaque,ordre_attaque_ind);
+
+    // Initialize ordre_attaque_ind
     
-    
 
-    // affichage des équipe tour par tour
-
-    // corps du jeu
-    int finJeu=0;
-    for (int i=0; i<Nb_tour || finJeu==1;i++) {
-        printf("tour %d : \n", i+1);
+    // Main game loop
+    int finJeu = 0;
+    for (int i = 0; i < Nb_tour || finJeu == 1; i++) {
+        printf("tour %d : \n", i + 1);
         printf("afficher les champions\n");
-        afficher_equipes_cote_a_cote(equipe1,equipe2);
-        // faudrait faire une boucle avec les champions trié par vitesse
-        for (int k=0;k<Nb_champion_par_equipe*2;k++){
-            saisie_utilisateur(*(ordre_attaque+k),*recuperer_equipe((ordre_attaque+k),&equipe1,&equipe2));
-        }
-        // appel de l'IA si 1 seul joueur 
-        if (choix_nb_joueur == 1) { 
+
+        for (int k = 0; k < Nb_champion_par_equipe * 2; k++) {
+            afficher_equipes_cote_a_cote(equipe1, equipe2);
+            Champion *champion_intermediaire = champion_dans_equipe[k]; // Récupérer directement le pointeur
+            printf("%s\n", champion_intermediaire->nom);
+
+            // Utiliser la fonction recuperer_equipe avec le pointeur
+            Equipe *temporaire = recuperer_equipe(champion_intermediaire, &equipe1, &equipe2);
+            if (temporaire == NULL) {
+                printf("Error: Champion not found in either team\n");
+                exit(1);
+            }
+
+            if (choix_nb_joueur == 2) {
+               
+                if (temporaire == &equipe1) {
+                    printf("joeur 1 joue\n");
+                    saisie_utilisateur(*champion_intermediaire, equipe2);
+                }
+                if (temporaire == &equipe2) {
+                    printf("joueur 2 joue\n");
+                    saisie_utilisateur(*champion_intermediaire, equipe1);
+                }
+            }
+
+        if (choix_nb_joueur == 1) {
+            printf("jopeur 1 joue\n");
+            saisie_utilisateur(*champion_intermediaire, equipe2);
+            printf("IA joue\n");
             ia_principale(&equipe2, &equipe1, difficulte);
         }
-        // code de combat
+    }
 
-
-        // fin du code de combat
         Sleep(5000);
         separation_des_partie();
     }
@@ -129,6 +157,13 @@ int main() {
     free(champion_dps);
     free(tableau_champion);
     free(ordre_attaque);
+    free(ordre_attaque_ind);
+    free(champion_dans_equipe);
+    free(equipe1.nom);
+    free(equipe2.nom);
+    free(equipe1.objet);
+    free(equipe2.objet);
     printf("\nCode fini\n");
     return 0;
 }
+

@@ -25,7 +25,7 @@ void utiliser_tech_spe(Champion *attaquant, Champion *cible) {
 }
 */
 // Fonction pour l'IA noob
-/*void ia_noob(Equipe *equipe_ia, Equipe *equipe_adverse) {
+void ia_noob(Equipe *equipe_ia, Equipe *equipe_adverse) {
     for (int i = 0; i < 3; i++) {
         if (equipe_ia->perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
             int cible = choisir_cible(equipe_adverse, 'n'); // Mode 'n' pour noob
@@ -79,4 +79,4 @@ void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
     }
 }
 
-*/
+

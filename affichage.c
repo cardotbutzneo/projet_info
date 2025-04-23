@@ -110,10 +110,22 @@ void afficher_equipe(Equipe equipe1, Equipe equipe2) {
 }
 
 void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
+    // Vérifier que les équipes sont correctement initialisées
+    if (equipe1.nom == NULL || equipe2.nom == NULL) {
+        printf("Erreur : Les noms des équipes ne sont pas initialisés.\n");
+        return;
+    }
+
+    // Vérifier que les tableaux perso sont correctement alloués
+    if (equipe1.perso == NULL || equipe2.perso == NULL) {
+        printf("Erreur : Les tableaux de champions des équipes ne sont pas initialisés.\n");
+        return;
+    }
+
     // Calculer la largeur maximale des noms pour ajuster l'affichage
     int n = longueur_nom_max(equipe1.perso, Nb_champion_par_equipe);
     int m = longueur_nom_max(equipe2.perso, Nb_champion_par_equipe);
-    int largeur_nom = max(n, m) + 1;
+    int largeur_nom = (n > m ? n : m) + 1; // Utiliser la largeur maximale entre les deux équipes
 
     // Ajouter un espacement fixe entre les deux équipes
     int espacement = 12;
@@ -127,8 +139,8 @@ void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
     // Afficher les champions des deux équipes côte à côte
     for (int i = 0; i < Nb_champion_par_equipe; i++) {
         // Équipe 1
-        if ((equipe1.perso + i) != NULL && (equipe1.perso + i)->nom != NULL) {
-            printf("%-*s%-*s%-*.1f", largeur_nom, (equipe1.perso + i)->nom, 10, (equipe1.perso + i)->classe, 10, (equipe1.perso + i)->stat.pv_courant);
+        if (equipe1.perso[i].nom != NULL) {
+            printf("%-*s%-*s%-*.1f", largeur_nom, equipe1.perso[i].nom, 10, equipe1.perso[i].classe, 10, equipe1.perso[i].stat.pv_courant);
         } else {
             printf("%-*s%-*s%-*s", largeur_nom, " ", 10, " ", 10, " ");
         }
@@ -137,8 +149,8 @@ void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
         printf("%*s", espacement, " ");
 
         // Équipe 2
-        if ((equipe2.perso + i) != NULL && (equipe2.perso + i)->nom != NULL) {
-            printf("%-*s%-*s%-*.1f\n", largeur_nom, (equipe2.perso + i)->nom, 10, (equipe2.perso + i)->classe, 10, (equipe2.perso + i)->stat.pv_courant);
+        if (equipe2.perso[i].nom != NULL) {
+            printf("%-*s%-*s%-*.1f\n", largeur_nom, equipe2.perso[i].nom, 10, equipe2.perso[i].classe, 10, equipe2.perso[i].stat.pv_courant);
         } else {
             printf("%-*s%-*s%-*s\n", largeur_nom, " ", 10, " ", 10, " ");
         }
@@ -185,11 +197,11 @@ void afficher_degat_recu(Champion cible,Champion attaquant, int type_attaque){
     printf("%s attaque %s\n",attaquant.nom,cible.nom);
     if (type_attaque == 0){ // attaque classique
         printf("%s recoit : %d degats\n",cible.nom,attaquant.stat.attaque);
-        printf("Les PV de %s sont maintenant de : %d\n",cible.nom,cible.stat.pv_courant);
+        printf("Les PV de %s sont maintenant de : %f\n",cible.nom,cible.stat.pv_courant);
     }
     if (type_attaque == 1){ // attaque spéciale
         printf("attaque spéciale\n");
         printf("%s recoit : %d degats\n",cible.nom,attaquant.stat.attaque);
-        printf("Les PV de %s sont maintenant de : %d\n",cible.nom,cible.stat.pv_courant);
+        printf("Les PV de %s sont maintenant de : %f\n",cible.nom,cible.stat.pv_courant);
     }
 }

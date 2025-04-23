@@ -218,7 +218,7 @@ void copie_champion(Champion *source, Champion *destination) {
         exit(1);
     }
     strcpy(destination->attaque_spe, source->attaque_spe);
-
+/*
     destination->effet_spe = malloc(strlen(source->effet_spe) + 1);
     if (destination->effet_spe == NULL) {
         printf("Erreur d'allocation mémoire pour l'effet spécial\n");
@@ -227,11 +227,11 @@ void copie_champion(Champion *source, Champion *destination) {
         free(destination->attaque_spe);
         exit(1);
     }
-    strcpy(destination->effet_spe, source->effet_spe);
-    printf("copie fini");
+    strcpy(destination->effet_spe, effet_spe);
+*/
 }
 
-void choix_des_champion(Champion *tableau_champion, Equipe equipe1, Equipe equipe2, int choix) {
+void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equipe2, int choix, Champion **champion_dans_equipe) {
     int tempp;
     if (choix == 2) {
         printf("Equipe 1 choisissez vos champions\n");
@@ -247,7 +247,8 @@ void choix_des_champion(Champion *tableau_champion, Equipe equipe1, Equipe equip
                     printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18.\n");
                 }
             } while (tempp > 18 || tempp <= 0);
-            copie_champion((tableau_champion + (tempp - 1)), &equipe1.perso[i]);
+            copie_champion((tableau_champion + (tempp - 1)), &equipe1->perso[i]);
+            champion_dans_equipe[i] = &equipe1->perso[i]; // Stocker le pointeur du champion dans l'équipe 1
         }
         printf("Equipe 2 choisissez vos champions\n");
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
@@ -262,7 +263,8 @@ void choix_des_champion(Champion *tableau_champion, Equipe equipe1, Equipe equip
                     printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18.\n");
                 }
             } while (tempp > 18 || tempp <= 0);
-            copie_champion((tableau_champion + (tempp - 1)), &equipe2.perso[i]);
+            copie_champion((tableau_champion + (tempp - 1)), &equipe2->perso[i]);
+            champion_dans_equipe[i + Nb_champion_par_equipe] = &equipe2->perso[i]; // Stocker le pointeur du champion dans l'équipe 2
         }
     } else if (choix == 1) {
         printf("Equipe 1 choisissez vos champions\n");
@@ -278,17 +280,21 @@ void choix_des_champion(Champion *tableau_champion, Equipe equipe1, Equipe equip
                     printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18.\n");
                 }
             } while (tempp > 18 || tempp <= 0);
-            copie_champion((tableau_champion + (tempp - 1)), &equipe1.perso[i]);
+            copie_champion((tableau_champion + (tempp - 1)), &equipe1->perso[i]);
+            champion_dans_equipe[i] = &equipe1->perso[i]; // Stocker le pointeur du champion dans l'équipe 1
         }
         
         choix_champion_IA(tableau_champion, equipe2);
-        afficher_equipe(equipe1,equipe2);
+        for (int i = 0; i < Nb_champion_par_equipe; i++) {
+            champion_dans_equipe[i + Nb_champion_par_equipe] = &equipe2->perso[i]; // Stocker le pointeur du champion dans l'équipe 2
+        }
     }
+    printf("test\n");
 }
 
-void choix_champion_IA(Champion *tableau_champion, Equipe equipe2){
+void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2){
     for (int i=0;i<Nb_champion_par_equipe;i++){
-        copie_champion((tableau_champion+rand()%18),&equipe2.perso[i]);         // choix des champions aléatoirement
+        copie_champion(((tableau_champion+(rand()%18))),&equipe2->perso[i]);  // choix des champions aléatoirement
     }
 }
 
@@ -305,7 +311,7 @@ int longueur_nom_max(Champion *champions, int taille) {
     return max_longueur;
 }
 
-void saisie_utilisateur(Champion champion, Equipe equipe2 ){
+void saisie_utilisateur(Champion champion, Equipe equipe2 ){ // demande à l'utilisateur les actions à faire
 
     switch (affichage_saisie_utilisateur(champion))
     {
@@ -313,10 +319,10 @@ void saisie_utilisateur(Champion champion, Equipe equipe2 ){
         attaquesimple(champion, equipe2.perso);
         break;
     case 2:
-        printf("fonction pas encore definie");
+        printf("fonction pas encore definie\n");
         break;
     case 3:
-        printf("fonction pas encore definie");
+        printf("fonction pas encore definie\n");
     default:
         break;
     }
@@ -339,4 +345,32 @@ Equipe *recuperer_equipe(Champion *champion, Equipe *equipe1, Equipe *equipe2) {
 
     // Si le champion n'appartient à aucune équipe
     return NULL;
+}
+// Fonction de comparaison pour qsort (tri par vitesse décroissante)
+int comparer_par_vitesse(const void *a, const void *b) {
+    Champion *champion1 = (Champion *)a;
+    Champion *champion2 = (Champion *)b;
+    if (champion1->stat.vitesse > champion2->stat.vitesse) return -1;
+    if (champion1->stat.vitesse < champion2->stat.vitesse) return 1;
+    return 0;
+}
+
+void trier_par_vitesse(Champion *liste_champion, Equipe *equipe1, Equipe *equipe2) {
+    int index = 0;
+
+    // Copier les champions de l'équipe 1
+    for (int i = 0; i < Nb_champion_par_equipe; i++) {
+        printf("%d",index);
+        copie_champion(&equipe1->perso[i], &liste_champion[index++]);
+    }
+
+    // Copier les champions de l'équipe 2
+    for (int i = 0; i < Nb_champion_par_equipe; i++) {
+        printf("%d",index);
+        copie_champion(&equipe2->perso[i], &liste_champion[index++]);
+    }
+
+    // Trier les champions par vitesse décroissante
+    qsort(liste_champion, Nb_champion_par_equipe * 2, sizeof(Champion), comparer_par_vitesse);
+
 }

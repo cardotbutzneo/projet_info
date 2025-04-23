@@ -61,8 +61,8 @@ void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, C
 void copie_champion(Champion *source, Champion *destination);
 void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2);
 void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank, Champion *champion_dps, int soutien_count, int tank_count, int dps_count);
-void choix_des_champion(Champion *tableau_champion, Equipe equipe1, Equipe equipe2, int choix);
-void choix_champion_IA(Champion *tableau_champion, Equipe equipe2);
+void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equipe2, int choix, Champion **champion_dans_equipe);
+void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2);
 int longueur_nom_max(Champion *champions, int taille);
 int comparer_par_classe(const void *a, const void *b);
 int ordre_classe(const char *classe);
@@ -75,6 +75,7 @@ void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte);
 Equipe *recuperer_equipe(Champion *champion, Equipe *equipe1, Equipe *equipe2);
 void attaquesimple (Champion personnage, Champion equipeAdverse[]);
 void afficher_equipe(Equipe equipe1, Equipe equipe2);
+void trier_par_vitesse(Champion *ordre_passage, Equipe *equipe1, Equipe *equipe2);
 /*
 int peut_utiliser_tech_spe(&equipe_ia->combattants[]);
 int utiliser_tech_spe(&equipe_ia->combattants[], &equipe_adverse->combattants[]);
