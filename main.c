@@ -48,23 +48,22 @@ int main() {
         scanf("%d",&choix_nb_joueur);
     }while(choix_nb_joueur <=0 ||choix_nb_joueur > 2);
     
-    char *nom_equipe1 = malloc(sizeof(char)*50);
-    char *nom_equipe2 = malloc(sizeof(char)*50);
+
     char *nom_IA[8] = {"Wall-E","Atlas","Sentinelle","Factionnaire","Paperclip","Pnj","Nano","Arcade"};
-    Champion equipe1[Nb_champion_par_equipe];
-    Champion equipe2[Nb_champion_par_equipe];
+    Equipe equipe1;
+    Equipe equipe2;
     
     if (choix_nb_joueur == 2){
         printf("saisir un nom du joueur 1 : \n");
-        scanf("%s",nom_equipe1);
+        scanf("%s",equipe1.nom);
         printf("saisir un nom du joueur 2 : \n");
-        scanf("%s",nom_equipe2);
+        scanf("%s",equipe2.nom);
     }
     
     else if (choix_nb_joueur == 1){
         printf("Vous jouez contre une IA :\n");
         printf("saisir le nom du joueur 1 :\n");
-        scanf("%s",nom_equipe1);
+        scanf("%s",equipe1.nom);
     }
 
 
@@ -83,14 +82,10 @@ int main() {
     printf("Fin de l'initialisation des personnages\n");
 
         
-    nom_equipe2 = *(nom_IA+rand()%8);
+    equipe2.nom = *(nom_IA+rand()%8);
     choix_des_champion(temp,equipe1,equipe2,choix_nb_joueur);
 
-    //debug
-    printf("debug\n");
-    for (int i=0;i<Nb_champion_par_equipe*2;i++){
-        afficher_personnage((ordre_attaque+i));
-    }
+    
     
 
     // affichage des équipe tour par tour
@@ -100,10 +95,10 @@ int main() {
     for (int i=0;i<Nb_tour|| finJeu==1;i++){
         printf("tour %d : \n",i+1);
         printf("afficher les champions\n");
-        afficher_equipes_cote_a_cote(equipe1,equipe2,nom_equipe1,nom_equipe2);
+        afficher_equipes_cote_a_cote(equipe1,equipe2);
         // faudrait faire une boucle avec les champions trié par vitesse
         for (int k=0;k<Nb_champion_par_equipe*2;k++){
-            affichage_saisie_utilisateur(*(ordre_attaque+k));
+            saisie_utilisateur(*(ordre_attaque+k),*recuperer_equipe((ordre_attaque+k),&equipe1,&equipe2));
         }
 
         // code de combat
@@ -120,8 +115,6 @@ int main() {
     free(champion_tank);
     free(champion_dps);
     free(tableau_champion);
-    free(nom_equipe1);
-    free(nom_equipe2);
     free(ordre_attaque);
     printf("\nCode fini\n");
     return 0;

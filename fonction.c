@@ -230,45 +230,46 @@ void copie_champion(Champion *source, Champion *destination) {
     strcpy(destination->effet_spe, source->effet_spe);
 }
 
-void choix_des_champion(Champion *tableau_champion, Champion *equipe1, Champion *equipe2, int choix){
-    int temp;
+void choix_des_champion(Champion *tableau_champion, Equipe equipe1, Equipe equipe2, int choix){
+    int tempp;
     if (choix == 2){
         printf("Equipe 1 choisisez vos champions\n");
         for (int i=0;i<Nb_champion_par_equipe;i++){
-            temp = -1;
+            tempp = -1;
             do {
                 printf("champion %d : \n",i+1);
-                scanf("%d",&temp);
-            }while(temp > 18 || temp <=0);
-            *(equipe1 + i) = *(tableau_champion + (temp - 1));
+                scanf("%d",&tempp);
+            }while(tempp > 18 || tempp <=0);
+            copie_champion((tableau_champion+(tempp-1)),&equipe1.perso[i]);
         }
         printf("Equipe 2 choisisez vos champions\n");
         for (int i=0;i<Nb_champion_par_equipe;i++){
-            temp = -1;
+            tempp = -1;
             do {
                 printf("champion %d : \n",i+1);
-                scanf("%d",&temp);
-            }while(temp > 18 || temp <=0);
-            *(equipe2 + i) = *(tableau_champion + (temp - 1));
+                scanf("%d",&tempp);
+            }while(tempp > 18 || tempp <=0);
+            copie_champion((tableau_champion+(tempp-1)),&equipe2.perso[i]);
         }
     }
     else if (choix == 1){
         printf("Equipe 1 choisisez vos champions\n");
         for (int i=0;i<Nb_champion_par_equipe;i++){
-            temp = -1;
+            tempp = 1;
             do {
                 printf("champion %d : ",i+1);
-                scanf("%d",&temp);
-            }while(temp > 18 || temp <=0);
-            *(equipe1 + i) = *(tableau_champion + (temp - 1));
+                printf("temp : %d\n",tempp);
+                scanf("%d",&tempp);
+            }while(tempp > 18 || tempp <0);
+            copie_champion((tableau_champion+(tempp-1)),&equipe1.perso[i]);
         }
         choix_champion_IA(tableau_champion,equipe2);
     }
 }
 
-void choix_champion_IA(Champion *tableau_champion, Champion *equipe2){
+void choix_champion_IA(Champion *tableau_champion, Equipe equipe2){
     for (int i=0;i<Nb_champion_par_equipe;i++){
-        *(equipe2+i) = *(tableau_champion+rand()%18); // choix des champions aléatoirement
+        copie_champion((tableau_champion+rand()%18),&equipe2.perso[i]);         // choix des champions aléatoirement
     }
 }
 
@@ -285,12 +286,12 @@ int longueur_nom_max(Champion *champions, int taille) {
     return max_longueur;
 }
 
-void sasie_utilisateur(Champion champion, Champion *equipe2 ){
+void saisie_utilisateur(Champion champion, Equipe equipe2 ){
 
     switch (affichage_saisie_utilisateur(champion))
     {
     case 1:
-        attaquesimple(champion, equipe2);
+        attaquesimple(champion, equipe2.perso);
         break;
     case 2:
         printf("fonction pas encore definie");
@@ -300,4 +301,23 @@ void sasie_utilisateur(Champion champion, Champion *equipe2 ){
     default:
         break;
     }
-} 
+}
+
+Equipe *recuperer_equipe(Champion *champion, Equipe *equipe1, Equipe *equipe2) {
+    // Vérifier si le champion appartient à equipe1
+    for (int i = 0; i < Nb_champion_par_equipe; i++) {
+        if (&(equipe1->perso[i]) == champion) {
+            return equipe1;
+        }
+    }
+
+    // Vérifier si le champion appartient à equipe2
+    for (int i = 0; i < Nb_champion_par_equipe; i++) {
+        if (&(equipe2->perso[i]) == champion) {
+            return equipe2;
+        }
+    }
+
+    // Si le champion n'appartient à aucune équipe
+    return NULL;
+}

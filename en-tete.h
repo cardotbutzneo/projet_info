@@ -41,9 +41,7 @@ typedef struct{
 typedef struct 
 {
     char *nom;
-    Champion perso1;
-    Champion perso2;
-    Champion perso3;
+    Champion perso[Nb_champion_par_equipe];
     float synergie;
     Objet *objet;
 }Equipe;
@@ -61,10 +59,10 @@ void afficher_classe(Champion *champion);
 void separation_des_partie();
 void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, Champion *tab_dps, int *soutien_count, int *tank_count, int *dps_count, Champion *temp);
 void copie_champion(Champion *source, Champion *destination);
-void afficher_equipes_cote_a_cote(Champion *equipe1, Champion *equipe2, char *nom_equipe1, char *nom_equipe2);
+void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2);
 void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank, Champion *champion_dps, int soutien_count, int tank_count, int dps_count);
-void choix_des_champion(Champion *tableau_champion, Champion *equipe1, Champion *equipe2, int choix);
-void choix_champion_IA(Champion *tableau_champion, Champion *equipe2);
+void choix_des_champion(Champion *tableau_champion, Equipe equipe1, Equipe equipe2, int choix);
+void choix_champion_IA(Champion *tableau_champion, Equipe equipe2);
 int longueur_nom_max(Champion *champions, int taille);
 int comparer_par_classe(const void *a, const void *b);
 int ordre_classe(const char *classe);
@@ -72,7 +70,10 @@ int affichage_saisie_utilisateur(Champion champion);
 void afficher_degat_recu(Champion cible,Champion attaquant, int type_attaque);
 void attaquesimple (Champion personnage, Champion equipeAdverse[]);
 void vitesse(Champion *ordreAttaque, Champion *tableau_initial);
-/*
+void saisie_utilisateur(Champion champion, Equipe equipe2 );
+Equipe *recuperer_equipe(Champion *champion, Equipe *equipe1, Equipe *equipe2);
+
+    /*
 int peut_utiliser_tech_spe(&equipe_ia->combattants[]);
 int utiliser_tech_spe(&equipe_ia->combattants[], &equipe_adverse->combattants[]);
 */

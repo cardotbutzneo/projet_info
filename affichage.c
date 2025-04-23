@@ -107,27 +107,26 @@ void afficher_equipe(Champion *equipe1, Champion *equipe2, char *nom_equipe1, ch
     }
 }
 
-void afficher_equipes_cote_a_cote(Champion *equipe1, Champion *equipe2, char *nom_equipe1, char *nom_equipe2) {
-
+void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
     // Calculer la largeur maximale des noms pour ajuster l'affichage
-    int n = longueur_nom_max(equipe1, Nb_champion_par_equipe);
-    int m = longueur_nom_max(equipe2, Nb_champion_par_equipe);
-    int largeur_nom = max(n, m)+1;
+    int n = longueur_nom_max(equipe1.perso, Nb_champion_par_equipe);
+    int m = longueur_nom_max(equipe2.perso, Nb_champion_par_equipe);
+    int largeur_nom = max(n, m) + 1;
 
     // Ajouter un espacement fixe entre les deux équipes
     int espacement = 12;
 
     // Afficher les noms des équipes alignés
-    printf("%-*s%*s\n", largeur_nom + espacement, nom_equipe1, largeur_nom + espacement, nom_equipe2);
+    printf("%-*s%*s\n", largeur_nom + espacement, equipe1.nom, largeur_nom + espacement, equipe2.nom);
 
     // Afficher les en-têtes des colonnes
     printf("%-*s%-*s%-*s%*s%-*s%-*s\n", largeur_nom, "Nom", 10, "Classe", 10, "PV", espacement, " ", largeur_nom, "Nom", 10, "Classe", 10, "PV");
 
     // Afficher les champions des deux équipes côte à côte
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < Nb_champion_par_equipe; i++) {
         // Équipe 1
-        if ((equipe1 + i)->nom != NULL) {
-            printf("%-*s%-*s%-*f", largeur_nom, (equipe1 + i)->nom, 10, (equipe1 + i)->classe, 10, (equipe1 + i)->stat.pv_courant);
+        if ((equipe1.perso + i) != NULL && (equipe1.perso + i)->nom != NULL) {
+            printf("%-*s%-*s%-*.1f", largeur_nom, (equipe1.perso + i)->nom, 10, (equipe1.perso + i)->classe, 10, (equipe1.perso + i)->stat.pv_courant);
         } else {
             printf("%-*s%-*s%-*s", largeur_nom, " ", 10, " ", 10, " ");
         }
@@ -136,8 +135,8 @@ void afficher_equipes_cote_a_cote(Champion *equipe1, Champion *equipe2, char *no
         printf("%*s", espacement, " ");
 
         // Équipe 2
-        if ((equipe2 + i)->nom != NULL) {
-            printf("%-*s%-*s%-*f\n", largeur_nom, (equipe2 + i)->nom, 10, (equipe2 + i)->classe, 10, (equipe2 + i)->stat.pv_courant);
+        if ((equipe2.perso + i) != NULL && (equipe2.perso + i)->nom != NULL) {
+            printf("%-*s%-*s%-*.1f\n", largeur_nom, (equipe2.perso + i)->nom, 10, (equipe2.perso + i)->classe, 10, (equipe2.perso + i)->stat.pv_courant);
         } else {
             printf("%-*s%-*s%-*s\n", largeur_nom, " ", 10, " ", 10, " ");
         }
