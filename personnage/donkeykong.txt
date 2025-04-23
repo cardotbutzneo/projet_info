@@ -1,5 +1,5 @@
-Donkey kong:
-Donkey kong // nom
+Donkey_kong:
+Donkey_kong // nom
 120 // pv actuel
 120 // pv max
 15 // attaque
