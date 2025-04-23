@@ -193,7 +193,7 @@ int affichage_saisie_utilisateur(Champion champion){
     return saisi;
 }
 
-void afficher_degat_recu(Champion cible,Champion attaquant, int type_attaque){
+void afficher_degat_recu(Champion cible, Champion attaquant, int type_attaque){
     printf("%s attaque %s\n",attaquant.nom,cible.nom);
     if (type_attaque == 0){ // attaque classique
         printf("%s recoit : %d degats\n",cible.nom,attaquant.stat.attaque);
