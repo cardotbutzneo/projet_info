@@ -2,7 +2,7 @@
 
 
 
-void attaqueSpecial (Champion personnage, Champion equipeAdverse){
+void attaqueSpecial (Champion personnage, Champion equipeAdverse[]){
     int numero=0;
     char tab_nom[Nb_champion] = {"Among us", "Captain america","Donkey Kong", "Dr Tenma", "Gandalf", "Golem de fer", "Invader", "Itachi", "Jack Frost", "Jay", "Johnny Hallyday", "Netero", "Nox", "Picsou", "Pierre Chartier", "Shrek", "Tux","Zelda"};
     for (int i=0; i<Nb_champion;i++){
@@ -70,8 +70,9 @@ void attaqueSpecial (Champion personnage, Champion equipeAdverse){
     }
 }
 
-void amongusSpe (Champion personnage, Champion equipeAdverse){
-
+void amongusSpe (Champion personnage, Champion equipeAdverse[]){
+    int cible = cibleAttaque[equipeAdverse];
+    equipeAdverse[cible].defense-=4
 }
 
 
