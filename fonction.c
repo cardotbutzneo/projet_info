@@ -1,4 +1,8 @@
+#include "en-tete.h"
 #include "fonction.h"
+#include "affichage.h"
+#include "IA.h"
+#include "attaque.h"
 
 
 Champion *persoenjeu; // attention variable globale

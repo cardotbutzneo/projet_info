@@ -1,4 +1,6 @@
 #include "en-tete.h"
+#include "fonction.h"
+#include "affichage.h"
 
 /*
 Champion ordreAttaque[6];
@@ -74,7 +76,6 @@ float degat(Champion personnage){//calcule les degats
 }
 
 void attaquesimple (Champion *personnage, Champion equipeAdverse[]){//actualiser la vie des personnage apres une attaque classique
-    printf("test\n");
     int precision=0;
     precision=rand()%101;
     int cible=cibleAttaque(equipeAdverse);

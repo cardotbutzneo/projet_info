@@ -1,4 +1,8 @@
+#include "en-tete.h"
 #include "affichage.h"
+#include "fonction.h"
+#include "IA.h"
+#include "attaque.h"
 
 // affichges des champions
 

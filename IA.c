@@ -1,4 +1,9 @@
+#include "en-tete.h"
 #include "IA.h"
+#include "fonction.h"
+#include "affichage.h"
+#include "attaque.h"
+
 
 // Fonction pour choisir une cible valide
 int choisir_cible(Equipe *equipe_adverse, char mode) {
@@ -29,7 +34,7 @@ void ia_noob(Equipe *equipe_ia, Equipe *equipe_adverse) {
     for (int i = 0; i < 3; i++) {
         if (equipe_ia->perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
             int cible = choisir_cible(equipe_adverse, 'n'); // Mode 'n' pour noob
-            attaquesimple(equipe_ia->perso[i], &equipe_adverse->perso[cible]);
+            attaquesimple(&equipe_ia->perso[i], &equipe_adverse->perso[cible]);
         }
     }
 }
@@ -39,7 +44,7 @@ void ia_facile(Equipe *equipe_ia, Equipe *equipe_adverse) {
     for (int i = 0; i < 3; i++) {
         if (equipe_ia->perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
             int cible = choisir_cible(equipe_adverse, 'f'); // Mode 'f' pour facile
-            attaquesimple(equipe_ia->perso[i], &equipe_adverse->perso[cible]);
+            attaquesimple(&equipe_ia->perso[i], &equipe_adverse->perso[cible]);
         }
     }
 }
