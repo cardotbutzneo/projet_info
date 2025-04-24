@@ -13,16 +13,64 @@ void attaqueSpecial (Champion personnage, Champion equipeAdverse){
     switch (numero)
     {
     case 1:
-        attaquesimple(champion, equipe2.perso);
+        amongusSpe(personnage, equipeAdverse);
         break;
     case 2:
-        printf("fonction pas encore definie\n");
+        captainSpe(personnage, equipeAdverse);
         break;
     case 3:
-        printf("fonction pas encore definie\n");
+        DonkeySpe(personnage, equipeAdverse);
     default:
         break;
+    case 4:
+        TenmaSpe(personnage, equipeAdverse);
+        break;
+    case 5:
+        GandalfSpe(personnage, equipeAdverse);
+        break;
+    case 6:
+        GolemSpe(personnage, equipeAdverse);
+        break;
+    case 7:
+        InvaderSpe(personnage, equipeAdverse);
+        break;
+    case 8:
+        ItachiSpe(personnage, equipeAdverse);
+        break;
+    case 9:
+        JackSpe(personnage, equipeAdverse);
+        break;
+    case 10:
+        JaySpe(personnage, equipeAdverse);
+        break;
+    case 11:
+        JohnnySpe(personnage, equipeAdverse);
+        break;
+    case 12:
+        neteroSpe(personnage, equipeAdverse);
+        break;
+    case 13:
+        noxSpe(personnage, equipeAdverse);
+        break;
+    case 14:
+        picsouSpe(personnage, equipeAdverse);
+        break;
+    case 15:
+        pierreSpe(personnage, equipeAdverse);
+        break;
+    case 16:
+        shrekSpe(personnage, equipeAdverse);
+        break;
+    case 17:
+        tuxSpe(personnage, equipeAdverse);
+        break;
+    case 18:
+        zeldaSpe(personnage, equipeAdverse);
+        break;
     }
+}
+
+void amongusSpe (Champion personnage, Champion equipeAdverse){
 
 }
 
