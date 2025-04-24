@@ -72,7 +72,7 @@ void attaqueSpecial (Champion personnage, Champion equipeAdverse[]){
 
 void amongusSpe (Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque[equipeAdverse];
-    equipeAdverse[cible].defense-=4
+    equipeAdverse[cible].stat.defense-=4;
 }
 
 
