@@ -14,7 +14,6 @@ int main() {
     Champion *champion_dps = malloc(sizeof(Champion) * 6);
     Champion *ordre_attaque = malloc(sizeof(Champion)*Nb_champion_par_equipe*2);
     Champion *ordre_attaque_ind = malloc(sizeof(Champion)*Nb_champion_par_equipe*2);
-    Champion **champion_dans_equipe = malloc(sizeof(Champion*)*Nb_champion_par_equipe*2);
 
     if (!tableau_champion || !champion_soutien || !champion_tank || !champion_dps) {
         printf("Erreur d'allocation mémoire\n");
@@ -77,6 +76,7 @@ int main() {
         printf("Vous jouez contre une IA :\n");
         printf("saisir le nom du joueur 1 :\n");
         scanf("%s",equipe1.nom);
+        equipe2.nom = *(nom_IA+rand()%8);
     }
     
 
@@ -94,8 +94,7 @@ int main() {
     printf("Fin de l'initialisation des personnages\n");
 
         
-    equipe2.nom = *(nom_IA+rand()%8);
-    choix_des_champion(temp,&equipe1,&equipe2,choix_nb_joueur, champion_dans_equipe);
+    choix_des_champion(temp,&equipe1,&equipe2,choix_nb_joueur);
 
     if (ordre_attaque_ind == NULL){
         printf("erreur allocation de memoire\n");
@@ -107,7 +106,7 @@ int main() {
 
     // Initialize ordre_attaque_ind
     
-
+    afficher_equipe(equipe1, equipe2);
     // Main game loop
     int finJeu = 0;
     for (int i = 0; i < Nb_tour || finJeu == 1; i++) {
@@ -116,35 +115,38 @@ int main() {
 
         for (int k = 0; k < Nb_champion_par_equipe * 2; k++) {
             afficher_equipes_cote_a_cote(equipe1, equipe2);
-            Champion *champion_intermediaire = champion_dans_equipe[k]; // Récupérer directement le pointeur
-            printf("%s\n", champion_intermediaire->nom);
+            Champion *champion_intermediaire = (ordre_attaque_ind+k); // Récupérer directement le pointeur
 
             // Utiliser la fonction recuperer_equipe avec le pointeur
-            Equipe *temporaire = recuperer_equipe(champion_intermediaire, &equipe1, &equipe2);
-            if (temporaire == NULL) {
-                printf("Error: Champion not found in either team\n");
+            int equipe = champion_intermediaire->equipe;
+            if (equipe != 1 && equipe != 2) {
+                printf("Error: le champion n appartient a aucune equipe\n");
                 exit(1);
             }
 
             if (choix_nb_joueur == 2) {
                
-                if (temporaire == &equipe1) {
-                    printf("joeur 1 joue\n");
-                    saisie_utilisateur(*champion_intermediaire, equipe2);
+                if (equipe == 1) {
+                    printf("joueur 1 joue\n");
+                    saisie_utilisateur(champion_intermediaire, equipe2);
                 }
-                if (temporaire == &equipe2) {
+                if (equipe == 2) {
                     printf("joueur 2 joue\n");
-                    saisie_utilisateur(*champion_intermediaire, equipe1);
+                    saisie_utilisateur(champion_intermediaire, equipe1);
                 }
             }
 
-        if (choix_nb_joueur == 1) {
-            printf("jopeur 1 joue\n");
-            saisie_utilisateur(*champion_intermediaire, equipe2);
-            printf("IA joue\n");
-            ia_principale(&equipe2, &equipe1, difficulte);
+            if (choix_nb_joueur == 1) {
+                if (equipe == 1) {
+                    printf("joueur 1 joue\n");
+                    saisie_utilisateur(champion_intermediaire, equipe2);
+                }
+                if (equipe == 2) {
+                    printf("IA joue\n");
+                    ia_principale(&equipe2, &equipe1, difficulte);
+                }
+            }
         }
-    }
 
         Sleep(5000);
         separation_des_partie();
@@ -158,7 +160,6 @@ int main() {
     free(tableau_champion);
     free(ordre_attaque);
     free(ordre_attaque_ind);
-    free(champion_dans_equipe);
     free(equipe1.nom);
     free(equipe2.nom);
     free(equipe1.objet);

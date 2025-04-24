@@ -1,4 +1,4 @@
-#include "en-tete.h"
+#include "affichage.h"
 
 // affichges des champions
 
@@ -85,9 +85,6 @@ void separation_des_partie(){
     }
 }
 
-void centrer(){
-    
-}
 
 void afficher_equipe(Equipe equipe1, Equipe equipe2) {
     printf("Equipe 1 : %s\n", equipe1.nom);
@@ -194,14 +191,14 @@ int affichage_saisie_utilisateur(Champion champion){
 }
 
 void afficher_degat_recu(Champion cible, Champion attaquant, int type_attaque){
-    printf("%s attaque %s\n",attaquant.nom,cible.nom);
     if (type_attaque == 0){ // attaque classique
-        printf("%s recoit : %d degats\n",cible.nom,attaquant.stat.attaque);
+        printf("%s recoit : %f degats\n",cible.nom,attaquant.stat.attaque);
         printf("Les PV de %s sont maintenant de : %f\n",cible.nom,cible.stat.pv_courant);
+        printf("Les PV de %s sont maintenant de : %f\n",cible.nom,cible.pv_max - cible.stat.pv_courant);
     }
     if (type_attaque == 1){ // attaque spéciale
         printf("attaque spéciale\n");
         printf("%s recoit : %d degats\n",cible.nom,attaquant.stat.attaque);
-        printf("Les PV de %s sont maintenant de : %f\n",cible.nom,cible.stat.pv_courant);
+        printf("Les PV de %s sont maintenant de : %f\n",cible.nom,cible.pv_max - cible.stat.pv_courant);
     }
 }

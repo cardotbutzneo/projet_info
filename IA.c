@@ -1,4 +1,4 @@
-#include "en-tete.h"
+#include "IA.h"
 
 // Fonction pour choisir une cible valide
 int choisir_cible(Equipe *equipe_adverse, char mode) {
@@ -73,7 +73,7 @@ void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
             ia_moyen(equipe_ia, equipe_adverse);
             break;
         default:
-            printf("Difficulté inconnue. Utilisation de la difficulté noob par défaut.\n");
+            printf("Difficulté inconnue. Utilisation de la difficulté facile par défaut.\n");
             ia_noob(equipe_ia, equipe_adverse);
             break;
     }
