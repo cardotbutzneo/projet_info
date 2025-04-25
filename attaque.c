@@ -89,7 +89,7 @@ void attaquesimple (Champion *personnage, Champion equipeAdverse[]){//actualiser
     }
     else{
         printf("%s esquive\n",personnage->nom);
-        printf("L'attaque a raté\n");
+        printf("Attaque ratée\n");
     }
 }
 
