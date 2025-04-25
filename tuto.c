@@ -1,23 +1,23 @@
 #include "en-tete.h"
 
 void afficher_tuto(){
-    printf("Bienvenu \n");
-    printf("Vous jourez à MultiverSus\n");
+    printf("Bienvenue \n");
+    printf("Vous jouerez à MultiverSus\n");
     char rep;
-    printf("connaissez-vous le jeu ? o/n\n");
+    printf("Connaissez-vous le jeu ? o/n\n");
     scanf("%c",rep);
     if (rep == 'n'){
-        printf("Vous jouez à un jeu developper par l'equipe I\n");
+        printf("Vous jouez à un jeu développé par l'équipe I\n");
         printf("Le jeu se joue au tour par tour\n");
-        printf("Dans un premier temps vous choisiez vos champions, puis combatez !");
-        printf("La premiere equipe qui vaint les champions enemies gagne !");
+        printf("Dans un premier temps vous choisirez vos champions, puis combattrez !");
+        printf("La première equipe qui vainc les champions ennemis gagne !");
     }
 
 
 }
 
 void note(){
-    printf("Avez vous aimez le jeu ?\n");
+    printf("Avez-vous aimé le jeu ?\n");
     int note;
     do{
         scanf("%d",&note);
