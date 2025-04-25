@@ -19,32 +19,31 @@ void attaqueSpecial (Champion personnage, Champion equipeAdverse[]){
         captainSpe(personnage, equipeAdverse);
         break;
     case 3:
-        DonkeySpe(personnage, equipeAdverse);
-    default:
+        donkeySpe(personnage, equipeAdverse);
         break;
     case 4:
-        TenmaSpe(personnage, equipeAdverse);
+        tenmaSpe(personnage, equipeAdverse);
         break;
     case 5:
-        GandalfSpe(personnage, equipeAdverse);
+        gandalfSpe(personnage, equipeAdverse);
         break;
     case 6:
-        GolemSpe(personnage, equipeAdverse);
+        golemSpe(personnage, equipeAdverse);
         break;
     case 7:
-        InvaderSpe(personnage, equipeAdverse);
+        invaderSpe(personnage, equipeAdverse);
         break;
     case 8:
-        ItachiSpe(personnage, equipeAdverse);
+        itachiSpe(personnage, equipeAdverse);
         break;
     case 9:
-        JackSpe(personnage, equipeAdverse);
+        jackSpe(personnage, equipeAdverse);
         break;
     case 10:
-        JaySpe(personnage, equipeAdverse);
+        jaySpe(personnage, equipeAdverse);
         break;
     case 11:
-        JohnnySpe(personnage, equipeAdverse);
+        johnnySpe(personnage, equipeAdverse);
         break;
     case 12:
         neteroSpe(personnage, equipeAdverse);
@@ -66,7 +65,8 @@ void attaqueSpecial (Champion personnage, Champion equipeAdverse[]){
         break;
     case 18:
         zeldaSpe(personnage, equipeAdverse);
-        break;
+        default:
+            break;
     }
 }
 
@@ -79,47 +79,47 @@ void captainSpe(Champion personnage, Champion equipeAdverse[]){
     equipeAdverse[cible].stat.defense -= 4;
 }
 
-void DonkeySpe(Champion personnage, Champion equipeAdverse[]){
+void donkeySpe(Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque[equipeAdverse];
     equipeAdverse[cible].stat.defense -= 4;
 }
 
-void TenmaSpe(Champion personnage, Champion equipeAdverse[]){
+void tenmaSpe(Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque[equipeAdverse];
     equipeAdverse[cible].stat.defense -= 4;
 }
 
-void GandalfSpe(Champion personnage, Champion equipeAdverse[]){
+void gandalfSpe(Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque[equipeAdverse];
     equipeAdverse[cible].stat.defense -= 4;
 }
 
-void GolemSpe(Champion personnage, Champion equipeAdverse[]){
+void golemSpe(Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque[equipeAdverse];
     equipeAdverse[cible].stat.defense -= 4;
 }
 
-void InvaderSpe(Champion personnage, Champion equipeAdverse[]){
+void invaderSpe(Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque[equipeAdverse];
     equipeAdverse[cible].stat.defense -= 4;
 }
 
-void ItachiSpe(Champion personnage, Champion equipeAdverse[]){
+void itachiSpe(Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque[equipeAdverse];
     equipeAdverse[cible].stat.defense -= 4;
 }
 
-void JackSpe(Champion personnage, Champion equipeAdverse[]){
+void jackSpe(Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque[equipeAdverse];
     equipeAdverse[cible].stat.defense -= 4;
 }
 
-void JaySpe(Champion personnage, Champion equipeAdverse[]){
+void jaySpe(Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque[equipeAdverse];
     equipeAdverse[cible].stat.defense -= 4;
 }
 
-void JohnnySpe(Champion personnage, Champion equipeAdverse[]){
+void johnnySpe(Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque[equipeAdverse];
     equipeAdverse[cible].stat.defense -= 4;
 }
