@@ -76,7 +76,7 @@ void amongusSpe (Champion personnage, Champion equipeAdverse[]){
 }
 void captainSpe(Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque[equipeAdverse];
-    equipeAdverse[cible].stat.defense -= 4;
+    personnage.stat.defense += 4;
 }
 
 void donkeySpe(Champion personnage, Champion equipeAdverse[]){
