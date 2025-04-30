@@ -73,6 +73,7 @@ int cibleAttaque(Champion Equipe[]){
 }
 
 float degat(Champion personnage){//calcule les degats
+    printf("test:%f",personnage.stat.attaque);
     return personnage.stat.attaque;
 }
 
