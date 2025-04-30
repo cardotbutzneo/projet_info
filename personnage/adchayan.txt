@@ -2,11 +2,12 @@ Adchayan:
 Adchayan // nom
 10 // pv actuel
 10 // pv max
-100 // attaque
+10 // attaque
 10 // defense
 10 // agilite
-10// vitesse
-
+10 // vitesse
+10 // jauge actuel
+10 // jauge max
 Mathematiques // attaque spe
 soutien // classe
 Diminue l'attaque de l'equipe adverse // description attaque spe
