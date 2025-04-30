@@ -6,7 +6,9 @@ Zelda // nom
 10 // defense
 10 // agilite
 10 // vitesse
-Tri force // attaque spe
+10 // jauge actuelle
+10 // jauge max
+Triforce // attaque spe
 soutien // classe
 Soigne augmente la defense et la vitesse d'un allie // description attaque spe
 enattente // description du personnage
