@@ -24,14 +24,6 @@ int verifstat(Champion personnage){
     personnage.stat.agilite=0;
   }
   if (personnage.stat.jauge_actuel>personnage.jauge_max){
-    personnage.stat.attaque=1;
+    personnage.stat.jauge_actuel=personnage.jauge_max;
   }
-  if (personnage.stat.attaque<=0){
-    personnage.stat.attaque=1;
-  }
-
-
-
-
-
 }
