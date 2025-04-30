@@ -6,6 +6,8 @@ Johnny_Hallyday // nom
 10 // defense
 10 // agilite
 10 // vitesse
+10 // jauge actuelle
+10 // jauge max
 Allumez le feu// attaque spe
 tank // classe
 Brule la cible // description attaque spe
