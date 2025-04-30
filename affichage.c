@@ -135,7 +135,7 @@ void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
     printf("%-*s%*s\n", largeur_nom + espacement, equipe1.nom, largeur_nom + espacement, equipe2.nom);
 
     // Afficher les en-têtes des colonnes
-    printf("%-*s%-*s%-*s%*s%-*s%-*s\n", largeur_nom, "Nom", 10, "Classe", 10, "PV", espacement, " ", largeur_nom, "Nom", 10, "Classe", 10, "PV");
+    printf("%-*s%-*s%-*s%*s%-*s%-*s\n", largeur_nom, "Nom", 10, "Classe", 10, "PV", espacement, " ", largeur_nom, "Nom", 10, "Classe", 10, "PV",10);
 
     // Afficher les champions des deux équipes côte à côte
     for (int i = 0; i < Nb_champion_par_equipe; i++) {

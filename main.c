@@ -26,6 +26,7 @@ int main() {
     char *tableau_nom_personnage[Nb_champion] = {"amongus.txt", "captainamerica.txt", "donkeykong.txt", "drtenma.txt", "gandalf.txt", "golemdefer.txt", "invader.txt", "itachi.txt", "jackfrost.txt", "jay.txt", "johnnyhallyday.txt", "netero.txt", "nox.txt", "picsou.txt", "pierrechartier.txt", "shrek.txt", "tux.txt", "zelda.txt"};
 
     char *personnage_cachee[Nb_champion_cachee] = {"adchayan.txt", "garrigusprimus.txt", "grossinge.txt"};
+    int difficulte;
 
     // Chargement des fichiers
     for (int i = 0; i < Nb_champion; i++) {
@@ -33,7 +34,7 @@ int main() {
         fichier = fopen(chemin_acces, "r+");
         if (fichier == NULL) {
             printf("Erreur d'ouverture du fichier : %s\n", chemin_acces);
-            continue;
+            exit(0);
         }
         initialisation_champion(fichier, tableau_champion + i);
         fclose(fichier);
@@ -55,6 +56,7 @@ int main() {
     Equipe equipe1;
     Equipe equipe2;
 
+    int verif;
     equipe1.nom = malloc(sizeof(char) * 20);
     if (equipe1.nom == NULL) {
         printf("erreur allocation de memoire\n");
@@ -65,12 +67,13 @@ int main() {
     }
 
     if (choix_nb_joueur == 2) {
-        printf("saisir un nom du joueur 1 : \n");
-        scanf("%s", equipe1.nom);
+        do{
+            printf("saisir un nom du joueur 1 : \n");
+            verif = scanf("%s", equipe1.nom);
+        }while(verif != 1);
         printf("saisir un nom du joueur 2 : \n");
         scanf("%s", equipe2.nom);
     }
-    int difficulte;
 
     if (choix_nb_joueur == 1) {
         difficulte = 0; // noob par défault
@@ -138,8 +141,10 @@ int main() {
                 }
             }
         }
-
-        Sleep(5000);
+        printf("réparation des décord...\n");
+        for (int i=0;i<5;i++){
+            Sleep(1000);
+        }
         separation_des_partie();
     }
 

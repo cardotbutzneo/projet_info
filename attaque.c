@@ -85,6 +85,7 @@ void attaquesimple (Champion *personnage, Champion equipeAdverse[]){//actualiser
         }
         equipeAdverse[cible].stat.pv_courant-=(degat(*personnage)/(equipeAdverse[cible].stat.defense)/100);
         printf("%s attaque : \n",personnage->nom);
+        printf("%d\n",(degat(*personnage)/(equipeAdverse[cible].stat.defense)/100));
         afficher_degat_recu(equipeAdverse[cible],*personnage,0);
     }
     else{
