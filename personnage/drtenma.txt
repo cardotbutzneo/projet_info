@@ -6,6 +6,8 @@ DR_Tenma // nom
 5 // defense
 11 // agilite
 7 // vitesse
+10 // jauge actuelle
+10 // jauge max
 Neurochirugie // attaque spe
 soutien // classe
 Soigne un allié // description attaque spe
