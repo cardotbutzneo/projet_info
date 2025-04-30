@@ -10,7 +10,7 @@ ordreAttaque[2]=equipe1[2];
 ordreAttaque[3]=equipe2[0];
 ordreAttaque[4]=equipe2[1];
 ordreAttaque[5]=equipe2[2];
-*/
+
 void vitesse(Champion *ordreAttaque, Champion *tableau_initial) { // Tri les champions par leur vitesse
     // Remplir ordreAttaque avec les champions de tableau_initial
     for (int i = 0; i < 6; i++) {
@@ -30,6 +30,7 @@ void vitesse(Champion *ordreAttaque, Champion *tableau_initial) { // Tri les cha
         }
     }
 }
+*/
 
 int nbTank(Champion Equipe[]){
     int nombre;
