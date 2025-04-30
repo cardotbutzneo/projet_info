@@ -2,7 +2,7 @@ include "en-tete.h"
 
 
 int vivant(Champion personnage){
-  if (personnage.stat.pv_actuel<=0){
+  if (personnage.stat.pv_courrant<=0){
     return 1;
   }
   else{
