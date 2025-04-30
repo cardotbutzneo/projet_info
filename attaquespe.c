@@ -1,6 +1,14 @@
 #include "en-tete.h"
 
-void soinCible 
+int soinCible (Champion equipe[]){
+    int cible 0;
+    float min=equipe[0].stat.pv_actuel;
+    for (int i=0;i<Nb_champion_par_equipe;i++){
+        if (equipe[i].stat.pv_actuel<min){
+            cible=i;
+        }
+    }
+}
 
 void attaqueSpecial (Champion personnage, Champion equipeAdverse[]){
     int numero=0;
