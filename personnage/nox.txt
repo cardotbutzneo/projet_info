@@ -6,6 +6,8 @@ Nox // nom
 13 // defense
 17 // agilite
 19 // vitesse
+10 // jauge actuelle
+10 // jauge max
 20 malheureuses minutes // attaque spe
 dps // classe
 Augemnte l'agilite et la vitesse de toute l'equipe // description attaque spe
