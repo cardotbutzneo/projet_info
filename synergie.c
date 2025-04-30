@@ -1,15 +1,20 @@
 #include "en-tete.h"
 #include "synergie.h"
 /*
-int verifie_classes(Equipe *equipe) { //check les classes de chaque personnage de l'équipe choisie puis applique le buff si la condition est validée
+
+void buff_troisclassesd(Equipe *equipe) { //applique le buff 
+  
+
+void verifie_classes(Equipe *equipe) { //check les classes de chaque personnage de l'équipe choisie puis retourneapplique le buff si la condition est validée
   if ( (equipe.perso[1].classe == equipe.perso[2].classe) && (equipe.perso[2].classe == equipe.perso[3].classe) ) {
-    return 0;
+    buff_troisclassesd(equipe);
+    return();
   }
   if ( (equipe.perso[1].classe != equipe.perso[2].classe) && (equipe.perso[2].classe != equipe.perso[3].classe) ) {
-    return 1;
+    return();
   }
 
-    
+
 
 */
 
