@@ -1,11 +1,11 @@
 Among_us:
 Among_us // nom
-10 // pv actuel
-10 // pv max
-10 // attaque
-10 // defense
-10 // agilite
-10 // vitesse
+120 // pv actuel
+120 // pv max
+26 // attaque
+11 // defense
+17 // agilite
+17// vitesse
 10 // jauge actuelle
 10 // jauge max
 Meurtre // attaque spe
