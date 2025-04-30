@@ -1,6 +1,6 @@
 #include "en-tete.h"
 
-
+void soinCible 
 
 void attaqueSpecial (Champion personnage, Champion equipeAdverse[]){
     int numero=0;
