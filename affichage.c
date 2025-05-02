@@ -8,7 +8,7 @@
 void sauter_ligne(FILE *fichier) {
     if (fichier == NULL) {
         printf("Erreur : fichier non valide dans sauter_ligne\n");
-        return;
+        exit(0);
     }
 
     char buffer[100];
@@ -21,7 +21,7 @@ void sauter_ligne(FILE *fichier) {
 
 // Fonction pour afficher les informations d'un champion
 void afficher_personnage(Champion *champion) {
-    if (champion == NULL) {
+    if (champion == NULL || !champion->nom) {
         printf("Erreur : pointeur NULL dans afficher_personnage\n");
         return;
     }
@@ -60,7 +60,7 @@ void affichage_initial() {
         printf("---");
     }
 
-    printf("\nChargement terminé\n");
+    printf("\nChargement termine\n");
     printf("Bienvenue dans MultiverSeus\n");
     Sleep(val_systemeOS);
 }
@@ -70,6 +70,10 @@ void afficher_classe(Champion *champion) {
     if (champion == NULL) {
         printf("Erreur : pointeur NULL dans afficher_classe\n");
         return;
+    }
+    if (!champion->nom){
+        printf("Erreur : Nom NULL \n");
+        exit(0);
     }
 
     printf("%s est de ", champion->nom);
@@ -100,6 +104,10 @@ void separation_des_partie() {
 
 // Affiche les équipes et leurs champions
 void afficher_equipe(Equipe equipe1, Equipe equipe2) {
+    if (!equipe1.nom || !equipe2.nom || !equipe1.perso || !equipe2.perso){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
     printf("Équipe 1 : %s\n", equipe1.nom);
     for (int i = 0; i < Nb_champion_par_equipe; i++) {
         if (equipe1.perso[i].stat.pv_courant > 0) {
@@ -149,7 +157,7 @@ void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
         printf("%*s", espacement, " ");
 
         if (equipe2.perso[i].nom != NULL) {
-            printf("%-*s%-*s%-*.1f\n", largeur_nom, equipe2.perso[i].nom, 10, equipe2.perso[i].classe, 10, equipe2.perso[i].stat.pv_courant);
+            printf("%-*s%-*s%-*.1f\n", largeur_nom, equipe2.perso[i].nom, 10, equipe2.perso[i].classe, 10, (equipe2.perso[i].stat.pv_courant > 0) ? equipe2.perso[i].stat.pv_courant : 0);
         } else {
             printf("%-*s%-*s%-*s\n", largeur_nom, " ", 10, " ", 10, " ");
         }
@@ -204,7 +212,7 @@ void afficher_degat_recu(Champion cible, Champion attaquant, int type_attaque) {
 int affichage_saisie_utilisateur(Champion champion) {
     if (champion.nom == NULL) {
         printf("Erreur : le nom du champion est NULL\n");
-        return -1; // Retourne une valeur d'erreur
+        exit(1); // Retourne une valeur d'erreur
     }
 
     printf("Que voulez-vous faire avec %s ?\n", champion.nom);
@@ -217,11 +225,11 @@ int affichage_saisie_utilisateur(Champion champion) {
     do {
         printf("Entrez votre choix (1-4) : ");
         if (scanf("%d", &choix) != 1) {
-            printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 3.\n");
-            while (getchar() != '\n'); // Vide le buffer d'entrée
+            printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 4.\n");
+            vider_buffer_scanf(); // Vide le buffer d'entrée
             choix = -1; // Réinitialise le choix pour rester dans la boucle
         } else if (choix < 1 || choix > 3) {
-            printf("Choix invalide. Veuillez entrer un nombre entre 1 et 3.\n");
+            printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
         }
     } while (choix < 1 || choix > 4);
 

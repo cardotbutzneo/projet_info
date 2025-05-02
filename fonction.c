@@ -3,14 +3,15 @@
 #include "affichage.h"
 #include "IA.h"
 #include "attaque.h"
-
-
-Champion *persoenjeu; // attention variable globale
-
+#include "attaquespe.h"
 
 
 void initialisation_champion(FILE *fichier, Champion *champion) {
-    int pv_max, pv, attaque, defense, agilite, vitesse;
+    if (!fichier || !champion){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
+    int pv_max = 0, pv = 0, attaque = 0, defense = 0, agilite = 0, vitesse = 0;
     char nom[50], classe[50], attaque_spe[50], effet_spe[50];
 
     // Lecture des stats dans le fichier du champion
@@ -128,6 +129,10 @@ int chaine_caractere_egales(char *chaine1, char *chaine2){
 
 
 int trie (Champion *champion){
+    if (!champion || !champion->nom){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
     if (chaine_caractere_egales(champion->classe,"enattente") == 0){
         printf("erreur lors de l'attribution des classes\n");
         return -1;
@@ -149,6 +154,10 @@ int trie (Champion *champion){
 
 
 int ordre_classe(const char *classe) {
+    if (!classe){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
     if (strcmp(classe, "tank") == 0) return 1;
     if (strcmp(classe, "dps") == 0) return 2;
     if (strcmp(classe, "soutien") == 0) return 3;
@@ -156,6 +165,10 @@ int ordre_classe(const char *classe) {
 }
 
 int comparer_par_classe(const void *a, const void *b) {
+    if (!a || !b){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
     Champion *champion1 = (Champion *)a;
     Champion *champion2 = (Champion *)b;
 
@@ -166,6 +179,10 @@ int comparer_par_classe(const void *a, const void *b) {
 }
 
 void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, Champion *tab_dps, int *soutien_count, int *tank_count, int *dps_count, Champion *temp) {
+    if(!tab || !tab_soutien || !tab_tank || !tab_dps || !soutien_count ||!tank_count || !dps_count  || !temp){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    } 
     memcpy(temp, tab, sizeof(Champion) * Nb_champion); // Copier les données dans un tableau temporaire
 
     // Trier le tableau temporaire par classe
@@ -192,6 +209,10 @@ void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, C
 }
 
 void copie_champion(Champion *source, Champion *destination) {
+    if (!source || !destination){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
     // Copier les champs simples
     destination->pv_max = source->pv_max;
     destination->stat.pv_courant = source->stat.pv_courant;
@@ -238,6 +259,10 @@ void copie_champion(Champion *source, Champion *destination) {
 }
 
 void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equipe2, int choix) {
+    if (!tableau_champion || !equipe1 || !equipe2 || !equipe1->nom || !equipe2->nom){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
     int tempp;
     if (choix == 2) {
         printf("Equipe 1 choisissez vos champions\n");
@@ -296,6 +321,10 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
 }
 
 void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2){
+    if (!tableau_champion || !equipe2 ||! equipe2->nom){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    } 
     for (int i=0;i<Nb_champion_par_equipe;i++){
         copie_champion(((tableau_champion+(rand()%18))),&equipe2->perso[i]);  // choix des champions aléatoirement
         equipe2->perso[i].equipe = 2; // Assigner l'équipe 2 au champion
@@ -303,6 +332,10 @@ void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2){
 }
 
 int longueur_nom_max(Champion *champions, int taille) {
+    if (!champions || !champions->nom){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
     int max_longueur = 0;
     for (int i = 0; i < taille; i++) {
         if (champions[i].nom != NULL) {
@@ -316,42 +349,26 @@ int longueur_nom_max(Champion *champions, int taille) {
 }
 
 void saisie_utilisateur(Champion *champion, Equipe *equipe2 ){ // demande à l'utilisateur les actions à faire
+    if (!champion || !equipe2 || !equipe2->nom ||!champion->nom){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
 
     switch (affichage_saisie_utilisateur(*champion))
     {
     case 1:
-        attaquesimple(champion, equipe2->perso);
+        attaquesimple(champion, equipe2->perso); // attaque simple
         break;
     case 2:
-        
-        printf("fonction pas encore definie\n");
+        attaqueSpecial(*champion,equipe2->perso); // attaque spe
         break;
     case 3:
-        printf("fonction pas encore definie\n");
-    default:
+        printf("fonction pas encore definie\n"); // utiliser un objet
+    default: // passer son tour
         break;
     }
 }
-/*
-Equipe *recuperer_equipe(Champion *champion, Equipe *equipe1, Equipe *equipe2) {
-    // Vérifier si le champion appartient à equipe1
-    for (int i = 0; i < Nb_champion_par_equipe; i++) {
-        if (champion->equipe == 1) {
-            return equipe1;
-        }
-    }
 
-    // Vérifier si le champion appartient à equipe2
-    for (int i = 0; i < Nb_champion_par_equipe; i++) {
-        if (champion->equipe == 2) {
-            return equipe2;
-        }
-    }
-
-    // Si le champion n'appartient à aucune équipe
-    return NULL;
-}
-    */
 // Fonction de comparaison pour qsort (tri par vitesse décroissante)
 int comparer_par_vitesse(const void *a, const void *b) {
     Champion *champion1 = (Champion *)a;
@@ -379,4 +396,8 @@ void trier_par_vitesse(Champion *liste_champion, Equipe *equipe1, Equipe *equipe
     // Trier les champions par vitesse décroissante
     qsort(liste_champion, Nb_champion_par_equipe * 2, sizeof(Champion), comparer_par_vitesse);
 
+}
+
+void vider_buffer_scanf(){
+    while(getchar() != '\n');
 }

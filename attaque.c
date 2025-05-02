@@ -33,7 +33,11 @@ void vitesse(Champion *ordreAttaque, Champion *tableau_initial) { // Tri les cha
 */
 
 int nbTank(Champion Equipe[]){
-    int nombre;
+    if (!Equipe){
+        printf("erreur lors de l'alocation de la memoire \n");
+        exit(0);
+    }
+    int nombre = 0;
     for(int i=0;i<3;i++){
         if (Equipe[i].classe=="tank"){
             nombre+=1;
@@ -43,6 +47,10 @@ int nbTank(Champion Equipe[]){
 }
 
 int cibleAttaque(Champion Equipe[]){
+    if (!Equipe){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
     int cible=0;
     if (nbTank(Equipe)==0){//si il n'y a pas de tank l'attaque cible l'adversaire le plus lent
         for(int i=0;i<3;i++){
@@ -73,8 +81,6 @@ int cibleAttaque(Champion Equipe[]){
 }
 
 float degat(Champion personnage){//calcule les degats
-    printf("test:%f\n",personnage.stat.attaque);
-    printf("test defence : %f\n",personnage.stat.defense);
     return personnage.stat.attaque;
 }
 
@@ -86,7 +92,7 @@ void attaquesimple (Champion *personnage, Champion equipeAdverse[]){//actualiser
     int precision=0;
     precision=rand()%101;
     int cible=cibleAttaque(equipeAdverse);
-    if (equipeAdverse[cible].stat.pv_courant <= 0){
+    if (equipeAdverse[cible].stat.pv_courant <= 0 || personnage->stat.pv_courant <= 0){
         return;
     }
     if (precision>equipeAdverse[cible].stat.agilite){//si l'attaque touche actualise les pv en prenant en compte la defense
@@ -95,14 +101,12 @@ void attaquesimple (Champion *personnage, Champion equipeAdverse[]){//actualiser
         }
         equipeAdverse[cible].stat.pv_courant-=(degat(*personnage)-(equipeAdverse[cible].stat.defense)/100);
         printf("%s attaque : \n",personnage->nom);
-        printf("try %f\n",(degat(*personnage)-(equipeAdverse[cible].stat.defense)/100));
         afficher_degat_recu(equipeAdverse[cible],*personnage,0);
     }
     else{
         printf("%s esquive\n",personnage->nom);
         printf("Attaque ratée\n");
     }
-    printf("PV : %f\n\n",equipeAdverse[cible].stat.pv_courant);
 }
 
 

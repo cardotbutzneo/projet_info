@@ -20,7 +20,7 @@ int main() {
 
     if (!tableau_champion || !champion_soutien || !champion_tank || !champion_dps || !ordre_attaque || !ordre_attaque_ind) {
         printf("Erreur d'allocation mémoire\n");
-        return 1;
+        exit(0);
     }
 
     char *tableau_nom_personnage[Nb_champion] = {"amongus.txt", "captainamerica.txt", "donkeykong.txt", "drtenma.txt", "gandalf.txt", "golemdefer.txt", "invader.txt", "itachi.txt", "jackfrost.txt", "jay.txt", "johnnyhallyday.txt", "netero.txt", "nox.txt", "picsou.txt", "pierrechartier.txt", "shrek.txt", "tux.txt", "zelda.txt"};
@@ -39,7 +39,6 @@ int main() {
         initialisation_champion(fichier, tableau_champion + i);
         fclose(fichier);
     }
-
     int soutien_count = 0, tank_count = 0, dps_count = 0;
     int choix_nb_joueur;
 
@@ -53,6 +52,7 @@ int main() {
     } while (choix_nb_joueur <= 0 || choix_nb_joueur > 2);
 
     char *nom_IA[8] = {"Wall-E", "Atlas", "Sentinelle", "Fonctionnaire", "Paperclip", "Pnj", "Nano", "Arcade"};
+    
     Equipe equipe1;
     Equipe equipe2;
 
@@ -67,20 +67,60 @@ int main() {
     }
 
     if (choix_nb_joueur == 2) {
+        do {
+            printf("Saisir un nom du joueur 1 (20 caracteres maximum , sinon votre nom sera tronqué) :\n");
+            verif = scanf("%20s", equipe1.nom);
+        
+            if (verif != 1) {
+                printf("Entrée invalide, réessayez.\n");
+                verif = -1;
+            }
+        
+            // Dans tous les cas, on vide le buffer
+            vider_buffer_scanf();
+        
+        } while (verif != 1);
+        
+        verif = -1;
         do{
-            printf("saisir un nom du joueur 1 : \n");
-            verif = scanf("%s", equipe1.nom);
-        }while(verif != 1);
-        printf("saisir un nom du joueur 2 : \n");
-        scanf("%s", equipe2.nom);
+            printf("saisir un nom du joueur 2 : (20 caracteres maximum , sinon votre nom sera tronqué)\n");
+            
+            verif = scanf("%20s", equipe2.nom);
+        
+            if (verif != 1) {
+                printf("Entrée invalide, réessayez.\n");
+                verif = -1;
+            }
+        
+            // Dans tous les cas, on vide le buffer
+            vider_buffer_scanf();
+        
+        } while (verif != 1);
     }
 
     if (choix_nb_joueur == 1) {
         difficulte = 0; // noob par défault
         printf("Vous jouez contre une IA :\n");
-        printf("saisir le nom du joueur 1 :\n");
-        scanf("%s", equipe1.nom);
+        verif = -1;
+        do {
+            printf("Saisir un nom du joueur 1 (20 caracteres maximum, sinon votre nom sera tronqué) :\n");
+            verif = scanf("%20s", equipe1.nom);
+        
+            if (verif != 1) {
+                printf("Entrée invalide, réessayez.\n");
+                verif = -1;
+            }
+        
+            // Dans tous les cas, on vide le buffer
+            vider_buffer_scanf();
+        
+        } while (verif != 1);
+        
         equipe2.nom = *(nom_IA + rand() % 8);
+        if (equipe2.nom == NULL){
+            printf("erreur lors de l'alocation de la memoire\n");
+            exit(0);
+        }
     }
 
     // Classement des champions par classe
@@ -97,9 +137,6 @@ int main() {
 
     trier_par_vitesse(ordre_attaque_ind, &equipe1, &equipe2);
 
-    // Initialize ordre_attaque_ind
-    afficher_equipe(equipe1, equipe2);
-
     // Main game loop
     int finJeu = 0;
     for (int i = 0; i < Nb_tour || finJeu == 1; i++) {
@@ -109,7 +146,10 @@ int main() {
         for (int k = 0; k < Nb_champion_par_equipe * 2; k++) {
             afficher_equipes_cote_a_cote(equipe1, equipe2);
             Champion *champion_intermediaire = (ordre_attaque_ind + k); // Récupérer directement le pointeur
-
+            if (!champion_intermediaire){
+                printf("erreur lors de l'alocation de la mememoire\n");
+                exit(0);
+            }
             // Utiliser la fonction recuperer_equipe avec le pointeur
             int equipe = champion_intermediaire->equipe;
             if (equipe != 1 && equipe != 2) {
@@ -140,24 +180,45 @@ int main() {
             }
             afficher_equipe(equipe1,equipe2);
         }
-        printf("reparation des decord...\n");
+        printf("reparation des decors\n");
         for (int i=0;i<5;i++){
             Sleep(1000);
+            printf(".");
         }
         separation_des_partie();
     }
 
-    // Libération de la mémoire
+
+    printf("libération de la mémoire\n");
+
+    // Libération des champs alloués dynamiquement dans les tableaux de Champion
+    for (int i = 0; i < Nb_champion; i++) {
+        free(tableau_champion[i].nom);
+        free(tableau_champion[i].classe);
+        free(tableau_champion[i].attaque_spe);
+        free(tableau_champion[i].effet_spe);
+    }
+
+    // Libération des tableaux de Champion
     free(champion_soutien);
     free(champion_tank);
     free(champion_dps);
     free(tableau_champion);
     free(ordre_attaque);
     free(ordre_attaque_ind);
+
+    // Libération des noms des équipes
     free(equipe1.nom);
     free(equipe2.nom);
-    free(equipe1.objet);
-    free(equipe2.objet);
+
+    // Libération des objets des équipes (si alloués dynamiquement)
+    if (equipe1.objet) {
+        free(equipe1.objet);
+    }
+    if (equipe2.objet) {
+        free(equipe2.objet);
+    }
+
     printf("\nCode fini\n");
     return 0;
 }

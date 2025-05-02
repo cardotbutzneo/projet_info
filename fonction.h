@@ -15,4 +15,5 @@ int comparer_par_classe(const void *a, const void *b);
 void trier_par_vitesse(Champion *ordre_attaque_ind, Equipe *equipe1, Equipe *equipe2);
 void vitesse(Champion *ordre_attaque, Champion *ordre_attaque_ind);
 int longueur_nom_max(Champion *champions, int taille);
+void vider_buffer_scanf();
 #endif // FONCTION_H
