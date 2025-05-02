@@ -10,7 +10,7 @@ void afficher_classe(Champion *champion);
 void afficher_equipe(Equipe equipe1, Equipe equipe2);
 void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2);
 void afficher_degat_recu(Champion cible, Champion attaquant, int type_attaque);
-void saisie_utilisateur(Champion *champion, Equipe equipe2);
+void saisie_utilisateur(Champion *champion, Equipe *equipe2);
 void separation_des_partie();
 void sauter_ligne(FILE *fichier);
 int affichage_saisie_utilisateur(Champion champion);

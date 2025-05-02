@@ -4,9 +4,13 @@
 #include "IA.h"
 #include "attaque.h"
 
-// affichges des champions
-
+// Fonction pour sauter une ligne dans un fichier
 void sauter_ligne(FILE *fichier) {
+    if (fichier == NULL) {
+        printf("Erreur : fichier non valide dans sauter_ligne\n");
+        return;
+    }
+
     char buffer[100];
     while (fgets(buffer, sizeof(buffer), fichier)) {
         if (strchr(buffer, '\n') != NULL) {
@@ -15,94 +19,99 @@ void sauter_ligne(FILE *fichier) {
     }
 }
 
-void afficher_personnage(Champion *champion){
-    printf("nom : %s\n",champion->nom);
-    printf("Classe : %s\n", champion->classe);
-    printf("pv_max : %f\n", champion->pv_max);
-    printf("pv_courrant : %f\n", champion->stat.pv_courant);
-    printf("attaque : %f\n", champion->stat.attaque);
-    printf("defense : %f\n", champion->stat.defense);
-    printf("agilite : %f\n", champion->stat.agilite);
-    printf("vitesse : %f\n", champion->stat.vitesse);
-}
-
-// affichage global
-
-int type_os(int type_OS){ // vérifie si l'utilisateur est sur windows ou linux
-    if (_WIN32 ){
-        type_OS = 1000;
+// Fonction pour afficher les informations d'un champion
+void afficher_personnage(Champion *champion) {
+    if (champion == NULL) {
+        printf("Erreur : pointeur NULL dans afficher_personnage\n");
+        return;
     }
 
-    else {
-        printf("Nous avons détecté que votre appareil n'est pas sous Windows, de ce fait les temps d'attente pourraient être plus longs.\n");
+    printf("Nom : %s\n", champion->nom);
+    printf("Classe : %s\n", champion->classe);
+    printf("PV max : %.1f\n", champion->pv_max);
+    printf("PV courant : %.1f\n", champion->stat.pv_courant);
+    printf("Attaque : %.1f\n", champion->stat.attaque);
+    printf("Défense : %.1f\n", champion->stat.defense);
+    printf("Agilité : %.1f\n", champion->stat.agilite);
+    printf("Vitesse : %.1f\n", champion->stat.vitesse);
+}
+
+// Vérifie le type de système d'exploitation
+int type_os(int type_OS) {
+    if (_WIN32) {
+        type_OS = 1000;
+    } else {
+        printf("Votre appareil n'est pas sous Windows. Les temps d'attente pourraient être plus longs.\n");
         type_OS = 1;
     }
     return type_OS;
 }
 
-void affichage_initial(){
+// Affichage initial du jeu
+void affichage_initial() {
     int buffer = 10;
-    int val_systemeOS;
-    val_systemeOS = type_os(val_systemeOS);
-    
+    int val_systemeOS = type_os(0);
+
     printf("Chargement du jeu...\n");
     Sleep(1000);
 
-
-    for (int i=0;i<buffer;i++){
-       -// Sleep(val_systemeOS); // passer cette ligne en commentaire pour ne pas avoir les temps de chargement
+    for (int i = 0; i < buffer; i++) {
+        // Sleep(val_systemeOS); // Décommentez pour activer les temps d'attente
         printf("---");
     }
 
-    printf("\nchargement fini\n");
+    printf("\nChargement terminé\n");
     printf("Bienvenue dans MultiverSeus\n");
     Sleep(val_systemeOS);
 }
 
-void afficher_classe(Champion *champion){
-    printf("%s est de ",champion->nom);
-    switch (trie(champion))
-    {
-    case 1:
-        printf("classe : tank\n");
-        break;
-    
-    case 2 :
-        printf("classe : dps\n");
-        break;
-    
-    case 3 :
-        printf("classe : soutien\n");
-        break;
-    
-    default:
-        printf("erreur classe non definie\n");
-        break;
+// Affiche la classe d'un champion
+void afficher_classe(Champion *champion) {
+    if (champion == NULL) {
+        printf("Erreur : pointeur NULL dans afficher_classe\n");
+        return;
+    }
+
+    printf("%s est de ", champion->nom);
+    switch (trie(champion)) {
+        case 1:
+            printf("classe : tank\n");
+            break;
+        case 2:
+            printf("classe : dps\n");
+            break;
+        case 3:
+            printf("classe : soutien\n");
+            break;
+        default:
+            printf("Erreur : classe non définie\n");
+            break;
     }
     printf("\n");
 }
 
-void separation_des_partie(){
+// Séparation visuelle entre les parties
+void separation_des_partie() {
     int buffer = 10;
-    for (int i=0;i<buffer;i++){
+    for (int i = 0; i < buffer; i++) {
         printf("\n");
     }
 }
 
-
+// Affiche les équipes et leurs champions
 void afficher_equipe(Equipe equipe1, Equipe equipe2) {
-    printf("Equipe 1 : %s\n", equipe1.nom);
+    printf("Équipe 1 : %s\n", equipe1.nom);
     for (int i = 0; i < Nb_champion_par_equipe; i++) {
-        if (equipe1.perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
+        if (equipe1.perso[i].stat.pv_courant > 0) {
             printf("  - %s (PV : %.1f)\n", equipe1.perso[i].nom, equipe1.perso[i].stat.pv_courant);
         } else {
             printf("  - %s (KO)\n", equipe1.perso[i].nom);
         }
     }
 
-    printf("\nEquipe 2 : %s\n", equipe2.nom);
+    printf("\nÉquipe 2 : %s\n", equipe2.nom);
     for (int i = 0; i < Nb_champion_par_equipe; i++) {
-        if (equipe2.perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
+        if (equipe2.perso[i].stat.pv_courant > 0) {
             printf("  - %s (PV : %.1f)\n", equipe2.perso[i].nom, equipe2.perso[i].stat.pv_courant);
         } else {
             printf("  - %s (KO)\n", equipe2.perso[i].nom);
@@ -110,46 +119,35 @@ void afficher_equipe(Equipe equipe1, Equipe equipe2) {
     }
 }
 
+// Affiche les équipes côte à côte
 void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
-    // Vérifier que les équipes sont correctement initialisées
     if (equipe1.nom == NULL || equipe2.nom == NULL) {
         printf("Erreur : Les noms des équipes ne sont pas initialisés.\n");
         return;
     }
 
-    // Vérifier que les tableaux perso sont correctement alloués
     if (equipe1.perso == NULL || equipe2.perso == NULL) {
         printf("Erreur : Les tableaux de champions des équipes ne sont pas initialisés.\n");
         return;
     }
 
-    // Calculer la largeur maximale des noms pour ajuster l'affichage
     int n = longueur_nom_max(equipe1.perso, Nb_champion_par_equipe);
     int m = longueur_nom_max(equipe2.perso, Nb_champion_par_equipe);
-    int largeur_nom = (n > m ? n : m) + 1; // Utiliser la largeur maximale entre les deux équipes
-
-    // Ajouter un espacement fixe entre les deux équipes
+    int largeur_nom = (n > m ? n : m) + 1;
     int espacement = 12;
 
-    // Afficher les noms des équipes alignés
     printf("%-*s%*s\n", largeur_nom + espacement, equipe1.nom, largeur_nom + espacement, equipe2.nom);
-
-    // Afficher les en-têtes des colonnes
     printf("%-*s%-*s%-*s%*s%-*s%-*s\n", largeur_nom, "Nom", 10, "Classe", 10, "PV", espacement, " ", largeur_nom, "Nom", 10, "Classe", 10, "PV",10);
 
-    // Afficher les champions des deux équipes côte à côte
     for (int i = 0; i < Nb_champion_par_equipe; i++) {
-        // Équipe 1
         if (equipe1.perso[i].nom != NULL) {
-            printf("%-*s%-*s%-*.1f", largeur_nom, equipe1.perso[i].nom, 10, equipe1.perso[i].classe, 10, equipe1.perso[i].stat.pv_courant);
+            printf("%-*s%-*s%-*.1f", largeur_nom, equipe1.perso[i].nom, 10, equipe1.perso[i].classe, 10, (equipe1.perso[i].stat.pv_courant > 0) ? equipe1.perso[i].stat.pv_courant : 0 );
         } else {
             printf("%-*s%-*s%-*s", largeur_nom, " ", 10, " ", 10, " ");
         }
 
-        // Espacement entre les deux équipes
         printf("%*s", espacement, " ");
 
-        // Équipe 2
         if (equipe2.perso[i].nom != NULL) {
             printf("%-*s%-*s%-*.1f\n", largeur_nom, equipe2.perso[i].nom, 10, equipe2.perso[i].classe, 10, equipe2.perso[i].stat.pv_courant);
         } else {
@@ -158,51 +156,74 @@ void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
     }
 }
 
-void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank, Champion *champion_dps, int soutien_count, int tank_count, int dps_count){
-    
+// Affiche les champions triés par classe
+void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank, Champion *champion_dps, int soutien_count, int tank_count, int dps_count) {
+    if (champion_soutien == NULL || champion_tank == NULL || champion_dps == NULL) {
+        printf("Erreur : pointeur NULL dans afficher_champion_init\n");
+        exit(0);
+    }
+
     int index = 1;
-    
 
     printf("Les champions de classe tank sont : \n");
     for (int i = 0; i < tank_count; i++) {
-        printf("%d : %s\n",index, (champion_tank + i)->nom);
+        printf("%d : %s\n", index, (champion_tank + i)->nom);
         index++;
     }
     printf("\n");
     Sleep(2000);
+
     printf("Les champions de classe dps sont : \n");
     for (int i = 0; i < dps_count; i++) {
-        printf("%d : %s\n",index, (champion_dps + i)->nom);
+        printf("%d : %s\n", index, (champion_dps + i)->nom);
         index++;
     }
     printf("\n");
     Sleep(2000);
+
     printf("Les champions de classe soutien sont : \n");
     for (int i = 0; i < soutien_count; i++) {
-        printf("%d : %s\n",index, (champion_soutien + i)->nom);
+        printf("%d : %s\n", index, (champion_soutien + i)->nom);
         index++;
     }
 }
 
-int affichage_saisie_utilisateur(Champion champion){
-    printf("champion selectionner : \n");
-    printf("%s\n",champion.nom);
-    printf("1 : attaquer  |  2 : technique speciale  |  3 : utiliser un objet  |  4 : passer son tour\n");
-
-    int saisi;
-    scanf("%d",&saisi);
-    return saisi;
+// Affiche les dégâts reçus par un champion
+void afficher_degat_recu(Champion cible, Champion attaquant, int type_attaque) {
+    if (type_attaque == 0) { // Attaque classique
+        printf("%s reçoit : %.1f dégâts\n", cible.nom, attaquant.stat.attaque);
+        printf("Les PV de %s sont maintenant de : %.1f\n", cible.nom, cible.stat.pv_courant);
+    } else if (type_attaque == 1) { // Attaque spéciale
+        printf("Attaque spéciale\n");
+        printf("%s reçoit : %.1f dégâts\n", cible.nom, attaquant.stat.attaque);
+        printf("Les PV de %s sont maintenant de : %.1f\n", cible.nom, cible.stat.pv_courant);
+    }
 }
 
-void afficher_degat_recu(Champion cible, Champion attaquant, int type_attaque){
-    if (type_attaque == 0){ // attaque classique
-        printf("%s recoit : %f degats\n",cible.nom,attaquant.stat.attaque);
-        printf("Les PV de %s sont maintenant de : %f\n",cible.nom,cible.stat.pv_courant);
-        printf("Les PV de %s sont maintenant de : %f\n",cible.nom,cible.pv_max - cible.stat.pv_courant);
+// Affiche les options de saisie pour l'utilisateur
+int affichage_saisie_utilisateur(Champion champion) {
+    if (champion.nom == NULL) {
+        printf("Erreur : le nom du champion est NULL\n");
+        return -1; // Retourne une valeur d'erreur
     }
-    if (type_attaque == 1){ // attaque spéciale
-        printf("attaque spéciale\n");
-        printf("%s recoit : %d degats\n",cible.nom,attaquant.stat.attaque);
-        printf("Les PV de %s sont maintenant de : %f\n",cible.nom,cible.pv_max - cible.stat.pv_courant);
-    }
+
+    printf("Que voulez-vous faire avec %s ?\n", champion.nom);
+    printf("1. Attaque simple\n");
+    printf("2. Utiliser une technique spéciale\n");
+    printf("3. utiliser un objet\n");
+    printf("4 : passer son tour\n");
+
+    int choix = -1;
+    do {
+        printf("Entrez votre choix (1-4) : ");
+        if (scanf("%d", &choix) != 1) {
+            printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 3.\n");
+            while (getchar() != '\n'); // Vide le buffer d'entrée
+            choix = -1; // Réinitialise le choix pour rester dans la boucle
+        } else if (choix < 1 || choix > 3) {
+            printf("Choix invalide. Veuillez entrer un nombre entre 1 et 3.\n");
+        }
+    } while (choix < 1 || choix > 4);
+
+    return choix;
 }

@@ -88,7 +88,6 @@ int main() {
 
     Champion temp[Nb_champion];
     classe_champion(tableau_champion, champion_soutien, champion_tank, champion_dps, &soutien_count, &tank_count, &dps_count, temp);
-
     // Affichage des champions par classe
     afficher_champion_init(champion_soutien, champion_tank, champion_dps, soutien_count, tank_count, dps_count);
 
@@ -97,7 +96,6 @@ int main() {
     choix_des_champion(temp, &equipe1, &equipe2, choix_nb_joueur);
 
     trier_par_vitesse(ordre_attaque_ind, &equipe1, &equipe2);
-    vitesse(ordre_attaque, ordre_attaque_ind);
 
     // Initialize ordre_attaque_ind
     afficher_equipe(equipe1, equipe2);
@@ -122,26 +120,27 @@ int main() {
             if (choix_nb_joueur == 2) {
                 if (equipe == 1) {
                     printf("joueur 1 joue\n");
-                    saisie_utilisateur(champion_intermediaire, equipe2);
+                    saisie_utilisateur(champion_intermediaire, &equipe2);
                 }
                 if (equipe == 2) {
                     printf("joueur 2 joue\n");
-                    saisie_utilisateur(champion_intermediaire, equipe1);
+                    saisie_utilisateur(champion_intermediaire, &equipe1);
                 }
             }
 
             if (choix_nb_joueur == 1) {
                 if (equipe == 1) {
                     printf("joueur 1 joue\n");
-                    saisie_utilisateur(champion_intermediaire, equipe2);
+                    saisie_utilisateur(champion_intermediaire, &equipe2);
                 }
                 if (equipe == 2) {
                     printf("IA joue\n");
                     ia_principale(&equipe2, &equipe1, difficulte);
                 }
             }
+            afficher_equipe(equipe1,equipe2);
         }
-        printf("réparation des décord...\n");
+        printf("reparation des decord...\n");
         for (int i=0;i<5;i++){
             Sleep(1000);
         }

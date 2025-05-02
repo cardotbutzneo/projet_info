@@ -50,6 +50,8 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
         exit(1);
     }
     sauter_ligne(fichier);
+    sauter_ligne(fichier);
+    sauter_ligne(fichier);
     if (fscanf(fichier, "%s", attaque_spe) != 1) {
         printf("Erreur lors de la lecture de l'attaque spéciale\n");
         exit(1);
@@ -313,14 +315,15 @@ int longueur_nom_max(Champion *champions, int taille) {
     return max_longueur;
 }
 
-void saisie_utilisateur(Champion *champion, Equipe equipe2 ){ // demande à l'utilisateur les actions à faire
+void saisie_utilisateur(Champion *champion, Equipe *equipe2 ){ // demande à l'utilisateur les actions à faire
 
     switch (affichage_saisie_utilisateur(*champion))
     {
     case 1:
-        attaquesimple(champion, equipe2.perso);
+        attaquesimple(champion, equipe2->perso);
         break;
     case 2:
+        
         printf("fonction pas encore definie\n");
         break;
     case 3:
