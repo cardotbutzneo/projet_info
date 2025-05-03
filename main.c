@@ -12,13 +12,14 @@ int main() {
 
     // Initialisation des tableaux
     Champion *tableau_champion = malloc(sizeof(Champion) * Nb_champion);
+    Champion *tableau_champion_cachee = malloc(sizeof(Champion)*Nb_champion_cachee);
     Champion *champion_soutien = malloc(sizeof(Champion) * 6);
     Champion *champion_tank = malloc(sizeof(Champion) * 6);
     Champion *champion_dps = malloc(sizeof(Champion) * 6);
     Champion *ordre_attaque = malloc(sizeof(Champion) * Nb_champion_par_equipe * 2);
     Champion *ordre_attaque_ind = malloc(sizeof(Champion) * Nb_champion_par_equipe * 2);
 
-    if (!tableau_champion || !champion_soutien || !champion_tank || !champion_dps || !ordre_attaque || !ordre_attaque_ind) {
+    if (!tableau_champion || !champion_soutien || !champion_tank || !champion_dps || !ordre_attaque || !ordre_attaque_ind || !tableau_champion_cachee) {
         printf("Erreur d'allocation mémoire\n");
         exit(0);
     }
@@ -37,6 +38,18 @@ int main() {
             exit(0);
         }
         initialisation_champion(fichier, tableau_champion + i);
+        fclose(fichier);
+        
+    }
+
+    for (int i=0;i<Nb_champion_cachee;i++){
+        snprintf(chemin_acces, sizeof(chemin_acces), "%s%s",base_chemin, personnage_cachee[i]);
+        fichier = fopen(chemin_acces, "r+");
+        if (fichier == NULL){
+            printf("Erreur d'ouverture du fichier : %s\n", chemin_acces);
+            exit(0);
+        }
+        initialisation_champion(fichier,tableau_champion_cachee+i);
         fclose(fichier);
     }
     int soutien_count = 0, tank_count = 0, dps_count = 0;
@@ -133,12 +146,13 @@ int main() {
 
     printf("Fin de l'initialisation des personnages\n");
 
-    choix_des_champion(temp, &equipe1, &equipe2, choix_nb_joueur);
+    choix_des_champion(temp, &equipe1, &equipe2, choix_nb_joueur, tableau_champion_cachee);
 
     trier_par_vitesse(ordre_attaque_ind, &equipe1, &equipe2);
 
     // Main game loop
     int finJeu = 0;
+    separation_des_partie();
     for (int i = 0; i < Nb_tour || finJeu == 1; i++) {
         printf("tour %d : \n", i + 1);
         printf("afficher les champions\n");
@@ -178,7 +192,6 @@ int main() {
                     ia_principale(&equipe2, &equipe1, difficulte);
                 }
             }
-            afficher_equipe(equipe1,equipe2);
         }
         printf("reparation des decors\n");
         for (int i=0;i<5;i++){

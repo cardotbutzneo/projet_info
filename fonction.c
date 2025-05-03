@@ -179,12 +179,11 @@ int comparer_par_classe(const void *a, const void *b) {
 }
 
 void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, Champion *tab_dps, int *soutien_count, int *tank_count, int *dps_count, Champion *temp) {
-    if(!tab || !tab_soutien || !tab_tank || !tab_dps || !soutien_count ||!tank_count || !dps_count  || !temp){
+    if(!tab ||!tab_soutien || !tab_tank || !tab_dps || !soutien_count ||!tank_count || !dps_count  || !temp){
         printf("erreur lors de l'alocation de la memoire\n");
         exit(0);
     } 
     memcpy(temp, tab, sizeof(Champion) * Nb_champion); // Copier les données dans un tableau temporaire
-
     // Trier le tableau temporaire par classe
     qsort(temp, Nb_champion, sizeof(Champion), comparer_par_classe);
 
@@ -258,8 +257,8 @@ void copie_champion(Champion *source, Champion *destination) {
 */
 }
 
-void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equipe2, int choix) {
-    if (!tableau_champion || !equipe1 || !equipe2 || !equipe1->nom || !equipe2->nom){
+void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equipe2, int choix, Champion *tableau_champion_cachee) {
+    if (!tableau_champion || !tableau_champion_cachee|| !equipe1 || !equipe2 || !equipe1->nom || !equipe2->nom){
         printf("erreur lors de l'alocation de la memoire\n");
         exit(0);
     }
@@ -269,51 +268,73 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
             tempp = -1; // Initialisation à une valeur invalide pour entrer dans la boucle
             do {
-                printf("Champion %d : \n", i + 1);
+                printf("Champion %d : ", i + 1);
                 if (scanf("%d", &tempp) != 1) {
-                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18.\n");
-                    while (getchar() != '\n'); // Vide le buffer d'entrée
+                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    vider_buffer_scanf(); // Vide le buffer d'entrée
                     tempp = -1; // Réinitialise tempp pour rester dans la boucle
-                } else if (tempp > 18 || tempp <= 0) {
-                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18.\n");
+                } else if ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102)) {
+                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
                 }
-            } while (tempp > 18 || tempp <= 0);
-            copie_champion((tableau_champion + (tempp - 1)), &equipe1->perso[i]);
-            equipe1->perso[i].equipe = 1; // Assigner l'équipe 1 au champion
+            } while ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102));
+            
+            if (tempp >= 1 && tempp <= 18) {
+                copie_champion((tableau_champion + (tempp - 1)), &equipe1->perso[i]);
+                equipe1->perso[i].equipe = 1;
+            } else if (tempp >= 100 && tempp <= 102) {
+                copie_champion((tableau_champion_cachee + (tempp - 100)), &equipe1->perso[i]);
+                equipe1->perso[i].equipe = 1;
+                printf("Bravo ! Vous avez trouvé un champion caché\n");
+            }
+
             
         }
         printf("Equipe 2 choisissez vos champions\n");
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
             tempp = -1; // Initialisation à une valeur invalide pour entrer dans la boucle
             do {
-                printf("Champion %d : \n", i + 1);
+                printf("Champion %d : ", i + 1);
                 if (scanf("%d", &tempp) != 1) {
-                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18.\n");
-                    while (getchar() != '\n'); // Vide le buffer d'entrée
+                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    vider_buffer_scanf(); // Vide le buffer d'entrée
                     tempp = -1; // Réinitialise tempp pour rester dans la boucle
-                } else if (tempp > 18 || tempp <= 0) {
-                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18.\n");
+                } else if ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102)) {
+                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
                 }
-            } while (tempp > 18 || tempp <= 0);
-            copie_champion((tableau_champion + (tempp - 1)), &equipe2->perso[i]);
-            equipe2->perso[i].equipe = 2; // Assigner l'équipe 2 au champion
+            } while ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102));
+            
+            if (tempp >= 1 && tempp <= 18) {
+                copie_champion((tableau_champion + (tempp - 1)), &equipe2->perso[i]);
+                equipe2->perso[i].equipe = 2;
+            } else if (tempp >= 100 && tempp <= 102) {
+                copie_champion((tableau_champion_cachee + (tempp - 100)), &equipe2->perso[i]);
+                equipe2->perso[i].equipe = 2;
+                printf("Bravo ! Vous avez trouvé un champion caché\n");
+            }
         }
     } else if (choix == 1) {
         printf("Equipe 1 choisissez vos champions\n");
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
              // Initialisation à une valeur invalide pour entrer dans la boucle
-            do {
+             do {
                 printf("Champion %d : ", i + 1);
                 if (scanf("%d", &tempp) != 1) {
-                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18.\n");
-                    while (getchar() != '\n'); // Vide le buffer d'entrée
+                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    vider_buffer_scanf(); // Vide le buffer d'entrée
                     tempp = -1; // Réinitialise tempp pour rester dans la boucle
-                } else if (tempp > 18 || tempp <= 0) {
-                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18.\n");
+                } else if ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102)) {
+                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
                 }
-            } while (tempp > 18 || tempp <= 0);
-            copie_champion((tableau_champion + (tempp - 1)), &equipe1->perso[i]);
-            equipe1->perso[i].equipe = 1; // Assigner l'équipe 1 au champion
+            } while ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102));
+            
+            if (tempp >= 1 && tempp <= 18) {
+                copie_champion((tableau_champion + (tempp - 1)), &equipe1->perso[i]);
+                equipe1->perso[i].equipe = 1;
+            } else if (tempp >= 100 && tempp <= 102) {
+                copie_champion((tableau_champion_cachee + (tempp - 100)), &equipe1->perso[i]);
+                equipe1->perso[i].equipe = 1;
+                printf("Bravo ! Vous avez trouvé un champion caché\n");
+            }
         }
         
         choix_champion_IA(tableau_champion, equipe2);
