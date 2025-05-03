@@ -1,8 +1,8 @@
-include "en-tete.h"
+#include "en-tete.h"
 
 
 int vivant(Champion personnage){
-  if (personnage.stat.pv_courrant<=0){
+  if (personnage.stat.pv_courant<=0){
     return 1;
   }
   else{
@@ -23,7 +23,7 @@ int verifstat(Champion personnage){
   if (personnage.stat.agilite<0){
     personnage.stat.agilite=0;
   }
-  if (personnage.stat.jauge_actuel>personnage.jauge_max){
-    personnage.stat.jauge_actuel=personnage.jauge_max;
+  if (personnage.stat.jauge_actuelle>personnage.stat.jauge_max){
+    personnage.stat.jauge_actuelle=personnage.stat.jauge_max;
   }
 }

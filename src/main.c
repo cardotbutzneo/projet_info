@@ -131,7 +131,7 @@ int main() {
         
         equipe2.nom = *(nom_IA + rand() % 8);
         if (equipe2.nom == NULL){
-            printf("erreur lors de l'alocation de la memoire\n");
+            printf("erreur lors de l'alocation de la memoire pour le nom de l'IA\n");
             exit(0);
         }
     }

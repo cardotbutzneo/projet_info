@@ -20,6 +20,8 @@ typedef struct {
     float defense;
     float agilite;
     float vitesse;
+    int jauge_max;
+    int jauge_actuelle;
 } Propriete;
 
 typedef struct {
