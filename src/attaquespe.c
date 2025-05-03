@@ -48,8 +48,7 @@ void jackSpe(Champion personnage, Champion equipeAdverse[]){
 }
 
 void jaySpe(Champion personnage, Champion equipeAdverse[]){
-    int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.defense -= 4;
+    personnage.stat.attaque += 4;
 }
 
 void johnnySpe(Champion personnage, Champion equipeAdverse[]){
