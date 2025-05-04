@@ -16,4 +16,6 @@ void trier_par_vitesse(Champion *ordre_attaque_ind, Equipe *equipe1, Equipe *equ
 void vitesse(Champion *ordre_attaque, Champion *ordre_attaque_ind);
 int longueur_nom_max(Champion *champions, int taille);
 void vider_buffer_scanf();
+void afficher_inventaire(Equipe equipe);
+void afficher_stats_Equipe(Equipe equipe);
 #endif // FONCTION_H

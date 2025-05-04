@@ -12,6 +12,7 @@
 #define Nb_champion_cachee 3
 #define Nb_champion_par_equipe 3
 #define Nb_tour 2
+#define Nb_objet_par_equipe 2 // valeur modifiable
 
 // Structures
 typedef struct {
@@ -44,7 +45,7 @@ typedef struct {
     char *nom;
     Champion perso[Nb_champion_par_equipe];
     float synergie;
-    Objet *objet;
+    Objet objet[Nb_objet_par_equipe];
 } Equipe;
 
 #endif // EN_TETE_H

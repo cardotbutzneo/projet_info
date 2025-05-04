@@ -270,11 +270,11 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
             do {
                 printf("Champion %d : ", i + 1);
                 if (scanf("%d", &tempp) != 1) {
-                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18 \n");
                     vider_buffer_scanf(); // Vide le buffer d'entrée
                     tempp = -1; // Réinitialise tempp pour rester dans la boucle
                 } else if ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102)) {
-                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 \n");
                 }
             } while ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102));
             
@@ -295,11 +295,11 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
             do {
                 printf("Champion %d : ", i + 1);
                 if (scanf("%d", &tempp) != 1) {
-                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18 \n");
                     vider_buffer_scanf(); // Vide le buffer d'entrée
                     tempp = -1; // Réinitialise tempp pour rester dans la boucle
                 } else if ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102)) {
-                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 \n");
                 }
             } while ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102));
             
@@ -367,6 +367,35 @@ int longueur_nom_max(Champion *champions, int taille) {
         }
     }
     return max_longueur;
+}
+
+void afficher_inventaire(Equipe equipe) {
+    printf("-----------------------\n");
+    printf("Affichage de l'inventaire\n\n");
+    for (int i = 0; i < Nb_objet_par_equipe; i++) {
+        if (equipe.objet[i].nom != NULL) {
+            printf("%s :\n", equipe.objet[i].nom);
+        } else {
+            printf("Nom de l'objet non défini, exit\n");
+            exit(0);
+        }
+        if (equipe.objet[i].effet != NULL) {
+            printf("%s :\n", equipe.objet[i].effet);
+        } else {
+            printf("Effet de l'objet non défini,exit\n");
+            exit(0);
+        }
+    }
+}
+
+void afficher_stats_Equipe(Equipe equipe){
+    afficher_equipe(equipe);
+    if (equipe.objet == NULL){
+        return;
+    }
+    else{
+        afficher_inventaire(equipe);
+    }
 }
 
 void saisie_utilisateur(Champion *champion, Equipe *equipe2 ){ // demande à l'utilisateur les actions à faire

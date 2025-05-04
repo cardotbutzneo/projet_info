@@ -103,12 +103,12 @@ void separation_des_partie() {
 }
 
 // Affiche les équipes et leurs champions
-void afficher_equipe(Equipe equipe1, Equipe equipe2) {
-    if (!equipe1.nom || !equipe2.nom || !equipe1.perso || !equipe2.perso){
+void afficher_equipe(Equipe equipe1) {
+    if (!equipe1.nom || !equipe1.perso){
         printf("erreur lors de l'alocation de la memoire\n");
         exit(0);
     }
-    printf("Équipe 1 : %s\n", equipe1.nom);
+    printf("Équipe %d : %s\n",equipe1.perso->equipe, equipe1.nom);
     for (int i = 0; i < Nb_champion_par_equipe; i++) {
         if (equipe1.perso[i].stat.pv_courant > 0) {
             printf("  - %s (PV : %.1f)\n", equipe1.perso[i].nom, equipe1.perso[i].stat.pv_courant);
@@ -117,26 +117,19 @@ void afficher_equipe(Equipe equipe1, Equipe equipe2) {
         }
     }
 
-    printf("\nÉquipe 2 : %s\n", equipe2.nom);
-    for (int i = 0; i < Nb_champion_par_equipe; i++) {
-        if (equipe2.perso[i].stat.pv_courant > 0) {
-            printf("  - %s (PV : %.1f)\n", equipe2.perso[i].nom, equipe2.perso[i].stat.pv_courant);
-        } else {
-            printf("  - %s (KO)\n", equipe2.perso[i].nom);
-        }
-    }
+    
 }
 
 // Affiche les équipes côte à côte
 void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
     if (equipe1.nom == NULL || equipe2.nom == NULL) {
         printf("Erreur : Les noms des équipes ne sont pas initialisés.\n");
-        return;
+        exit(0);
     }
 
     if (equipe1.perso == NULL || equipe2.perso == NULL) {
         printf("Erreur : Les tableaux de champions des équipes ne sont pas initialisés.\n");
-        return;
+        exit(0);
     }
 
     int n = longueur_nom_max(equipe1.perso, Nb_champion_par_equipe);
@@ -161,7 +154,11 @@ void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
         } else {
             printf("%-*s%-*s%-*s\n", largeur_nom, " ", 10, " ", 10, " ");
         }
+
     }
+    afficher_stats_Equipe(equipe1);
+    printf("%*s", espacement, " ");
+    afficher_stats_Equipe(equipe2);
 }
 
 // Affiche les champions triés par classe
@@ -228,7 +225,14 @@ int affichage_saisie_utilisateur(Champion champion) {
             printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 4.\n");
             vider_buffer_scanf(); // Vide le buffer d'entrée
             choix = -1; // Réinitialise le choix pour rester dans la boucle
-        } else if (choix < 1 || choix > 3) {
+        } 
+        /*
+        if (champion.stat.jauge_actuelle < valeur){
+            printf("L'attaque spéciale n'est pas encore rechargée\n");
+            choix = -1;
+        }
+        */
+        else if (choix < 1 || choix > 3) {
             printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
         }
     } while (choix < 1 || choix > 4);
