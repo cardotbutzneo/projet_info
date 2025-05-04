@@ -11,7 +11,7 @@
 #define Nb_champion 18
 #define Nb_champion_cachee 3
 #define Nb_champion_par_equipe 3
-#define Nb_tour 4
+#define Nb_tour 2
 
 // Structures
 typedef struct {

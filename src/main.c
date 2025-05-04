@@ -57,22 +57,23 @@ int main() {
     int choix_nb_joueur;
 
     char choix_tuto;  
-    int verif_tuto = -1; 
-    do{
-        printf("Voulez vous un tuto? (o/n)\n");
-        verif_tuto = scanf("%c",choix_tuto);
-        if (verif_tuto != 1){
-            printf("entree invalide !\n");
-            vider_buffer_scanf();
-            verif_tuto = -1;
-        }
-    }while(verif_tuto != 1 && (choix_tuto != 'o' || choix_tuto != 'n'));
+int verif_tuto = -1; 
+do {
+    printf("Voulez-vous un tuto ? (o/n)\n");
+    verif_tuto = scanf(" %c", &choix_tuto);  // Ajoute un espace avant %c pour ignorer les blancs
+    if (verif_tuto != 1 || (choix_tuto != 'o' && choix_tuto != 'n')) {
+        printf("Entree invalide !\n");
+        vider_buffer_scanf(); // à définir si ce n'est pas déjà fait
+        verif_tuto = -1;
+    }
+} while (verif_tuto != 1 || (choix_tuto != 'o' && choix_tuto != 'n'));
+
 
     if (choix_tuto == 'o'){
         afficher_tuto();
     }
     else if (choix_tuto == 'n'){
-        printf("Bonne game !");
+        printf("Bonne game !\n");
     }
     // choix du nombre de joueur
     affichage_initial();
@@ -174,7 +175,6 @@ int main() {
     separation_des_partie();
     for (int i = 0; i < Nb_tour || finJeu == 1; i++) {
         printf("tour %d : \n", i + 1);
-        printf("afficher les champions\n");
 
         for (int k = 0; k < Nb_champion_par_equipe * 2; k++) {
             afficher_equipes_cote_a_cote(equipe1, equipe2);
@@ -220,7 +220,7 @@ int main() {
         separation_des_partie();
     }
 
-
+    note();
     printf("libération de la mémoire\n");
 
     // Libération des champs alloués dynamiquement dans les tableaux de Champion

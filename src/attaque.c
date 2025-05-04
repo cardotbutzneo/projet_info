@@ -104,7 +104,7 @@ void attaquesimple (Champion *personnage, Champion equipeAdverse[]){//actualiser
         afficher_degat_recu(equipeAdverse[cible],*personnage,0);
     }
     else{
-        printf("%s esquive\n",personnage->nom);
+        printf("%s esquive\n",equipeAdverse[cible].nom);
         printf("Attaque ratée\n");
     }
 }
