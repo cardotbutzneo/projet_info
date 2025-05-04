@@ -38,13 +38,11 @@ void golemSpe(Champion personnage, Champion equipeAdverse[]){
 }
 
 void invaderSpe(Champion personnage, Champion equipeAdverse[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
     equipeAdverse[cible].stat.defense -= 4;
 }
 
 void itachiSpe(Champion personnage, Champion equipeAdverse[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
     equipeAdverse[cible].stat.defense -= 4;
 }
@@ -56,7 +54,6 @@ void jackSpe(Champion personnage, Champion equipeAdverse[]){
 }
 
 void jaySpe(Champion personnage, Champion equipeAdverse[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
     equipeAdverse[cible].stat.defense -= 4;
 }
