@@ -1,5 +1,5 @@
 #include "en-tete.h"
-
+#include "tuto.h"
 void afficher_tuto(){
     printf("Bienvenue \n");
     printf("Vous jouerez à MultiverSus\n");

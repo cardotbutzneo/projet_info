@@ -3,6 +3,7 @@
 #include "affichage.h"
 #include "attaque.h"
 #include "IA.h"
+#include "tuto.h"
 
 int main() {
     srand(time(NULL));
@@ -55,6 +56,24 @@ int main() {
     int soutien_count = 0, tank_count = 0, dps_count = 0;
     int choix_nb_joueur;
 
+    char choix_tuto;  
+    int verif_tuto = -1; 
+    do{
+        printf("Voulez vous un tuto? (o/n)\n");
+        verif_tuto = scanf("%c",choix_tuto);
+        if (verif_tuto != 1){
+            printf("entree invalide !\n");
+            vider_buffer_scanf();
+            verif_tuto = -1;
+        }
+    }while(verif_tuto != 1 && (choix_tuto != 'o' || choix_tuto != 'n'));
+
+    if (choix_tuto == 'o'){
+        afficher_tuto();
+    }
+    else if (choix_tuto == 'n'){
+        printf("Bonne game !");
+    }
     // choix du nombre de joueur
     affichage_initial();
 
