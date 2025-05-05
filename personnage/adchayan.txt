@@ -1,7 +1,7 @@
 Adchayan:
 Adchayan // nom
 200 // pv actuel
-10 // pv max
+200 // pv max
 10 // attaque
 10 // defense
 10 // agilite
