@@ -117,6 +117,15 @@ int soinCible (Champion equipe[]){
     return cible;
 }
 
+float attaqueSpeDegat (Champion personnage, Champion equipeAdverse[],float puissance){
+    float degats;
+    int cible = cibleAttaque(equipeAdverse);
+    degats=((personnage.stat.attaque*puissance)*(equipeAdverse[cible].stat.defense/100));
+    return degats;
+}
+
+
+
 void attaqueSpecial (Champion personnage, Champion equipeAdverse[]){
     int numero=0;
     char *tab_nom[Nb_champion] = {"Among_us", "Captain_america","Donkey_Kong", "Dr_Tenma", "Gandalf", "Golem_de_fer", "Invader", "Itachi", "Jack_Frost", "Jay", "Johnny_Hallyday", "Netero", "Nox", "Picsou", "Pierre_Chartier", "Shrek", "Tux","Zelda"};
