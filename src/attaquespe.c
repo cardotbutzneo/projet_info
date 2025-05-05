@@ -38,8 +38,9 @@ void golemSpe(Champion personnage, Champion equipeAdverse[]){
 }
 
 void invaderSpe(Champion personnage, Champion equipeAdverse[]){
-    int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.defense -= 4;
+    for (int i=0;i<3;i++){
+        equipeAdverse[i].stat.vitesse-=3;
+    }
 }
 
 void itachiSpe(Champion personnage, Champion equipeAdverse[]){
