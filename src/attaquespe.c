@@ -38,7 +38,7 @@ void golemSpe(Champion personnage, Champion equipeAdverse[]){
 }
 
 void invaderSpe(Champion personnage, Champion equipeAdverse[]){
-    for (int i=0;i<3;i++){
+    for (int i=0;i<Nb_champion_par_equipe;i++){
         equipeAdverse[i].stat.vitesse-=3;
     }
 }
