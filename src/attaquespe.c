@@ -137,6 +137,7 @@ void zeldaSpe(Champion personnage, Champion equipeAdverse[]){
 void attaqueSpecial (Champion personnage, Champion equipeAdverse[],Champion equipe[]){
     int numero=0;
     char *tab_nom[Nb_champion] = {"Among_us", "Captain_america","Donkey_Kong", "Dr_Tenma", "Gandalf", "Golem_de_fer", "Invader", "Itachi", "Jack_Frost", "Jay", "Johnny_Hallyday", "Netero", "Nox", "Picsou", "Pierre_Chartier", "Shrek", "Tux","Zelda"};
+    verifstat(personnage);
     for (int i=0; i<Nb_champion;i++){
         if (tab_nom[i]==personnage.nom){
             numero=i+1;
