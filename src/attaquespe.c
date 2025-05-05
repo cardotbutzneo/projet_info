@@ -7,9 +7,14 @@
 
 int soinCible (Champion equipe[]){
     int cible = 0;
-    float min=equipe[0].stat.pv_courant;
+    float min
     for (int i=0;i<Nb_champion_par_equipe;i++){
-        if (equipe[i].stat.pv_courant<min){
+        if(verifstat(equipe[i])==0){
+            min=equipe[i].stat.pv_courant;
+        }
+    }
+    for (int i=0;i<Nb_champion_par_equipe;i++){
+        if (equipe[i].stat.pv_courant<min && verifstat(equipe[i])==0){
             cible=i;
         }
     }
@@ -18,7 +23,7 @@ int soinCible (Champion equipe[]){
 
 
 int soin(Champion equipe[],float puissance){
-equipe[soinCible(equipe)].stat.pv_courant+=puissance;
+    equipe[soinCible(equipe)].stat.pv_courant+=puissance;
 }
 
 float attaqueSpeDegat (Champion personnage, Champion equipeAdverse[],float puissance){
