@@ -28,3 +28,11 @@ void verifstat(Champion personnage){
   }
 }
 
+void verifstatComplet(Champion equipe[],Champion equipeAdverse[]){
+  for (int i=0;i<Nb_champion_par_equipe;i++){
+    verifstat(equipe[i]);
+  }
+  for (int i=0;i<Nb_champion_par_equipe;i++){
+    verifstat(equipeAdverse[i]);
+  }
+}
