@@ -44,8 +44,8 @@ void invaderSpe(Champion personnage, Champion equipeAdverse[]){
 }
 
 void itachiSpe(Champion personnage, Champion equipeAdverse[]){
-    int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.defense -= 4;
+    personnage.stat.defense += 3;
+    personnage.stat.attaque += 3;
 }
 
 void jackSpe(Champion personnage, Champion equipeAdverse[]){
