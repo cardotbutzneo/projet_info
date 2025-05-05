@@ -10,7 +10,7 @@ int vivant(Champion personnage){
   }
 }
 
-int verifstat(Champion personnage){
+void verifstat(Champion personnage){
   if (personnage.stat.attaque<=0){
     personnage.stat.attaque=1;
   }
@@ -27,3 +27,4 @@ int verifstat(Champion personnage){
     personnage.stat.jauge_actuelle=personnage.stat.jauge_max;
   }
 }
+
