@@ -3,6 +3,27 @@
 #include "attaque.h"
 #include "affichage.h"
 
+
+
+int soinCible (Champion equipe[]){
+    int cible = 0;
+    float min=equipe[0].stat.pv_courant;
+    for (int i=0;i<Nb_champion_par_equipe;i++){
+        if (equipe[i].stat.pv_courant<min){
+            cible=i;
+        }
+    }
+    return cible;
+}
+
+float attaqueSpeDegat (Champion personnage, Champion equipeAdverse[],float puissance){
+    float degats;
+    int cible = cibleAttaque(equipeAdverse);
+    degats=((personnage.stat.attaque*puissance)*(equipeAdverse[cible].stat.defense/100));
+    return degats;
+}
+
+
 void amongusSpe (Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque(equipeAdverse);
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
@@ -16,7 +37,7 @@ void captainSpe(Champion personnage, Champion equipeAdverse[]){
 void donkeySpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.defense -= 4;
+    equipeAdverse[cible].stat.pv_courrant -= attaqueSpeDegat(personnage,equipeAdverse,2);
 }
 
 void tenmaSpe(Champion personnage, Champion equipeAdverse[]){
@@ -34,7 +55,7 @@ void gandalfSpe(Champion personnage, Champion equipeAdverse[]){
 void golemSpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.defense -= 4;
+    equipeAdverse[cible].stat.pv_courrant -= attaqueSpeDegat(personnage,equipeAdverse,2.5);
 }
 
 void invaderSpe(Champion personnage, Champion equipeAdverse[]){
@@ -106,23 +127,6 @@ void zeldaSpe(Champion personnage, Champion equipeAdverse[]){
     equipeAdverse[cible].stat.defense -= 4;
 }
 
-int soinCible (Champion equipe[]){
-    int cible = 0;
-    float min=equipe[0].stat.pv_courant;
-    for (int i=0;i<Nb_champion_par_equipe;i++){
-        if (equipe[i].stat.pv_courant<min){
-            cible=i;
-        }
-    }
-    return cible;
-}
-
-float attaqueSpeDegat (Champion personnage, Champion equipeAdverse[],float puissance){
-    float degats;
-    int cible = cibleAttaque(equipeAdverse);
-    degats=((personnage.stat.attaque*puissance)*(equipeAdverse[cible].stat.defense/100));
-    return degats;
-}
 
 
 
