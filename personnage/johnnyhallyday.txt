@@ -10,5 +10,5 @@ Johnny_Hallyday // nom
 10 // jauge max
 Allumez le feu// attaque spe
 tank // classe
-Brule la cible // description attaque spe
+Inflige des degats à toutes l'equipe adverse // description attaque spe
 enattente // description du personnage
