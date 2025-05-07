@@ -1,11 +1,11 @@
 Pierre_Chartier:
 Pierre_Chartier // nom
-10 // pv actuel
-10 // pv max
-10 // attaque
-10 // defense
-10 // agilite
-10 // vitesse
+175 // pv actuel
+175 // pv max
+12 // attaque
+35 // defense
+4 // agilite
+8 // vitesse
 10 // jauge actuelle
 10 // jauge max
 P&L positif // attaque spe
