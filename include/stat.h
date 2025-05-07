@@ -1,10 +1,10 @@
-#ifndef AFFICHAGE_H
-#define AFFICHAGE_H
+#ifndef STAT_H
+#define STAT_H
 
 #include "en-tete.h"
 
 // Fonctions d'affichage
-void afficher_personnage(Champion *champion);
+int vivant(Champion personnage){
 void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank, Champion *champion_dps, int soutien_count, int tank_count, int dps_count);
 void afficher_classe(Champion *champion);
 void afficher_equipe(Equipe equipe1);
