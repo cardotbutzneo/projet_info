@@ -49,7 +49,7 @@ void captainSpe(Champion personnage, Champion equipeAdverse[]){
 void donkeySpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.pv_courrant -= attaqueSpeDegat(personnage,equipeAdverse,2);
+    equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,2);
 }
 
 void tenmaSpe(Champion personnage, Champion equipe[]){
@@ -60,13 +60,13 @@ void tenmaSpe(Champion personnage, Champion equipe[]){
 void gandalfSpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.pv_courrant -= attaqueSpeDegat(personnage,equipeAdverse,2);
+    equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,2);
 }
 
 void golemSpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.pv_courrant -= attaqueSpeDegat(personnage,equipeAdverse,2.5);
+    equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,2.5);
 }
 
 void invaderSpe(Champion personnage, Champion equipeAdverse[]){
@@ -86,7 +86,7 @@ void jackSpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
     equipeAdverse[cible].stat.defense -= 2;
-    equipeAdverse[cible].stat.pv_courrant -= attaqueSpeDegat(personnage,equipeAdverse,1.5);
+    equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,1.5);
 }
 
 void jaySpe(Champion personnage){
@@ -97,7 +97,7 @@ void jaySpe(Champion personnage){
 void johnnySpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     for (int i=0;i<Nb_champion_par_equipe;i++){
-        equipeAdverse[i].stat.pv_courrant -= attaqueSpeDegat(personnage,equipeAdverse,0.4);
+        equipeAdverse[i].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,0.4);
     }
 }
 
@@ -127,13 +127,13 @@ void picsouSpe(Champion personnage, Champion equipe[]){
 void pierreSpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.pv_courrant -= attaqueSpeDegat(personnage,equipeAdverse,3);
+    equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,3);
 }
 
 void shrekSpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     for (int i=0;i<Nb_champion_par_equipe;i++){
-        equipeAdverse[i].stat.pv_courrant -= attaqueSpeDegat(personnage,equipeAdverse,0.5);
+        equipeAdverse[i].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,0.5);
     }
 }
 
