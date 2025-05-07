@@ -17,7 +17,7 @@ void buff_troisclassesi_soutien(Equipe *equipe) { //applique le buff
   for (i = 0; i < Nb_champion_par_equipe; i++) {
       equipe->perso[i].stat.attaque -= 5;
       equipe->perso[i].stat.defense += 5;
-      equipe->perso[i].stat.vpv_courant += 5;
+      equipe->perso[i].stat.pv_courant += 5;
       equipe->perso[i].stat.vitesse -= 5;
   }
   equipe->synergie += 0.1;
