@@ -3,7 +3,7 @@
 
 #include "en-tete.h"
 
-// Fonctions d'affichage
+// Fonctions de verification de stat
 int vivant(Champion personnage){
 void verifstat(Champion personnage){
 void verifstatComplet(Champion equipe[],Champion equipeAdverse[]){
