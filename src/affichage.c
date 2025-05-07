@@ -156,9 +156,11 @@ void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
         }
 
     }
+    /*
     afficher_stats_Equipe(equipe1);
     printf("%*s", espacement, " ");
     afficher_stats_Equipe(equipe2);
+    */
 }
 
 // Affiche les champions triés par classe
@@ -211,31 +213,36 @@ int affichage_saisie_utilisateur(Champion champion) {
         printf("Erreur : le nom du champion est NULL\n");
         exit(1); // Retourne une valeur d'erreur
     }
+    printf("PV : %f",champion.stat.pv_courant);
+    if (champion.stat.pv_courant <= 0){
+        return -1;
+    }
+    else if (champion.stat.pv_courant > 0){
+        printf("Que voulez-vous faire avec %s ?\n", champion.nom);
+        printf("1. Attaque simple\n");
+        printf("2. Utiliser une technique spéciale\n");
+        printf("3. utiliser un objet\n");
+        printf("4 : passer son tour\n");
 
-    printf("Que voulez-vous faire avec %s ?\n", champion.nom);
-    printf("1. Attaque simple\n");
-    printf("2. Utiliser une technique spéciale\n");
-    printf("3. utiliser un objet\n");
-    printf("4 : passer son tour\n");
+        int choix = -1;
+        do {
+            printf("Entrez votre choix (1-4) : ");
+            if (scanf("%d", &choix) != 1) {
+                printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 4.\n");
+                vider_buffer_scanf(); // Vide le buffer d'entrée
+                choix = -1; // Réinitialise le choix pour rester dans la boucle
+            } 
+            /*
+            if (champion.stat.jauge_actuelle < valeur){
+                printf("L'attaque spéciale n'est pas encore rechargée\n");
+                choix = -1;
+            }
+            */
+            else if (choix < 1 || choix > 3) {
+                printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
+            }
+        } while (choix < 1 || choix > 4);
 
-    int choix = -1;
-    do {
-        printf("Entrez votre choix (1-4) : ");
-        if (scanf("%d", &choix) != 1) {
-            printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 4.\n");
-            vider_buffer_scanf(); // Vide le buffer d'entrée
-            choix = -1; // Réinitialise le choix pour rester dans la boucle
-        } 
-        /*
-        if (champion.stat.jauge_actuelle < valeur){
-            printf("L'attaque spéciale n'est pas encore rechargée\n");
-            choix = -1;
-        }
-        */
-        else if (choix < 1 || choix > 3) {
-            printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
-        }
-    } while (choix < 1 || choix > 4);
-
-    return choix;
+        return choix;
+    }
 }

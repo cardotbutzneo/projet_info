@@ -281,10 +281,12 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
             if (tempp >= 1 && tempp <= 18) {
                 copie_champion((tableau_champion + (tempp - 1)), &equipe1->perso[i]);
                 equipe1->perso[i].equipe = 1;
+                equipe1->perso[i].index = i;
             } else if (tempp >= 100 && tempp <= 102) {
                 copie_champion((tableau_champion_cachee + (tempp - 100)), &equipe1->perso[i]);
                 equipe1->perso[i].equipe = 1;
                 printf("Bravo ! Vous avez trouvé un champion caché\n");
+                equipe1->perso[i].index = i;
             }
 
             
@@ -306,9 +308,11 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
             if (tempp >= 1 && tempp <= 18) {
                 copie_champion((tableau_champion + (tempp - 1)), &equipe2->perso[i]);
                 equipe2->perso[i].equipe = 2;
+                equipe2->perso[i].index = i;
             } else if (tempp >= 100 && tempp <= 102) {
                 copie_champion((tableau_champion_cachee + (tempp - 100)), &equipe2->perso[i]);
                 equipe2->perso[i].equipe = 2;
+                equipe2->perso[i].index = i;
                 printf("Bravo ! Vous avez trouvé un champion caché\n");
             }
         }
@@ -330,9 +334,11 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
             if (tempp >= 1 && tempp <= 18) {
                 copie_champion((tableau_champion + (tempp - 1)), &equipe1->perso[i]);
                 equipe1->perso[i].equipe = 1;
+                equipe1->perso[i].index = i;
             } else if (tempp >= 100 && tempp <= 102) {
                 copie_champion((tableau_champion_cachee + (tempp - 100)), &equipe1->perso[i]);
                 equipe1->perso[i].equipe = 1;
+                equipe1->perso[i].index = i;
                 printf("Bravo ! Vous avez trouvé un champion caché\n");
             }
         }
@@ -349,6 +355,7 @@ void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2){
     for (int i=0;i<Nb_champion_par_equipe;i++){
         copie_champion(((tableau_champion+(rand()%18))),&equipe2->perso[i]);  // choix des champions aléatoirement
         equipe2->perso[i].equipe = 2; // Assigner l'équipe 2 au champion
+        equipe2->perso[i].index = i+2;
     }
 }
 
@@ -398,24 +405,31 @@ void afficher_stats_Equipe(Equipe equipe){
     }
 }
 
-void saisie_utilisateur(Champion *champion, Equipe *equipe2 ){ // demande à l'utilisateur les actions à faire
-    if (!champion || !equipe2 || !equipe2->nom ||!champion->nom){
-        printf("erreur lors de l'alocation de la memoire\n");
+void saisie_utilisateur(Champion *champion, Equipe *equipe2) { // demande à l'utilisateur les actions à faire
+    if (!champion || !equipe2 || !equipe2->nom || !champion->nom) {
+        printf("Erreur lors de l'allocation de la mémoire\n");
         exit(0);
     }
 
-    switch (affichage_saisie_utilisateur(*champion))
-    {
-    case 1:
-        attaquesimple(champion, equipe2->perso); // attaque simple
-        break;
-    case 2:
-        attaqueSpecial(*champion,equipe2->perso); // attaque spe
-        break;
-    case 3:
-        printf("fonction pas encore definie\n"); // utiliser un objet
-    default: // passer son tour
-        break;
+    // Vérification des PV du champion
+    if (champion->stat.pv_courant <= 0) {
+        printf("Le champion %s est KO et ne peut pas agir.\n", champion->nom);
+        return; // Sort de la fonction sans effectuer d'action
+    }
+
+    switch (affichage_saisie_utilisateur(*champion)) {
+        case 1:
+            attaquesimple(champion, equipe2->perso); // attaque simple
+            break;
+        case 2:
+            attaqueSpecial(*champion, equipe2->perso); // attaque spéciale
+            break;
+        case 3:
+            printf("Fonction pas encore définie\n"); // utiliser un objet
+            break;
+        default: // passer son tour
+            printf("%s passe son tour.\n", champion->nom);
+            break;
     }
 }
 
@@ -450,4 +464,18 @@ void trier_par_vitesse(Champion *liste_champion, Equipe *equipe1, Equipe *equipe
 
 void vider_buffer_scanf(){
     while(getchar() != '\n');
+}
+
+int est_en_vie(Champion champion){
+    printf("PV : %f",champion.stat.pv_courant);
+    if (champion.stat.pv_courant <= 0){
+        return 0; // faux
+    }
+    if (champion.stat.pv_courant > 0 && champion.stat.pv_courant <= champion.pv_max){
+        return 1; // vraix
+    }
+    else{
+        printf("erreur de PV dans est_en_vie\n");
+        exit(-1);
+    }
 }

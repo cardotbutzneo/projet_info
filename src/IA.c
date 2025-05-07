@@ -67,6 +67,11 @@ void ia_moyen(Equipe *equipe_ia, Equipe *equipe_adverse) {
 
 // Fonction principale de l'IA
 void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
+    /*
+    for (!equipe_ia || !equipe_adverse){
+
+    }
+    */
     switch (difficulte) {
         case 0:
             ia_noob(equipe_ia, equipe_adverse);

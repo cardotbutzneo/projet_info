@@ -77,12 +77,16 @@ do {
     }
     // choix du nombre de joueur
     affichage_initial();
-
+    int v = -1;
     do {
         printf("Combien de joueur : \n");
         printf("1 pour PvE, 2 pour PvP\n");
-        scanf("%d", &choix_nb_joueur);
-    } while (choix_nb_joueur <= 0 || choix_nb_joueur > 2);
+        v= scanf("%d", &choix_nb_joueur);
+        if (v != 1){
+            vider_buffer_scanf();
+            v = -1;
+        }
+    } while ((choix_nb_joueur <= 0 || choix_nb_joueur > 2) && v!= 1);
 
     char *nom_IA[8] = {"Wall-E", "Atlas", "Sentinelle", "Fonctionnaire", "Paperclip", "Pnj", "Nano", "Arcade"};
     
@@ -178,46 +182,80 @@ do {
 
         for (int k = 0; k < Nb_champion_par_equipe * 2; k++) {
             afficher_equipes_cote_a_cote(equipe1, equipe2);
-            Champion *champion_intermediaire = (ordre_attaque_ind + k); // Récupérer directement le pointeur
-            if (!champion_intermediaire){
-                printf("erreur lors de l'alocation de la mememoire\n");
-                exit(0);
-            }
-            // Utiliser la fonction recuperer_equipe avec le pointeur
-            int equipe = champion_intermediaire->equipe;
+
+            // Récupérer directement le pointeur vers le personnage dans ordre_attaque_ind
+            int index  = (ordre_attaque_ind + k)->index;
+            Champion champion_intermediaire = *(ordre_attaque_ind+k);
+            // Identifier l'équipe du personnage
+            int equipe = champion_intermediaire.equipe;
             if (equipe != 1 && equipe != 2) {
-                printf("Error: le champion n appartient a aucune equipe\n");
+                printf("Erreur : le champion n'appartient à aucune équipe\n");
                 exit(1);
             }
 
-            if (choix_nb_joueur == 2) {
+            // Gestion des actions en fonction du nombre de joueurs
+            if (choix_nb_joueur == 2) { // Mode PvP
                 if (equipe == 1) {
-                    printf("joueur 1 joue\n");
-                    saisie_utilisateur(champion_intermediaire, &equipe2);
+                    printf("Joueur 1 joue\n");
+                    saisie_utilisateur(&champion_intermediaire, &equipe2);
                 }
                 if (equipe == 2) {
-                    printf("joueur 2 joue\n");
-                    saisie_utilisateur(champion_intermediaire, &equipe1);
+                    printf("Joueur 2 joue\n");
+                    saisie_utilisateur(&champion_intermediaire, &equipe1);
                 }
             }
 
-            if (choix_nb_joueur == 1) {
+            if (choix_nb_joueur == 1) { // Mode PvE
                 if (equipe == 1) {
-                    printf("joueur 1 joue\n");
-                    saisie_utilisateur(champion_intermediaire, &equipe2);
+                    printf("Joueur 1 joue\n");
+                    saisie_utilisateur(&champion_intermediaire, &equipe2);
                 }
                 if (equipe == 2) {
                     printf("IA joue\n");
                     ia_principale(&equipe2, &equipe1, difficulte);
                 }
             }
+            for (int i = 0;i<Nb_champion_par_equipe;i++){
+                if ((ordre_attaque_ind+i)->equipe == 1){
+                    copie_champion(&equipe1.perso[(ordre_attaque_ind)->index],ordre_attaque_ind+i);
+                }
+                if ((ordre_attaque_ind+i)->equipe == 2){
+                    copie_champion(&equipe2.perso[(ordre_attaque_ind)->index],ordre_attaque_ind+i);
+                }   
+                
+            }
+            int flag = 0;
+            for (int i=0;i<Nb_champion_par_equipe;i++){
+                if (equipe1.perso[i].stat.pv_courant <= 0){
+                    flag++;
+                }
+            }
+            if (flag >=3){
+                printf("tous les champions de l'equipe 1 sont mort ! L'equipe 2 gagne !\n");
+                finJeu = 1;
+                break;
+            }
+            flag = 0;
+            for (int i=0;i<Nb_champion_par_equipe;i++){
+                if (equipe2.perso[i].stat.pv_courant <= 0){
+                    flag++;
+                }
+            }
+            if (flag >=3){
+                printf("tous les champions de l'equipe 2 sont mort ! L'equipe 1 gagne !\n");
+                finJeu = 1;
+                break;
+            }
         }
-        printf("reparation des decors\n");
-        for (int i=0;i<5;i++){
+
+        printf("Réparation des décors\n");
+        for (int i = 0; i < 5; i++) {
             Sleep(1000);
             printf(".");
         }
         separation_des_partie();
+        
+        
     }
 
     note();
@@ -243,13 +281,6 @@ do {
     free(equipe1.nom);
     free(equipe2.nom);
 
-    // Libération des objets des équipes (si alloués dynamiquement)
-    if (equipe1.objet) {
-        free(equipe1.objet);
-    }
-    if (equipe2.objet) {
-        free(equipe2.objet);
-    }
 
     printf("\nCode fini\n");
     return 0;

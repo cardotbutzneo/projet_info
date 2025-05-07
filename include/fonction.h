@@ -18,4 +18,5 @@ int longueur_nom_max(Champion *champions, int taille);
 void vider_buffer_scanf();
 void afficher_inventaire(Equipe equipe);
 void afficher_stats_Equipe(Equipe equipe);
+int est_en_vie(Champion champion);
 #endif // FONCTION_H

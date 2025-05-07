@@ -11,7 +11,7 @@
 #define Nb_champion 18
 #define Nb_champion_cachee 3
 #define Nb_champion_par_equipe 3
-#define Nb_tour 2
+#define Nb_tour 5
 #define Nb_objet_par_equipe 2 // valeur modifiable
 
 // Structures
@@ -33,6 +33,7 @@ typedef struct {
     char *effet_spe;
     char *classe;
     int equipe; // 1 ou 2
+    int index; // position du champion dans l'equipe
 } Champion;
 
 typedef struct {
