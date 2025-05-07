@@ -10,5 +10,5 @@ Gandalf // nom
 10 // jauge max
 Voix du valar // attaque spe
 soutien // classe
-Inflige des degats // description attaque spe
+Augmente l'attaque de toute l'equipe // description attaque spe
 enattente // description du personnage
