@@ -1,11 +1,11 @@
 Jack_Frost:
 Jack_Frost // nom
-10 // pv actuel
-10 // pv max
-10 // attaque
-10 // defense
-10 // agilite
-10 // vitesse
+110 // pv actuel
+110 // pv max
+22 // attaque
+13 // defense
+18 // agilite
+16 // vitesse
 10 // jauge actuelle
 10 // jauge max
 Lames de glaces // attaque spe
