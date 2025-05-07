@@ -39,8 +39,8 @@ int nbTank(Champion Equipe[]){
     }
     int nombre = 0;
     for(int i=0;i<3;i++){
-        if (Equipe[i].classe != NULL && strcmp(Equipe[i].classe, "tank") == 0 && Equipe[i].stat.pv_courant > 0) {
-            nombre += 1;
+        if (Equipe[i].classe=="tank"){
+            nombre+=1;
         }
     }
     return nombre;
@@ -51,41 +51,29 @@ int cibleAttaque(Champion Equipe[]) {
         printf("Erreur lors de l'allocation de la mémoire\n");
         exit(0);
     }
-    int cible = 0;
-    int index = 0;
-    for (int i=0;i<Nb_champion_par_equipe;i++){ // recupere le nb de champion en vie
-        if (Equipe[i].stat.pv_courant > 0){
-            index++;
-        }
-    }
-    if (index == 1){ // 1 seul champion en jeu
-        cible = index;
-    }
-
-    if (nbTank(Equipe) == 0) { // Si il n'y a pas de tank, l'attaque cible l'adversaire le plus lent
-        for (int i = 0; i < 3; i++) {
-            if (Equipe[i].stat.vitesse < Equipe[cible].stat.vitesse && Equipe[i].stat.pv_courant > 0) {
-                cible = i;
+    int cible=0;
+    if (nbTank(Equipe)==0){//si il n'y a pas de tank l'attaque cible l'adversaire le plus lent
+        for(int i=0;i<3;i++){
+            if (Equipe[i].stat.vitesse<Equipe[cible].stat.vitesse){
+                cible=i;
             }
         }
         return cible;
     }
-
-    if (nbTank(Equipe) == 1) { // Si il n'y a qu'un seul tank, l'attaque cible le tank
-        for (int i = 0; i < 3; i++) {
-            if (strcmp(Equipe[i].classe, "tank") == 0 && Equipe[i].stat.pv_courant > 0) {
+    if (nbTank(Equipe)==1){//si il n'y qu'un seul tank l'attaque cible le tank
+        for(int i=0;i<3;i++){
+            if (Equipe[i].classe=="tank"){
                 return i;
             }
         }
     }
-
-    if (nbTank(Equipe) > 1) { // Si il y a plusieurs tanks, l'attaque cible le tank le plus lent
-        for (int i = 0; i < 3; i++) {
-            if (strcmp(Equipe[i].classe, "tank") == 0 && Equipe[i].stat.pv_courant > 0) {
-                if (Equipe[cible].stat.pv_courant <= 0 || // Si le tank actuel est mort
-                    Equipe[i].stat.vitesse < Equipe[cible].stat.vitesse) { // Ou si ce tank est plus lent
-                    cible = i;
-                }
+    if (nbTank(Equipe)>1){//si il y a plusieurs tanks l'attaque cible le tank le plus lent
+        if(Equipe[cible].classe!="tank"){//si le premier champion n'est pas un tank on selectionne le suivant
+            cible=1;
+        }
+        for(int i=0;i<3;i++){
+            if (Equipe[i].classe=="tank" && Equipe[i].stat.vitesse<Equipe[cible].stat.vitesse){
+                cible = i;
             }
         }
         return cible;

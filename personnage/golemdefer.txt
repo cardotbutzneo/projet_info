@@ -10,5 +10,5 @@ Golem_de_fer // nom
 10 // jauge max
 Double uppercut // attaque spe
 tank // classe
-Inflige le double de degat // description attaque spe
+Inflige plus du double de degat // description attaque spe
 enattente // description du personnage

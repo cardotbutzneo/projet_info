@@ -10,7 +10,7 @@ int vivant(Champion personnage){
   }
 }
 
-int verifstat(Champion personnage){
+void verifstat(Champion personnage){
   if (personnage.stat.attaque<=0){
     personnage.stat.attaque=1;
   }
@@ -25,5 +25,14 @@ int verifstat(Champion personnage){
   }
   if (personnage.stat.jauge_actuelle>personnage.stat.jauge_max){
     personnage.stat.jauge_actuelle=personnage.stat.jauge_max;
+  }
+}
+
+void verifstatComplet(Champion equipe[],Champion equipeAdverse[]){
+  for (int i=0;i<Nb_champion_par_equipe;i++){
+    verifstat(equipe[i]);
+  }
+  for (int i=0;i<Nb_champion_par_equipe;i++){
+    verifstat(equipeAdverse[i]);
   }
 }
