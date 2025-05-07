@@ -1,3 +1,4 @@
+/*
 #include "en-tete.h"
 #include "fonction.h"
 #include "attaque.h"
@@ -47,7 +48,7 @@ void captainSpe(Champion personnage, Champion equipeAdverse[]){
 void donkeySpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.pv_courrant -= attaqueSpeDegat(personnage,equipeAdverse,2);
+    equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,2);
 }
 
 void tenmaSpe(Champion personnage, Champion equipe[]){
@@ -64,7 +65,7 @@ void gandalfSpe(Champion personnage, Champion equipeAdverse[]){
 void golemSpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.pv_courrant -= attaqueSpeDegat(personnage,equipeAdverse,2.5);
+    equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,2.5);
 }
 
 void invaderSpe(Champion personnage, Champion equipeAdverse[]){
@@ -93,7 +94,7 @@ void johnnySpe(Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque(equipeAdverse);
     equipeAdverse[cible].stat.defense -= 4;
 }
-/*
+
 void neteroSpe(Champion personnage, Champion equipe[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
@@ -111,7 +112,7 @@ void picsouSpe(Champion personnage, Champion equipe[]){
     int cible = cibleAttaque(equipeAdverse);
     equipeAdverse[cible].stat.defense -= 4;
 }
-*/
+
 void pierreSpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
@@ -209,3 +210,4 @@ void attaqueSpecial (Champion personnage, Champion equipeAdverse[],Champion equi
 }
 
 
+*/

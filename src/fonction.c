@@ -422,7 +422,7 @@ void saisie_utilisateur(Champion *champion, Equipe *equipe2) { // demande à l'u
             attaquesimple(champion, equipe2->perso); // attaque simple
             break;
         case 2:
-            attaqueSpecial(*champion, equipe2->perso); // attaque spéciale
+            //attaqueSpecial(*champion, equipe2->perso); // attaque spéciale
             break;
         case 3:
             printf("Fonction pas encore définie\n"); // utiliser un objet
