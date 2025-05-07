@@ -1,11 +1,11 @@
 Invader:
 Invader // nom
-10 // pv actuel
-10 // pv max
-10 // attaque
-10 // defense
-10 // agilite
-10 // vitesse
+135 // pv actuel
+135 // pv max
+26 // attaque
+16 // defense
+12 // agilite
+16 // vitesse
 10 // jauge actuelle
 10 // jauge max
 Bombe gravitationnelle // attaque spe
