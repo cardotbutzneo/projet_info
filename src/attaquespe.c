@@ -145,7 +145,7 @@ void tuxSpe(Champion personnage, Champion equipeAdverse[]){
     }
 }
 
-void zeldaSpe(Champion personnage, Champion equipeAdverse[]){
+void zeldaSpe(Champion personnage, Champion equipe[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     soin(equipe,25);
     for (int i=0;i<Nb_champion_par_equipe;i++){
@@ -217,7 +217,7 @@ void attaqueSpecial (Champion personnage, Champion equipeAdverse[],Champion equi
         shrekSpe(personnage, equipeAdverse);
         break;
     case 17:
-        tuxSpe(personnage, equipeAdverse);
+        tuxSpe(personnage, equipe);
         break;
     case 18:
         zeldaSpe(personnage, equipe);
