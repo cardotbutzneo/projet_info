@@ -1,6 +1,6 @@
 #include "en-tete.h"
 #include "synergie.h"
-/*
+
 
 void buff_troisclassesi(Equipe *equipe) { //applique le buff 
   //synergie de trois classes identiques
@@ -34,7 +34,7 @@ void verifie_classes(Equipe *equipe) { //check les classes de chaque personnage 
   }
 
 
-*/
+
 
 
 
