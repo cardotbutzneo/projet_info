@@ -1,5 +1,5 @@
 #include "en-tete.h"
-#include "synergie.h"
+#include <string.h>
 
 void buff_troisclassesi_dps(Equipe *equipe);
 void buff_troisclassesi_soutien(Equipe *equipe);
