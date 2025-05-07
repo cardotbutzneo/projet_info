@@ -21,7 +21,7 @@ void afficher_tuto(){
         printf("Vous jouez a un jeu developpe par l'équipe I\n");
         printf("Le jeu se joue au tour par tour\n");
         printf("Choisisez vos champions, puis... ");
-        Sleep(type_os(0)*3);
+        sleep(time_sleep);
         printf("combattrez !");
         printf("La première equipe qui vainc les champions ennemis gagne !\n");
     }

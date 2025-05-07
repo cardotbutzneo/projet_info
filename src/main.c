@@ -250,7 +250,7 @@ do {
 
         printf("Réparation des décors\n");
         for (int i = 0; i < 5; i++) {
-            Sleep(1000);
+            sleep(time_sleep);
             printf(".");
         }
         separation_des_partie();

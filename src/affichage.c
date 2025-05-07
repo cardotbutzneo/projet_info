@@ -53,7 +53,7 @@ void affichage_initial() {
     int val_systemeOS = type_os(0);
 
     printf("Chargement du jeu...\n");
-    Sleep(1000);
+    sleep(time_sleep);
 
     for (int i = 0; i < buffer; i++) {
         // Sleep(val_systemeOS); // Décommentez pour activer les temps d'attente
@@ -62,7 +62,7 @@ void affichage_initial() {
 
     printf("\nChargement termine\n");
     printf("Bienvenue dans MultiverSeus\n");
-    Sleep(val_systemeOS);
+    sleep(time_sleep);
 }
 
 // Affiche la classe d'un champion
@@ -178,7 +178,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
         index++;
     }
     printf("\n");
-    Sleep(2000);
+    sleep(time_sleep);
 
     printf("Les champions de classe dps sont : \n");
     for (int i = 0; i < dps_count; i++) {
@@ -186,7 +186,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
         index++;
     }
     printf("\n");
-    Sleep(2000);
+    sleep(time_sleep);
 
     printf("Les champions de classe soutien sont : \n");
     for (int i = 0; i < soutien_count; i++) {
