@@ -93,25 +93,30 @@ void johnnySpe(Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque(equipeAdverse);
     equipeAdverse[cible].stat.defense -= 4;
 }
-/*
+
 void neteroSpe(Champion personnage, Champion equipe[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
-    int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.defense -= 4;
+    for (int i=0;i<Nb_champion_par_equipe;i++){
+        equipe[i].stat.defense+=3;
+    }
 }
 
 void noxSpe(Champion personnage, Champion equipe[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
-    int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.defense -= 4;
+    for (int i=0;i<Nb_champion_par_equipe;i++){
+        equipe[i].stat.vitesse+=1;
+        equipe[i].stat.agilite+=2;
+    }
 }
 
 void picsouSpe(Champion personnage, Champion equipe[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
-    int cible = cibleAttaque(equipeAdverse);
-    equipeAdverse[cible].stat.defense -= 4;
+    for (int i=0;i<Nb_champion_par_equipe;i++){
+        equipe[i].stat.defense+=1;
+        soin(equipe,25);
+    }
 }
-*/
+
 void pierreSpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
