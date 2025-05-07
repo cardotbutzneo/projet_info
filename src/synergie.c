@@ -29,10 +29,10 @@ void verifie_classes(Equipe *equipe) { //check les classes de chaque personnage 
     buff_troisclassesi(equipe);
     return;
   }
-  if ( (equipe.perso[1].classe != equipe.perso[2].classe) && (equipe.perso[2].classe != equipe.perso[3].classe) ) {
-    return();
+  if ( (equipe->perso[1].classe != equipe->perso[2].classe) && (equipe->perso[2].classe != equipe->perso[3].classe) ) {
+    return;
   }
-
+}
 
 
 
