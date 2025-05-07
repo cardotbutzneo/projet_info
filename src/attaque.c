@@ -62,6 +62,7 @@ int cibleAttaque(Champion Equipe[]) {
                 flag++;
                 index++;
             }
+            
         }
         if (flag == 1){ // 1 seul champion en vie
             cible = index;
