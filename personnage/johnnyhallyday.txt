@@ -1,11 +1,11 @@
 Johnny_Hallyday:
 Johnny_Hallyday // nom
-10 // pv actuel
-10 // pv max
-10 // attaque
-10 // defense
-10 // agilite
-10 // vitesse
+160 // pv actuel
+160 // pv max
+17 // attaque
+33 // defense
+7 // agilite
+6 // vitesse
 10 // jauge actuelle
 10 // jauge max
 Allumez le feu// attaque spe
