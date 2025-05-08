@@ -86,6 +86,11 @@ do {
             vider_buffer_scanf();
             v = -1;
         }
+        if (choix_nb_joueur <= 0 || choix_nb_joueur > 2){
+            printf("entree invalide !\n");
+            vider_buffer_scanf();
+            v = -1;
+        }
     } while ((choix_nb_joueur <= 0 || choix_nb_joueur > 2) && v!= 1);
 
     char *nom_IA[8] = {"Wall-E", "Atlas", "Sentinelle", "Fonctionnaire", "Paperclip", "Pnj", "Nano", "Arcade"};
@@ -172,7 +177,12 @@ do {
 
     choix_des_champion(temp, &equipe1, &equipe2, choix_nb_joueur, tableau_champion_cachee);
 
-    trier_par_vitesse(ordre_attaque_ind, &equipe1, &equipe2);
+    int index = 0;
+
+    
+    // Trier par vitesse
+    trier_par_vitesse(ordre_attaque_ind,&equipe1,&equipe2);
+    
 
     // Main game loop
     int finJeu = 0;
@@ -181,13 +191,21 @@ do {
         printf("tour %d : \n", i + 1);
 
         for (int k = 0; k < Nb_champion_par_equipe * 2; k++) {
-            afficher_equipes_cote_a_cote(equipe1, equipe2);
+            afficher_equipes_cote_a_cote(equipe1,equipe2);
+            Champion *champion_intermediaire = ordre_attaque_ind+k; // Récupérer directement le pointeur
+            if (!champion_intermediaire) {
+                printf("Erreur lors de l'allocation de la mémoire\n");
+                exit(0);
+            }
 
-            // Récupérer directement le pointeur vers le personnage dans ordre_attaque_ind
-            int index  = (ordre_attaque_ind + k)->index;
-            Champion champion_intermediaire = *(ordre_attaque_ind+k);
+            // Vérifier si le champion est KO (PV <= 0)
+            if (champion_intermediaire->stat.pv_courant <= 0) {
+                printf("Le champion %s est KO et ne peut pas jouer ce tour.\n", champion_intermediaire->nom);
+                continue; // Passer au prochain personnage
+            }
+
             // Identifier l'équipe du personnage
-            int equipe = champion_intermediaire.equipe;
+            int equipe = champion_intermediaire->equipe;
             if (equipe != 1 && equipe != 2) {
                 printf("Erreur : le champion n'appartient à aucune équipe\n");
                 exit(1);
@@ -197,33 +215,33 @@ do {
             if (choix_nb_joueur == 2) { // Mode PvP
                 if (equipe == 1) {
                     printf("Joueur 1 joue\n");
-                    saisie_utilisateur(&champion_intermediaire, &equipe2);
+                    saisie_utilisateur(champion_intermediaire, &equipe2, &equipe1);
                 }
                 if (equipe == 2) {
                     printf("Joueur 2 joue\n");
-                    saisie_utilisateur(&champion_intermediaire, &equipe1);
+                    saisie_utilisateur(champion_intermediaire, &equipe1, &equipe2);
                 }
             }
 
             if (choix_nb_joueur == 1) { // Mode PvE
                 if (equipe == 1) {
                     printf("Joueur 1 joue\n");
-                    saisie_utilisateur(&champion_intermediaire, &equipe2);
+                    saisie_utilisateur(champion_intermediaire, &equipe2, &equipe1);
                 }
                 if (equipe == 2) {
                     printf("IA joue\n");
                     ia_principale(&equipe2, &equipe1, difficulte);
                 }
             }
-            for (int i = 0;i<Nb_champion_par_equipe;i++){
+            for (int i = 0;i<Nb_champion_par_equipe*2;i++){
                 if ((ordre_attaque_ind+i)->equipe == 1){
-                    copie_champion(&equipe1.perso[(ordre_attaque_ind)->index],ordre_attaque_ind+i);
+                    copie_champion(&equipe1.perso[(ordre_attaque_ind+i)->index],ordre_attaque_ind+i);
                 }
                 if ((ordre_attaque_ind+i)->equipe == 2){
-                    copie_champion(&equipe2.perso[(ordre_attaque_ind)->index],ordre_attaque_ind+i);
-                }   
-                
+                    copie_champion(&equipe2.perso[(ordre_attaque_ind+i)->index],ordre_attaque_ind+i);
+                }      
             }
+            trier_par_vitesse(ordre_attaque_ind,&equipe1,&equipe2);
             int flag = 0;
             for (int i=0;i<Nb_champion_par_equipe;i++){
                 if (equipe1.perso[i].stat.pv_courant <= 0){

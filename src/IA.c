@@ -7,8 +7,20 @@
 
 // Fonction pour choisir une cible valide
 int choisir_cible(Equipe *equipe_adverse, char mode) {
-    int cible = rand() % 3; // Cible aléatoire
-    while (equipe_adverse->perso[cible].stat.pv_courant <= 0) { // Vérifie si la cible est vivante
+    int vivant = 0;
+    for (int i = 0; i < 3; i++) {
+        if (equipe_adverse->perso[i].stat.pv_courant > 0) {
+            vivant = 1;
+            break;
+        }
+    }
+    if (!vivant) {
+        printf("Aucune cible valide trouvée\n");
+        return -1;
+    }
+
+    int cible = rand() % 3;
+    while (equipe_adverse->perso[cible].stat.pv_courant <= 0) {
         cible = rand() % 3;
     }
     return cible;
@@ -33,8 +45,7 @@ void utiliser_tech_spe(Champion *attaquant, Champion *cible) {
 void ia_noob(Equipe *equipe_ia, Equipe *equipe_adverse) {
     for (int i = 0; i < 3; i++) {
         if (equipe_ia->perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
-            int cible = choisir_cible(equipe_adverse, 'n'); // Mode 'n' pour noob
-            attaquesimple(&equipe_ia->perso[i], &equipe_adverse->perso[cible]);
+            attaquesimple(&equipe_ia->perso[i], equipe_adverse->perso);
         }
     }
 }
@@ -67,11 +78,14 @@ void ia_moyen(Equipe *equipe_ia, Equipe *equipe_adverse) {
 
 // Fonction principale de l'IA
 void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
-    /*
-    for (!equipe_ia || !equipe_adverse){
-
+    if (!equipe_ia || !equipe_adverse ){
+        printf("erreur d'alocation de memoire dans ia_principale\n");
+            exit(0);
     }
-    */
+    if ( difficulte <0 || difficulte > 3){
+        printf("difficulte non initialisee ou trop grande\n");
+        difficulte = 0; // on met par defaut difficulte a 0
+    }
     switch (difficulte) {
         case 0:
             ia_noob(equipe_ia, equipe_adverse);

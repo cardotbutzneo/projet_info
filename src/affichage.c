@@ -36,21 +36,11 @@ void afficher_personnage(Champion *champion) {
     printf("Vitesse : %.1f\n", champion->stat.vitesse);
 }
 
-// Vérifie le type de système d'exploitation
-int type_os(int type_OS) {
-    if (_WIN32) {
-        type_OS = 1000;
-    } else {
-        printf("Votre appareil n'est pas sous Windows. Les temps d'attente pourraient être plus longs.\n");
-        type_OS = 1;
-    }
-    return type_OS;
-}
+
 
 // Affichage initial du jeu
 void affichage_initial() {
     int buffer = 10;
-    int val_systemeOS = type_os(0);
 
     printf("Chargement du jeu...\n");
     Sleep(time_sleep);
@@ -213,11 +203,11 @@ int affichage_saisie_utilisateur(Champion champion) {
         printf("Erreur : le nom du champion est NULL\n");
         exit(1); // Retourne une valeur d'erreur
     }
-    printf("PV : %f",champion.stat.pv_courant);
     if (champion.stat.pv_courant <= 0){
         return -1;
     }
     else if (champion.stat.pv_courant > 0){
+        printf("\n\n");
         printf("Que voulez-vous faire avec %s ?\n", champion.nom);
         printf("1. Attaque simple\n");
         printf("2. Utiliser une technique spéciale\n");
@@ -226,7 +216,7 @@ int affichage_saisie_utilisateur(Champion champion) {
 
         int choix = -1;
         do {
-            printf("Entrez votre choix (1-4) : ");
+            printf("\nEntrez votre choix (1-4) : ");
             if (scanf("%d", &choix) != 1) {
                 printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 4.\n");
                 vider_buffer_scanf(); // Vide le buffer d'entrée

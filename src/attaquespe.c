@@ -2,7 +2,7 @@
 #include "fonction.h"
 #include "attaque.h"
 #include "affichage.h"
-
+#include "stat.h"
 
 
 int soinCible (Champion equipe[]){
@@ -140,8 +140,8 @@ void shrekSpe(Champion personnage, Champion equipeAdverse[]){
 void tuxSpe(Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     for (int i=0;i<Nb_champion_par_equipe;i++){
-        equipe[i].stat.vitesse+=0.5;
-        equipe[i].stat.attaque+=1;
+        //equipe[i].stat.vitesse+=0.5;
+        //equipe[i].stat.attaque+=1;
     }
 }
 
@@ -225,4 +225,3 @@ void attaqueSpecial (Champion personnage, Champion equipeAdverse[],Champion equi
             break;
     }
 }
-

@@ -40,7 +40,7 @@ int nbTank(Champion Equipe[]) {
     int nombre = 0;
     
     for (int i = 0; i < Nb_champion_par_equipe; i++) {
-        if (Equipe[i].classe != NULL && strcmp(Equipe[i].classe, "tank") == 0) {
+        if (Equipe[i].classe != NULL && strcmp(Equipe[i].classe, "tank") == 0 && Equipe[i].stat.pv_courant > 0) {
             nombre++;
         }
     }
@@ -52,51 +52,42 @@ int cibleAttaque(Champion Equipe[]) {
         printf("Erreur lors de l'allocation de la mémoire\n");
         exit(0);
     }
-    int cible = 0;
 
-    if (nbTank(Equipe) == 0) { // Si il n'y a pas de tank, l'attaque cible l'adversaire le plus lent
-        int flag = 0;
-        int index = 0;
-        for (int i=0;i<Nb_champion_par_equipe;i++){ // compte les champions en vie
-            if (est_en_vie(Equipe[i]) == 1){
-                flag++;
-                index++;
+    int cible = -1; // Initialise cible à -1 pour indiquer qu'aucune cible n'a été trouvée
+    float vitesse_min = 20; // Initialise à une valeur maximale pour trouver le plus lent
+
+    // Si aucun tank n'est présent, cible le personnage le plus lent
+    if (nbTank(Equipe) == 0) {
+        for (int i = 0; i < Nb_champion_par_equipe; i++) {
+            if (est_en_vie(Equipe[i]) && Equipe[i].stat.vitesse < vitesse_min) {
+                vitesse_min = Equipe[i].stat.vitesse;
+                cible = i;
             }
-            
         }
-        if (flag == 1){ // 1 seul champion en vie
-            cible = index;
-            return cible;
+        return cible; // Retourne le plus lent
+    }
+
+    // Si un seul tank est présent, cible ce tank
+    if (nbTank(Equipe) == 1) {
+        for (int i = 0; i < Nb_champion_par_equipe; i++) {
+            if (strcmp(Equipe[i].classe, "tank") == 0 && est_en_vie(Equipe[i])) {
+                return i;
+            }
         }
-        for (int i = 0; i < 3; i++) {
-            if (Equipe[i].stat.vitesse < Equipe[cible].stat.vitesse && Equipe[i].stat.pv_courant > 0) {
+    }
+
+    // Si plusieurs tanks sont présents, cible le tank le plus lent
+    if (nbTank(Equipe) > 1) {
+        for (int i = 0; i < Nb_champion_par_equipe; i++) {
+            if (strcmp(Equipe[i].classe, "tank") == 0 && est_en_vie(Equipe[i]) && 
+                (cible == -1 || Equipe[i].stat.vitesse < Equipe[cible].stat.vitesse)) {
                 cible = i;
             }
         }
         return cible;
     }
 
-    if (nbTank(Equipe) == 1) { // Si il n'y a qu'un seul tank, l'attaque cible le tank
-        for (int i = 0; i < 3; i++) {
-            if (strcmp(Equipe[i].classe, "tank") == 0 && Equipe[i].stat.pv_courant > 0) {
-                return i;
-            }
-        }
-    }
-
-    if (nbTank(Equipe) > 1) { // Si il y a plusieurs tanks, l'attaque cible le tank le plus lent
-        for (int i = 0; i < 3; i++) {
-            if (strcmp(Equipe[i].classe, "tank") == 0 && Equipe[i].stat.pv_courant > 0) {
-                if (Equipe[cible].stat.pv_courant <= 0 || // Si le tank actuel est mort
-                    Equipe[i].stat.vitesse < Equipe[cible].stat.vitesse) { // Ou si ce tank est plus lent
-                    cible = i;
-                }
-            }
-        }
-        return cible;
-    }
-
-    return -1; // Retourne -1 si aucune cible valide n'est trouvée (ne devrait pas arriver)
+    return -1; // Retourne -1 si aucune cible valide n'est trouvée
 }
 
 float degat(Champion personnage){//calcule les degats
@@ -125,6 +116,7 @@ void attaquesimple (Champion *personnage, Champion equipeAdverse[]){//actualiser
         }
         printf("%s attaque : \n",personnage->nom);
         afficher_degat_recu(equipeAdverse[cible],*personnage,0);
+        printf("test\n");
     }
     else{
         printf("%s esquive\n",equipeAdverse[cible].nom);
