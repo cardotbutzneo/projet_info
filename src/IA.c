@@ -79,7 +79,7 @@ void ia_moyen(Equipe *equipe_ia, Equipe *equipe_adverse) {
 // Fonction principale de l'IA
 void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
     if (!equipe_ia || !equipe_adverse ){
-        printf("erreur d'alocation de memoire dans ia_principale\n");
+        printf("erreur d'allocation de memoire dans ia_principale\n");
             exit(0);
     }
     if ( difficulte <0 || difficulte > 3){
