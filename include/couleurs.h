@@ -8,7 +8,7 @@
 #define ROUGE   "\033[1;31m" //tout ce qui est dégâts et effets d'attaque, personnages DPS, effets négatif etc
 #define BLEU    "\033[1;34m" //titres, affichages
 #define VERT    "\033[1;32m" //soins, effets positifs etc
-#define JAUNE   "\033[1;33m" //pour les avertissements, les messages d'erreur
+#define JAUNE   "\033[1;33m" //pour les messages techniques non erreurs
 #define MAGENTA "\033[1;35m" 
 #define CYAN    "\033[1;36m" //esquives
 #define BLANC   "\033[1;37m"      // Blanc
@@ -21,7 +21,7 @@
 #define CYAN_CLAIR    "\033[1;96m" // Cyan clair
 #define BLANC_CLAIR   "\033[1;97m" // Blanc clair
 #define GRIS    "\033[1;90m"      // Gris   
-#define ROUGE_FONCE   "\033[0;31m" // Rouge foncé
+#define ROUGE_FONCE   "\033[0;31m" // Rouge foncé     erreurs
 #define BLEU_FONCE    "\033[0;34m" // Bleu foncé
 #define VERT_FONCE    "\033[0;32m" // Vert foncé
 #define JAUNE_FONCE   "\033[0;33m" // Jaune foncé
