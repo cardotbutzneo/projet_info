@@ -12,19 +12,19 @@ void afficher_tuto(){
     printf("=========================================================\n\n");
     printf(RESET); // Réinitialiser la couleur
     char rep;
-    printf("Connaissez-vous le jeu ? o/n\n");
+    printf(BLEU"Connaissez-vous le jeu ? (o pour oui, n pour non)\n"RESET);
     int verif = -1;
     do{
         verif = scanf("%c",&rep);
         if (verif != 1 ){
-            printf("entree invalide !\n");
+            printf(GRIS"entree invalide !\n"RESET);
             verif = -1;   
             vider_buffer_scanf();
         }
     }while(verif != 1 || (rep != 'o' && rep != 'n'));
 
     if (rep == 'n'){
-        printf("Vous jouez a un jeu developpe par l'equipe I\n\n");
+        printf(GRIS"Vous jouez a un jeu developpe par l'equipe I\n\n"RESET);
         printf(BLEU); // Changer la couleur du texte en bleu
         printf("=========================================================\n");
         printf("                   Instructions du jeu\n");
@@ -37,7 +37,7 @@ void afficher_tuto(){
         pause_ms(time_sleep);
         printf("Chaque champion a des statistiques et des attaques speciaux qui lui sont propres !\n\n");
         pause_ms(time_sleep);
-        printf("Il existe trois classes de champions :\n");
+        printf("Il existe trois classes de champions :\n\n");
         pause_ms(time_sleep);
         printf("1. Tank : ils ont beaucoup de PV et de defense, mais peu d'attaque\n");
         pause_ms(time_sleep);
