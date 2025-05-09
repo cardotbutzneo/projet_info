@@ -6,8 +6,8 @@ Pierre_Chartier // nom
 35 // defense
 4 // agilite
 8 // vitesse
-10 // jauge actuelle
-10 // jauge max
+0 // jauge actuelle
+2 // jauge max
 P&L positif // attaque spe
 tank // classe
 Inflige des degats a la cible // description attaque spe
