@@ -41,7 +41,7 @@ void amongusSpe (Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     equipeAdverse[cible].stat.defense-=4;
 }
-void captainSpe(Champion personnage, Champion equipeAdverse[]){
+void captainSpe(Champion personnage){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     personnage.stat.defense += 4;
 }
@@ -172,7 +172,7 @@ void attaqueSpecial (Champion personnage, Champion equipeAdverse[],Champion equi
         amongusSpe(personnage, equipeAdverse);
         break;
     case 2:
-        captainSpe(personnage, equipeAdverse);
+        captainSpe(personnage);
         break;
     case 3:
         donkeySpe(personnage, equipeAdverse);
