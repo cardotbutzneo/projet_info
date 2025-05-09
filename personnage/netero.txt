@@ -6,8 +6,8 @@ Netero // nom
 18 // defense
 15 // agilite
 10 // vitesse
-10 // jauge actuelle
-10 // jauge max
+0 // jauge actuelle
+2 // jauge max
 Les 100 formes de Kanon // attaque spe
 soutien // classe
 Augmente la defense de l'equipe // description attaque spe
