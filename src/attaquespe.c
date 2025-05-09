@@ -7,7 +7,7 @@
 
 int soinCible (Champion equipe[]){
     int cible = 0;
-    float min;
+    float min = 0;
     for (int i=0;i<Nb_champion_par_equipe;i++){
         if(verifstat(equipe[i])==0){
             min=equipe[i].stat.pv_courant;
@@ -22,7 +22,7 @@ int soinCible (Champion equipe[]){
 }
 
 
-int soin(Champion equipe[],float puissance){
+void soin(Champion equipe[],float puissance){
     equipe[soinCible(equipe)].stat.pv_courant+=puissance;
 }
 
