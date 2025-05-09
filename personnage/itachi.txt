@@ -6,8 +6,8 @@ Itachi // nom
 12 // defense
 17 // agilite
 17 // vitesse
-10 // jauge actuelle
-10 // jauge max
+0 // jauge actuelle
+1 // jauge max
 Susano // attaque spe
 dps // classe
 Augmente l'attaque et la defense du champion // description attaque spe
