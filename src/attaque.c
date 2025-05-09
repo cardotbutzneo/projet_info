@@ -1,6 +1,7 @@
 #include "en-tete.h"
 #include "fonction.h"
 #include "affichage.h"
+#include "couleurs.h"
 
 /*
 Champion ordreAttaque[6];
