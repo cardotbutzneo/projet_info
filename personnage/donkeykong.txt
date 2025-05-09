@@ -6,8 +6,8 @@ Donkey_kong // nom
 5 // defense
 11 // agilite
 7 // vitesse
-10 // jauge actuelle
-10 // jauge max
+0 // jauge actuelle
+2 // jauge max
 Bannane geante // attaque spe
 tank // classe
 Inflige des degats a l'ennemie // description attaque spe
