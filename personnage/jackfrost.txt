@@ -6,8 +6,8 @@ Jack_Frost // nom
 13 // defense
 18 // agilite
 16 // vitesse
-10 // jauge actuelle
-10 // jauge max
+0 // jauge actuelle
+2 // jauge max
 Lames de glaces // attaque spe
 dps // classe
 Inflige des degats et reduits la defense // description attaque spe
