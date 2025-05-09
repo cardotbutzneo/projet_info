@@ -6,8 +6,8 @@ Gandalf // nom
 13 // defense
 7 // agilite
 13 // vitesse
-10 // jauge actuelle
-10 // jauge max
+0 // jauge actuelle
+2 // jauge max
 Voix du valar // attaque spe
 soutien // classe
 Augmente l'attaque de toute l'equipe // description attaque spe
