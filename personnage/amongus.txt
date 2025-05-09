@@ -7,7 +7,7 @@ Among_us // nom
 17 // agilite
 17// vitesse
 0 // jauge actuelle
-2 // jauge max
+1 // jauge max
 Meurtre // attaque spe
 dps // classe
 Diminue la defense de la cible // description attaque spe
