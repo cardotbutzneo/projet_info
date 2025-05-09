@@ -34,6 +34,8 @@ void afficher_personnage(Champion *champion) {
     printf("Défense : %.1f\n", champion->stat.defense);
     printf("Agilité : %.1f\n", champion->stat.agilite);
     printf("Vitesse : %.1f\n", champion->stat.vitesse);
+    printf("Jauge Actuelle : %.1f\n", champion->stat.jauge_actuelle);
+    printf("Jauge Max : %.1f\n", champion->stat.jauge_max);
 }
 
 
