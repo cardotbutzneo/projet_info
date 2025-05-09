@@ -34,6 +34,8 @@ void afficher_personnage(Champion *champion) {
     printf("Défense : %.1f\n", champion->stat.defense);
     printf("Agilité : %.1f\n", champion->stat.agilite);
     printf("Vitesse : %.1f\n", champion->stat.vitesse);
+    printf("Jauge max : %d\n", champion->stat.jauge_max);
+    printf("Jauge actuelle : %d\n", champion->stat.jauge_actuelle);
 }
 
 
@@ -214,8 +216,6 @@ int affichage_saisie_utilisateur(Champion champion) {
     else if (champion.stat.pv_courant > 0){
         printf("\n\n");
         printf("Que voulez-vous faire avec %s ?\n", champion.nom);
-        printf("jauge_actuelle : %.1d\n", champion.stat.jauge_actuelle);
-        printf("jauge_max : %.1d\n", champion.stat.jauge_max);
             if (champion.stat.jauge_actuelle >= champion.stat.jauge_max){
             printf("l'attaque speciale est rechargee\n");
             }

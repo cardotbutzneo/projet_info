@@ -87,6 +87,7 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
     champion->stat.jauge_max = jauge_max;
     champion->stat.jauge_actuelle = jauge_actuelle;
 
+
     // Allocation dynamique et copie des chaînes de caractères
     champion->nom = malloc(strlen(nom) + 1);
     if (champion->nom == NULL) {
