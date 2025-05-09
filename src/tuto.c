@@ -6,11 +6,11 @@
 
 void afficher_tuto(){
     //printf("Bienvenue \n");
-    printf("\033[1;34m"); // Changer la couleur du texte en bleu
+    printf(BLEU); // Changer la couleur du texte en bleu
     printf("=========================================================\n");
     printf("                 Vous jouez a MultiverSeus\n");
     printf("=========================================================\n\n");
-    printf("\033[0m"); // Réinitialiser la couleur
+    printf(RESET); // Réinitialiser la couleur
     char rep;
     printf("Connaissez-vous le jeu ? o/n\n");
     int verif = -1;
@@ -25,11 +25,11 @@ void afficher_tuto(){
 
     if (rep == 'n'){
         printf("Vous jouez a un jeu developpe par l'equipe I\n\n");
-        printf("\033[1;34m"); // Changer la couleur du texte en bleu
+        printf(BLEU); // Changer la couleur du texte en bleu
         printf("=========================================================\n");
         printf("                   Instructions du jeu\n");
         printf("=========================================================\n\n");
-        printf("\033[0m"); // Réinitialiser la couleur
+        printf(RESET); // Réinitialiser la couleur
         Sleep(time_sleep);
         printf("Le jeu se joue en 2 equipes de 3 champions !\n\n");
         Sleep(time_sleep);
@@ -53,7 +53,7 @@ void afficher_tuto(){
         Sleep(time_sleep);
         printf("Choisissez vos champions, puis... ");
         Sleep(time_sleep);
-        printf("COMBATTEEEZZZZ !");
+        printf(ROUGE "COMBATTEEEZZZZ !" RESET);
         Sleep(time_sleep);
         printf("\n\n");
     }
@@ -75,4 +75,5 @@ void note() {
         printf("Merci beaucoup !\n");
     }
 }
+
 
