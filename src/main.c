@@ -277,7 +277,7 @@ do {
         
     }
 
-    note();
+    //note();
     printf("libération de la mémoire\n");
 
     // Libération des champs alloués dynamiquement dans les tableaux de Champion
