@@ -58,6 +58,9 @@ int main() {
 
     char choix_tuto;  
 int verif_tuto = -1; 
+afficher_tuto();
+/*
+
 do {
     printf("Voulez-vous un tuto ? (o/n)\n");
     verif_tuto = scanf(" %c", &choix_tuto);  // Ajoute un espace avant %c pour ignorer les blancs
@@ -75,6 +78,8 @@ do {
     else if (choix_tuto == 'n'){
         printf("Bonne game !\n");
     }
+*/
+
     // choix du nombre de joueur
     affichage_initial();
     int v = -1;
