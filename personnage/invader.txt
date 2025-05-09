@@ -6,8 +6,8 @@ Invader // nom
 16 // defense
 12 // agilite
 16 // vitesse
-10 // jauge actuelle
-10 // jauge max
+0 // jauge actuelle
+2 // jauge max
 Bombe gravitationnelle // attaque spe
 dps // classe
 Reduis la vitesse de l'equipe adverse // description attaque spe
