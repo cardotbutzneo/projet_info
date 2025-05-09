@@ -4,6 +4,8 @@
 #include "attaque.h"
 #include "IA.h"
 #include "tuto.h"
+#include "couleurs.h"
+
 
 int main() {
     srand(time(NULL));
