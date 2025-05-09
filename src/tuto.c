@@ -4,9 +4,11 @@
 #include "fonction.h"
 void afficher_tuto(){
     //printf("Bienvenue \n");
-    printf("========================================\n");
-    printf("Vous jouez a MultiverSus\n");
-    printf("========================================\n\n");
+    printf("\033[1;34m"); // Changer la couleur du texte en bleu
+    printf("=========================================================\n");
+    printf("                 Vous jouez a MultiverSus\n");
+    printf("=========================================================\n\n");
+    printf("\033[0m"); // Réinitialiser la couleur
     char rep;
     printf("Connaissez-vous le jeu ? o/n\n");
     int verif = -1;
@@ -21,9 +23,12 @@ void afficher_tuto(){
 
     if (rep == 'n'){
         printf("Vous jouez a un jeu developpe par l'equipe I\n\n");
-        printf("========================================\n\n");
-        printf("Instructions du jeu :\n");
-        printf("========================================\n\n");
+        printf("\033[1;34m"); // Changer la couleur du texte en bleu
+        printf("=========================================================\n");
+        printf("                   Instructions du jeu\n");
+        printf("=========================================================\n\n");
+        printf("\033[0m"); // Réinitialiser la couleur
+        Sleep(time_sleep);
         printf("Le jeu se joue en 2 equipes de 3 champions !\n\n");
         Sleep(time_sleep);
         printf("Le but du jeu est de choisir une equipe de champions et de les faire combattre contre une autre equipe de champions !\n\n");
@@ -42,9 +47,9 @@ void afficher_tuto(){
         Sleep(time_sleep);
         printf("La premiere equipe qui vainc les champions ennemis gagne !\n\n");
         Sleep(time_sleep);
-        printf("========================================\n\n");
+        printf("======================================================\n\n");
         Sleep(time_sleep);
-        printf("Choisisez vos champions, puis... ");
+        printf("Choisissez vos champions, puis... ");
         Sleep(time_sleep);
         printf("COMBATTEEEZZZZ !");
         Sleep(time_sleep);
@@ -54,9 +59,9 @@ void afficher_tuto(){
 }
 
 void note() {
-    printf("\n========================================\n");
-    printf("Avez-vous aimé le jeu ? (/10)\n");
-    printf("========================================\n");
+    printf("\n======================================================\n");
+    printf("            Avez-vous aimé le jeu ? (/10)\n");
+    printf("=======================================================\n");
 
     int note;
     do {
@@ -68,3 +73,4 @@ void note() {
         printf("Merci beaucoup !\n");
     }
 }
+
