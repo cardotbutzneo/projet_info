@@ -470,7 +470,6 @@ void saisie_utilisateur(Champion *champion, Equipe *equieAdverse, Equipe *equipe
         printf("Le champion %s est KO et ne peut pas agir.\n", champion->nom);
         return; // Sort de la fonction sans effectuer d'action
     }
-
     switch (affichage_saisie_utilisateur(*champion)) {
         case 1:
             attaquesimple(champion, equieAdverse->perso); // attaque simple

@@ -234,6 +234,7 @@ int affichage_saisie_utilisateur(Champion champion) {
             } 
             if (champion.stat.jauge_actuelle < champion.stat.jauge_max && choix==2){
                 printf("L'attaque spéciale n'est pas encore rechargee\n");
+                printf("rechargement dans %d tours\n", champion.stat.jauge_max - champion.stat.jauge_actuelle);
                 choix = -1;
             }
             

@@ -231,6 +231,7 @@ do {
                     saisie_utilisateur(champion_intermediaire, &equipe1, &equipe2);
                 }
             }
+            champion_intermediaire->stat.jauge_actuelle++;
 
             if (choix_nb_joueur == 1) { // Mode PvE
                 if (equipe == 1) {
