@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include <windows.h>
+//#include <windows.h>
 
 // Constantes
 #define Nb_champion 18
