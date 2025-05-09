@@ -198,7 +198,7 @@ void afficher_degat_recu(Champion cible, Champion attaquant, int type_attaque) {
 }
 
 // Affiche les options de saisie pour l'utilisateur
-int affichage_saisie_utilisateur(Champion champion) {
+int affichage_saisie_utilisateur(Champion champion, Champion equipeAdverse[],Champion equipe[]) {
     if (champion.nom == NULL) {
         printf("Erreur : le nom du champion est NULL\n");
         exit(1); // Retourne une valeur d'erreur
@@ -222,12 +222,14 @@ int affichage_saisie_utilisateur(Champion champion) {
                 vider_buffer_scanf(); // Vide le buffer d'entrée
                 choix = -1; // Réinitialise le choix pour rester dans la boucle
             } 
-            /*
-            if (champion.stat.jauge_actuelle < valeur){
+            if (champion.stat.jauge_actuelle < jauge_max){
                 printf("L'attaque spéciale n'est pas encore rechargée\n");
                 choix = -1;
             }
-            */
+            if (champion.stat.jauge_actuelle >= jauge_max){
+                attaqueSpecial (champion,equipeAdverse[],equipe[]);
+            }
+            
             else if (choix < 1 || choix > 3) {
                 printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
             }
