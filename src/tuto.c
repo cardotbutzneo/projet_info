@@ -72,7 +72,7 @@ void note() {
     } while (note < 0 || note > 10);
 
     if (note >= 8) {
-        printf("Merci beaucoup !\n");
+        printf("Merci beaucoup ! :D\n");
     }
 }
 
