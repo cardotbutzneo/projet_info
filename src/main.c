@@ -107,6 +107,9 @@ do {
     Equipe equipe1;
     Equipe equipe2;
 
+    equipe1.difficulte = -1;
+    equipe2.difficulte = -1;
+
     int verif;
     equipe1.nom = malloc(sizeof(char) * 20);
     if (equipe1.nom == NULL) {
@@ -161,12 +164,33 @@ do {
                 printf(ROUGE"Entrée invalide, réessayez.\n"RESET);
                 verif = -1;
             }
-        
             // Dans tous les cas, on vide le buffer
             vider_buffer_scanf();
         
         } while (verif != 1);
+
+        do{
+            printf("Choisir la difficulté de l'IA (0 = noob, 1 = facile, 2 = difficile) :\n");
+            verif = scanf("%d", &difficulte);
         
+            if (verif != 1) {
+                printf(ROUGE"Entrée invalide, réessayez.\n"RESET);
+                verif = -1;
+            }
+        
+            // Dans tous les cas, on vide le buffer
+            vider_buffer_scanf();
+        }while (verif != 1 || difficulte < 0 || difficulte > 2);
+        if (difficulte == 0){
+            printf("Vous avez choisi la difficulté noob, l'IA ne fera rien !\n");
+        }
+        else if (difficulte == 1){
+            printf("Vous avez choisi la difficulté facile, l'IA fera des attaques simples !\n");
+        }
+        else if (difficulte == 2){
+            printf("Vous avez choisi la difficulté difficile, l'IA fera des attaques spéciales !\n");
+        }
+        equipe2.difficulte = difficulte;
         equipe2.nom = *(nom_IA + rand() % 8);
         if (equipe2.nom == NULL){
             printf(ROUGE_FONCE"erreur lors de l'allocation de la memoire pour le nom de l'IA\n"RESET);
@@ -239,8 +263,10 @@ do {
                     saisie_utilisateur(champion_intermediaire, &equipe2, &equipe1);
                 }
                 if (equipe == 2) {
-                    printf("IA joue\n");
-                    ia_principale(&equipe2, &equipe1, difficulte);
+                    printf(BLEU_CLAIR);
+                    printf("\n\nIA joue\n");
+                    printf(RESET);
+                    ia_principale(champion_intermediaire,&equipe2, &equipe1, difficulte);
                 }
             }
             for (int i = 0;i<Nb_champion_par_equipe*2;i++){

@@ -3,6 +3,7 @@
 #include "fonction.h"
 #include "affichage.h"
 #include "attaque.h"
+#include "attaquespe.h"
 
 
 // Fonction pour choisir une cible valide
@@ -42,42 +43,33 @@ void utiliser_tech_spe(Champion *attaquant, Champion *cible) {
 }
 */
 // Fonction pour l'IA noob
-void ia_noob(Equipe *equipe_ia, Equipe *equipe_adverse) {
-    for (int i = 0; i < 3; i++) {
-        if (equipe_ia->perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
-            attaquesimple(&equipe_ia->perso[i], equipe_adverse->perso);
-        }
-    }
+void ia_noob(Champion *champion,Equipe *equipe_ia, Equipe *equipe_adverse) {
+        attaquesimple(champion, equipe_adverse->perso);
 }
 
 // Fonction pour l'IA facile
-void ia_facile(Equipe *equipe_ia, Equipe *equipe_adverse) {
-    for (int i = 0; i < 3; i++) {
-        if (equipe_ia->perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
-            int cible = choisir_cible(equipe_adverse, 'f'); // Mode 'f' pour facile
-            attaquesimple(&equipe_ia->perso[i], &equipe_adverse->perso[cible]);
-        }
+void ia_facile( Champion *champion,Equipe *equipe_ia, Equipe *equipe_adverse) {
+    int x = rand() % 11; // 10% de chance d'utiliser une technique spéciale
+    if (x == 0) {
+        attaqueSpecial(*champion, equipe_adverse->perso, equipe_adverse->perso); // Utilise une technique spéciale
+    } else {
+        attaquesimple(champion, equipe_adverse->perso);
     }
 }
 
 // Fonction pour l'IA moyen
-void ia_moyen(Equipe *equipe_ia, Equipe *equipe_adverse) {
-    for (int i = 0; i < 3; i++) {
-        if (equipe_ia->perso[i].stat.pv_courant > 0) { // Vérifie si le champion est vivant
-            int cible = choisir_cible(equipe_adverse, 'm'); // Mode 'm' pour moyen
-            /*
-            if (peut_utiliser_tech_spe(&equipe_ia->perso[i])) {
-                utiliser_tech_spe(&equipe_ia->perso[i], &equipe_adverse->perso[cible]);
-            } else {
-                attaquesimple(equipe_ia->perso[i], &equipe_adverse->perso[cible]);
-            }
-            */
-        }
+void ia_moyen(Champion *champion, Equipe *equipe_adverse, Equipe *equipe) {
+    int x = rand() % 5; // 60% de chance d'utiliser une technique spéciale
+    if (x == 0) {
+        attaqueSpecial(*champion, equipe_adverse->perso, equipe->perso); // Utilise une technique spéciale
+    } 
+    else if (champion->stat.jauge_actuelle >= champion->stat.jauge_max) {
+        attaquesimple(champion, equipe_adverse->perso);
     }
 }
 
 // Fonction principale de l'IA
-void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
+void ia_principale(Champion *champion, Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
     if (!equipe_ia || !equipe_adverse ){
         printf("erreur d'allocation de memoire dans ia_principale\n");
             exit(0);
@@ -88,17 +80,17 @@ void ia_principale(Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
     }
     switch (difficulte) {
         case 0:
-            ia_noob(equipe_ia, equipe_adverse);
+            ia_noob(champion,equipe_ia, equipe_adverse);
             break;
         case 1:
-            ia_facile(equipe_ia, equipe_adverse);
+            ia_facile(champion, equipe_ia, equipe_adverse);
             break;
         case 2:
-            ia_moyen(equipe_ia, equipe_adverse);
+            ia_moyen(champion, equipe_ia, equipe_adverse);
             break;
         default:
             printf("Difficulté inconnue. Utilisation de la difficulté facile par défaut.\n");
-            ia_noob(equipe_ia, equipe_adverse);
+            ia_noob(champion,equipe_ia, equipe_adverse);
             break;
     }
 }

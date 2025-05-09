@@ -15,4 +15,5 @@ void separation_des_partie();
 void sauter_ligne(FILE *fichier);
 int affichage_saisie_utilisateur(Champion champion);
 void affichage_initial();
+void afficher_attaque_speciale(Champion *champion, Champion *cible);
 #endif // AFFICHAGE_H

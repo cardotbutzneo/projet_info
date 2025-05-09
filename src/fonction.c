@@ -12,7 +12,7 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
         exit(0);
     }
     int pv_max = 0, pv = 0, attaque = 0, defense = 0, agilite = 0, vitesse = 0, jauge_actuelle = 0, jauge_max = 0;
-    char nom[50], classe[50], attaque_spe[50], effet_spe[50];
+    char nom[50], classe[50], attaque_spe[50], effet_spe[50],  description[100];
 
     // Lecture des stats dans le fichier du champion
     sauter_ligne(fichier);
@@ -70,10 +70,14 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
         printf("Erreur lors de la lecture de la classe\n");
         exit(1);
     }
-    
     sauter_ligne(fichier);
     if (fscanf(fichier, "%s", effet_spe) != 1) {
         printf("Erreur lors de la lecture de l'effet spécial\n");
+        exit(1);
+    }
+    sauter_ligne(fichier);
+    if (fscanf(fichier, "%s", description) != 1) {
+        printf("Erreur lors de la lecture de la description\n");
         exit(1);
     }
 
@@ -122,6 +126,18 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
         exit(1);
     }
     strcpy(champion->effet_spe, effet_spe);
+    
+    champion->description = malloc(strlen(description) + 1);
+    if (champion->description == NULL) {
+        printf("Erreur d'allocation de mémoire pour la description\n");
+        free(champion->nom);
+        free(champion->classe);
+        free(champion->attaque_spe);
+        free(champion->effet_spe);
+        free(champion->description_attaque_spe);
+        exit(1);
+    }
+    strcpy(champion->description, description);
 }
 
 int chaine_caractere_egales(char *chaine1, char *chaine2){
@@ -232,6 +248,8 @@ void copie_champion(Champion *source, Champion *destination) {
     destination->stat.vitesse = source->stat.vitesse;
     destination->stat.jauge_max = source->stat.jauge_max;
     destination->stat.jauge_actuelle = source->stat.jauge_actuelle;
+    destination->description_attaque_spe = source->description_attaque_spe;
+    destination->description = source->description;
 
     // Copier les chaînes de caractères avec allocation dynamique
     destination->nom = malloc(strlen(source->nom) + 1);
@@ -403,9 +421,9 @@ void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2, int rep[]){
         exit(0);
     } 
     for (int i=0;i<Nb_champion_par_equipe;i++){
-        int x = rand()%18;
+        int x = rand()%17+1;
         while (verif_number(rep,x) == 1){
-            x = rand()%18;
+            x = rand()%17+1;
         }
         copie_champion((tableau_champion+x), &equipe2->perso[i]);  // choix des champions aléatoirement
         equipe2->perso[i].equipe = 2; // Assigner l'équipe 2 au champion

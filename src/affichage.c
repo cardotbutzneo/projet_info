@@ -2,7 +2,8 @@
 #include "affichage.h"
 #include "fonction.h"
 #include "IA.h"
-#include "attaque.h"
+#include "attaque.h"*
+#include "couleurs.h"
 
 // Fonction pour sauter une ligne dans un fichier
 void sauter_ligne(FILE *fichier) {
@@ -245,4 +246,16 @@ int affichage_saisie_utilisateur(Champion champion) {
 
         return choix;
     }
+}
+
+void afficher_attaque_speciale(Champion *champion, Champion *cible) {
+    if (champion == NULL || cible == NULL) {
+        printf("Erreur : pointeur NULL dans afficher_attaque_speciale\n");
+        return;
+    }
+    printf(MAGENTA);
+    printf("attaque speciale de %s\n", champion->nom);
+    printf("description de l'attaque speciale: %s\n", champion->description_attaque_spe);
+    printf("effet de l'attaque speciale: %s\n", champion->effet_spe);
+    printf(RESET);
 }

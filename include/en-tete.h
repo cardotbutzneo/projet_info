@@ -37,6 +37,8 @@ typedef struct {
     char *classe;
     int equipe; // 1 ou 2
     int index; // position du champion dans l'equipe
+    char *description_attaque_spe;
+    char *description;
 } Champion;
 
 typedef struct {
@@ -50,6 +52,7 @@ typedef struct {
     Champion perso[Nb_champion_par_equipe];
     float synergie;
     Objet objet[Nb_objet_par_equipe];
+    int difficulte; // 0 = facile, 1 = moyen, 2 = difficile
 } Equipe;
 
 #endif // EN_TETE_H
