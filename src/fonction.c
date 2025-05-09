@@ -257,12 +257,22 @@ void copie_champion(Champion *source, Champion *destination) {
 */
 }
 
+int verif_number(int number[],int n){
+    for (int i=0;i<n;i++){
+        if (number[i] == n){
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equipe2, int choix, Champion *tableau_champion_cachee) {
     if (!tableau_champion || !tableau_champion_cachee|| !equipe1 || !equipe2 || !equipe1->nom || !equipe2->nom){
         printf("erreur lors de l'alocation de la memoire\n");
         exit(0);
     }
     int tempp;
+    int rep[6] = {0};
     if (choix == 2) {
         printf("Equipe 1 choisissez vos champions\n");
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
@@ -277,6 +287,10 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
                     printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 \n");
                     tempp = -1;
                 }
+                if (strcmp(equipe1->perso[i].nom, tableau_champion[tempp - 1].nom) == 0 && verif_number(rep, tempp) == 0) {
+                    printf("Ce champion est déjà choisi. Veuillez en choisir un autre.\n");
+                    tempp = -1;
+                }
             } while ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102));
             
             if (tempp >= 1 && tempp <= 18) {
@@ -289,6 +303,7 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
                 printf("Bravo ! Vous avez trouvé un champion caché\n");
                 equipe1->perso[i].index = i;
             }
+            rep[i] = tempp; // Enregistre le numéro choisi
 
             
         }
@@ -305,6 +320,10 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
                     printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 \n");
                     tempp = -1;
                 }
+                if (strcmp(equipe1->perso[i].nom, tableau_champion[tempp - 1].nom) == 0 && verif_number(rep, tempp) == 0) {
+                    printf("Ce champion est déjà choisi. Veuillez en choisir un autre.\n");
+                    tempp = -1;
+                }
             } while ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102));
             
             if (tempp >= 1 && tempp <= 18) {
@@ -317,6 +336,11 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
                 equipe2->perso[i].index = i;
                 printf("Bravo ! Vous avez trouvé un champion caché\n");
             }
+            if (strcmp(equipe1->perso[i].nom, tableau_champion[tempp - 1].nom) == 0 && verif_number(rep, tempp) == 0) {
+                    printf("Ce champion est déjà choisi. Veuillez en choisir un autre.\n");
+                    tempp = -1;
+                }
+                rep[i] = tempp; // Enregistre le numéro choisi
         }
     } else if (choix == 1) {
         printf("Equipe 1 choisissez vos champions\n");
@@ -332,6 +356,10 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
                     printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
                     tempp = -1;
                 }
+                if (strcmp(equipe1->perso[i].nom, tableau_champion[tempp - 1].nom) == 0 && verif_number(rep, tempp) == 0) {
+                    printf("Ce champion est déjà choisi. Veuillez en choisir un autre.\n");
+                    tempp = -1;
+                }
             } while ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102));
             
             if (tempp >= 1 && tempp <= 18) {
@@ -344,19 +372,24 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
                 equipe1->perso[i].index = i;
                 printf("Bravo ! Vous avez trouve un champion cache\n");
             }
+            rep[i] = tempp; // Enregistre le numéro choisi
         }
         
-        choix_champion_IA(tableau_champion, equipe2);
+        choix_champion_IA(tableau_champion, equipe2, rep);
     }
 }
 
-void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2){
+void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2, int rep[]){
     if (!tableau_champion || !equipe2 ||! equipe2->nom){
         printf("erreur lors de l'alocation de la memoire\n");
         exit(0);
     } 
     for (int i=0;i<Nb_champion_par_equipe;i++){
-        copie_champion(((tableau_champion+(rand()%18))),&equipe2->perso[i]);  // choix des champions aléatoirement
+        int x = rand()%18;
+        while (verif_number(rep,x) == 1){
+            x = rand()%18;
+        }
+        copie_champion((tableau_champion+x), &equipe2->perso[i]);  // choix des champions aléatoirement
         equipe2->perso[i].equipe = 2; // Assigner l'équipe 2 au champion
         equipe2->perso[i].index = i+2;
     }

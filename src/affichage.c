@@ -167,7 +167,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
 
     int index = 1;
 
-    printf("Les champions de classe BLEU tank RESET sont : \n");
+    printf("Les champions de classe  tank  sont : \n");
     for (int i = 0; i < tank_count; i++) {
         printf("%d : %s\n", index, (champion_tank + i)->nom);
         index++;
@@ -175,7 +175,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
     printf("\n");
     pause_ms(time_sleep);
 
-    printf("Les champions de classe ROUGE dps RESET sont : \n");
+    printf("Les champions de classe  dps  sont : \n");
     for (int i = 0; i < dps_count; i++) {
         printf("%d : %s\n", index, (champion_dps + i)->nom);
         index++;
@@ -183,7 +183,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
     printf("\n");
     pause_ms(time_sleep);
 
-    printf("Les champions de classe VERT soutien RESET sont : \n");
+    printf("Les champions de classe  soutien  sont : \n");
     for (int i = 0; i < soutien_count; i++) {
         printf("%d : %s\n", index, (champion_soutien + i)->nom);
         index++;
