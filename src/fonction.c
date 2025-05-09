@@ -11,7 +11,7 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
         printf("erreur lors de l'alocation de la memoire\n");
         exit(0);
     }
-    int pv_max = 0, pv = 0, attaque = 0, defense = 0, agilite = 0, vitesse = 0;
+    int pv_max = 0, pv = 0, attaque = 0, defense = 0, agilite = 0, vitesse = 0, jauge = 0, jauge_max = 0;
     char nom[50], classe[50], attaque_spe[50], effet_spe[50];
 
     // Lecture des stats dans le fichier du champion
@@ -51,7 +51,15 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
         exit(1);
     }
     sauter_ligne(fichier);
+    if (fscanf(fichier, "%d", &jauge) != 1) {
+        printf("Erreur lors de la lecture de la jauge\n");
+        exit(1);
+    }
     sauter_ligne(fichier);
+    if (fscanf(fichier, "%d", &jauge_max) != 1) {
+        printf("Erreur lors de la lecture de la jauge max\n");
+        exit(1);
+    }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%s", attaque_spe) != 1) {
         printf("Erreur lors de la lecture de l'attaque spéciale\n");
@@ -76,6 +84,8 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
     champion->stat.attaque = attaque;
     champion->stat.agilite = agilite;
     champion->stat.vitesse = vitesse;
+    champion->stat.jauge_max = jauge_max;
+    champion->stat.jauge_actuelle = jauge;
 
     // Allocation dynamique et copie des chaînes de caractères
     champion->nom = malloc(strlen(nom) + 1);
