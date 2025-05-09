@@ -2,13 +2,13 @@
 #include "affichage.h"
 #include "fonction.h"
 #include "IA.h"
-#include "attaque.h"*
+#include "attaque.h"
 #include "couleurs.h"
 
 // Fonction pour sauter une ligne dans un fichier
 void sauter_ligne(FILE *fichier) {
     if (fichier == NULL) {
-        printf("Erreur : fichier non valide dans sauter_ligne\n");
+        printf(ROUGE_FONCE"Erreur : fichier non valide dans sauter_ligne\n"RESET);
         exit(0);
     }
 
@@ -23,7 +23,7 @@ void sauter_ligne(FILE *fichier) {
 // Fonction pour afficher les informations d'un champion
 void afficher_personnage(Champion *champion) {
     if (champion == NULL || !champion->nom) {
-        printf("Erreur : pointeur NULL dans afficher_personnage\n");
+        printf(ROUGE_FONCE"Erreur : pointeur NULL dans afficher_personnage\n"RESET);
         return;
     }
 
@@ -45,9 +45,9 @@ void afficher_personnage(Champion *champion) {
 void affichage_initial() {
     int buffer = 10;
 
-    printf("Chargement du jeu...\n");
+    printf(GRIS"Chargement du jeu...\n"RESET);
     for (int k=0; k<3; k++){
-        printf(".");
+        printf(GRIS"."RESET);
         pause_ms(time_sleep);
     }
     printf("\n");
@@ -58,35 +58,37 @@ void affichage_initial() {
         printf("---");
     }
 
-    printf("\nChargement termine\n");
-    printf("Bienvenue dans MultiverSeus\n");
+    printf(GRIS"\nChargement termine\n"RESET);
+    printf(BLEU"=========================================================\n");
+    printf("                     MultiverSeus\n");
+    printf("=========================================================\n\n"RESET);
     pause_ms(time_sleep);
 }
 
 // Affiche la classe d'un champion
 void afficher_classe(Champion *champion) {
     if (champion == NULL) {
-        printf("Erreur : pointeur NULL dans afficher_classe\n");
+        printf(ROUGE_FONCE"Erreur : pointeur NULL dans afficher_classe\n"RESET);
         return;
     }
     if (!champion->nom){
-        printf("Erreur : Nom NULL \n");
+        printf(ROUGE_FONCE"Erreur : Nom NULL \n"RESET);
         exit(0);
     }
 
     printf("%s est de ", champion->nom);
     switch (trie(champion)) {
         case 1:
-            printf("classe : tank\n");
+            printf(BLEU_CLAIR"classe : tank\n"RESET);
             break;
         case 2:
-            printf("classe : dps\n");
+            printf(ROUGE_CLAIR"classe : dps\n"RESET);
             break;
         case 3:
-            printf("classe : soutien\n");
+            printf(VERT_CLAIR"classe : soutien\n"RESET);
             break;
         default:
-            printf("Erreur : classe non définie\n");
+            printf(ROUGE_FONCE"Erreur : classe non définie\n"RESET);
             break;
     }
     printf("\n");
@@ -103,7 +105,7 @@ void separation_des_partie() {
 // Affiche les équipes et leurs champions
 void afficher_equipe(Equipe equipe1) {
     if (!equipe1.nom || !equipe1.perso){
-        printf("erreur lors de l'allocation de la memoire\n");
+        printf(ROUGE_FONCE"erreur lors de l'allocation de la memoire\n"RESET);
         exit(0);
     }
     printf("Équipe %d : %s\n",equipe1.perso->equipe, equipe1.nom);
@@ -111,7 +113,7 @@ void afficher_equipe(Equipe equipe1) {
         if (equipe1.perso[i].stat.pv_courant > 0) {
             printf("  - %s (PV : %.1f)\n", equipe1.perso[i].nom, equipe1.perso[i].stat.pv_courant);
         } else {
-            printf("  - %s (KO)\n", equipe1.perso[i].nom);
+            printf(ROUGE_FONCE"  - %s (KO)\n"RESET, equipe1.perso[i].nom);
         }
     }
 
@@ -121,12 +123,12 @@ void afficher_equipe(Equipe equipe1) {
 // Affiche les équipes côte à côte
 void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
     if (equipe1.nom == NULL || equipe2.nom == NULL) {
-        printf("Erreur : Les noms des équipes ne sont pas initialises.\n");
+        printf(ROUGE_FONCE"Erreur : Les noms des équipes ne sont pas initialises.\n"RESET);
         exit(0);
     }
 
     if (equipe1.perso == NULL || equipe2.perso == NULL) {
-        printf("Erreur : Les tableaux de champions des equipes ne sont pas initialises.\n");
+        printf(ROUGE_FONCE"Erreur : Les tableaux de champions des equipes ne sont pas initialises.\n"RESET);
         exit(0);
     }
 
@@ -170,7 +172,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
 
     int index = 1;
 
-    printf("Les champions de classe  tank  sont : \n");
+    printf(GRIS"Les champions de classe  tank  sont : \n"RESET);
     for (int i = 0; i < tank_count; i++) {
         printf("%d : %s\n", index, (champion_tank + i)->nom);
         index++;
@@ -178,7 +180,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
     printf("\n");
     pause_ms(time_sleep);
 
-    printf("Les champions de classe  dps  sont : \n");
+    printf(GRIS"Les champions de classe  dps  sont : \n"RESET);
     for (int i = 0; i < dps_count; i++) {
         printf("%d : %s\n", index, (champion_dps + i)->nom);
         index++;
@@ -186,7 +188,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
     printf("\n");
     pause_ms(time_sleep);
 
-    printf("Les champions de classe  soutien  sont : \n");
+    printf(GRIS"Les champions de classe  soutien  sont : \n"RESET);
     for (int i = 0; i < soutien_count; i++) {
         printf("%d : %s\n", index, (champion_soutien + i)->nom);
         index++;
@@ -196,11 +198,11 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
 // Affiche les dégâts reçus par un champion
 void afficher_degat_recu(Champion cible, Champion attaquant, int type_attaque) {
     if (type_attaque == 0) { // Attaque classique
-        printf("%s reçoit : %.1f degats\n", cible.nom, attaquant.stat.attaque);
+        printf(ROUGE"%s reçoit : %.1f degats\n"RESET, cible.nom, attaquant.stat.attaque);
         printf("Les PV de %s sont maintenant de : %.1f\n", cible.nom, cible.stat.pv_courant);
     } else if (type_attaque == 1) { // Attaque spéciale
-        printf("Attaque speciale\n");
-        printf("%s reçoit : %.1f degats\n", cible.nom, attaquant.stat.attaque);
+        printf(JAUNE"Attaque speciale\n"RESET);
+        printf(ROUGE"%s reçoit : %.1f degats\n"RESET, cible.nom, attaquant.stat.attaque);
         printf("Les PV de %s sont maintenant de : %.1f\n", cible.nom, cible.stat.pv_courant);
     }
 }
@@ -208,7 +210,7 @@ void afficher_degat_recu(Champion cible, Champion attaquant, int type_attaque) {
 // Affiche les options de saisie pour l'utilisateur
 int affichage_saisie_utilisateur(Champion champion) {
     if (champion.nom == NULL) {
-        printf("Erreur : le nom du champion est NULL\n");
+        printf(ROUGE_FONCE"Erreur : le nom du champion est NULL\n"RESET);
         exit(1); // Retourne une valeur d'erreur
     }
     if (champion.stat.pv_courant <= 0){
@@ -216,31 +218,31 @@ int affichage_saisie_utilisateur(Champion champion) {
     }
     else if (champion.stat.pv_courant > 0){
         printf("\n\n");
-        printf("Que voulez-vous faire avec %s ?\n", champion.nom);
+        printf(BLANC"Que voulez-vous faire avec %s ?\n"RESET, champion.nom);
             if (champion.stat.jauge_actuelle >= champion.stat.jauge_max){
-            printf("l'attaque speciale est rechargee\n");
+            printf(JAUNE_CLAIR"l'attaque speciale est rechargee >:)\n"RESET);
             }
-        printf("1. Attaque simple\n");
+        printf(BLANC"1. Attaque simple\n");
         printf("2. Utiliser une technique speciale\n");
         printf("3. utiliser un objet\n");
-        printf("4. passer son tour\n");
+        printf("4. passer son tour\n"RESET);
 
         int choix = -1;
         do {
-            printf("\nEntrez votre choix (1-4) : ");
+            printf(BLANC"\nEntrez votre choix (1-4) : "RESET);
             if (scanf("%d", &choix) != 1) {
-                printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 4.\n");
+                printf(ROUGE_FONCE"Entrée invalide. Veuillez entrer un nombre entre 1 et 4.\n"RESET);
                 vider_buffer_scanf(); // Vide le buffer d'entrée
                 choix = -1; // Réinitialise le choix pour rester dans la boucle
             } 
             if (champion.stat.jauge_actuelle < champion.stat.jauge_max && choix==2){
-                printf("L'attaque spéciale n'est pas encore rechargee\n");
-                printf("rechargement dans %d tours\n", champion.stat.jauge_max - champion.stat.jauge_actuelle);
+                printf(JAUNE_FONCE"L'attaque spéciale n'est pas encore rechargee\n");
+                printf("rechargement dans %d tours\n"RESET, champion.stat.jauge_max - champion.stat.jauge_actuelle);
                 choix = -1;
             }
             
             else if (choix < 1 || choix > 3) {
-                printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
+                printf(GRIS"Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n"RESET);
             }
         } while (choix < 1 || choix > 4);
 
@@ -250,7 +252,7 @@ int affichage_saisie_utilisateur(Champion champion) {
 
 void afficher_attaque_speciale(Champion *champion, Champion *cible) {
     if (champion == NULL || cible == NULL) {
-        printf("Erreur : pointeur NULL dans afficher_attaque_speciale\n");
+        printf(ROUGE_FONCE"Erreur : pointeur NULL dans afficher_attaque_speciale\n"RESET);
         return;
     }
     printf(MAGENTA);
