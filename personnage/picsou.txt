@@ -6,8 +6,8 @@ Picsou // nom
 32 // defense
 9 // agilite
 7 // vitesse
-10 // jauge actuelle
-10 // jauge max
+0 // jauge actuelle
+2 // jauge max
 Piscine de pieces // attaque spe
 soutien // classe
 Soigne et augmente la defense de l'equipe // description attaque spe
