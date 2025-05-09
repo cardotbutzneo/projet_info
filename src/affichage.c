@@ -209,6 +209,9 @@ int affichage_saisie_utilisateur(Champion champion) {
     else if (champion.stat.pv_courant > 0){
         printf("\n\n");
         printf("Que voulez-vous faire avec %s ?\n", champion.nom);
+            if (champion.stat.jauge_actuelle >= champion.stat.jauge_max){
+            printf("l'attaque special est recgacharge\n");;
+    }
         printf("1. Attaque simple\n");
         printf("2. Utiliser une technique spéciale\n");
         printf("3. utiliser un objet\n");
@@ -222,7 +225,7 @@ int affichage_saisie_utilisateur(Champion champion) {
                 vider_buffer_scanf(); // Vide le buffer d'entrée
                 choix = -1; // Réinitialise le choix pour rester dans la boucle
             } 
-            if (champion.stat.jauge_actuelle < jauge_max){
+            if (champion.stat.jauge_actuelle < champion.stat.jauge_max){
                 printf("L'attaque spéciale n'est pas encore rechargée\n");
                 choix = -1;
             }
