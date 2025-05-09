@@ -6,7 +6,7 @@ void afficher_tuto(){
     //printf("Bienvenue \n");
     printf("\033[1;34m"); // Changer la couleur du texte en bleu
     printf("=========================================================\n");
-    printf("                 Vous jouez a MultiverSus\n");
+    printf("                 Vous jouez a MultiverSeus\n");
     printf("=========================================================\n\n");
     printf("\033[0m"); // Réinitialiser la couleur
     char rep;
