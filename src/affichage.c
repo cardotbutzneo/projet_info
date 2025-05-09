@@ -55,7 +55,7 @@ void affichage_initial() {
 
     for (int i = 0; i < buffer; i++) {
         // sleep(val_systemeOS); // Décommentez pour activer les temps d'attente
-        printf("---");
+        printf(GRIS"---"RESET);
     }
 
     printf(GRIS"\nChargement termine\n"RESET);
@@ -172,7 +172,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
 
     int index = 1;
 
-    printf(GRIS"Les champions de classe  tank  sont : \n"RESET);
+    printf(BLEU_CLAIR"Les champions de classe  tank  sont : \n"RESET);
     for (int i = 0; i < tank_count; i++) {
         printf("%d : %s\n", index, (champion_tank + i)->nom);
         index++;
@@ -180,7 +180,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
     printf("\n");
     pause_ms(time_sleep);
 
-    printf(GRIS"Les champions de classe  dps  sont : \n"RESET);
+    printf(ROUGE_CLAIR"Les champions de classe  dps  sont : \n"RESET);
     for (int i = 0; i < dps_count; i++) {
         printf("%d : %s\n", index, (champion_dps + i)->nom);
         index++;
@@ -188,7 +188,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
     printf("\n");
     pause_ms(time_sleep);
 
-    printf(GRIS"Les champions de classe  soutien  sont : \n"RESET);
+    printf(VERT_CLAIR"Les champions de classe  soutien  sont : \n"RESET);
     for (int i = 0; i < soutien_count; i++) {
         printf("%d : %s\n", index, (champion_soutien + i)->nom);
         index++;
@@ -218,11 +218,11 @@ int affichage_saisie_utilisateur(Champion champion) {
     }
     else if (champion.stat.pv_courant > 0){
         printf("\n\n");
-        printf(BLANC"Que voulez-vous faire avec %s ?\n"RESET, champion.nom);
+        printf(BLANC_FONCE"Que voulez-vous faire avec %s ?\n"RESET, champion.nom);
             if (champion.stat.jauge_actuelle >= champion.stat.jauge_max){
             printf(JAUNE_CLAIR"l'attaque speciale est rechargee >:)\n"RESET);
             }
-        printf(BLANC"1. Attaque simple\n");
+        printf(BLANC_FONCE"1. Attaque simple\n");
         printf("2. Utiliser une technique speciale\n");
         printf("3. utiliser un objet\n");
         printf("4. passer son tour\n"RESET);
