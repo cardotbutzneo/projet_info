@@ -13,3 +13,20 @@
 #define CYAN    "\033[1;36m"
 
 #endif // COULEURS_H
+
+// exemple d'utilisation : 
+
+/*
+#include "couleurs.h"
+
+int main() {
+    printf(ROUGE "Ce texte est en rouge\n" RESET);
+    printf(BLEU "Ce texte est en bleu\n" RESET);
+    printf(VERT "Ce texte est en vert\n" RESET);
+    printf(JAUNE "Ce texte est en jaune\n" RESET);
+    printf(MAGENTA "Ce texte est en magenta\n" RESET);
+    printf(CYAN "Ce texte est en cyan\n" RESET);
+
+    return 0;
+}
+*/
