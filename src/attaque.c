@@ -117,7 +117,6 @@ void attaquesimple (Champion *personnage, Champion equipeAdverse[]){//actualiser
         }
         printf(ROUGE"%s attaque >:)\n" RESET,personnage->nom);
         afficher_degat_recu(equipeAdverse[cible],*personnage,0);
-        printf(JAUNE"test\n"RESET);
     }
     else{
         printf(CYAN "%s esquive\n" RESET,equipeAdverse[cible].nom);
