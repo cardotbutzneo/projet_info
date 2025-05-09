@@ -137,7 +137,7 @@ void shrekSpe(Champion personnage, Champion equipeAdverse[]){
     }
 }
 
-void tuxSpe(Champion personnage, Champion equipeAdverse[]){
+void tuxSpe(Champion personnage, Champion equipe[]){
     printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
     for (int i=0;i<Nb_champion_par_equipe;i++){
         //equipe[i].stat.vitesse+=0.5;
