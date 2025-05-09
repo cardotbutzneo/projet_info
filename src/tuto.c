@@ -2,6 +2,8 @@
 #include "tuto.h"
 #include "affichage.h"
 #include "fonction.h"
+#include "couleurs.h"
+
 void afficher_tuto(){
     //printf("Bienvenue \n");
     printf("\033[1;34m"); // Changer la couleur du texte en bleu
