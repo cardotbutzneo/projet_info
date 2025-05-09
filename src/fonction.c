@@ -481,3 +481,15 @@ int est_en_vie(Champion champion){
         exit(-1);
     }
 }
+
+#ifdef _WIN32
+     #include <windows.h>
+     void pause_ms(int milliseconds){
+        Sleep(milliseconds);
+     }
+#else
+        #include <unistd.h>
+        void pause_ms(int milliseconds){
+            usleep(milliseconds / 1000); // Convertit les millisecondes en secondes
+        }   
+#endif

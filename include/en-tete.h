@@ -15,17 +15,8 @@
 #define Nb_objet_par_equipe 2 // valeur modifiable
 #define time_sleep 1000 // s ou ms
 
-#ifdef _WIN32
-     #include <windows.h>
-     void pause_ms(int milliseconds){
-        Sleep(milliseconds);
-     }
-#else
-        #include <unistd.h>
-        void pause_ms(int milliseconds){
-            usleep(milliseconds / 1000); // Convertit les millisecondes en secondes
-        }   
-#endif
+void pause_ms(int milliseconds);
+
 // Structures
 typedef struct {
     float pv_courant;
