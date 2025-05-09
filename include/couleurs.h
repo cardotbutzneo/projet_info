@@ -5,17 +5,17 @@
 
 // Codes de couleur ANSI
 #define RESET   "\033[0m"
-#define ROUGE   "\033[1;31m" //tout ce qui est dégâts et effets d'attaque, personnages DPS, négatif etc
-#define BLEU    "\033[1;34m" //titres, tanks
-#define VERT    "\033[1;32m" //soutien, soins, effets positifs etc
+#define ROUGE   "\033[1;31m" //tout ce qui est dégâts et effets d'attaque, personnages DPS, effets négatif etc
+#define BLEU    "\033[1;34m" //titres, affichages
+#define VERT    "\033[1;32m" //soins, effets positifs etc
 #define JAUNE   "\033[1;33m" //pour les avertissements, les messages d'erreur
 #define MAGENTA "\033[1;35m" 
 #define CYAN    "\033[1;36m" 
 #define BLANC   "\033[1;37m"      // Blanc
 #define NOIR    "\033[1;30m"      // Noir
-#define ROUGE_CLAIR   "\033[1;91m" // Rouge clair
-#define BLEU_CLAIR    "\033[1;94m" // Bleu clair
-#define VERT_CLAIR    "\033[1;92m" // Vert clair
+#define ROUGE_CLAIR   "\033[1;91m" // Rouge clair   classe DPS
+#define BLEU_CLAIR    "\033[1;94m" // Bleu clair    classe tank
+#define VERT_CLAIR    "\033[1;92m" // Vert clair  classe soutiens
 #define JAUNE_CLAIR   "\033[1;93m" // Jaune clair
 #define MAGENTA_CLAIR "\033[1;95m" // Magenta clair
 #define CYAN_CLAIR    "\033[1;96m" // Cyan clair
