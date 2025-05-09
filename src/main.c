@@ -89,14 +89,14 @@ do {
         printf(BLEU"=============================\n");
         printf("          Mode de jeu\n");
         printf("=============================\n\n");
-        printf("1 pour PvE, 2 pour PvP\n"RESET);
+        printf("    1 pour PvE, 2 pour PvP\n"RESET);
         v= scanf("%d", &choix_nb_joueur);
         if (v != 1){
             vider_buffer_scanf();
             v = -1;
         }
         if (choix_nb_joueur <= 0 || choix_nb_joueur > 2){
-            printf("entree invalide !\n");
+            printf(ROUGE"entree invalide !\n"RESET);
             vider_buffer_scanf();
             v = -1;
         }
