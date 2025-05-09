@@ -222,6 +222,7 @@ void attaqueSpecial (Champion personnage, Champion equipeAdverse[],Champion equi
     case 18:
         zeldaSpe(personnage, equipe);
         default:
+            printf("Attaque spé inconnue pour %s\n", personnage.nom); //si erreur
             break;
     }
 }
