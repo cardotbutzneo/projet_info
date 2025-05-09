@@ -21,7 +21,7 @@ int main() {
     Champion *ordre_attaque_ind = malloc(sizeof(Champion) * Nb_champion_par_equipe * 2);
 
     if (!tableau_champion || !champion_soutien || !champion_tank || !champion_dps || !ordre_attaque || !ordre_attaque_ind || !tableau_champion_cachee) {
-        printf("Erreur d'allocation mémoire\n");
+        printf(JAUNE "Erreur d'allocation mémoire\n" RESET);
         exit(0);
     }
 
@@ -35,7 +35,7 @@ int main() {
         snprintf(chemin_acces, sizeof(chemin_acces), "%s%s", base_chemin, tableau_nom_personnage[i]);
         fichier = fopen(chemin_acces, "r+");
         if (fichier == NULL) {
-            printf("Erreur d'ouverture du fichier : %s\n", chemin_acces);
+            printf(JAUNE "Erreur d'ouverture du fichier : %s\n" RESET, chemin_acces);
             exit(0);
         }
         initialisation_champion(fichier, tableau_champion + i);
@@ -47,7 +47,7 @@ int main() {
         snprintf(chemin_acces, sizeof(chemin_acces), "%s%s",base_chemin, personnage_cachee[i]);
         fichier = fopen(chemin_acces, "r+");
         if (fichier == NULL){
-            printf("Erreur d'ouverture du fichier : %s\n", chemin_acces);
+            printf(JAUNE "Erreur d'ouverture du fichier : %s\n" RESET, chemin_acces);
             exit(0);
         }
         initialisation_champion(fichier,tableau_champion_cachee+i);
@@ -84,8 +84,10 @@ do {
     affichage_initial();
     int v = -1;
     do {
-        printf("Combien de joueur : \n");
-        printf("1 pour PvE, 2 pour PvP\n");
+        printf(BLEU"=============================\n");
+        printf("          Mode de jeu\n");
+        printf("=============================\n");
+        printf("1 pour PvE, 2 pour PvP\n"RESET);
         v= scanf("%d", &choix_nb_joueur);
         if (v != 1){
             vider_buffer_scanf();
