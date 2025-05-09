@@ -38,78 +38,78 @@ float attaqueSpeDegat (Champion personnage, Champion equipeAdverse[],float puiss
 
 void amongusSpe (Champion personnage, Champion equipeAdverse[]){
     int cible = cibleAttaque(equipeAdverse);
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     equipeAdverse[cible].stat.defense-=4;
 }
 void captainSpe(Champion personnage){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     personnage.stat.defense += 4;
 }
 
 void donkeySpe(Champion personnage, Champion equipeAdverse[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
     equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,2);
 }
 
 void tenmaSpe(Champion personnage, Champion equipe[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     soin(equipe,40);
 }
 
 void gandalfSpe(Champion personnage, Champion equipeAdverse[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
     equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,2);
 }
 
 void golemSpe(Champion personnage, Champion equipeAdverse[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
     equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,2.5);
 }
 
 void invaderSpe(Champion personnage, Champion equipeAdverse[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     for (int i=0;i<Nb_champion_par_equipe;i++){
         equipeAdverse[i].stat.vitesse-=3;
     }
 }
 
 void itachiSpe(Champion personnage){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     personnage.stat.defense += 2;
     personnage.stat.attaque += 2;
 }
 
 void jackSpe(Champion personnage, Champion equipeAdverse[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
     equipeAdverse[cible].stat.defense -= 2;
     equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,1.5);
 }
 
 void jaySpe(Champion personnage){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     personnage.stat.attaque += 4;
 }
 
 void johnnySpe(Champion personnage, Champion equipeAdverse[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     for (int i=0;i<Nb_champion_par_equipe;i++){
         equipeAdverse[i].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,0.4);
     }
 }
 
 void neteroSpe(Champion personnage, Champion equipe[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     for (int i=0;i<Nb_champion_par_equipe;i++){
         equipe[i].stat.defense+=3;
     }
 }
 
 void noxSpe(Champion personnage, Champion equipe[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     for (int i=0;i<Nb_champion_par_equipe;i++){
         equipe[i].stat.vitesse+=1;
         equipe[i].stat.agilite+=2;
@@ -117,7 +117,7 @@ void noxSpe(Champion personnage, Champion equipe[]){
 }
 
 void picsouSpe(Champion personnage, Champion equipe[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     for (int i=0;i<Nb_champion_par_equipe;i++){
         equipe[i].stat.defense+=1;
     }
@@ -125,20 +125,20 @@ void picsouSpe(Champion personnage, Champion equipe[]){
 }
 
 void pierreSpe(Champion personnage, Champion equipeAdverse[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     int cible = cibleAttaque(equipeAdverse);
     equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,3);
 }
 
 void shrekSpe(Champion personnage, Champion equipeAdverse[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     for (int i=0;i<Nb_champion_par_equipe;i++){
         equipeAdverse[i].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,0.5);
     }
 }
 
 void tuxSpe(Champion personnage, Champion equipe[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     for (int i=0;i<Nb_champion_par_equipe;i++){
         //equipe[i].stat.vitesse+=0.5;
         //equipe[i].stat.attaque+=1;
@@ -146,7 +146,7 @@ void tuxSpe(Champion personnage, Champion equipe[]){
 }
 
 void zeldaSpe(Champion personnage, Champion equipe[]){
-    printf("%s utilise %s",personnage.nom,personnage.attaque_spe);
+    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     soin(equipe,25);
     for (int i=0;i<Nb_champion_par_equipe;i++){
         equipe[i].stat.vitesse+=0.5;
@@ -159,10 +159,10 @@ void zeldaSpe(Champion personnage, Champion equipe[]){
 
 void attaqueSpecial (Champion personnage, Champion equipeAdverse[],Champion equipe[]){
     int numero=0;
-    char *tab_nom[Nb_champion] = {"Among_us", "Captain_america","Donkey_Kong", "Dr_Tenma", "Gandalf", "Golem_de_fer", "Invader", "Itachi", "Jack_Frost", "Jay", "Johnny_Hallyday", "Netero", "Nox", "Picsou", "Pierre_Chartier", "Shrek", "Tux","Zelda"};
+    char *tab_nom[Nb_champion] = {"Among_us", "Captain_America","Donkey_kong", "Dr_Tenma", "Gandalf", "Golem_de_fer", "Invader", "Itachi", "Jack_Frost", "Jay", "Johnny_Hallyday", "Netero", "Nox", "Picsou", "Pierre_Chartier", "Shrek", "Tux","Zelda"};
     verifstat(personnage);
     for (int i=0; i<Nb_champion;i++){
-        if (tab_nom[i]==personnage.nom){
+        if (strcmp(personnage.nom,tab_nom[i])==0){
             numero=i+1;
         }
     }

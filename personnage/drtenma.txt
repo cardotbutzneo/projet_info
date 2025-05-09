@@ -10,5 +10,5 @@ DR_Tenma // nom
 1 // jauge max
 Neurochirugie // attaque spe
 soutien // classe
-Soigne un allié // description attaque spe
+Soigne_un_allié // description attaque spe
 enattente // description du personnage

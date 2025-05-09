@@ -8,7 +8,7 @@ Golem_de_fer // nom
 3 // vitesse
 0 // jauge actuelle
 2 // jauge max
-Double uppercut // attaque spe
+Double_uppercut // attaque spe
 tank // classe
-Inflige plus du double de degat // description attaque spe
+Inflige_plus_du_double_de_degat // description attaque spe
 enattente // description du personnage

@@ -8,7 +8,7 @@ Gandalf // nom
 13 // vitesse
 0 // jauge actuelle
 2 // jauge max
-Voix du valar // attaque spe
+Voix_du_valar // attaque spe
 soutien // classe
-Augmente l'attaque de toute l'equipe // description attaque spe
+Augmente_l'attaque_de_toute_l'equipe // description attaque spe
 enattente // description du personnage

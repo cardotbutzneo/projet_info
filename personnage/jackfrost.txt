@@ -8,7 +8,7 @@ Jack_Frost // nom
 16 // vitesse
 0 // jauge actuelle
 2 // jauge max
-Lames de glaces // attaque spe
+Lames_de_glaces // attaque spe
 dps // classe
-Inflige des degats et reduits la defense // description attaque spe
+Inflige_des_degats_et_reduits_la_defense // description attaque spe
 enattente // description du personnage

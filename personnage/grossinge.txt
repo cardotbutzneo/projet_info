@@ -10,5 +10,5 @@ Gros_Singe // nom
 10 // jauge max
 Puant // attaque spe
 tank // classe
-L'ennemie est empoisonné // description attaque spe
+L'ennemie_est_empoisonné // description attaque spe
 enattente // description du personnage

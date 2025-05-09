@@ -8,7 +8,7 @@ Garrigus_Primus // nom
 10 // vitesse
 10 // jauge actuelle
 10 // jauge max
-ENS 66 // attaque spe
+ENS_66 // attaque spe
 dps // classe
-Reduit l'agilite de la cible // description attaque spe
+Reduit_l'agilite_de_la_cible // description attaque spe
 enattente // description du personnage

@@ -7,7 +7,12 @@
 #include "couleurs.h"
 
 
+
+
 int main() {
+
+
+
     srand(time(NULL));
     FILE *fichier = NULL;
     char *base_chemin = "personnage/";
@@ -61,26 +66,6 @@ int main() {
     char choix_tuto;  
 int verif_tuto = -1; 
 afficher_tuto();
-/*
-
-do {
-    printf("Voulez-vous un tuto ? (o/n)\n");
-    verif_tuto = scanf(" %c", &choix_tuto);  // Ajoute un espace avant %c pour ignorer les blancs
-    if (verif_tuto != 1 || (choix_tuto != 'o' && choix_tuto != 'n')) {
-        printf("Entree invalide !\n");
-        vider_buffer_scanf(); // à définir si ce n'est pas déjà fait
-        verif_tuto = -1;
-    }
-} while (verif_tuto != 1 || (choix_tuto != 'o' && choix_tuto != 'n'));
-
-
-    if (choix_tuto == 'o'){
-        afficher_tuto();
-    }
-    else if (choix_tuto == 'n'){
-        printf("Bonne game !\n");
-    }
-*/
 
     // choix du nombre de joueur
     affichage_initial();
@@ -206,7 +191,7 @@ do {
     // Affichage des champions par classe
     afficher_champion_init(champion_soutien, champion_tank, champion_dps, soutien_count, tank_count, dps_count);
 
-    printf("Fin de l'initialisation des personnages\n");
+    printf("\nFin de l'initialisation des personnages\n");
 
     choix_des_champion(temp, &equipe1, &equipe2, choix_nb_joueur, tableau_champion_cachee);
 
@@ -221,7 +206,7 @@ do {
     int finJeu = 0;
     separation_des_partie();
     for (int i = 0; i < Nb_tour && finJeu != 1; i++) {
-        printf("tour %d : \n", i + 1);
+        printf("\nTour %d : \n\n", i + 1);
 
         for (int k = 0; k < Nb_champion_par_equipe * 2; k++) {
             afficher_equipes_cote_a_cote(equipe1,equipe2);
@@ -255,7 +240,6 @@ do {
                     saisie_utilisateur(champion_intermediaire, &equipe1, &equipe2);
                 }
             }
-            champion_intermediaire->stat.jauge_actuelle++;
 
             if (choix_nb_joueur == 1) { // Mode PvE
                 if (equipe == 1) {
@@ -269,6 +253,8 @@ do {
                     ia_principale(champion_intermediaire,&equipe2, &equipe1, difficulte);
                 }
             }
+            // Augmenter la jauge de chaque champion
+            
             for (int i = 0;i<Nb_champion_par_equipe*2;i++){
                 if ((ordre_attaque_ind+i)->equipe == 1){
                     copie_champion(&equipe1.perso[(ordre_attaque_ind+i)->index],ordre_attaque_ind+i);
@@ -301,6 +287,23 @@ do {
                 break;
             }
             pause_ms(time_sleep);
+            
+        }
+
+        for (int i = 0; i < Nb_champion_par_equipe; i++) {
+            // Équipe 1
+            if (equipe1.perso[i].stat.pv_courant > 0) { // Vérifie que le champion n'est pas KO
+                if (equipe1.perso[i].stat.jauge_actuelle <= equipe1.perso[i].stat.jauge_max) {
+                    equipe1.perso[i].stat.jauge_actuelle += 1;
+                }
+            }
+
+            // Équipe 2
+            if (equipe2.perso[i].stat.pv_courant > 0) { // Vérifie que le champion n'est pas KO
+                if (equipe2.perso[i].stat.jauge_actuelle <= equipe2.perso[i].stat.jauge_max) {
+                    equipe2.perso[i].stat.jauge_actuelle += 1;
+                }
+            }
         }
 
         printf(GRIS"Réparation des décors\n"RESET);
@@ -316,19 +319,28 @@ do {
     //note();
     printf(GRIS"libération de la mémoire\n"RESET);
 
-    // Libération des champs alloués dynamiquement dans les tableaux de Champion
+    // Libération des champs dynamiques dans les tableaux de Champion
     for (int i = 0; i < Nb_champion; i++) {
-        free(tableau_champion[i].nom);
-        free(tableau_champion[i].classe);
-        free(tableau_champion[i].attaque_spe);
-        free(tableau_champion[i].effet_spe);
+        free_champion(&tableau_champion[i]); // Utilise free_champion pour libérer chaque Champion
     }
 
+    for (int i = 0; i < Nb_champion_cachee; i++) {
+        free_champion(&tableau_champion_cachee[i]); // Libère les champions cachés
+    }
+
+    for (int i = 0; i < 6; i++) {
+        free_champion(&champion_soutien[i]); // Libère les champions de soutien
+        free_champion(&champion_tank[i]);    // Libère les champions tank
+        free_champion(&champion_dps[i]);     // Libère les champions DPS
+    }
+
+    printf(GRIS"\nLibération des tableaux de champions\n"RESET);
     // Libération des tableaux de Champion
     free(champion_soutien);
     free(champion_tank);
     free(champion_dps);
     free(tableau_champion);
+    free(tableau_champion_cachee);
     free(ordre_attaque);
     free(ordre_attaque_ind);
 
@@ -336,6 +348,7 @@ do {
     free(equipe1.nom);
     free(equipe2.nom);
 
+    printf(GRIS"\nMémoire libérée avec succès\n"RESET);
 
     printf(GRIS"\nCode fini\n"RESET);
     return 0;

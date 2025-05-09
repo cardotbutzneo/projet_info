@@ -8,7 +8,7 @@ Donkey_kong // nom
 7 // vitesse
 0 // jauge actuelle
 2 // jauge max
-Bannane geante // attaque spe
+Bannane_geante // attaque spe
 tank // classe
-Inflige des degats a l'ennemie // description attaque spe
+Inflige_des_degats_a_l'ennemie // description attaque spe
 enattente // description du personnage

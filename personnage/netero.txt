@@ -8,7 +8,7 @@ Netero // nom
 10 // vitesse
 0 // jauge actuelle
 2 // jauge max
-Les 100 formes de Kanon // attaque spe
+Les_100_formes_de_Kanon // attaque spe
 soutien // classe
-Augmente la defense de l'equipe // description attaque spe
+Augmente_la_defense_de_l'equipe // description attaque spe
 enattente // description du personnage

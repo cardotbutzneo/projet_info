@@ -10,5 +10,5 @@ Among_us // nom
 1 // jauge max
 Meurtre // attaque spe
 dps // classe
-Diminue la defense de la cible // description attaque spe
+Diminue_la_defense_de_la_cible // description attaque spe
 enattente // description du personnage

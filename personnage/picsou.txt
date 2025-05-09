@@ -8,7 +8,7 @@ Picsou // nom
 7 // vitesse
 0 // jauge actuelle
 2 // jauge max
-Piscine de pieces // attaque spe
+Piscine_de_pieces // attaque spe
 soutien // classe
-Soigne et augmente la defense de l'equipe // description attaque spe
+Soigne_et_augmente_la_defense_de_l'equipe // description attaque spe
 enattente // description du personnage

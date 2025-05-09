@@ -6,82 +6,128 @@
 #include "attaquespe.h"
 #include "couleurs.h"
 
+void free_champion(Champion *champion) {
+    if (champion == NULL) {
+        return; // Si le pointeur est NULL, ne rien faire
+    }
+
+    // Libérer les champs dynamiquement alloués et réinitialiser les pointeurs à NULL
+    if (champion->nom) {
+        free(champion->nom);
+        champion->nom = NULL;
+    }
+
+    if (champion->classe) {
+        free(champion->classe);
+        champion->classe = NULL;
+    }
+
+    if (champion->attaque_spe) {
+        free(champion->attaque_spe);
+        champion->attaque_spe = NULL;
+    }
+
+    if (champion->effet_spe) {
+        free(champion->effet_spe);
+        champion->effet_spe = NULL;
+    }
+
+    if (champion->description) {
+        free(champion->description);
+        champion->description = NULL;
+    }
+
+    if (champion->description_attaque_spe) {
+        free(champion->description_attaque_spe);
+        champion->description_attaque_spe = NULL;
+    }
+}
 
 void initialisation_champion(FILE *fichier, Champion *champion) {
     printf(ROUGE_FONCE);
     if (!fichier || !champion){
         printf("erreur lors de l'allocation de la memoire\n");
+        free_champion(champion);
         exit(0);
     }
     int pv_max = 0, pv = 0, attaque = 0, defense = 0, agilite = 0, vitesse = 0, jauge_actuelle = 0, jauge_max = 0;
-    char nom[50], classe[50], attaque_spe[50], effet_spe[50],  description[100];
+    char nom[50], classe[50], attaque_spe[50], effet_spe[50],  description_attaquespe[100],description[100];
 
     // Lecture des stats dans le fichier du champion
     sauter_ligne(fichier);
     if (fscanf(fichier, "%s", nom) != 1) {
         printf("Erreur lors de la lecture du nom\n");
+        free_champion(champion);
         exit(1);
     }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%d", &pv) != 1) {
         printf("Erreur lors de la lecture des PV\n");
+        free_champion(champion);
         exit(1);
     }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%d", &pv_max) != 1) {
         printf("Erreur lors de la lecture des PV max\n");
+        free_champion(champion);
         exit(1);
     }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%d", &attaque) != 1) {
         printf("Erreur lors de la lecture de l'attaque\n");
+        free_champion(champion);
         exit(1);
     }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%d", &defense) != 1) {
         printf("Erreur lors de la lecture de la défense\n");
+        free_champion(champion);
         exit(1);
     }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%d", &agilite) != 1) {
         printf("Erreur lors de la lecture de l'agilité\n");
+        free_champion(champion);
         exit(1);
     }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%d", &vitesse) != 1) {
         printf("Erreur lors de la lecture de la vitesse\n");
+        free_champion(champion);
         exit(1);
     }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%d", &jauge_actuelle) != 1) {
         printf("Erreur lors de la lecture de la jauge\n");
+        free_champion(champion);
         exit(1);
     }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%d", &jauge_max) != 1) {
         printf("Erreur lors de la lecture de la jauge max\n");
+        free_champion(champion);
         exit(1);
     }
+   
     sauter_ligne(fichier);
     if (fscanf(fichier, "%s", attaque_spe) != 1) {
         printf("Erreur lors de la lecture de l'attaque speciale\n");
+        free_champion(champion);
         exit(1);
     }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%s", classe) != 1) {
         printf("Erreur lors de la lecture de la classe\n");
+        free_champion(champion);
         exit(1);
     }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%s", effet_spe) != 1) {
         printf("Erreur lors de la lecture de l'effet spécial\n");
+        free_champion(champion);
         exit(1);
     }
-    sauter_ligne(fichier);
-    if (fscanf(fichier, "%s", description) != 1) {
-        printf("Erreur lors de la lecture de la description\n"RESET);
-        exit(1);
-    }
+   
 
     // Mise à jour des stats du champion
     champion->pv_max = pv_max;
@@ -98,6 +144,7 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
     champion->nom = malloc(strlen(nom) + 1);
     if (champion->nom == NULL) {
         printf("Erreur d'allocation de memoire pour le nom\n");
+        free_champion(champion);
         exit(1);
     }
     strcpy(champion->nom, nom);
@@ -105,7 +152,7 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
     champion->classe = malloc(strlen(classe) + 1);
     if (champion->classe == NULL) {
         printf("Erreur d'allocation de memoire pour la classe\n");
-        free(champion->nom); // Libère la mémoire déjà allouée
+        free_champion(champion);
         exit(1);
     }
     strcpy(champion->classe, classe);
@@ -113,8 +160,7 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
     champion->attaque_spe = malloc(strlen(attaque_spe) + 1);
     if (champion->attaque_spe == NULL) {
         printf("Erreur d'allocation de mémoire pour l'attaque spéciale\n");
-        free(champion->nom);
-        free(champion->classe);
+        free_champion(champion);
         exit(1);
     }
     strcpy(champion->attaque_spe, attaque_spe);
@@ -122,9 +168,7 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
     champion->effet_spe = malloc(strlen(effet_spe) + 1);
     if (champion->effet_spe == NULL) {
         printf("Erreur d'allocation de mémoire pour l'effet spécial\n");
-        free(champion->nom);
-        free(champion->classe);
-        free(champion->attaque_spe);
+        free_champion(champion);
         exit(1);
     }
     strcpy(champion->effet_spe, effet_spe);
@@ -132,15 +176,17 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
     champion->description = malloc(strlen(description) + 1);
     if (champion->description == NULL) {
         printf("Erreur d'allocation de mémoire pour la description\n");
-        free(champion->nom);
-        free(champion->classe);
-        free(champion->attaque_spe);
-        free(champion->effet_spe);
-        free(champion->description_attaque_spe);
+        free_champion(champion);
         exit(1);
     }
     strcpy(champion->description, description);
     printf(RESET);
+    champion->description_attaque_spe = malloc(strlen(description_attaquespe) + 1);
+    if (champion->description_attaque_spe == NULL) {
+        printf("Erreur d'allocation de mémoire pour la description de l'attaque spéciale\n");
+        free_champion(champion);
+        exit(1);
+    }
 }
 
 int chaine_caractere_egales(char *chaine1, char *chaine2){
@@ -240,10 +286,19 @@ void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, C
 
 void copie_champion(Champion *source, Champion *destination) {
     printf(ROUGE_FONCE);
-    if (!source || !destination){
-        printf("erreur lors de l'allocation de la memoire\n");
+    if (!source || !destination) {
+        printf("Erreur : pointeur NULL passé à copie_champion\n");
         exit(0);
     }
+
+    // Initialiser les pointeurs de destination à NULL
+    destination->nom = NULL;
+    destination->classe = NULL;
+    destination->attaque_spe = NULL;
+    destination->effet_spe = NULL;
+    destination->description = NULL;
+    destination->description_attaque_spe = NULL;
+
     // Copier les champs simples
     destination->pv_max = source->pv_max;
     destination->stat.pv_courant = source->stat.pv_courant;
@@ -253,45 +308,63 @@ void copie_champion(Champion *source, Champion *destination) {
     destination->stat.vitesse = source->stat.vitesse;
     destination->stat.jauge_max = source->stat.jauge_max;
     destination->stat.jauge_actuelle = source->stat.jauge_actuelle;
-    destination->description_attaque_spe = source->description_attaque_spe;
-    destination->description = source->description;
 
     // Copier les chaînes de caractères avec allocation dynamique
-    destination->nom = malloc(strlen(source->nom) + 1);
-    if (destination->nom == NULL) {
-        printf("Erreur d'allocation memoire pour le nom\n");
-        exit(1);
+    if (source->nom != NULL) {
+        destination->nom = malloc(strlen(source->nom) + 1);
+        if (destination->nom == NULL) {
+            printf("Erreur d'allocation mémoire pour le nom\n");
+            exit(1);
+        }
+        strcpy(destination->nom, source->nom);
     }
-    strcpy(destination->nom, source->nom);
 
-    destination->classe = malloc(strlen(source->classe) + 1);
-    if (destination->classe == NULL) {
-        printf("Erreur d'allocation memoire pour la classe\n");
-        free(destination->nom);
-        exit(1);
+    if (source->classe != NULL) {
+        destination->classe = malloc(strlen(source->classe) + 1);
+        if (destination->classe == NULL) {
+            printf("Erreur d'allocation mémoire pour la classe\n");
+            exit(1);
+        }
+        strcpy(destination->classe, source->classe);
     }
-    strcpy(destination->classe, source->classe);
 
-    destination->attaque_spe = malloc(strlen(source->attaque_spe) + 1);
-    if (destination->attaque_spe == NULL) {
-        printf("Erreur d'allocation mémoire pour l'attaque spéciale\n");
-        free(destination->nom);
-        free(destination->classe);
-        exit(1);
+    if (source->attaque_spe != NULL) {
+        destination->attaque_spe = malloc(strlen(source->attaque_spe) + 1);
+        if (destination->attaque_spe == NULL) {
+            printf("Erreur d'allocation mémoire pour l'attaque spéciale\n");
+            exit(1);
+        }
+        strcpy(destination->attaque_spe, source->attaque_spe);
     }
-    strcpy(destination->attaque_spe, source->attaque_spe);
-/*
-    destination->effet_spe = malloc(strlen(source->effet_spe) + 1);
-    if (destination->effet_spe == NULL) {
-        printf("Erreur d'allocation mémoire pour l'effet spécial\n");
-        free(destination->nom);
-        free(destination->classe);
-        free(destination->attaque_spe);
-        exit(1);
+
+    if (source->effet_spe != NULL) {
+        destination->effet_spe = malloc(strlen(source->effet_spe) + 1);
+        if (destination->effet_spe == NULL) {
+            printf("Erreur d'allocation mémoire pour l'effet spécial\n");
+            exit(1);
+        }
+        strcpy(destination->effet_spe, source->effet_spe);
     }
-    strcpy(destination->effet_spe, effet_spe);
-*/
-printf(RESET);
+
+    if (source->description != NULL) {
+        destination->description = malloc(strlen(source->description) + 1);
+        if (destination->description == NULL) {
+            printf("Erreur d'allocation mémoire pour la description\n");
+            exit(1);
+        }
+        strcpy(destination->description, source->description);
+    }
+
+    if (source->description_attaque_spe != NULL) {
+        destination->description_attaque_spe = malloc(strlen(source->description_attaque_spe) + 1);
+        if (destination->description_attaque_spe == NULL) {
+            printf("Erreur d'allocation mémoire pour la description de l'attaque spéciale\n");
+            exit(1);
+        }
+        strcpy(destination->description_attaque_spe, source->description_attaque_spe);
+    }
+
+    printf(RESET);
 }
 
 int verif_number(int number[],int n){
@@ -312,7 +385,7 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
 
     if (choix == 2) {
         // Sélection pour l'équipe 1
-        printf(BLANC_FONCE"Equipe 1, choisissez vos champions\n"RESET);
+        printf(BLANC_FONCE"\nEquipe 1, choisissez vos champions\n"RESET);
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
             tempp = -1; // Initialisation à une valeur invalide
             do {
@@ -347,7 +420,7 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
         }
 
         // Sélection pour l'équipe 2
-        printf(BLANC_FONCE"Equipe 2, choisissez vos champions\n"RESET);
+        printf(BLANC_FONCE"\nEquipe 2, choisissez vos champions\n"RESET);
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
             tempp = -1; // Initialisation à une valeur invalide
             do {
@@ -382,7 +455,7 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
         }
     } else if (choix == 1) {
         // Sélection pour l'équipe 1
-        printf(BLANC_FONCE"Equipe 1, choisissez vos champions\n"RESET);
+        printf(BLANC_FONCE"\nEquipe 1, choisissez vos champions\n"RESET);
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
             tempp = -1; // Initialisation à une valeur invalide
             do {
@@ -454,34 +527,6 @@ int longueur_nom_max(Champion *champions, int taille) {
     return max_longueur;
 }
 
-void afficher_inventaire(Equipe equipe) {
-    printf("-----------------------\n");
-    printf("Affichage de l'inventaire\n\n");
-    for (int i = 0; i < Nb_objet_par_equipe; i++) {
-        if (equipe.objet[i].nom != NULL) {
-            printf("%s :\n", equipe.objet[i].nom);
-        } else {
-            printf("Nom de l'objet non défini, exit\n");
-            exit(0);
-        }
-        if (equipe.objet[i].effet != NULL) {
-            printf("%s :\n", equipe.objet[i].effet);
-        } else {
-            printf("Effet de l'objet non défini,exit\n");
-            exit(0);
-        }
-    }
-}
-
-void afficher_stats_Equipe(Equipe equipe){
-    afficher_equipe(equipe);
-    if (equipe.objet == NULL){
-        return;
-    }
-    else{
-        afficher_inventaire(equipe);
-    }
-}
 
 void saisie_utilisateur(Champion *champion, Equipe *equieAdverse, Equipe *equipe) { // demande à l'utilisateur les actions à faire
     if (!champion || !equieAdverse || !equieAdverse->nom || !champion->nom) {
@@ -500,9 +545,6 @@ void saisie_utilisateur(Champion *champion, Equipe *equieAdverse, Equipe *equipe
             break;
         case 2:
             attaqueSpecial(*champion, equieAdverse->perso, equipe->perso); // attaque spéciale
-            break;
-        case 3:
-            printf(GRIS"Fonction pas encore definie\n"RESET); // utiliser un objet
             break;
         default: // passer son tour
             printf(GRIS"%s passe son tour.\n"RESET, champion->nom);

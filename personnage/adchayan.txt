@@ -10,5 +10,5 @@ Adchayan // nom
 10 // jauge max
 Ding // attaque spe
 soutien // classe
-Diminue l'attaque de l'equipe adverse // description attaque spe
+Diminue_l'attaqu_ de_l'equipe_adverse // description attaque spe
 enattente // description du personnage

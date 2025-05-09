@@ -8,7 +8,7 @@ Invader // nom
 16 // vitesse
 0 // jauge actuelle
 2 // jauge max
-Bombe gravitationnelle // attaque spe
+Bombe_gravitationnelle // attaque spe
 dps // classe
-Reduis la vitesse de l'equipe adverse // description attaque spe
+Reduis_la_vitesse_de_l'equipe_adverse // description attaque spe
 enattente // description du personnage

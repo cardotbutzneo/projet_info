@@ -8,7 +8,7 @@ Tux // nom
 11 // vitesse
 0 // jauge actuelle
 2 // jauge max
-Free software // attaque spe
+Free_software // attaque spe
 soutien // classe
-augmente la vitesse et l'attaque de l'equipe // description attaque spe
+augmente_la_vitesse_et_l'attaque_de_l'equipe // description attaque spe
 enattente // description du personnage

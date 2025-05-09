@@ -10,5 +10,5 @@ Itachi // nom
 1 // jauge max
 Susano // attaque spe
 dps // classe
-Augmente l'attaque et la defense du champion // description attaque spe
+Augmente_l'attaque_et_la_defense_du_champion // description attaque spe
 enattente // description du personnage

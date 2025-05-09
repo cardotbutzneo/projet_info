@@ -10,5 +10,5 @@ Jay // nom
 1 // jauge max
 Spinjitzu // attaque spe
 dps // classe
-Augmente l'attaque // description attaque spe
+Augmente_l'attaque // description attaque spe
 enattente // description du personnage

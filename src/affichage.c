@@ -138,7 +138,7 @@ void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
     int espacement = 12;
 
     printf("%-*s%*s\n", largeur_nom + espacement, equipe1.nom, largeur_nom + espacement, equipe2.nom);
-    printf("%-*s%-*s%-*s%*s%-*s%-*s\n", largeur_nom, "Nom", 10, "Classe", 10, "PV", espacement, " ", largeur_nom, "Nom", 10, "Classe", 10, "PV",10);
+    printf("%-*s%-*s%-*s%*s%-*s%-*s%-*s\n", largeur_nom, "Nom", 10, "Classe", 10, "PV", espacement, " ", largeur_nom, "Nom", 10, "Classe", 10, "PV",10);
 
     for (int i = 0; i < Nb_champion_par_equipe; i++) {
         if (equipe1.perso[i].nom != NULL) {
@@ -219,14 +219,13 @@ int affichage_saisie_utilisateur(Champion champion) {
     else if (champion.stat.pv_courant > 0){
         printf("\n\n");
         printf(BLANC_FONCE"Que voulez-vous faire avec %s ?\n"RESET, champion.nom);
-            if (champion.stat.jauge_actuelle >= champion.stat.jauge_max){
-            printf(JAUNE_CLAIR"l'attaque speciale est rechargee >:)\n"RESET);
-            }
+        if (champion.stat.jauge_actuelle >= champion.stat.jauge_max){
+        printf(JAUNE_CLAIR"l'attaque speciale est rechargee >:)\n"RESET);
+        }
         printf(BLANC_FONCE"1. Attaque simple\n");
         printf("2. Utiliser une technique speciale\n");
-        printf("3. utiliser un objet\n");
+        printf("3. afficher le personnage\n");
         printf("4. passer son tour\n"RESET);
-
         int choix = -1;
         do {
             printf(BLANC"\nEntrez votre choix (1-4) : "RESET);
@@ -240,7 +239,13 @@ int affichage_saisie_utilisateur(Champion champion) {
                 printf("rechargement dans %d tours\n"RESET, champion.stat.jauge_max - champion.stat.jauge_actuelle);
                 choix = -1;
             }
-            
+            else if (choix == 3) {
+                afficher_attaque_speciale(&champion);
+                choix = -1; // Réinitialise le choix pour rester dans la boucle
+            } 
+            else if (choix == 4) {
+                printf(GRIS"%s passe son tour.\n"RESET, champion.nom);
+            }
             else if (choix < 1 || choix > 3) {
                 printf(GRIS"Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n"RESET);
             }
@@ -250,14 +255,16 @@ int affichage_saisie_utilisateur(Champion champion) {
     }
 }
 
-void afficher_attaque_speciale(Champion *champion, Champion *cible) {
-    if (champion == NULL || cible == NULL) {
+void afficher_attaque_speciale(Champion *champion) {
+    if (champion == NULL) {
         printf(ROUGE_FONCE"Erreur : pointeur NULL dans afficher_attaque_speciale\n"RESET);
         return;
     }
-    printf(MAGENTA);
+    printf(CYAN);
     printf("attaque speciale de %s\n", champion->nom);
-    printf("description de l'attaque speciale: %s\n", champion->description_attaque_spe);
+    printf("nom de l'attaque speciale : %s\n", champion->attaque_spe);
+    //printf("description de l'attaque speciale: %s\n", champion->description_attaque_spe);
     printf("effet de l'attaque speciale: %s\n", champion->effet_spe);
+    printf("duree de l'effet: %d tours\n", champion->stat.jauge_max);
     printf(RESET);
 }

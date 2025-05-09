@@ -8,7 +8,7 @@ Pierre_Chartier // nom
 8 // vitesse
 0 // jauge actuelle
 2 // jauge max
-P&L positif // attaque spe
+P&L_positif // attaque spe
 tank // classe
-Inflige des degats a la cible // description attaque spe
+Inflige_des_degats_a_la_cible // description attaque spe
 enattente // description du personnage

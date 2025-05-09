@@ -15,7 +15,6 @@ int comparer_par_classe(const void *a, const void *b);
 void trier_par_vitesse(Champion *ordre_attaque_ind, Equipe *equipe1, Equipe *equipe2);
 int longueur_nom_max(Champion *champions, int taille);
 void vider_buffer_scanf();
-void afficher_inventaire(Equipe equipe);
-void afficher_stats_Equipe(Equipe equipe);
 int est_en_vie(Champion champion);
+void free_champion(Champion *champion);
 #endif // FONCTION_H

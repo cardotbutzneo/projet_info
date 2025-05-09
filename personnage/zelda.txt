@@ -10,5 +10,5 @@ Zelda // nom
 1 // jauge max
 Triforce // attaque spe
 soutien // classe
-Soigne augmente la defense et la vitesse d'un allie // description attaque spe
+Soigne_augmente_la_defense_et_la_vitesse_d'un_allie // description attaque spe
 enattente // description du personnage

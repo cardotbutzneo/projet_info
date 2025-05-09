@@ -11,7 +11,7 @@
 #define Nb_champion 18
 #define Nb_champion_cachee 3
 #define Nb_champion_par_equipe 3
-#define Nb_tour 10
+#define Nb_tour 20
 #define Nb_objet_par_equipe 2 // valeur modifiable
 #define time_sleep 1000 // s ou ms
 
