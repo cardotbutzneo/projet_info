@@ -4,6 +4,8 @@
 #include "attaque.h"
 #include "IA.h"
 #include "tuto.h"
+#include "couleurs.h"
+
 
 int main() {
     srand(time(NULL));
@@ -21,7 +23,7 @@ int main() {
     Champion *ordre_attaque_ind = malloc(sizeof(Champion) * Nb_champion_par_equipe * 2);
 
     if (!tableau_champion || !champion_soutien || !champion_tank || !champion_dps || !ordre_attaque || !ordre_attaque_ind || !tableau_champion_cachee) {
-        printf("Erreur d'allocation mémoire\n");
+        printf(ROUGE_FONCE "Erreur d'allocation mémoire\n" RESET);
         exit(0);
     }
 
@@ -35,7 +37,7 @@ int main() {
         snprintf(chemin_acces, sizeof(chemin_acces), "%s%s", base_chemin, tableau_nom_personnage[i]);
         fichier = fopen(chemin_acces, "r+");
         if (fichier == NULL) {
-            printf("Erreur d'ouverture du fichier : %s\n", chemin_acces);
+            printf(ROUGE_FONCE "Erreur d'ouverture du fichier : %s\n" RESET, chemin_acces);
             exit(0);
         }
         initialisation_champion(fichier, tableau_champion + i);
@@ -47,7 +49,7 @@ int main() {
         snprintf(chemin_acces, sizeof(chemin_acces), "%s%s",base_chemin, personnage_cachee[i]);
         fichier = fopen(chemin_acces, "r+");
         if (fichier == NULL){
-            printf("Erreur d'ouverture du fichier : %s\n", chemin_acces);
+            printf(ROUGE_FONCE "Erreur d'ouverture du fichier : %s\n" RESET, chemin_acces);
             exit(0);
         }
         initialisation_champion(fichier,tableau_champion_cachee+i);
@@ -84,15 +86,17 @@ do {
     affichage_initial();
     int v = -1;
     do {
-        printf("Combien de joueur : \n");
-        printf("1 pour PvE, 2 pour PvP\n");
+        printf(BLEU"=============================\n");
+        printf("          Mode de jeu\n");
+        printf("=============================\n\n");
+        printf("    1 pour PvE, 2 pour PvP\n"RESET);
         v= scanf("%d", &choix_nb_joueur);
         if (v != 1){
             vider_buffer_scanf();
             v = -1;
         }
         if (choix_nb_joueur <= 0 || choix_nb_joueur > 2){
-            printf("entree invalide !\n");
+            printf(ROUGE"entree invalide !\n"RESET);
             vider_buffer_scanf();
             v = -1;
         }
@@ -106,11 +110,11 @@ do {
     int verif;
     equipe1.nom = malloc(sizeof(char) * 20);
     if (equipe1.nom == NULL) {
-        printf("erreur allocation de memoire\n");
+        printf(ROUGE_FONCE"erreur allocation de memoire\n"RESET);
     }
     equipe2.nom = malloc(sizeof(char) * 20);
     if (equipe2.nom == NULL) {
-        printf("erreur allocation de memoire\n");
+        printf(ROUGE_FONCE"erreur allocation de memoire\n"RESET);
     }
 
     if (choix_nb_joueur == 2) {
@@ -119,7 +123,7 @@ do {
             verif = scanf("%20s", equipe1.nom);
         
             if (verif != 1) {
-                printf("Entrée invalide, réessayez.\n");
+                printf(ROUGE"Entrée invalide, réessayez.\n"RESET);
                 verif = -1;
             }
         
@@ -130,7 +134,7 @@ do {
         
         verif = -1;
         do{
-            printf("saisir un nom du joueur 2 : (20 caracteres maximum , sinon votre nom sera tronqué)\n");
+            printf("Saisir un nom du joueur 2 : (20 caracteres maximum , sinon votre nom sera tronqué)\n");
             
             verif = scanf("%20s", equipe2.nom);
         
@@ -154,7 +158,7 @@ do {
             verif = scanf("%20s", equipe1.nom);
         
             if (verif != 1) {
-                printf("Entrée invalide, réessayez.\n");
+                printf(ROUGE"Entrée invalide, réessayez.\n"RESET);
                 verif = -1;
             }
         
@@ -165,7 +169,7 @@ do {
         
         equipe2.nom = *(nom_IA + rand() % 8);
         if (equipe2.nom == NULL){
-            printf("erreur lors de l'alocation de la memoire pour le nom de l'IA\n");
+            printf(ROUGE_FONCE"erreur lors de l'allocation de la memoire pour le nom de l'IA\n"RESET);
             exit(0);
         }
     }
@@ -192,14 +196,14 @@ do {
     // Main game loop
     int finJeu = 0;
     separation_des_partie();
-    for (int i = 0; i < Nb_tour || finJeu == 1; i++) {
+    for (int i = 0; i < Nb_tour && finJeu != 1; i++) {
         printf("tour %d : \n", i + 1);
 
         for (int k = 0; k < Nb_champion_par_equipe * 2; k++) {
             afficher_equipes_cote_a_cote(equipe1,equipe2);
             Champion *champion_intermediaire = ordre_attaque_ind+k; // Récupérer directement le pointeur
             if (!champion_intermediaire) {
-                printf("Erreur lors de l'allocation de la mémoire\n");
+                printf(ROUGE_FONCE"Erreur lors de l'allocation de la mémoire\n"RESET);
                 exit(0);
             }
 
@@ -212,7 +216,7 @@ do {
             // Identifier l'équipe du personnage
             int equipe = champion_intermediaire->equipe;
             if (equipe != 1 && equipe != 2) {
-                printf("Erreur : le champion n'appartient à aucune équipe\n");
+                printf(ROUGE"Erreur : le champion n'appartient à aucune équipe\n"RESET);
                 exit(1);
             }
 
@@ -272,7 +276,7 @@ do {
             pause_ms(time_sleep);
         }
 
-        printf("Réparation des décors\n");
+        printf(GRIS"Réparation des décors\n"RESET);
         for (int i = 0; i < 5; i++) {
             pause_ms(time_sleep);
             printf(".");
@@ -283,7 +287,7 @@ do {
     }
 
     //note();
-    printf("libération de la mémoire\n");
+    printf(GRIS"libération de la mémoire\n"RESET);
 
     // Libération des champs alloués dynamiquement dans les tableaux de Champion
     for (int i = 0; i < Nb_champion; i++) {
@@ -306,7 +310,6 @@ do {
     free(equipe2.nom);
 
 
-    printf("\nCode fini\n");
+    printf(GRIS"\nCode fini\n"RESET);
     return 0;
 }
-

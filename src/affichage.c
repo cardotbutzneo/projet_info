@@ -215,8 +215,8 @@ int affichage_saisie_utilisateur(Champion champion) {
         printf("\n\n");
         printf("Que voulez-vous faire avec %s ?\n", champion.nom);
             if (champion.stat.jauge_actuelle >= champion.stat.jauge_max){
-            printf("l'attaque speciale est rechargee\n");;
-    }
+            printf("l'attaque speciale est rechargee\n");
+            }
         printf("1. Attaque simple\n");
         printf("2. Utiliser une technique speciale\n");
         printf("3. utiliser un objet\n");
