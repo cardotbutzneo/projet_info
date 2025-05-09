@@ -34,7 +34,7 @@ void vitesse(Champion *ordreAttaque, Champion *tableau_initial) { // Tri les cha
 
 int nbTank(Champion Equipe[]) {
     if (!Equipe) {
-        printf("Erreur lors de l'allocation de la mémoire\n");
+        printf(ROUGE_FONCE"Erreur lors de l'allocation de la mémoire\n"RESET);
         exit(0);
     }
     int nombre = 0;
@@ -49,7 +49,7 @@ int nbTank(Champion Equipe[]) {
 
 int cibleAttaque(Champion Equipe[]) {
     if (!Equipe) {
-        printf("Erreur lors de l'allocation de la mémoire\n");
+        printf(ROUGE_FONCE"Erreur lors de l'allocation de la mémoire\n"RESET);
         exit(0);
     }
 
@@ -96,7 +96,7 @@ float degat(Champion personnage){//calcule les degats
 
 void attaquesimple (Champion *personnage, Champion equipeAdverse[]){//actualiser la vie des personnage apres une attaque classique
     if (!personnage || !equipeAdverse){
-        printf("erreur d'alocation de memoire");
+        printf("erreur d'allocation de memoire");
         exit(0);
     }
     int precision=0;
@@ -107,21 +107,19 @@ void attaquesimple (Champion *personnage, Champion equipeAdverse[]){//actualiser
     }
     if (precision>equipeAdverse[cible].stat.agilite){//si l'attaque touche actualise les pv en prenant en compte la defense
         if (equipeAdverse[cible].stat.defense == 0){
-            printf("division par 0 dans attaquesimple\n");
+            printf(GRIS"division par 0 dans attaquesimple\n"RESET);
             exit(2);
         }
         equipeAdverse[cible].stat.pv_courant-=(degat(*personnage)-(equipeAdverse[cible].stat.defense)/100);
         if (equipeAdverse[cible].stat.pv_courant <=1){
             equipeAdverse[cible].stat.pv_courant = 0;
         }
-        printf("%s attaque : \n",personnage->nom);
+        printf(ROUGE"%s attaque >:)\n" RESET,personnage->nom);
         afficher_degat_recu(equipeAdverse[cible],*personnage,0);
-        printf("test\n");
+        printf(JAUNE"test\n"RESET);
     }
     else{
-        printf("%s esquive\n",equipeAdverse[cible].nom);
-        printf("Attaque ratée\n");
+        printf(CYAN "%s esquive\n" RESET,equipeAdverse[cible].nom);
+        printf("Attaque ratée :p\n");
     }
 }
-
-
