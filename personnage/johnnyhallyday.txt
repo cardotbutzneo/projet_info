@@ -6,8 +6,8 @@ Johnny_Hallyday // nom
 33 // defense
 7 // agilite
 6 // vitesse
-10 // jauge actuelle
-10 // jauge max
+0 // jauge actuelle
+2 // jauge max
 Allumez le feu// attaque spe
 tank // classe
 Inflige des degats à toutes l'equipe adverse // description attaque spe
