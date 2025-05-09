@@ -51,5 +51,20 @@ void afficher_tuto(){
         printf("\n\n");
     }
 
+}
 
+void note() {
+    printf("\n========================================\n");
+    printf("Avez-vous aimé le jeu ? (/10)\n");
+    printf("========================================\n");
+
+    int note;
+    do {
+        scanf("%d", &note);
+        vider_buffer_scanf();
+    } while (note < 0 || note > 10);
+
+    if (note >= 8) {
+        printf("Merci beaucoup !\n");
+    }
 }
