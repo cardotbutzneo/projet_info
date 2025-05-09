@@ -6,8 +6,8 @@ Golem_de_fer // nom
 35 // defense
 1 // agilite
 3 // vitesse
-10 // jauge actuelle
-10 // jauge max
+0 // jauge actuelle
+2 // jauge max
 Double uppercut // attaque spe
 tank // classe
 Inflige plus du double de degat // description attaque spe
