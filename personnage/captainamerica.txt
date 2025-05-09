@@ -6,8 +6,8 @@ Captain_America // nom
 35 // defense
 6 // agilite
 4 // vitesse
-10 // jauge actuelle
-10 // jauge max
+0 // jauge actuelle
+1 // jauge max
 Bouclier // attaque spe
 tank // classe
 Augmente la defense du champion // description attaque spe
