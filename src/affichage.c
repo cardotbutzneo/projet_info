@@ -230,7 +230,7 @@ int affichage_saisie_utilisateur(Champion champion) {
                 vider_buffer_scanf(); // Vide le buffer d'entrée
                 choix = -1; // Réinitialise le choix pour rester dans la boucle
             } 
-            if (champion.stat.jauge_actuelle < champion.stat.jauge_max){
+            if (champion.stat.jauge_actuelle < champion.stat.jauge_max && choix==2){
                 printf("L'attaque spéciale n'est pas encore rechargee\n");
                 choix = -1;
             }
