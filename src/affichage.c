@@ -45,10 +45,10 @@ void affichage_initial() {
     printf("Chargement du jeu...\n");
     for (int k=0; k<3; k++){
         printf(".");
-        pause_ms(time_sleep);;
+        pause_ms(time_sleep);
     }
     printf("\n");
-    pause_ms(time_sleep);;
+    pause_ms(time_sleep);
 
     for (int i = 0; i < buffer; i++) {
         // sleep(val_systemeOS); // Décommentez pour activer les temps d'attente
@@ -57,7 +57,7 @@ void affichage_initial() {
 
     printf("\nChargement termine\n");
     printf("Bienvenue dans MultiverSeus\n");
-    pause_ms(time_sleep);;
+    pause_ms(time_sleep);
 }
 
 // Affiche la classe d'un champion
@@ -173,7 +173,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
         index++;
     }
     printf("\n");
-    pause_ms(time_sleep);;
+    pause_ms(time_sleep);
 
     printf("Les champions de classe ROUGE dps RESET sont : \n");
     for (int i = 0; i < dps_count; i++) {
@@ -181,7 +181,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
         index++;
     }
     printf("\n");
-    pause_ms(time_sleep);;
+    pause_ms(time_sleep);
 
     printf("Les champions de classe VERT soutien RESET sont : \n");
     for (int i = 0; i < soutien_count; i++) {

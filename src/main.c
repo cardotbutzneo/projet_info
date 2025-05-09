@@ -269,12 +269,12 @@ do {
                 finJeu = 1;
                 break;
             }
-            pause_ms(time_sleep);;
+            pause_ms(time_sleep);
         }
 
         printf("Réparation des décors\n");
         for (int i = 0; i < 5; i++) {
-            pause_ms(time_sleep);;
+            pause_ms(time_sleep);
             printf(".");
         }
         separation_des_partie();
