@@ -528,6 +528,6 @@ int est_en_vie(Champion champion){
 #else
         #include <unistd.h>
         void pause_ms(int milliseconds){
-            usleep(milliseconds / 1000); // Convertit les millisecondes en secondes
+            usleep(milliseconds * 1000); // Convertit les millisecondes en secondes
         }   
 #endif
