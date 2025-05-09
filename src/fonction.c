@@ -4,11 +4,13 @@
 #include "IA.h"
 #include "attaque.h"
 #include "attaquespe.h"
+#include "couleurs.h"
 
 
 void initialisation_champion(FILE *fichier, Champion *champion) {
+    printf(ROUGE_FONCE);
     if (!fichier || !champion){
-        printf("erreur lors de l'alocation de la memoire\n");
+        printf("erreur lors de l'allocation de la memoire\n");
         exit(0);
     }
     int pv_max = 0, pv = 0, attaque = 0, defense = 0, agilite = 0, vitesse = 0, jauge_actuelle = 0, jauge_max = 0;
@@ -62,7 +64,7 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
     }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%s", attaque_spe) != 1) {
-        printf("Erreur lors de la lecture de l'attaque spéciale\n");
+        printf("Erreur lors de la lecture de l'attaque speciale\n");
         exit(1);
     }
     sauter_ligne(fichier);
@@ -77,7 +79,7 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
     }
     sauter_ligne(fichier);
     if (fscanf(fichier, "%s", description) != 1) {
-        printf("Erreur lors de la lecture de la description\n");
+        printf("Erreur lors de la lecture de la description\n"RESET);
         exit(1);
     }
 
@@ -95,14 +97,14 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
     // Allocation dynamique et copie des chaînes de caractères
     champion->nom = malloc(strlen(nom) + 1);
     if (champion->nom == NULL) {
-        printf("Erreur d'allocation de mémoire pour le nom\n");
+        printf("Erreur d'allocation de memoire pour le nom\n");
         exit(1);
     }
     strcpy(champion->nom, nom);
 
     champion->classe = malloc(strlen(classe) + 1);
     if (champion->classe == NULL) {
-        printf("Erreur d'allocation de mémoire pour la classe\n");
+        printf("Erreur d'allocation de memoire pour la classe\n");
         free(champion->nom); // Libère la mémoire déjà allouée
         exit(1);
     }
@@ -138,6 +140,7 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
         exit(1);
     }
     strcpy(champion->description, description);
+    printf(RESET);
 }
 
 int chaine_caractere_egales(char *chaine1, char *chaine2){
@@ -157,7 +160,7 @@ int chaine_caractere_egales(char *chaine1, char *chaine2){
 
 int trie (Champion *champion){
     if (!champion || !champion->nom){
-        printf("erreur lors de l'alocation de la memoire\n");
+        printf(ROUGE_FONCE"erreur lors de l'alocation de la memoire\n");
         exit(0);
     }
     if (chaine_caractere_egales(champion->classe,"enattente") == 0){
@@ -177,12 +180,13 @@ int trie (Champion *champion){
         printf("erreur inconnue\n");
         return -1;
     }
+    printf("RESET");
 }
 
 
 int ordre_classe(const char *classe) {
     if (!classe){
-        printf("erreur lors de l'alocation de la memoire\n");
+        printf(ROUGE_FONCE"erreur lors de l'alocation de la memoire\n"RESET);
         exit(0);
     }
     if (strcmp(classe, "tank") == 0) return 1;
@@ -193,7 +197,7 @@ int ordre_classe(const char *classe) {
 
 int comparer_par_classe(const void *a, const void *b) {
     if (!a || !b){
-        printf("erreur lors de l'alocation de la memoire\n");
+        printf(ROUGE_FONCE"erreur lors de l'allocation de la memoire\n"RESET);
         exit(0);
     }
     Champion *champion1 = (Champion *)a;
@@ -207,7 +211,7 @@ int comparer_par_classe(const void *a, const void *b) {
 
 void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, Champion *tab_dps, int *soutien_count, int *tank_count, int *dps_count, Champion *temp) {
     if(!tab ||!tab_soutien || !tab_tank || !tab_dps || !soutien_count ||!tank_count || !dps_count  || !temp){
-        printf("erreur lors de l'alocation de la memoire\n");
+        printf(ROUGE_FONCE"erreur lors de l'allocation de la memoire\n"RESET);
         exit(0);
     } 
     memcpy(temp, tab, sizeof(Champion) * Nb_champion); // Copier les données dans un tableau temporaire
@@ -235,8 +239,9 @@ void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, C
 }
 
 void copie_champion(Champion *source, Champion *destination) {
+    printf(ROUGE_FONCE);
     if (!source || !destination){
-        printf("erreur lors de l'alocation de la memoire\n");
+        printf("erreur lors de l'allocation de la memoire\n");
         exit(0);
     }
     // Copier les champs simples
@@ -254,14 +259,14 @@ void copie_champion(Champion *source, Champion *destination) {
     // Copier les chaînes de caractères avec allocation dynamique
     destination->nom = malloc(strlen(source->nom) + 1);
     if (destination->nom == NULL) {
-        printf("Erreur d'allocation mémoire pour le nom\n");
+        printf("Erreur d'allocation memoire pour le nom\n");
         exit(1);
     }
     strcpy(destination->nom, source->nom);
 
     destination->classe = malloc(strlen(source->classe) + 1);
     if (destination->classe == NULL) {
-        printf("Erreur d'allocation mémoire pour la classe\n");
+        printf("Erreur d'allocation memoire pour la classe\n");
         free(destination->nom);
         exit(1);
     }
@@ -286,6 +291,7 @@ void copie_champion(Champion *source, Champion *destination) {
     }
     strcpy(destination->effet_spe, effet_spe);
 */
+printf(RESET);
 }
 
 int verif_number(int number[],int n){
@@ -297,7 +303,7 @@ int verif_number(int number[],int n){
 
 void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equipe2, int choix, Champion *tableau_champion_cachee) {
     if (!tableau_champion || !tableau_champion_cachee || !equipe1 || !equipe2 || !equipe1->nom || !equipe2->nom) {
-        printf("Erreur lors de l'allocation de la mémoire\n");
+        printf(ROUGE_FONCE"Erreur lors de l'allocation de la mémoire\n"RESET);
         exit(0);
     }
 
@@ -306,20 +312,20 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
 
     if (choix == 2) {
         // Sélection pour l'équipe 1
-        printf("Equipe 1, choisissez vos champions\n");
+        printf(BLANC_FONCE"Equipe 1, choisissez vos champions\n"RESET);
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
             tempp = -1; // Initialisation à une valeur invalide
             do {
-                printf("Champion %d : ", i + 1);
+                printf(BLANC_FONCE"Champion %d : "RESET, i + 1);
                 if (scanf("%d", &tempp) != 1) {
-                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    printf(GRIS"Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n"RESET);
                     vider_buffer_scanf(); // Vide le buffer d'entrée
                     tempp = -1; // Réinitialise tempp pour rester dans la boucle
                 } else if ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102)) {
-                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    printf(ROUGE_FONCE"Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n"RESET);
                     tempp = -1;
                 } else if (verif_number(rep, tempp)) { // Vérifie si le numéro est déjà choisi
-                    printf("Ce champion est déjà choisi. Veuillez en choisir un autre.\n");
+                    printf(ROUGE_FONCE"Ce champion est déjà choisi. Veuillez en choisir un autre.\n"RESET);
                     tempp = -1;
                 }
             } while (tempp == -1);
@@ -336,25 +342,25 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
                 copie_champion(&tableau_champion_cachee[tempp - 100], &equipe1->perso[i]);
                 equipe1->perso[i].equipe = 1;
                 equipe1->perso[i].index = i;
-                printf("Bravo ! Vous avez trouvé un champion caché\n");
+                printf(VERT"Bravo ! Vous avez trouvé un champion caché :D\n");
             }
         }
 
         // Sélection pour l'équipe 2
-        printf("Equipe 2, choisissez vos champions\n");
+        printf(BLANC_FONCE"Equipe 2, choisissez vos champions\n"RESET);
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
             tempp = -1; // Initialisation à une valeur invalide
             do {
-                printf("Champion %d : ", i + 1);
+                printf(BLANC_FONCE"Champion %d : "RESET, i + 1);
                 if (scanf("%d", &tempp) != 1) {
-                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    printf(GRIS"Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n"RESET);
                     vider_buffer_scanf(); // Vide le buffer d'entrée
                     tempp = -1; // Réinitialise tempp pour rester dans la boucle
                 } else if ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102)) {
-                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    printf(GRIS"Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n"RESET);
                     tempp = -1;
                 } else if (verif_number(rep, tempp)) { // Vérifie si le numéro est déjà choisi
-                    printf("Ce champion est déjà choisi. Veuillez en choisir un autre.\n");
+                    printf(GRIS"Ce champion est déjà choisi. Veuillez en choisir un autre.\n"RESET);
                     tempp = -1;
                 }
             } while (tempp == -1);
@@ -371,25 +377,25 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
                 copie_champion(&tableau_champion_cachee[tempp - 100], &equipe2->perso[i]);
                 equipe2->perso[i].equipe = 2;
                 equipe2->perso[i].index = i;
-                printf("Bravo ! Vous avez trouvé un champion caché\n");
+                printf(VERT"Bravo ! Vous avez trouvé un champion caché :D\n"RESET);
             }
         }
     } else if (choix == 1) {
         // Sélection pour l'équipe 1
-        printf("Equipe 1, choisissez vos champions\n");
+        printf(BLANC_FONCE"Equipe 1, choisissez vos champions\n"RESET);
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
             tempp = -1; // Initialisation à une valeur invalide
             do {
-                printf("Champion %d : ", i + 1);
+                printf(BLANC_FONCE"Champion %d : "RESET, i + 1);
                 if (scanf("%d", &tempp) != 1) {
-                    printf("Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    printf(GRIS"Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n"RESET);
                     vider_buffer_scanf(); // Vide le buffer d'entrée
                     tempp = -1; // Réinitialise tempp pour rester dans la boucle
                 } else if ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102)) {
-                    printf("Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n");
+                    printf(GRIS"Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n"RESET);
                     tempp = -1;
                 } else if (verif_number(rep, tempp)) { // Vérifie si le numéro est déjà choisi
-                    printf("Ce champion est déjà choisi. Veuillez en choisir un autre.\n");
+                    printf(GRIS"Ce champion est déjà choisi. Veuillez en choisir un autre.\n"RESET);
                     tempp = -1;
                 }
             } while (tempp == -1);
@@ -406,7 +412,7 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
                 copie_champion(&tableau_champion_cachee[tempp - 100], &equipe1->perso[i]);
                 equipe1->perso[i].equipe = 1;
                 equipe1->perso[i].index = i;
-                printf("Bravo ! Vous avez trouvé un champion caché\n");
+                printf(VERT"Bravo ! Vous avez trouvé un champion caché\n"RESET);
             }
         }
 
@@ -417,7 +423,7 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
 
 void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2, int rep[]){
     if (!tableau_champion || !equipe2 ||! equipe2->nom){
-        printf("erreur lors de l'alocation de la memoire\n");
+        printf(ROUGE_FONCE"erreur lors de l'allocation de la memoire\n"RESET);
         exit(0);
     } 
     for (int i=0;i<Nb_champion_par_equipe;i++){
@@ -433,7 +439,7 @@ void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2, int rep[]){
 
 int longueur_nom_max(Champion *champions, int taille) {
     if (!champions || !champions->nom){
-        printf("erreur lors de l'alocation de la memoire\n");
+        printf(ROUGE_FONCE"erreur lors de l'allocation de la memoire\n"RESET);
         exit(0);
     }
     int max_longueur = 0;
@@ -479,13 +485,13 @@ void afficher_stats_Equipe(Equipe equipe){
 
 void saisie_utilisateur(Champion *champion, Equipe *equieAdverse, Equipe *equipe) { // demande à l'utilisateur les actions à faire
     if (!champion || !equieAdverse || !equieAdverse->nom || !champion->nom) {
-        printf("Erreur lors de l'allocation de la mémoire\n");
+        printf(ROUGE_FONCE"Erreur lors de l'allocation de la mémoire\n"RESET);
         exit(0);
     }
 
     // Vérification des PV du champion
     if (champion->stat.pv_courant <= 0) {
-        printf("Le champion %s est KO et ne peut pas agir.\n", champion->nom);
+        printf(ROUGE_FONCE"Le champion %s est KO et ne peut pas agir.\n"RESET, champion->nom);
         return; // Sort de la fonction sans effectuer d'action
     }
     switch (affichage_saisie_utilisateur(*champion)) {
@@ -496,10 +502,10 @@ void saisie_utilisateur(Champion *champion, Equipe *equieAdverse, Equipe *equipe
             attaqueSpecial(*champion, equieAdverse->perso, equipe->perso); // attaque spéciale
             break;
         case 3:
-            printf("Fonction pas encore definie\n"); // utiliser un objet
+            printf(GRIS"Fonction pas encore definie\n"RESET); // utiliser un objet
             break;
         default: // passer son tour
-            printf("%s passe son tour.\n", champion->nom);
+            printf(GRIS"%s passe son tour.\n"RESET, champion->nom);
             break;
     }
 }
@@ -542,10 +548,10 @@ int est_en_vie(Champion champion){
         return 0; // faux
     }
     if (champion.stat.pv_courant > 0 && champion.stat.pv_courant <= champion.pv_max){
-        return 1; // vraix
+        return 1; // vrai
     }
     else{
-        printf("erreur de PV dans est_en_vie\n");
+        printf(ROUGE_FONCE"erreur de PV dans est_en_vie\n"RESET);
         exit(-1);
     }
 }
