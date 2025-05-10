@@ -35,7 +35,7 @@ void afficher_tuto(){
         pause_ms(time_sleep);
         printf("Le but du jeu est de choisir une equipe de champions et de les faire combattre contre une autre equipe de champions !\n\n");
         pause_ms(time_sleep);
-        printf("Chaque champion a des statistiques et des attaques speciaux qui lui sont propres !\n\n");
+        printf("Chaque champion a des statistiques et des attaques speciales qui lui sont propres !\n\n");
         pause_ms(time_sleep);
         printf("Il existe trois classes de champions :\n\n");
         pause_ms(time_sleep);
