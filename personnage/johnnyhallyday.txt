@@ -8,7 +8,7 @@ Johnny_Hallyday // nom
 6 // vitesse
 0 // jauge actuelle
 2 // jauge max
-Allumez_le_feu// attaque spe
+Allumez_le_feu // attaque spe
 tank // classe
 Inflige_des_degats_à_toutes_l'equipe_adverse // description attaque spe
 enattente // description du personnage

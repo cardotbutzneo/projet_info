@@ -501,9 +501,9 @@ void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2, int rep[]){
     } 
     for (int i=0;i<Nb_champion_par_equipe;i++){
         int x = rand()%17+1;
-        while (verif_number(rep,x) == 1){
+        do{
             x = rand()%17+1;
-        }
+        }while(verif_number(rep, x));
         copie_champion((tableau_champion+x), &equipe2->perso[i]);  // choix des champions aléatoirement
         equipe2->perso[i].equipe = 2; // Assigner l'équipe 2 au champion
         equipe2->perso[i].index = i+2;
@@ -544,7 +544,10 @@ void saisie_utilisateur(Champion *champion, Equipe *equieAdverse, Equipe *equipe
             attaquesimple(champion, equieAdverse->perso); // attaque simple
             break;
         case 2:
+            printf("jauge actuelle %d",champion->stat.jauge_actuelle);
             attaqueSpecial(*champion, equieAdverse->perso, equipe->perso); // attaque spéciale
+            champion->stat.jauge_actuelle = 0; // rénitialiser la jauge apres utilisation
+            printf("jauge actuelle %d",champion->stat.jauge_actuelle);
             break;
         default: // passer son tour
             printf(GRIS"%s passe son tour.\n"RESET, champion->nom);

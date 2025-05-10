@@ -226,6 +226,7 @@ int affichage_saisie_utilisateur(Champion champion) {
         printf("2. Utiliser une technique speciale\n");
         printf("3. afficher le personnage\n");
         printf("4. passer son tour\n"RESET);
+        printf("jauge actuelle %d",champion.stat.jauge_actuelle);
         int choix = -1;
         do {
             printf(BLANC"\nEntrez votre choix (1-4) : "RESET);

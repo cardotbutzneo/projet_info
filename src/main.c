@@ -245,6 +245,7 @@ afficher_tuto();
                 if (equipe == 1) {
                     printf("Joueur 1 joue\n");
                     saisie_utilisateur(champion_intermediaire, &equipe2, &equipe1);
+                    printf("jauge actuelle : %d\n",champion_intermediaire->stat.jauge_actuelle);                
                 }
                 if (equipe == 2) {
                     printf(BLEU_CLAIR);
@@ -253,7 +254,6 @@ afficher_tuto();
                     ia_principale(champion_intermediaire,&equipe2, &equipe1, difficulte);
                 }
             }
-            // Augmenter la jauge de chaque champion
             
             for (int i = 0;i<Nb_champion_par_equipe*2;i++){
                 if ((ordre_attaque_ind+i)->equipe == 1){
@@ -263,7 +263,7 @@ afficher_tuto();
                     copie_champion(&equipe2.perso[(ordre_attaque_ind+i)->index],ordre_attaque_ind+i);
                 }      
             }
-            trier_par_vitesse(ordre_attaque_ind,&equipe1,&equipe2);
+            
             int flag = 0;
             for (int i=0;i<Nb_champion_par_equipe;i++){
                 if (equipe1.perso[i].stat.pv_courant <= 0){
@@ -287,9 +287,10 @@ afficher_tuto();
                 break;
             }
             pause_ms(time_sleep);
-            
+            trier_par_vitesse(ordre_attaque_ind,&equipe1,&equipe2);
         }
-
+        
+        // Augmenter la jauge de chaque champion
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
             // Équipe 1
             if (equipe1.perso[i].stat.pv_courant > 0) { // Vérifie que le champion n'est pas KO
