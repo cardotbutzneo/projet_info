@@ -266,9 +266,9 @@ int main() {
 
             if (choix_nb_joueur == 1) { // Mode PvE
                 if (equipe == 1) {
-                    printf("Joueur 1 joue\n");
+                    printf(BLEU_CLAIR"Joueur 1 joue\n"RESET);
                     saisie_utilisateur(champion_intermediaire, &equipe2, &equipe1);
-                    printf("jauge actuelle : %d\n",champion_intermediaire->stat.jauge_actuelle);                
+                    printf(JAUNE"jauge actuelle : %d\n"RESET,champion_intermediaire->stat.jauge_actuelle);                
                 }
                 if (equipe == 2) {
                     printf(BLEU_CLAIR);
@@ -295,7 +295,7 @@ int main() {
                 }
             }
             if (flag >=3){
-                printf("tous les champions de l'equipe 1 sont mort ! L'equipe 2 gagne !\n");
+                printf("Tous les champions de l'equipe 1 sont morts ! L'equipe 2 gagne !\n");
                 finJeu = 1;
                 break;
             }
