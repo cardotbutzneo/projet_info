@@ -121,7 +121,7 @@ int main() {
     int verif;
     equipe1.nom = malloc(sizeof(char) * 20);
     if (equipe1.nom == NULL) {
-        printf(ROUGE_FONCE"erreur allocation de memoire\n"RESET);
+        printf(ROUGE_FONCE"erreur allocation de mémoire\n"RESET);
     }
     equipe2.nom = malloc(sizeof(char) * 20);
     if (equipe2.nom == NULL) {
@@ -198,7 +198,7 @@ int main() {
         equipe2.difficulte = difficulte;
         equipe2.nom = *(nom_IA + rand() % 8);
         if (equipe2.nom == NULL){
-            printf(ROUGE_FONCE"erreur lors de l'allocation de la memoire pour le nom de l'IA\n"RESET);
+            printf(ROUGE_FONCE"erreur lors de l'allocation de la mémoire    pour le nom de l'IA\n"RESET);
             exit(0);
         }
     }
@@ -241,7 +241,7 @@ int main() {
 
             // Vérifier si le champion est KO (PV <= 0)
             if (champion_intermediaire->stat.pv_courant <= 0) {
-                printf("Le champion %s est KO et ne peut pas jouer ce tour.\n", champion_intermediaire->nom);
+                printf(GRIS"Le champion %s est KO et ne peut pas jouer ce tour.\n"RESET, champion_intermediaire->nom);
                 continue; // Passer au prochain personnage
             }
 
@@ -295,7 +295,8 @@ int main() {
                 }
             }
             if (flag >=3){
-                printf("Tous les champions de l'equipe 1 sont morts ! L'equipe 2 gagne !\n");
+                pause_ms(time_sleep*2);
+                printf("Tous les champions de l'équipe 1 sont morts ! L'équipe 2 gagne !\n");
                 finJeu = 1;
                 break;
             }
@@ -306,7 +307,8 @@ int main() {
                 }
             }
             if (flag >=3){
-                printf("tous les champions de l'equipe 2 sont mort ! L'equipe 1 gagne !\n");
+                pause_ms(time_sleep*2);
+                printf("tous les champions de l'équipe 2 sont mort ! L'équipe 1 gagne !\n");
                 finJeu = 1;
                 break;
             }
