@@ -24,7 +24,7 @@ void afficher_tuto(){
     }while(verif != 1 || (rep != 'o' && rep != 'n'));
 
     if (rep == 'n'){
-        printf(GRIS"Vous jouez a un jeu developpe par l'equipe I\n\n"RESET);
+        printf(GRIS"Un jeu développé par l'équipe I\n\n"RESET);
         printf(BLEU); // Changer la couleur du texte en bleu
         printf("=========================================================\n");
         printf("                   Instructions du jeu\n");
@@ -35,25 +35,25 @@ void afficher_tuto(){
         pause_ms(time_sleep);
         printf("Le but du jeu est de choisir une equipe de champions et de les faire combattre contre une autre equipe de champions !\n\n");
         pause_ms(time_sleep);
-        printf("Chaque champion a des statistiques et des attaques speciales qui lui sont propres !\n\n");
+        printf("Chaque champion a des statistiques et des attaques spéciales qui lui sont propres !\n\n");
         pause_ms(time_sleep);
         printf("Il existe trois classes de champions :\n\n");
         pause_ms(time_sleep);
-        printf("1. Tank : ils ont beaucoup de PV et de defense, mais peu d'attaque\n");
+        printf("1. "BLEU_CLAIR"Tank"RESET": ils ont beaucoup de PV et de defense, mais peu d'attaque !\n");
         pause_ms(time_sleep);
-        printf("2. DPS : ils ont beaucoup d'attaque, mais peu de PV et de defense\n");
+        printf("2. "ROUGE_CLAIR"DPS"RESET" : ils ont moins d'attaque, mais peu de PV et de defense !\n");
         pause_ms(time_sleep);
-        printf("3. Soutien : ils ont peu de PV et d'attaque, mais beaucoup de defense\n\n");
+        printf("3. "VERT_CLAIR"Soutien"RESET" : ils ont peu de PV et d'attaque, mais beaucoup de defense !\n\n");
         pause_ms(time_sleep);
-        printf("Il existe aussi des synergies entre les champions... Et beaucoup d'autres surprises a decouvrir !\n\n");
+        printf("Il existe aussi des synergies entre les champions... Et beaucoup d'autres surprises à decouvrir !\n\n");
         pause_ms(time_sleep);
-        printf("La premiere equipe qui vainc les champions ennemis gagne !\n\n");
+        printf("La première equipe qui vainc les champions ennemis gagne !\n\n");
         pause_ms(time_sleep*3);
         printf("======================================================\n\n");
         pause_ms(time_sleep);
         printf("Choisissez vos champions, puis... ");
         pause_ms(time_sleep);
-        printf(ROUGE "COMBATTEEEZZZZ !" RESET);
+        printf(ROUGE "COMBATTEEEZZZZ >:D  !" RESET);
         pause_ms(time_sleep);
         printf("\n\n");
     }
