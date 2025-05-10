@@ -46,15 +46,8 @@ void affichage_initial() {
     int buffer = 10;
 
     printf(GRIS"Chargement du jeu...\n"RESET);
-    for (int k=0; k<3; k++){
-        printf(GRIS"."RESET);
-        pause_ms(time_sleep);
-    }
-    printf("\n");
-    pause_ms(time_sleep);
-
     for (int i = 0; i < buffer; i++) {
-        // sleep(val_systemeOS); // Décommentez pour activer les temps d'attente
+        pause_ms(time_sleep); // Décommentez pour activer les temps d'attente
         printf(GRIS"---"RESET);
     }
 

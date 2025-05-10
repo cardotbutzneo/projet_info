@@ -6,7 +6,7 @@
 #include "attaquespe.h"
 #include "couleurs.h"
 
-void free_champion(Champion *champion) {
+void free_champion(Champion *champion) { // fonction pour liberer la memoire
     if (champion == NULL) {
         return; // Si le pointeur est NULL, ne rien faire
     }
@@ -43,7 +43,7 @@ void free_champion(Champion *champion) {
     }
 }
 
-void initialisation_champion(FILE *fichier, Champion *champion) {
+void initialisation_champion(FILE *fichier, Champion *champion) { //fonction pour initialiser un champion
     printf(ROUGE_FONCE);
     if (!fichier || !champion){
         printf("erreur lors de l'allocation de la memoire\n");
@@ -189,7 +189,7 @@ void initialisation_champion(FILE *fichier, Champion *champion) {
     }
 }
 
-int chaine_caractere_egales(char *chaine1, char *chaine2){
+int chaine_caractere_egales(char *chaine1, char *chaine2){ // compzre les chaines de caracteres on utilise strcmp apres
 
     if (chaine1 == NULL || chaine2 == NULL){
         printf("une des chaines pointe vers NULL");
@@ -204,7 +204,7 @@ int chaine_caractere_egales(char *chaine1, char *chaine2){
 }
 
 
-int trie (Champion *champion){
+int trie (Champion *champion){ // fonction pour trier les champions par classe
     if (!champion || !champion->nom){
         printf(ROUGE_FONCE"erreur lors de l'alocation de la memoire\n");
         exit(0);
@@ -230,7 +230,7 @@ int trie (Champion *champion){
 }
 
 
-int ordre_classe(const char *classe) {
+int ordre_classe(const char *classe) { // identique a trie mais renvoie plus robuste
     if (!classe){
         printf(ROUGE_FONCE"erreur lors de l'alocation de la memoire\n"RESET);
         exit(0);
@@ -241,7 +241,7 @@ int ordre_classe(const char *classe) {
     return 4; // Classe inconnue ou autre
 }
 
-int comparer_par_classe(const void *a, const void *b) {
+int comparer_par_classe(const void *a, const void *b) { // Fonction de comparaison pour qsort (fait avec l'IA), trie de facon arbitraire en fonction de la classe
     if (!a || !b){
         printf(ROUGE_FONCE"erreur lors de l'allocation de la memoire\n"RESET);
         exit(0);
@@ -255,7 +255,7 @@ int comparer_par_classe(const void *a, const void *b) {
     return ordre_classe(champion1->classe) - ordre_classe(champion2->classe);
 }
 
-void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, Champion *tab_dps, int *soutien_count, int *tank_count, int *dps_count, Champion *temp) {
+void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, Champion *tab_dps, int *soutien_count, int *tank_count, int *dps_count, Champion *temp) { // Fonction pour trier les champions par classe
     if(!tab ||!tab_soutien || !tab_tank || !tab_dps || !soutien_count ||!tank_count || !dps_count  || !temp){
         printf(ROUGE_FONCE"erreur lors de l'allocation de la memoire\n"RESET);
         exit(0);
@@ -284,7 +284,7 @@ void classe_champion(Champion *tab, Champion *tab_soutien, Champion *tab_tank, C
     }
 }
 
-void copie_champion(Champion *source, Champion *destination) {
+void copie_champion(Champion *source, Champion *destination) { // Fonction pour copier un champion
     printf(ROUGE_FONCE);
     if (!source || !destination) {
         printf("Erreur : pointeur NULL passé à copie_champion\n");
@@ -367,14 +367,14 @@ void copie_champion(Champion *source, Champion *destination) {
     printf(RESET);
 }
 
-int verif_number(int number[],int n){
+int verif_number(int number[],int n){ // verifie si un nombre est deja dans le tableau
         if (number[n-1] == 1){
             return 1;
         }
     return 0;
 }
 
-void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equipe2, int choix, Champion *tableau_champion_cachee) {
+void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equipe2, int choix, Champion *tableau_champion_cachee) { // choix des champions
     if (!tableau_champion || !tableau_champion_cachee || !equipe1 || !equipe2 || !equipe1->nom || !equipe2->nom) {
         printf(ROUGE_FONCE"Erreur lors de l'allocation de la mémoire\n"RESET);
         exit(0);
@@ -382,7 +382,9 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
 
     int tempp;
     int rep[18 + 3] = {0}; // Tableau pour suivre les numéros choisis (18 champions normaux + 3 cachés)
-
+    printf(ROUGE);
+    printf("Lors de la selection, si vous saisissez un nombre avec un caractere non valide, le programme recupera le nombre\n");
+    printf(RESET);
     if (choix == 2) {
         // Sélection pour l'équipe 1
         printf(BLANC_FONCE"\nEquipe 1, choisissez vos champions\n"RESET);
@@ -503,7 +505,7 @@ void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2, int rep[]){
         int x = rand()%17+1;
         do{
             x = rand()%17+1;
-        }while(verif_number(rep, x));
+        }while(verif_number(rep, x) != 0);
         copie_champion((tableau_champion+x), &equipe2->perso[i]);  // choix des champions aléatoirement
         equipe2->perso[i].equipe = 2; // Assigner l'équipe 2 au champion
         equipe2->perso[i].index = i+2;

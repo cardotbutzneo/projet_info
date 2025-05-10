@@ -1,3 +1,4 @@
+//include 
 #include "en-tete.h"
 #include "fonction.h"
 #include "affichage.h"
@@ -6,7 +7,7 @@
 #include "tuto.h"
 #include "couleurs.h"
 
-
+//fonction principale
 
 
 int main() {
@@ -14,6 +15,8 @@ int main() {
 
 
     srand(time(NULL));
+
+    // Initialisation des variables pour les fichiers
     FILE *fichier = NULL;
     char *base_chemin = "personnage/";
     char chemin_acces[100];
@@ -60,15 +63,17 @@ int main() {
         initialisation_champion(fichier,tableau_champion_cachee+i);
         fclose(fichier);
     }
+
+    // Initialisation des compteurs de champions par classe
     int soutien_count = 0, tank_count = 0, dps_count = 0;
     int choix_nb_joueur;
 
     char choix_tuto;  
-int verif_tuto = -1; 
-afficher_tuto();
+    int verif_tuto = -1; 
+    afficher_tuto();
 
     // choix du nombre de joueur
-    affichage_initial();
+    affichage_initial(); // affichage de l'écran d'accueil
     int v = -1;
     do {
         printf(BLEU"=============================\n");
@@ -89,6 +94,8 @@ afficher_tuto();
 
     char *nom_IA[8] = {"Wall-E", "Atlas", "Sentinelle", "Fonctionnaire", "Paperclip", "Pnj", "Nano", "Arcade"};
     
+    // Initialisation des équipes
+    // Allocation de mémoire pour les noms des équipes
     Equipe equipe1;
     Equipe equipe2;
 
@@ -131,7 +138,6 @@ afficher_tuto();
                 verif = -1;
             }
         
-            // Dans tous les cas, on vide le buffer
             vider_buffer_scanf();
         
         } while (verif != 1);
@@ -149,7 +155,6 @@ afficher_tuto();
                 printf(ROUGE"Entrée invalide, réessayez.\n"RESET);
                 verif = -1;
             }
-            // Dans tous les cas, on vide le buffer
             vider_buffer_scanf();
         
         } while (verif != 1);
@@ -163,7 +168,6 @@ afficher_tuto();
                 verif = -1;
             }
         
-            // Dans tous les cas, on vide le buffer
             vider_buffer_scanf();
         }while (verif != 1 || difficulte < 0 || difficulte > 2);
         if (difficulte == 0){
@@ -184,7 +188,7 @@ afficher_tuto();
     }
 
     // Classement des champions par classe
-    qsort(tableau_champion, Nb_champion, sizeof(Champion), comparer_par_classe);
+    //qsort(tableau_champion, Nb_champion, sizeof(Champion), comparer_par_classe);
 
     Champion temp[Nb_champion];
     classe_champion(tableau_champion, champion_soutien, champion_tank, champion_dps, &soutien_count, &tank_count, &dps_count, temp);
@@ -192,7 +196,8 @@ afficher_tuto();
     afficher_champion_init(champion_soutien, champion_tank, champion_dps, soutien_count, tank_count, dps_count);
 
     printf("\nFin de l'initialisation des personnages\n");
-
+    
+    //choix des champions
     choix_des_champion(temp, &equipe1, &equipe2, choix_nb_joueur, tableau_champion_cachee);
 
     int index = 0;
@@ -202,7 +207,7 @@ afficher_tuto();
     trier_par_vitesse(ordre_attaque_ind,&equipe1,&equipe2);
     
 
-    // Main game loop
+    // boucle de jeu
     int finJeu = 0;
     separation_des_partie();
     for (int i = 0; i < Nb_tour && finJeu != 1; i++) {
@@ -210,7 +215,7 @@ afficher_tuto();
 
         for (int k = 0; k < Nb_champion_par_equipe * 2; k++) {
             afficher_equipes_cote_a_cote(equipe1,equipe2);
-            Champion *champion_intermediaire = ordre_attaque_ind+k; // Récupérer directement le pointeur
+            Champion *champion_intermediaire = ordre_attaque_ind+k; 
             if (!champion_intermediaire) {
                 printf(ROUGE_FONCE"Erreur lors de l'allocation de la mémoire\n"RESET);
                 exit(0);
@@ -254,7 +259,7 @@ afficher_tuto();
                     ia_principale(champion_intermediaire,&equipe2, &equipe1, difficulte);
                 }
             }
-            
+            //copie du champion pour la sauvegarde des statistiques
             for (int i = 0;i<Nb_champion_par_equipe*2;i++){
                 if ((ordre_attaque_ind+i)->equipe == 1){
                     copie_champion(&equipe1.perso[(ordre_attaque_ind+i)->index],ordre_attaque_ind+i);
@@ -263,7 +268,8 @@ afficher_tuto();
                     copie_champion(&equipe2.perso[(ordre_attaque_ind+i)->index],ordre_attaque_ind+i);
                 }      
             }
-            
+            //verification de la fin du jeu
+            // Vérifier si tous les champions d'une équipe sont KO
             int flag = 0;
             for (int i=0;i<Nb_champion_par_equipe;i++){
                 if (equipe1.perso[i].stat.pv_courant <= 0){

@@ -1,13 +1,13 @@
 Garrigus_Primus:
 Garrigus_Primus // nom
-10 // pv actuel
-10 // pv max
-10 // attaque
+125 // pv actuel
+125 // pv max
+40 // attaque
 10 // defense
 10 // agilite
-10 // vitesse
-10 // jauge actuelle
-10 // jauge max
+6 // vitesse
+0 // jauge actuelle
+2 // jauge max
 ENS_66 // attaque spe
 dps // classe
 Reduit_l'agilite_de_la_cible // description attaque spe

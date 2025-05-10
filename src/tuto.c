@@ -30,7 +30,7 @@ void afficher_tuto(){
         printf("                   Instructions du jeu\n");
         printf("=========================================================\n\n");
         printf(RESET); // Réinitialiser la couleur
-        pause_ms(time_sleep);
+        pause_ms(time_sleep*3);
         printf("Le jeu se joue en 2 equipes de 3 champions !\n\n");
         pause_ms(time_sleep);
         printf("Le but du jeu est de choisir une equipe de champions et de les faire combattre contre une autre equipe de champions !\n\n");
@@ -48,7 +48,7 @@ void afficher_tuto(){
         printf("Il existe aussi des synergies entre les champions... Et beaucoup d'autres surprises a decouvrir !\n\n");
         pause_ms(time_sleep);
         printf("La premiere equipe qui vainc les champions ennemis gagne !\n\n");
-        pause_ms(time_sleep);
+        pause_ms(time_sleep*3);
         printf("======================================================\n\n");
         pause_ms(time_sleep);
         printf("Choisissez vos champions, puis... ");

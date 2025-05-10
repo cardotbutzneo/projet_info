@@ -1,13 +1,13 @@
 Gros_Singe:
 Gros_Singe // nom
-10 // pv actuel
-10 // pv max
-10 // attaque
-10 // defense
-10 // agilite
-10 // vitesse
-10 // jauge actuelle
-10 // jauge max
+180 // pv actuel
+180// pv max
+14 // attaque
+20 // defense
+20 // agilite
+4 // vitesse
+0 // jauge actuelle
+2 // jauge max
 Puant // attaque spe
 tank // classe
 L'ennemie_est_empoisonné // description attaque spe
