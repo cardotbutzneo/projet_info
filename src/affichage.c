@@ -43,12 +43,12 @@ void afficher_personnage(Champion *champion) {
 
 // Affichage initial du jeu
 void affichage_initial() {
-    int buffer = 10;
+    int buffer = 5;
 
     printf(GRIS"Chargement du jeu...\n"RESET);
     for (int i = 0; i < buffer; i++) {
-        pause_ms(time_sleep); // Décommentez pour activer les temps d'attente
         printf(GRIS"---"RESET);
+        pause_ms(time_sleep); // Décommentez pour activer les temps d'attente
     }
 
     printf(GRIS"\nChargement termine\n"RESET);
@@ -217,9 +217,8 @@ int affichage_saisie_utilisateur(Champion champion) {
         }
         printf(BLANC_FONCE"1. Attaque simple\n");
         printf("2. Utiliser une technique speciale\n");
-        printf("3. afficher le personnage\n");
-        printf("4. passer son tour\n"RESET);
-        printf("jauge actuelle %d",champion.stat.jauge_actuelle);
+        printf("3. Afficher le personnage\n");
+        printf("4. Passer son tour\n"RESET);
         int choix = -1;
         do {
             printf(BLANC"\nEntrez votre choix (1-4) : "RESET);

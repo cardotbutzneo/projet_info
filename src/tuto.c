@@ -16,7 +16,7 @@ void afficher_tuto(){
     int verif = -1;
     do{
         verif = scanf("%c",&rep);
-        if (verif != 1 ){
+        if (verif != 1 || (rep != 'o' && rep != 'n')){
             printf(GRIS"entree invalide !\n"RESET);
             verif = -1;   
             vider_buffer_scanf();

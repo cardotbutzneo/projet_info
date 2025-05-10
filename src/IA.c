@@ -8,6 +8,10 @@
 
 // Fonction pour choisir une cible valide
 int choisir_cible(Equipe *equipe_adverse, char mode) {
+    if (!equipe_adverse ){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
     int vivant = 0;
     for (int i = 0; i < 3; i++) {
         if (equipe_adverse->perso[i].stat.pv_courant > 0) {
@@ -44,27 +48,44 @@ void utiliser_tech_spe(Champion *attaquant, Champion *cible) {
 */
 // Fonction pour l'IA noob
 void ia_noob(Champion *champion,Equipe *equipe_ia, Equipe *equipe_adverse) {
+    if (!champion || !equipe_adverse || !equipe_adverse){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
         attaquesimple(champion, equipe_adverse->perso);
+        printf("Ia attaque\n");
 }
 
 // Fonction pour l'IA facile
 void ia_facile( Champion *champion,Equipe *equipe_ia, Equipe *equipe_adverse) {
+    if (!champion || !equipe_adverse || !equipe_adverse){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
     int x = rand() % 11; // 10% de chance d'utiliser une technique spéciale
-    if (x == 0) {
+    if (x == 0 && champion->stat.jauge_actuelle >= champion->stat.jauge_max) {
         attaqueSpecial(*champion, equipe_adverse->perso, equipe_adverse->perso); // Utilise une technique spéciale
+        printf("IA utilise une attaque speciale\n");
     } else {
         attaquesimple(champion, equipe_adverse->perso);
+        printf("IA attaque\n");
     }
 }
 
 // Fonction pour l'IA moyen
 void ia_moyen(Champion *champion, Equipe *equipe_adverse, Equipe *equipe) {
+    if (!champion || !equipe_adverse || !equipe){
+        printf("erreur lors de l'alocation de la memoire\n");
+        exit(0);
+    }
     int x = rand() % 5; // 60% de chance d'utiliser une technique spéciale
-    if (x == 0) {
+    if (x == 0 && champion->stat.jauge_actuelle >= champion->stat.jauge_max) {
         attaqueSpecial(*champion, equipe_adverse->perso, equipe->perso); // Utilise une technique spéciale
+        printf("IA utilise une attaque speciale\n");
     } 
-    else if (champion->stat.jauge_actuelle >= champion->stat.jauge_max) {
+    else  {
         attaquesimple(champion, equipe_adverse->perso);
+        printf("IA attaque\n");
     }
 }
 
@@ -86,7 +107,7 @@ void ia_principale(Champion *champion, Equipe *equipe_ia, Equipe *equipe_adverse
             ia_facile(champion, equipe_ia, equipe_adverse);
             break;
         case 2:
-            ia_moyen(champion, equipe_ia, equipe_adverse);
+            ia_moyen(champion, equipe_adverse, equipe_ia);
             break;
         default:
             printf("Difficulté inconnue. Utilisation de la difficulté facile par défaut.\n");

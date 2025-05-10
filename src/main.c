@@ -352,8 +352,11 @@ int main() {
     free(ordre_attaque_ind);
 
     // Libération des noms des équipes
+    
     free(equipe1.nom);
-    free(equipe2.nom);
+    if (choix_nb_joueur == 2){ // pas incroyable je sais sinon seg fault
+        free(equipe2.nom);
+    }
 
     printf(GRIS"\nMémoire libérée avec succès\n"RESET);
 

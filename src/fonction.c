@@ -393,11 +393,11 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
             do {
                 printf(BLANC_FONCE"Champion %d : "RESET, i + 1);
                 if (scanf("%d", &tempp) != 1) {
-                    printf(GRIS"Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n"RESET);
+                    printf(GRIS"Entrée invalide. Veuillez entrer un nombre entre 1 et 18 \n"RESET);
                     vider_buffer_scanf(); // Vide le buffer d'entrée
                     tempp = -1; // Réinitialise tempp pour rester dans la boucle
                 } else if ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102)) {
-                    printf(ROUGE_FONCE"Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n"RESET);
+                    printf(ROUGE_FONCE"Numéro invalide. Veuillez entrer un nombre entre 1 et 18\n"RESET);
                     tempp = -1;
                 } else if (verif_number(rep, tempp)) { // Vérifie si le numéro est déjà choisi
                     printf(ROUGE_FONCE"Ce champion est déjà choisi. Veuillez en choisir un autre.\n"RESET);
@@ -428,11 +428,11 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
             do {
                 printf(BLANC_FONCE"Champion %d : "RESET, i + 1);
                 if (scanf("%d", &tempp) != 1) {
-                    printf(GRIS"Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n"RESET);
+                    printf(GRIS"Entrée invalide. Veuillez entrer un nombre entre 1 et 18 \n"RESET);
                     vider_buffer_scanf(); // Vide le buffer d'entrée
                     tempp = -1; // Réinitialise tempp pour rester dans la boucle
                 } else if ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102)) {
-                    printf(GRIS"Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n"RESET);
+                    printf(GRIS"Numéro invalide. Veuillez entrer un nombre entre 1 et 18 \n"RESET);
                     tempp = -1;
                 } else if (verif_number(rep, tempp)) { // Vérifie si le numéro est déjà choisi
                     printf(GRIS"Ce champion est déjà choisi. Veuillez en choisir un autre.\n"RESET);
@@ -463,11 +463,11 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
             do {
                 printf(BLANC_FONCE"Champion %d : "RESET, i + 1);
                 if (scanf("%d", &tempp) != 1) {
-                    printf(GRIS"Entrée invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n"RESET);
+                    printf(GRIS"Entrée invalide. Veuillez entrer un nombre entre 1 et 18\n"RESET);
                     vider_buffer_scanf(); // Vide le buffer d'entrée
                     tempp = -1; // Réinitialise tempp pour rester dans la boucle
                 } else if ((tempp < 1 || tempp > 18) && (tempp < 100 || tempp > 102)) {
-                    printf(GRIS"Numéro invalide. Veuillez entrer un nombre entre 1 et 18 ou entre 100 et 102.\n"RESET);
+                    printf(GRIS"Numéro invalide. Veuillez entrer un nombre entre 1 et 18 \n"RESET);
                     tempp = -1;
                 } else if (verif_number(rep, tempp)) { // Vérifie si le numéro est déjà choisi
                     printf(GRIS"Ce champion est déjà choisi. Veuillez en choisir un autre.\n"RESET);
@@ -497,18 +497,51 @@ void choix_des_champion(Champion *tableau_champion, Equipe *equipe1, Equipe *equ
 }
 
 void choix_champion_IA(Champion *tableau_champion, Equipe *equipe2, int rep[]){
-    if (!tableau_champion || !equipe2 ||! equipe2->nom){
+    if (!tableau_champion || !equipe2 ||! equipe2->nom || !rep){
         printf(ROUGE_FONCE"erreur lors de l'allocation de la memoire\n"RESET);
         exit(0);
     } 
-    for (int i=0;i<Nb_champion_par_equipe;i++){
-        int x = rand()%17+1;
-        do{
-            x = rand()%17+1;
-        }while(verif_number(rep, x) != 0);
-        copie_champion((tableau_champion+x), &equipe2->perso[i]);  // choix des champions aléatoirement
-        equipe2->perso[i].equipe = 2; // Assigner l'équipe 2 au champion
-        equipe2->perso[i].index = i+2;
+    if (equipe2->difficulte == 0){
+        for (int i=0;i<Nb_champion_par_equipe;i++){
+            int x = rand()%17+1;
+            do{
+                x = rand()%17+1;
+            }while(verif_number(rep, x) != 0);
+            copie_champion((tableau_champion+x), &equipe2->perso[i]);  // choix des champions aléatoirement
+            equipe2->perso[i].equipe = 2; // Assigner l'équipe 2 au champion
+            equipe2->perso[i].index = i+2;
+            rep[x-1] = 1;
+        }
+    }
+    else if (equipe2->difficulte == 1 || equipe2->difficulte == 2){
+            int tank_choisi = 0, dps_choisi = 0, soutien_choisi = 0;
+
+        for (int i = 0; i < Nb_champion_par_equipe; i++) {
+            int index = -1;
+
+            // Choisir un champion en fonction des classes manquantes
+            do {
+                index = rand() % 18; // Supposons qu'il y a 18 champions dans le tableau
+            } while (verif_number(rep, index + 1) != 0 || 
+                    (tank_choisi && strcmp(tableau_champion[index].classe, "tank") == 0) ||
+                    (dps_choisi && strcmp(tableau_champion[index].classe, "dps") == 0) ||
+                    (soutien_choisi && strcmp(tableau_champion[index].classe, "soutien") == 0));
+
+            // Copier le champion sélectionné dans l'équipe
+            copie_champion(&tableau_champion[index], &equipe2->perso[i]);
+            equipe2->perso[i].equipe = 2; // Assigner l'équipe 2 au champion
+            equipe2->perso[i].index = i + 2;
+            rep[index] = 1; // Marquer le champion comme choisi
+
+            // Mettre à jour les classes choisies
+            if (strcmp(tableau_champion[index].classe, "tank") == 0) {
+                tank_choisi = 1;
+            } else if (strcmp(tableau_champion[index].classe, "dps") == 0) {
+                dps_choisi = 1;
+            } else if (strcmp(tableau_champion[index].classe, "soutien") == 0) {
+                soutien_choisi = 1;
+            }
+        }
     }
 }
 
@@ -546,10 +579,8 @@ void saisie_utilisateur(Champion *champion, Equipe *equieAdverse, Equipe *equipe
             attaquesimple(champion, equieAdverse->perso); // attaque simple
             break;
         case 2:
-            printf("jauge actuelle %d",champion->stat.jauge_actuelle);
             attaqueSpecial(*champion, equieAdverse->perso, equipe->perso); // attaque spéciale
             champion->stat.jauge_actuelle = 0; // rénitialiser la jauge apres utilisation
-            printf("jauge actuelle %d",champion->stat.jauge_actuelle);
             break;
         default: // passer son tour
             printf(GRIS"%s passe son tour.\n"RESET, champion->nom);
@@ -611,6 +642,6 @@ int est_en_vie(Champion champion){
 #else
         #include <unistd.h>
         void pause_ms(int milliseconds){
-            usleep(milliseconds * 1000); // Convertit les millisecondes en secondes
+            sleep(milliseconds / 1000); // Convertit les millisecondes en secondes
         }   
 #endif
