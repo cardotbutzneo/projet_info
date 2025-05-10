@@ -1,3 +1,19 @@
+//bon encodage pour vscode windows
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
+void configurer_encodage() {
+    #ifdef _WIN32
+    // Configuration pour Windows
+    SetConsoleOutputCP(CP_UTF8);
+    #else
+    ///pas besoin sur linux
+    #endif
+}
+
+
+
 //include 
 #include "en-tete.h"
 #include "fonction.h"
@@ -11,7 +27,7 @@
 
 
 int main() {
-
+    configurer_encodage();
 
 
     srand(time(NULL));
