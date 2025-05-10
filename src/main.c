@@ -308,7 +308,7 @@ int main() {
             }
             if (flag >=3){
                 pause_ms(time_sleep*2);
-                printf("tous les champions de l'équipe 2 sont mort ! L'équipe 1 gagne !\n");
+                printf("Tous les champions de l'équipe 2 sont morts ! L'équipe 1 gagne !\n");
                 finJeu = 1;
                 break;
             }
