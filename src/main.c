@@ -227,8 +227,10 @@ int main() {
     int finJeu = 0;
     separation_des_partie();
     for (int i = 0; i < Nb_tour && finJeu != 1; i++) {
-        printf("\nTour %d : \n\n", i + 1);
-
+        printf(BLEU"\n===================================\n");
+        printf("               Tour %d\n", i + 1);
+        printf("===================================\n\n"RESET);
+        
         for (int k = 0; k < Nb_champion_par_equipe * 2; k++) {
             afficher_equipes_cote_a_cote(equipe1,equipe2);
             Champion *champion_intermediaire = ordre_attaque_ind+k; 
