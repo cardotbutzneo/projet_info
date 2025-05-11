@@ -27,7 +27,7 @@ void afficher_personnage(Champion *champion) {
         return;
     }
 
-    printf("Nom : %s\n", champion->nom);
+    printf("\nNom : %s\n", champion->nom);
     printf("Classe : %s\n", champion->classe);
     printf("PV max : %.1f\n", champion->pv_max);
     printf("PV courant : %.1f\n", champion->stat.pv_courant);
@@ -51,7 +51,7 @@ void affichage_initial() {
         pause_ms(time_sleep); // Décommentez pour activer les temps d'attente
     }
 
-    printf(GRIS"\nChargement termine\n"RESET);
+    printf(GRIS"\nChargement terminé\n"RESET);
     printf(BLEU"=========================================================\n");
     printf("                     MultiverSeus\n");
     printf("=========================================================\n\n"RESET);
@@ -73,12 +73,15 @@ void afficher_classe(Champion *champion) {
     switch (trie(champion)) {
         case 1:
             printf(BLEU_CLAIR"classe : tank\n"RESET);
+            pause_ms(time_sleep);
             break;
         case 2:
             printf(ROUGE_CLAIR"classe : dps\n"RESET);
+            pause_ms(time_sleep);
             break;
         case 3:
             printf(VERT_CLAIR"classe : soutien\n"RESET);
+            pause_ms(time_sleep);
             break;
         default:
             printf(ROUGE_FONCE"Erreur : classe non définie\n"RESET);
@@ -98,7 +101,7 @@ void separation_des_partie() {
 // Affiche les équipes et leurs champions
 void afficher_equipe(Equipe equipe1) {
     if (!equipe1.nom || !equipe1.perso){
-        printf(ROUGE_FONCE"erreur lors de l'allocation de la memoire\n"RESET);
+        printf(ROUGE_FONCE"erreur lors de l'allocation de la mémoire\n"RESET);
         exit(0);
     }
     printf("Équipe %d : %s\n",equipe1.perso->equipe, equipe1.nom);
@@ -165,7 +168,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
 
     int index = 1;
 
-    printf(BLEU_CLAIR"Les champions de classe  tank  sont : \n"RESET);
+    printf("Les champions de classe "BLEU_CLAIR" tank "RESET" sont : \n\n");
     for (int i = 0; i < tank_count; i++) {
         printf("%d : %s\n", index, (champion_tank + i)->nom);
         index++;
@@ -173,7 +176,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
     printf("\n");
     pause_ms(time_sleep);
 
-    printf(ROUGE_CLAIR"Les champions de classe  dps  sont : \n"RESET);
+    printf("Les champions de classe "ROUGE_CLAIR" dps "RESET" sont : \n\n");
     for (int i = 0; i < dps_count; i++) {
         printf("%d : %s\n", index, (champion_dps + i)->nom);
         index++;
@@ -181,7 +184,7 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
     printf("\n");
     pause_ms(time_sleep);
 
-    printf(VERT_CLAIR"Les champions de classe  soutien  sont : \n"RESET);
+    printf("Les champions de classe "VERT_CLAIR" soutien "RESET" sont : \n\n");
     for (int i = 0; i < soutien_count; i++) {
         printf("%d : %s\n", index, (champion_soutien + i)->nom);
         index++;
@@ -215,13 +218,13 @@ int affichage_saisie_utilisateur(Champion champion) {
         if (champion.stat.jauge_actuelle >= champion.stat.jauge_max){
         printf(JAUNE_CLAIR"l'attaque speciale est rechargee >:)\n"RESET);
         }
-        printf(BLANC_FONCE"1. Attaque simple\n");
+        printf(BLANC"\n1. Attaque simple\n");
         printf("2. Utiliser une technique speciale\n");
         printf("3. Afficher le personnage\n");
         printf("4. Passer son tour\n"RESET);
         int choix = -1;
         do {
-            printf(BLANC"\nEntrez votre choix (1-4) : "RESET);
+            printf(BLANC"\nEntrez votre choix (1-4) : \n"RESET);
             if (scanf("%d", &choix) != 1) {
                 printf(ROUGE_FONCE"Entrée invalide. Veuillez entrer un nombre entre 1 et 4.\n"RESET);
                 vider_buffer_scanf(); // Vide le buffer d'entrée
@@ -254,7 +257,7 @@ void afficher_attaque_speciale(Champion *champion) {
         return;
     }
     printf(CYAN);
-    printf("attaque speciale de %s\n", champion->nom);
+    printf("\nattaque speciale de %s\n", champion->nom);
     printf("nom de l'attaque speciale : %s\n", champion->attaque_spe);
     //printf("description de l'attaque speciale: %s\n", champion->description_attaque_spe);
     printf("effet de l'attaque speciale: %s\n", champion->effet_spe);

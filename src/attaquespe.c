@@ -111,7 +111,7 @@ void neteroSpe(Champion personnage, Champion equipe[]){
 void noxSpe(Champion personnage, Champion equipe[]){
     printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     for (int i=0;i<Nb_champion_par_equipe;i++){
-        equipe[i].stat.vitesse+=1;
+        equipe[i].stat.attaque+=1;
         equipe[i].stat.agilite+=2;
     }
 }

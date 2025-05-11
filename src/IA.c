@@ -4,12 +4,13 @@
 #include "affichage.h"
 #include "attaque.h"
 #include "attaquespe.h"
+#include "couleurs.h"
 
 
 // Fonction pour choisir une cible valide
 int choisir_cible(Equipe *equipe_adverse, char mode) {
     if (!equipe_adverse ){
-        printf("erreur lors de l'alocation de la memoire\n");
+        printf(ROUGE"erreur lors de l'allocation de la mémoire\n"RESET);
         exit(0);
     }
     int vivant = 0;
@@ -49,55 +50,55 @@ void utiliser_tech_spe(Champion *attaquant, Champion *cible) {
 // Fonction pour l'IA noob
 void ia_noob(Champion *champion,Equipe *equipe_ia, Equipe *equipe_adverse) {
     if (!champion || !equipe_adverse || !equipe_adverse){
-        printf("erreur lors de l'alocation de la memoire\n");
+        printf(ROUGE"erreur lors de l'allocation de la mémoire\n"RESET);
         exit(0);
     }
         attaquesimple(champion, equipe_adverse->perso);
-        printf("Ia attaque\n");
+        printf(ROUGE"IA attaque >:) \n\n"RESET);
 }
 
 // Fonction pour l'IA facile
 void ia_facile( Champion *champion,Equipe *equipe_ia, Equipe *equipe_adverse) {
     if (!champion || !equipe_adverse || !equipe_adverse){
-        printf("erreur lors de l'alocation de la memoire\n");
+        printf(ROUGE"erreur lors de l'allocation de la mémoire\n"RESET);
         exit(0);
     }
     int x = rand() % 11; // 10% de chance d'utiliser une technique spéciale
     if (x == 0 && champion->stat.jauge_actuelle >= champion->stat.jauge_max) {
         attaqueSpecial(*champion, equipe_adverse->perso, equipe_adverse->perso); // Utilise une technique spéciale
-        printf("IA utilise une attaque speciale\n");
+        printf(JAUNE"IA utilise une attaque spéciale\n\n"RESET);
     } else {
         attaquesimple(champion, equipe_adverse->perso);
-        printf("IA attaque\n");
+        printf(ROUGE"IA attaque >:) \n\n"RESET);
     }
 }
 
 // Fonction pour l'IA moyen
 void ia_moyen(Champion *champion, Equipe *equipe_adverse, Equipe *equipe) {
     if (!champion || !equipe_adverse || !equipe){
-        printf("erreur lors de l'alocation de la memoire\n");
+        printf("erreur lors de l'allocation de la mémoire\n");
         exit(0);
     }
     int x = rand() % 5; // 60% de chance d'utiliser une technique spéciale
     if (x == 0 && champion->stat.jauge_actuelle >= champion->stat.jauge_max) {
         attaqueSpecial(*champion, equipe_adverse->perso, equipe->perso); // Utilise une technique spéciale
-        printf("IA utilise une attaque speciale\n");
+        printf(JAUNE"IA utilise une attaque spéciale X-P\n\n"RESET);
     } 
     else  {
         attaquesimple(champion, equipe_adverse->perso);
-        printf("IA attaque\n");
+        printf(ROUGE"IA attaque >:) \n\n"RESET);
     }
 }
 
 // Fonction principale de l'IA
 void ia_principale(Champion *champion, Equipe *equipe_ia, Equipe *equipe_adverse, int difficulte) {
     if (!equipe_ia || !equipe_adverse ){
-        printf("erreur d'allocation de memoire dans ia_principale\n");
+        printf("erreur d'allocation de mémoire dans ia_principale\n");
             exit(0);
     }
     if ( difficulte <0 || difficulte > 3){
-        printf("difficulte non initialisee ou trop grande\n");
-        difficulte = 0; // on met par defaut difficulte a 0
+        printf("difficulté non initialisée ou trop grande\n");
+        difficulte = 0; // on met par défaut difficulté à 0
     }
     switch (difficulte) {
         case 0:
@@ -115,5 +116,6 @@ void ia_principale(Champion *champion, Equipe *equipe_ia, Equipe *equipe_adverse
             break;
     }
 }
+
 
 
