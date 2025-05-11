@@ -21,6 +21,7 @@ void configurer_encodage() {
 #include "IA.h"
 #include "tuto.h"
 #include "couleurs.h"
+#include "synergie.h"
 
 //fonction principale
 
