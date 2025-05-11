@@ -31,9 +31,9 @@ void afficher_tuto(){
         printf("=========================================================\n\n");
         printf(RESET); // Réinitialiser la couleur
         pause_ms(time_sleep*3);
-        printf("Le jeu se joue en 2 equipes de 3 champions !\n\n");
+        printf("Vous verrez, c'est très simple ! :D\n\n");
         pause_ms(time_sleep);
-        printf("Le but du jeu est de choisir une equipe de champions et de les faire combattre contre une autre equipe de champions !\n\n");
+        printf("Le but du jeu est de choisir une équipe de 3 champions et de les faire combattre contre... une autre équipe de 3 champions !\n\n");
         pause_ms(time_sleep);
         printf("Chaque champion a des statistiques et des attaques spéciales qui lui sont propres !\n\n");
         pause_ms(time_sleep);
