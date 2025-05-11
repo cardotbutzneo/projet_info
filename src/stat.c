@@ -1,16 +1,16 @@
 #include "en-tete.h"
 
 
-int vivant(Champion personnage){
+int vivant(Champion personnage){// fonction pour verifier si le champion est vivant
   if (personnage.stat.pv_courant<=0.1){
-    return 1;
+    return 1;// le champion est mort
   }
   else{
-    return 0;
+    return 0;// le champion est vivant
   }
 }
 
-int verifstat(Champion *personnage){
+int verifstat(Champion *personnage){// fonction pour verifier les stats du champion
   if (!personnage) {
     printf("Erreur lors de l'allocation de la mémoire\n");
     exit(16);
