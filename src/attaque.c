@@ -3,35 +3,7 @@
 #include "affichage.h"
 #include "couleurs.h"
 
-/*
-Champion ordreAttaque[6];
-ordreAttaque[0]=equipe1[0];
-ordreAttaque[1]=equipe1[1];
-ordreAttaque[2]=equipe1[2];
-ordreAttaque[3]=equipe2[0];
-ordreAttaque[4]=equipe2[1];
-ordreAttaque[5]=equipe2[2];
 
-void vitesse(Champion *ordreAttaque, Champion *tableau_initial) { // Tri les champions par leur vitesse
-    // Remplir ordreAttaque avec les champions de tableau_initial
-    for (int i = 0; i < 6; i++) {
-        copie_champion(&tableau_initial[i], &ordreAttaque[i]);
-    }
-
-    // Trier ordreAttaque par vitesse croissante
-    Champion temp;
-    for (int i = 0; i < 6; i++) {
-        for (int j = i + 1; j < 6; j++) { // Commence à i + 1 pour éviter de comparer un élément avec lui-même
-            if (ordreAttaque[i].stat.vitesse > ordreAttaque[j].stat.vitesse) {
-                // Effectuer une deep copy pour échanger les éléments
-                copie_champion(&ordreAttaque[i], &temp);
-                copie_champion(&ordreAttaque[j], &ordreAttaque[i]);
-                copie_champion(&temp, &ordreAttaque[j]);
-            }
-        }
-    }
-}
-*/
 
 int nbTank(Champion Equipe[]) {
     if (!Equipe) {
