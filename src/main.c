@@ -13,7 +13,6 @@ void configurer_encodage() {
 }
 
 
-
 //include 
 #include "en-tete.h"
 #include "fonction.h"
@@ -92,9 +91,9 @@ int main() {
     affichage_initial(); // affichage de l'écran d'accueil
     int v = -1;
     do {
-        printf(BLEU"=============================\n");
-        printf("          Mode de jeu\n");
-        printf("=============================\n\n");
+        printf(BLEU"=========================================================\n"RESET);
+        printf(BLEU"                     Mode de jeu\n"RESET);
+        printf(BLEU"=========================================================\n"RESET);
         printf("    1 pour PvE, 2 pour PvP\n"RESET);
         v= scanf("%d", &choix_nb_joueur);
         if (v != 1){
@@ -102,7 +101,7 @@ int main() {
             v = -1;
         }
         if (choix_nb_joueur <= 0 || choix_nb_joueur > 2){
-            printf(ROUGE"entree invalide !\n"RESET);
+            printf(ROUGE"entrée invalide !\n"RESET);
             vider_buffer_scanf();
             v = -1;
         }
@@ -125,12 +124,12 @@ int main() {
     }
     equipe2.nom = malloc(sizeof(char) * 20);
     if (equipe2.nom == NULL) {
-        printf(ROUGE_FONCE"erreur allocation de memoire\n"RESET);
+        printf(ROUGE_FONCE"erreur allocation de mémoire\n"RESET);
     }
 
     if (choix_nb_joueur == 2) {
         do {
-            printf("Saisir un nom du joueur 1 (20 caracteres maximum , sinon votre nom sera tronqué) :\n");
+            printf(BLEU"Saisir un nom du joueur 1 (20 caracteres maximum , sinon votre nom sera tronqué) :\n"RESET);
             verif = scanf("%20s", equipe1.nom);
         
             if (verif != 1) {
@@ -145,12 +144,12 @@ int main() {
         
         verif = -1;
         do{
-            printf("Saisir un nom du joueur 2 : (20 caracteres maximum , sinon votre nom sera tronqué)\n");
+            printf(BLEU"Saisir un nom du joueur 2 : (20 caracteres maximum , sinon votre nom sera tronqué)\n"RESET);
             
             verif = scanf("%20s", equipe2.nom);
         
             if (verif != 1) {
-                printf("Entrée invalide, réessayez.\n");
+                printf(ROUGE"Entrée invalide, réessayez.\n"RESET);
                 verif = -1;
             }
         
@@ -227,10 +226,10 @@ int main() {
     int finJeu = 0;
     separation_des_partie();
     for (int i = 0; i < Nb_tour && finJeu != 1; i++) {
-        printf(BLEU"\n===================================\n");
-        printf("               Tour %d\n", i + 1);
-        printf("===================================\n\n"RESET);
-        
+        printf(BLEU"=========================================================\n");
+        printf("                        Tour %d\n", i + 1);
+        printf("=========================================================\n\n"RESET);
+
         for (int k = 0; k < Nb_champion_par_equipe * 2; k++) {
             afficher_equipes_cote_a_cote(equipe1,equipe2);
             Champion *champion_intermediaire = ordre_attaque_ind+k; 
