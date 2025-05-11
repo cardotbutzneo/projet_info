@@ -9,7 +9,7 @@ int soinCible (Champion equipe[]){
     int cible = 0;
     float min = 0;
     for (int i=0;i<Nb_champion_par_equipe;i++){
-        if(verifstat(equipe[i])==0){
+        if(vivant(equipe[i])==0){
             min=equipe[i].stat.pv_courant;
         }
     }
@@ -160,7 +160,7 @@ void zeldaSpe(Champion personnage, Champion equipe[]){
 void attaqueSpecial (Champion personnage, Champion equipeAdverse[],Champion equipe[]){
     int numero=0;
     char *tab_nom[Nb_champion] = {"Among_us", "Captain_America","Donkey_kong", "DR_Tenma", "Gandalf", "Golem_de_fer", "Invader", "Itachi", "Jack_Frost", "Jay", "Johnny_Hallyday", "Netero", "Nox", "Picsou", "Pierre_Chartier", "Shrek", "Tux","Zelda"};
-    verifstat(personnage);
+    verifstat(&personnage);
     for (int i=0; i<Nb_champion;i++){
         if (strcmp(personnage.nom,tab_nom[i])==0){
             numero=i+1;
