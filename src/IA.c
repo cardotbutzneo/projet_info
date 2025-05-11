@@ -82,11 +82,11 @@ void ia_moyen(Champion *champion, Equipe *equipe_adverse, Equipe *equipe) {
     int x = rand() % 5; // 60% de chance d'utiliser une technique spéciale
     if (x == 0 && champion->stat.jauge_actuelle >= champion->stat.jauge_max) {
         attaqueSpecial(*champion, equipe_adverse->perso, equipe->perso); // Utilise une technique spéciale
-        printf(JAUNE"IA utilise une attaque spéciale\n\n"RESET);
+        printf(JAUNE"IA utilise une attaque spéciale X-P\n\n"RESET);
     } 
     else  {
         attaquesimple(champion, equipe_adverse->perso);
-        printf(ROUGE"IA attaque\n");
+        printf(ROUGE"IA attaque >:) \n\n"RESET);
     }
 }
 
