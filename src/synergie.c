@@ -6,9 +6,9 @@ void buff_troisclassesi_dps(Equipe *equipe) { //applique le buff
   //synergie de trois classes identiques dps
   int i = 0;
   for (i = 0; i < Nb_champion_par_equipe; i++) {
-      equipe->perso[i].stat.attaque += 5;
-      equipe->perso[i].stat.defense += 5;
-      equipe->perso[i].stat.vitesse += 5;
+      equipe->perso[i].stat.attaque += 2;
+      equipe->perso[i].stat.defense += 2;
+      equipe->perso[i].stat.vitesse += 2;
   }
   equipe->synergie += 0.1;
 }
@@ -17,10 +17,10 @@ void buff_troisclassesi_soutien(Equipe *equipe) { //applique le buff
   //synergie de trois classes identiques soutien 
   int i = 0;
   for (i = 0; i < Nb_champion_par_equipe; i++) {
-      equipe->perso[i].stat.attaque -= 5;
-      equipe->perso[i].stat.defense += 5;
-      equipe->perso[i].stat.pv_courant += 5;
-      equipe->perso[i].stat.vitesse -= 5;
+      equipe->perso[i].stat.attaque -= 2;
+      equipe->perso[i].stat.defense += 2;
+      equipe->perso[i].stat.pv_courant += 2;
+      equipe->perso[i].stat.vitesse -= 2;
   }
   equipe->synergie += 0.1;
 }
@@ -29,10 +29,10 @@ void buff_troisclassesi_tank(Equipe *equipe) { //applique le buff
   //synergie de trois classes identiques tank + équilibre la méta
   int i = 0;
   for (i = 0; i < Nb_champion_par_equipe; i++) {
-      equipe->perso[i].stat.attaque += 5;
-      equipe->perso[i].stat.defense -= 5;
-      equipe->perso[i].stat.pv_courant += 5;
-      equipe->perso[i].stat.vitesse -= 5;
+      equipe->perso[i].stat.attaque += 2;
+      equipe->perso[i].stat.defense -= 2;
+      equipe->perso[i].stat.pv_courant += 2;
+      equipe->perso[i].stat.vitesse -= 2;
   }
   equipe->synergie += 0.1;
 }
@@ -40,10 +40,10 @@ void buff_troisclassesi_tank(Equipe *equipe) { //applique le buff
 void buff_troisclassesd(Equipe *equipe) { //applique le buff 
   //synergie de trois classes différentes
   for (int i = 0; i < Nb_champion_par_equipe; i++) {
-    equipe->perso[i].stat.attaque += 5;
-    equipe->perso[i].stat.defense -= 5;
-    equipe->perso[i].stat.pv_courant -= 5;
-    equipe->perso[i].stat.vitesse += 5;
+    equipe->perso[i].stat.attaque += 2;
+    equipe->perso[i].stat.defense -= 2;
+    equipe->perso[i].stat.pv_courant -= 2;
+    equipe->perso[i].stat.vitesse += 2;
   }
 equipe->synergie += 0.1;
 }
