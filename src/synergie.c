@@ -2,7 +2,7 @@
 #include "couleurs.h"
 #include "en-tete.h"
 #include "fonction.h"
-
+#include "stat.h"
 
 void buff_troisclassesi_dps(Equipe *equipe) { //applique le buff 
   //synergie de trois classes identiques dps
