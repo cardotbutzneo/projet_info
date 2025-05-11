@@ -15,9 +15,10 @@ void buff_troisclassesi_dps(Equipe *equipe) { //applique le buff
       equipe->perso[i].stat.attaque += 2;
       equipe->perso[i].stat.defense -= 2;
       equipe->perso[i].stat.vitesse += 2;
+      verifstat(equipe->perso[i]);
   }
   equipe->synergie += 0.1;
-  verifstat(equipe->perso);
+  
 }
 
 void buff_troisclassesi_soutien(Equipe *equipe) { //applique le buff 
@@ -28,9 +29,9 @@ void buff_troisclassesi_soutien(Equipe *equipe) { //applique le buff
       equipe->perso[i].stat.defense += 2;
       equipe->perso[i].stat.pv_courant += 2;
       equipe->perso[i].stat.vitesse -= 2;
+      verifstat(equipe->perso[i]);
   }
   equipe->synergie += 0.1;
-  verifstat(equipe->perso);
 }
 
 void buff_troisclassesi_tank(Equipe *equipe) { //applique le buff 
@@ -41,9 +42,9 @@ void buff_troisclassesi_tank(Equipe *equipe) { //applique le buff
       equipe->perso[i].stat.defense += 2;
       equipe->perso[i].stat.pv_courant += 2;
       equipe->perso[i].stat.vitesse -= 2;
+      verifstat(equipe->perso[i]);
   }
   equipe->synergie += 0.1;
-  verifstat(equipe->perso);
 }
   
 void buff_troisclassesd(Equipe *equipe) { //applique le buff 
@@ -53,9 +54,9 @@ void buff_troisclassesd(Equipe *equipe) { //applique le buff
     equipe->perso[i].stat.defense += 1;
     equipe->perso[i].stat.pv_courant += 1;
     equipe->perso[i].stat.vitesse += 1;
+    verifstat(equipe->perso[i]);
   }
   equipe->synergie += 0.1;
-    verifstat(equipe->perso);
 }
 
 void verifie_classes(Equipe *equipe) { //check les classes de chaque personnage de l'équipe choisie puis lance la fonction dont la condition est validée
