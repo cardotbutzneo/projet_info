@@ -588,6 +588,7 @@ void saisie_utilisateur(Champion *champion, Equipe *equieAdverse, Equipe *equipe
             break;
         default: // passer son tour
             printf(GRIS"%s passe son tour.\n"RESET, champion->nom);
+            break;
     }
 }
 
