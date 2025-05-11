@@ -1,4 +1,6 @@
 #include "synergie.h"
+#include "couleurs.h"
+
 
 void buff_troisclassesi_dps(Equipe *equipe) { //applique le buff 
   //synergie de trois classes identiques dps
@@ -50,27 +52,28 @@ void verifie_classes(Equipe *equipe) { //check les classes de chaque personnage 
  //buff DPS
   if ( strcmp(equipe->perso[0].classe, equipe->perso[1].classe) == 0 && strcmp(equipe->perso[1].classe, equipe->perso[2].classe) == 0 && strcmp(equipe->perso[0].classe, "dps") == 0 ) {
     buff_troisclassesi_dps(equipe);
+    printf(VERT"buff DPS >:J\n"RESET);
     return;
   }
   //buff SOUTIEN
   if ( strcmp(equipe->perso[0].classe, equipe->perso[1].classe) == 0 && strcmp(equipe->perso[1].classe, equipe->perso[2].classe) == 0 && strcmp(equipe->perso[0].classe, "soutien") == 0 ) {
     buff_troisclassesi_soutien(equipe);
+    printf(VERT"buff SOUTIEN >:J\n"RESET);
     return;
   }
   //equilibrage TANK
-  if ( strcmp(equipe->perso[0].classe, equipe->perso[1].classe) == 0 && strcmp(equipe->perso[1].classe, equipe->perso[2].classe) == 0 && strcmp(equipe->perso[0].classe, "soutien") == 0 ) {
+  if ( strcmp(equipe->perso[0].classe, equipe->perso[1].classe) == 0 && strcmp(equipe->perso[1].classe, equipe->perso[2].classe) == 0 && strcmp(equipe->perso[0].classe, "tank") == 0 ) {
     buff_troisclassesi_tank(equipe);
+    printf(VERT"buff TANK >:J\n"RESET);
     return;
   }
-  //buff 3 classes identiques
+  //buff 3 classes différentes
   if ( strcmp(equipe->perso[0].classe, equipe->perso[1].classe) != 0 && strcmp(equipe->perso[1].classe, equipe->perso[2].classe) != 0 && strcmp(equipe->perso[0].classe, equipe->perso[2].classe) != 0 ) {
     buff_troisclassesd(equipe);
+    printf(VERT"buff 3 classes différentes >:J\n"RESET);
     return;
   }
-}
-
-
-
+  //pas de buff
 
 
 
