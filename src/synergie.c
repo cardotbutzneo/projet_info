@@ -83,4 +83,3 @@ void verifie_classes(Equipe *equipe) { //check les classes de chaque personnage 
 
 
 
-
