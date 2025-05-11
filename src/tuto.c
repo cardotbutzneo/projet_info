@@ -49,7 +49,7 @@ void afficher_tuto(){
         pause_ms(time_sleep);
         printf("La première equipe qui vainc les champions ennemis gagne !\n\n");
         pause_ms(time_sleep*3);
-        printf("======================================================\n\n");
+        printf(BLEU"======================================================\n\n"RESET);
         pause_ms(time_sleep);
         printf("Choisissez vos champions, puis... ");
         pause_ms(time_sleep);
