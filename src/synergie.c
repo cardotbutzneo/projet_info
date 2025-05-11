@@ -52,34 +52,26 @@ void verifie_classes(Equipe *equipe) { //check les classes de chaque personnage 
  //buff DPS
   if ( strcmp(equipe->perso[0].classe, equipe->perso[1].classe) == 0 && strcmp(equipe->perso[1].classe, equipe->perso[2].classe) == 0 && strcmp(equipe->perso[0].classe, "dps") == 0 ) {
     buff_troisclassesi_dps(equipe);
-    printf(VERT"buff DPS >:J\n"RESET);
+    printf(VERT"%s : Votre équipe a un buff de classe DPS >:J\n"RESET, equipe->nom);
     return;
   }
   //buff SOUTIEN
   if ( strcmp(equipe->perso[0].classe, equipe->perso[1].classe) == 0 && strcmp(equipe->perso[1].classe, equipe->perso[2].classe) == 0 && strcmp(equipe->perso[0].classe, "soutien") == 0 ) {
     buff_troisclassesi_soutien(equipe);
-    printf(VERT"buff SOUTIEN >:J\n"RESET);
+    printf(VERT"%s : Votre équipe a un buff de classe SOUTIEN >:J\n"RESET, equipe->nom);
     return;
   }
   //equilibrage TANK
   if ( strcmp(equipe->perso[0].classe, equipe->perso[1].classe) == 0 && strcmp(equipe->perso[1].classe, equipe->perso[2].classe) == 0 && strcmp(equipe->perso[0].classe, "tank") == 0 ) {
     buff_troisclassesi_tank(equipe);
-    printf(VERT"buff TANK >:J\n"RESET);
+    printf(VERT"%s : Votre équipe a un buff de classe TANK >:J\n"RESET, equipe->nom);
     return;
   }
   //buff 3 classes différentes
   if ( strcmp(equipe->perso[0].classe, equipe->perso[1].classe) != 0 && strcmp(equipe->perso[1].classe, equipe->perso[2].classe) != 0 && strcmp(equipe->perso[0].classe, equipe->perso[2].classe) != 0 ) {
     buff_troisclassesd(equipe);
-    printf(VERT"buff 3 classes différentes >:J\n"RESET);
+    printf(VERT"%s : Votre équipe a un buff de 3 classes différentes >:J\n"RESET, equipe->nom);
     return;
   }
 }
   //pas de buff
-
-
-
-
-
-
-
-
