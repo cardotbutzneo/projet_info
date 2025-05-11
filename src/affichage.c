@@ -193,6 +193,10 @@ void afficher_champion_init(Champion *champion_soutien, Champion *champion_tank,
 
 // Affiche les dégâts reçus par un champion
 void afficher_degat_recu(Champion cible, Champion attaquant, int type_attaque) {
+    if (!cible.nom || !attaquant.nom){
+        printf("erreur de memoire dans afficher degat recu\n");
+        exit(0);
+    }
     if (type_attaque == 0) { // Attaque classique
         printf(ROUGE"%s reçoit : %.1f degats\n"RESET, cible.nom, attaquant.stat.attaque);
         printf("Les PV de %s sont maintenant de : %.1f\n", cible.nom, cible.stat.pv_courant);

@@ -64,28 +64,30 @@ void ia_facile( Champion *champion,Equipe *equipe_ia, Equipe *equipe_adverse) {
         exit(0);
     }
     int x = rand() % 11; // 10% de chance d'utiliser une technique spéciale
-    if (x == 0 && champion->stat.jauge_actuelle >= champion->stat.jauge_max) {
+    if (x == 0 && equipe_ia->perso[champion->index_reel].stat.jauge_actuelle >= equipe_ia->perso[champion->index_reel].stat.jauge_max) {
         attaqueSpecial(*champion, equipe_adverse->perso, equipe_adverse->perso); // Utilise une technique spéciale
         printf(JAUNE"IA utilise une attaque spéciale\n\n"RESET);
     } else {
         attaquesimple(champion, equipe_adverse->perso);
+        equipe_ia->perso[champion->index_reel].stat.jauge_actuelle++;
         printf(ROUGE"IA attaque >:) \n\n"RESET);
     }
 }
 
 // Fonction pour l'IA moyen
-void ia_moyen(Champion *champion, Equipe *equipe_adverse, Equipe *equipe) {
-    if (!champion || !equipe_adverse || !equipe){
+void ia_moyen(Champion *champion, Equipe *equipe_adverse, Equipe *equipe_ia) {
+    if (!champion || !equipe_adverse || !equipe_ia){
         printf("erreur lors de l'allocation de la mémoire\n");
         exit(0);
     }
     int x = rand() % 5; // 60% de chance d'utiliser une technique spéciale
-    if (x == 0 && champion->stat.jauge_actuelle >= champion->stat.jauge_max) {
-        attaqueSpecial(*champion, equipe_adverse->perso, equipe->perso); // Utilise une technique spéciale
+    if (x == 0 && equipe_ia->perso[champion->index_reel].stat.jauge_actuelle >= equipe_ia->perso[champion->index_reel].stat.jauge_max) {
+        attaqueSpecial(*champion, equipe_adverse->perso, equipe_ia->perso); // Utilise une technique spéciale
         printf(JAUNE"IA utilise une attaque spéciale X-P\n\n"RESET);
     } 
     else  {
         attaquesimple(champion, equipe_adverse->perso);
+        equipe_ia->perso[champion->index_reel].stat.jauge_actuelle++;
         printf(ROUGE"IA attaque >:) \n\n"RESET);
     }
 }
@@ -96,6 +98,7 @@ void ia_principale(Champion *champion, Equipe *equipe_ia, Equipe *equipe_adverse
         printf("erreur d'allocation de mémoire dans ia_principale\n");
             exit(0);
     }
+    champion->stat.jauge_actuelle = equipe_ia->perso[champion->index_reel].stat.jauge_actuelle;
     if ( difficulte <0 || difficulte > 3){
         printf("difficulté non initialisée ou trop grande\n");
         difficulte = 0; // on met par défaut difficulté à 0

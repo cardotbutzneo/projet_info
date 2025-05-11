@@ -3,7 +3,7 @@ Donkey_kong // nom
 120 // pv actuel
 120 // pv max
 15 // attaque
-5 // defense
+15 // defense
 11 // agilite
 7 // vitesse
 0 // jauge actuelle
