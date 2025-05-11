@@ -648,7 +648,7 @@ int est_en_vie(Champion champion){
         if (champion.stat.pv_courant > champion.pv_max) {
             //printf(VERT"Erreur : PV courant supérieur au PV max pour le champion %s\n"RESET, champion.nom); //possible de l'enlever
             champion.stat.pv_courant = champion.pv_max; // remettre la valeur à la limite
-            printf("PV courant corrigé à : %d\n", champion.stat.pv_courant);
+            //printf("PV courant corrigé à : %d\n", champion.stat.pv_courant);
             return 1; //vrai
         }
         /*printf(ROUGE_FONCE"erreur de PV dans est_en_vie \n"RESET);
