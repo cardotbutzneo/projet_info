@@ -8,7 +8,7 @@ void afficher_tuto(){
     //printf("Bienvenue \n");
     printf(BLEU); // Changer la couleur du texte en bleu
     printf("=========================================================\n");
-    printf(BLANC"                        MultiverSeus\n"RESET);
+    printf(BLANC"                     MultiverSeus\n"RESET);
     printf(BLEU"=========================================================\n\n");
     printf(RESET); // Réinitialiser la couleur
     char rep;
@@ -33,7 +33,9 @@ void afficher_tuto(){
         pause_ms(time_sleep*3);
         printf("Vous verrez, c'est très simple ! :D\n\n");
         pause_ms(time_sleep);
-        printf("Le but du jeu est de choisir une équipe de 3 champions et de les faire combattre contre... une autre équipe de 3 champions !\n\n");
+        printf("Le but du jeu est de choisir une équipe de 3 champions et de les faire combattre contre...\n");
+        pause_ms(time_sleep);
+        printf("...une autre équipe de 3 champions !\n\n");
         pause_ms(time_sleep);
         printf("Chaque champion a des statistiques et des attaques spéciales qui lui sont propres !\n\n");
         pause_ms(time_sleep);
