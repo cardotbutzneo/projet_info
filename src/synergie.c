@@ -73,6 +73,7 @@ void verifie_classes(Equipe *equipe) { //check les classes de chaque personnage 
     printf(VERT"buff 3 classes différentes >:J\n"RESET);
     return;
   }
+}
   //pas de buff
 
 
