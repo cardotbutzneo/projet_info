@@ -2,7 +2,7 @@
 
 
 int vivant(Champion personnage){
-  if (personnage.stat.pv_courant<=0){
+  if (personnage.stat.pv_courant<=0.1){
     return 1;
   }
   else{
@@ -10,26 +10,30 @@ int vivant(Champion personnage){
   }
 }
 
-int verifstat(Champion personnage){
+int verifstat(Champion *personnage){
+  if (!personnage) {
+    printf("Erreur lors de l'allocation de la mémoire\n");
+    exit(16);
+  }
   int flag = 0;
-  if (personnage.stat.attaque<=1){
-    personnage.stat.attaque=1;
+  if (personnage->stat.attaque<=1){
+    personnage->stat.attaque=1;
     flag = 1;
   }
-  if (personnage.stat.defense<1){
-    personnage.stat.defense=1;
+  if (personnage->stat.defense<1){
+    personnage->stat.defense=1;
     flag = 1;
   }
-  if (personnage.stat.vitesse<1){
-    personnage.stat.vitesse=1;
+  if (personnage->stat.vitesse<1){
+    personnage->stat.vitesse=1;
     flag = 1;
   }
-  if (personnage.stat.agilite<1){
-    personnage.stat.agilite=1;
+  if (personnage->stat.agilite<1){
+    personnage->stat.agilite=1;
     flag = 1;
   }
-  if (personnage.stat.jauge_actuelle>personnage.stat.jauge_max){
-    personnage.stat.jauge_actuelle=personnage.stat.jauge_max;
+  if (personnage->stat.jauge_actuelle>personnage->stat.jauge_max){
+    personnage->stat.jauge_actuelle=personnage->stat.jauge_max;
     flag = 1;
   }
   if (flag == 1){
@@ -40,11 +44,3 @@ int verifstat(Champion personnage){
   }
 }
 
-void verifstatComplet(Champion equipe[],Champion equipeAdverse[]){
-  for (int i=0;i<Nb_champion_par_equipe;i++){
-    verifstat(equipe[i]);
-  }
-  for (int i=0;i<Nb_champion_par_equipe;i++){
-    verifstat(equipeAdverse[i]);
-  }
-}
