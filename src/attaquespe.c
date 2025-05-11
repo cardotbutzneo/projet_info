@@ -41,9 +41,9 @@ void amongusSpe (Champion personnage, Champion equipeAdverse[]){
     printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
     equipeAdverse[cible].stat.defense-=4;
 }
-void captainSpe(Champion personnage){
-    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
-    personnage.stat.defense += 4;
+void captainSpe(Champion *personnage){
+    printf("%s utilise %s\n",personnage->nom,personnage->attaque_spe);
+    personnage->stat.defense += 4;
 }
 
 void donkeySpe(Champion personnage, Champion equipeAdverse[]){
@@ -76,10 +76,10 @@ void invaderSpe(Champion personnage, Champion equipeAdverse[]){
     }
 }
 
-void itachiSpe(Champion personnage){
-    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
-    personnage.stat.defense += 2;
-    personnage.stat.attaque += 2;
+void itachiSpe(Champion *personnage){
+    printf("%s utilise %s\n",personnage->nom,personnage->attaque_spe);
+    personnage->stat.defense += 2;
+    personnage->stat.attaque += 2;
 }
 
 void jackSpe(Champion personnage, Champion equipeAdverse[]){
@@ -89,9 +89,9 @@ void jackSpe(Champion personnage, Champion equipeAdverse[]){
     equipeAdverse[cible].stat.pv_courant -= attaqueSpeDegat(personnage,equipeAdverse,1.5);
 }
 
-void jaySpe(Champion personnage){
-    printf("%s utilise %s\n",personnage.nom,personnage.attaque_spe);
-    personnage.stat.attaque += 4;
+void jaySpe(Champion *personnage){
+    printf("%s utilise %s\n",personnage->nom,personnage->attaque_spe);
+    personnage->stat.attaque += 4;
 }
 
 void johnnySpe(Champion personnage, Champion equipeAdverse[]){
@@ -172,7 +172,7 @@ void attaqueSpecial (Champion personnage, Champion equipeAdverse[],Champion equi
         amongusSpe(personnage, equipeAdverse);
         break;
     case 2:
-        captainSpe(personnage);
+        captainSpe(&personnage);
         break;
     case 3:
         donkeySpe(personnage, equipeAdverse);
@@ -190,19 +190,19 @@ void attaqueSpecial (Champion personnage, Champion equipeAdverse[],Champion equi
         invaderSpe(personnage, equipeAdverse);
         break;
     case 8:
-        itachiSpe(personnage);
+        itachiSpe(&personnage);
         break;
     case 9:
         jackSpe(personnage, equipeAdverse);
         break;
     case 10:
-        jaySpe(personnage);
+        jaySpe(&personnage);
         break;
     case 11:
         johnnySpe(personnage, equipeAdverse);
         break;
     case 12:
-        neteroSpe(personnage, equipeAdverse);
+        neteroSpe(personnage, equipe);
         break;
     case 13:
         noxSpe(personnage, equipe);
