@@ -7,7 +7,7 @@ Zelda // nom
 16 // agilite
 9 // vitesse
 0 // jauge actuelle
-1 // jauge max
+2 // jauge max
 Triforce // attaque spe
 soutien // classe
 Soigne_augmente_la_defense_et_la_vitesse_d'un_allie // description attaque spe
