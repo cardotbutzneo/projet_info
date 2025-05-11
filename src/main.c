@@ -187,13 +187,20 @@ int main() {
             vider_buffer_scanf();
         }while (verif != 1 || difficulte < 0 || difficulte > 2);
         if (difficulte == 0){
-            printf("Vous avez choisi la difficulté noob, l'IA ne fera rien !\n");
+            printf("Vous avez choisi la difficulté noob, l'IA fera uniquement des attaques simples !\n");
+            pause_ms(time_sleep);
         }
         else if (difficulte == 1){
-            printf("Vous avez choisi la difficulté facile, l'IA fera des attaques simples !\n");
+            printf("Vous avez choisi la difficulté facile, l'IA fera des attaques simples...!\n");
+            pause_ms(time_sleep);
+            printf("...et des attaques spéciales une fois sur 10 !!\n");
+            pause_ms(time_sleep);
         }
         else if (difficulte == 2){
-            printf("Vous avez choisi la difficulté difficile, l'IA fera des attaques spéciales !\n");
+            printf("Vous avez choisi la difficulté difficile <:O !!!!\n");
+            pause_ms(time_sleep);
+            printf("L'IA fera des attaques spéciales chaque fois qu'elle le peut !!!\n");
+            pause_ms(time_sleep);
         }
         equipe2.difficulte = difficulte;
         equipe2.nom = *(nom_IA + rand() % 8);
