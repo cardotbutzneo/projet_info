@@ -397,5 +397,8 @@ int main() {
     printf(GRIS"\nMémoire libérée avec succès\n"RESET);
 
     printf(GRIS"\nCode fini\n"RESET);
+
+    note();
+    
     return 0;
 }
