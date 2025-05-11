@@ -14,7 +14,7 @@ int soinCible (Champion equipe[]){
         }
     }
     for (int i=0;i<Nb_champion_par_equipe;i++){
-        if (equipe[i].stat.pv_courant<min && verifstat(equipe[i])==0){
+        if (equipe[i].stat.pv_courant<min && vivant(equipe[i])==0){
             cible=i;
         }
     }
