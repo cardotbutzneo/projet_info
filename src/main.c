@@ -203,6 +203,7 @@ int main() {
         }
     }
 
+    separation_des_partie();
     // Classement des champions par classe
     //qsort(tableau_champion, Nb_champion, sizeof(Champion), comparer_par_classe);
 
@@ -255,20 +256,19 @@ int main() {
             // Gestion des actions en fonction du nombre de joueurs
             if (choix_nb_joueur == 2) { // Mode PvP
                 if (equipe == 1) {
-                    printf("Joueur 1 joue\n");
+                    printf("\n\nJoueur 1 joue\n");
                     saisie_utilisateur(champion_intermediaire, &equipe2, &equipe1);
                 }
                 if (equipe == 2) {
-                    printf("Joueur 2 joue\n");
+                    printf("\n\nJoueur 2 joue\n");
                     saisie_utilisateur(champion_intermediaire, &equipe1, &equipe2);
                 }
             }
 
             if (choix_nb_joueur == 1) { // Mode PvE
                 if (equipe == 1) {
-                    printf(BLEU_CLAIR"Joueur 1 joue\n"RESET);
+                    printf(BLEU_CLAIR"\n\nJoueur 1 joue\n"RESET);
                     saisie_utilisateur(champion_intermediaire, &equipe2, &equipe1);
-                    printf(JAUNE"jauge actuelle : %d\n"RESET,champion_intermediaire->stat.jauge_actuelle);                
                 }
                 if (equipe == 2) {
                     printf(BLEU_CLAIR);
@@ -277,6 +277,7 @@ int main() {
                     ia_principale(champion_intermediaire,&equipe2, &equipe1, difficulte);
                 }
             }
+            
             //copie du champion pour la sauvegarde des statistiques
             for (int i = 0;i<Nb_champion_par_equipe*2;i++){
                 if ((ordre_attaque_ind+i)->equipe == 1){
@@ -317,6 +318,7 @@ int main() {
         }
         
         // Augmenter la jauge de chaque champion
+        /*
         for (int i = 0; i < Nb_champion_par_equipe; i++) {
             // Équipe 1
             if (equipe1.perso[i].stat.pv_courant > 0) { // Vérifie que le champion n'est pas KO
@@ -331,8 +333,9 @@ int main() {
                     equipe2.perso[i].stat.jauge_actuelle += 1;
                 }
             }
+            
         }
-
+        */
         printf(GRIS"Réparation des décors\n"RESET);
         for (int i = 0; i < 5; i++) {
             pause_ms(time_sleep);

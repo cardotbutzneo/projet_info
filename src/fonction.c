@@ -574,17 +574,18 @@ void saisie_utilisateur(Champion *champion, Equipe *equieAdverse, Equipe *equipe
         printf(ROUGE_FONCE"Le champion %s est KO et ne peut pas agir.\n"RESET, champion->nom);
         return; // Sort de la fonction sans effectuer d'action
     }
- switch (affichage_saisie_utilisateur(*champion)) {
+    champion->stat.jauge_actuelle = equipe->perso[champion->index_reel].stat.jauge_actuelle;
+    switch (affichage_saisie_utilisateur(*champion)) {
         case 1:
             attaquesimple(champion, equieAdverse->perso); // attaque simple
-            champion->stat.jauge_actuelle += 1; // augmente la jauge de l'attaque speciale
+            equipe->perso[champion->index_reel].stat.jauge_actuelle ++; // augmente la jauge de l'attaque speciale
             if (champion->stat.jauge_actuelle > champion->stat.jauge_max) {
                 champion->stat.jauge_actuelle = champion->stat.jauge_max; // limite la jauge a la jauge max
             }
             break;
         case 2:
             attaqueSpecial(*champion, equieAdverse->perso, equipe->perso); // attaque spéciale
-            champion->stat.jauge_actuelle = 0; // remet la jauge a 0
+            equipe->perso[champion->index_reel].stat.jauge_actuelle = 0; // remet la jauge a 0
             break;
         default: // passer son tour
             printf(GRIS"%s passe son tour.\n"RESET, champion->nom);
@@ -618,7 +619,18 @@ void trier_par_vitesse(Champion *liste_champion, Equipe *equipe1, Equipe *equipe
 
     // Trier les champions par vitesse décroissante
     qsort(liste_champion, Nb_champion_par_equipe * 2, sizeof(Champion), comparer_par_vitesse);
-
+    int j=0;
+    int k=0;
+    for (int i=0;i<Nb_champion_par_equipe*2;i++){
+        if ((liste_champion+i)->equipe == 1){
+            (liste_champion+i)->index_reel = j;
+            j++;
+        }
+        if ((liste_champion+i)->equipe == 2){
+            (liste_champion+i)->index_reel = k;
+            k++;
+        }
+    }
 }
 
 void vider_buffer_scanf(){

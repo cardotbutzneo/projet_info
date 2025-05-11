@@ -37,6 +37,7 @@ typedef struct {
     char *classe;
     int equipe; // 1 ou 2
     int index; // position du champion dans l'equipe
+    int index_reel;
     char *description_attaque_spe;
     char *description;
 } Champion;

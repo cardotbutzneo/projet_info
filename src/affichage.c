@@ -130,7 +130,7 @@ void afficher_equipes_cote_a_cote(Equipe equipe1, Equipe equipe2) {
     int largeur_nom = (n > m ? n : m) + 1;
     int espacement = 12;
 
-    printf("%-*s%*s\n", largeur_nom + espacement, equipe1.nom, largeur_nom + espacement, equipe2.nom);
+    printf("\n\n%-*s%*s\n", largeur_nom + espacement, equipe1.nom, largeur_nom + espacement, equipe2.nom);
     printf("%-*s%-*s%-*s%*s%-*s%-*s%-*s\n", largeur_nom, "Nom", 10, "Classe", 10, "PV", espacement, " ", largeur_nom, "Nom", 10, "Classe", 10, "PV",10);
 
     for (int i = 0; i < Nb_champion_par_equipe; i++) {
@@ -249,7 +249,7 @@ int affichage_saisie_utilisateur(Champion champion) {
 }
 
 void afficher_attaque_speciale(Champion *champion) {
-    if (champion == NULL) {
+    if (champion == NULL || champion->nom == NULL || !champion->effet_spe || !champion->attaque_spe) {
         printf(ROUGE_FONCE"Erreur : pointeur NULL dans afficher_attaque_speciale\n"RESET);
         return;
     }
@@ -258,6 +258,6 @@ void afficher_attaque_speciale(Champion *champion) {
     printf("nom de l'attaque speciale : %s\n", champion->attaque_spe);
     //printf("description de l'attaque speciale: %s\n", champion->description_attaque_spe);
     printf("effet de l'attaque speciale: %s\n", champion->effet_spe);
-    printf("duree de l'effet: %d tours\n", champion->stat.jauge_max);
+    printf("rechargement de l'effet: %d tours\n", champion->stat.jauge_max);
     printf(RESET);
 }
