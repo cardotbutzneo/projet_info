@@ -574,17 +574,20 @@ void saisie_utilisateur(Champion *champion, Equipe *equieAdverse, Equipe *equipe
         printf(ROUGE_FONCE"Le champion %s est KO et ne peut pas agir.\n"RESET, champion->nom);
         return; // Sort de la fonction sans effectuer d'action
     }
-    switch (affichage_saisie_utilisateur(*champion)) {
+ switch (affichage_saisie_utilisateur(*champion)) {
         case 1:
             attaquesimple(champion, equieAdverse->perso); // attaque simple
+            champion->stat.jauge_actuelle += 1; // augmente la jauge de l'attaque speciale
+            if (champion->stat.jauge_actuelle > champion->stat.jauge_max) {
+                champion->stat.jauge_actuelle = champion->stat.jauge_max; // limite la jauge a la jauge max
+            }
             break;
         case 2:
             attaqueSpecial(*champion, equieAdverse->perso, equipe->perso); // attaque spéciale
-            champion->stat.jauge_actuelle = 0; // rénitialiser la jauge apres utilisation
+            champion->stat.jauge_actuelle = 0; // remet la jauge a 0
             break;
         default: // passer son tour
             printf(GRIS"%s passe son tour.\n"RESET, champion->nom);
-            break;
     }
 }
 
