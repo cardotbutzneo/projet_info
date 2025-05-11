@@ -8,7 +8,7 @@ void afficher_tuto(){
     //printf("Bienvenue \n");
     printf(BLEU); // Changer la couleur du texte en bleu
     printf("=========================================================\n");
-    printf("                     MultiverSeus\n");
+    printf(BLANC"                        MultiverSeus\n"RESET);
     printf("=========================================================\n\n");
     printf(RESET); // Réinitialiser la couleur
     char rep;
