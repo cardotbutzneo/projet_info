@@ -5,13 +5,12 @@
 
 
 
-int nbTank(Champion Equipe[]) {
+int nbTank(Champion Equipe[]) {//compte le nombre de tank dans l'equipe
     if (!Equipe) {
         printf(ROUGE_FONCE"Erreur lors de l'allocation de la mémoire\n"RESET);
         exit(0);
     }
     int nombre = 0;
-    
     for (int i = 0; i < Nb_champion_par_equipe; i++) {
         if (Equipe[i].classe != NULL && strcmp(Equipe[i].classe, "tank") == 0 && Equipe[i].stat.pv_courant > 0) {
             nombre++;
@@ -20,7 +19,7 @@ int nbTank(Champion Equipe[]) {
     return nombre;
 }
 
-int cibleAttaque(Champion Equipe[]) {
+int cibleAttaque(Champion Equipe[]) {//choisit la cible de l'attaque
     if (!Equipe) {
         printf(ROUGE_FONCE"Erreur lors de l'allocation de la mémoire\n"RESET);
         exit(0);
@@ -78,12 +77,12 @@ void attaquesimple (Champion *personnage, Champion equipeAdverse[]){//actualiser
     if (equipeAdverse[cible].stat.pv_courant <= 0 || personnage->stat.pv_courant <= 0){
         return;
     }
-    if (precision>equipeAdverse[cible].stat.agilite){//si l'attaque touche actualise les pv en prenant en compte la defense
-        if (equipeAdverse[cible].stat.defense == 0){
+    if (precision>equipeAdverse[cible].stat.agilite){//si l'attaque touche
+        if (equipeAdverse[cible].stat.defense == 0){//verifie que la defense n'est pas nulle pour eviter la division par 0
             printf(GRIS"division par 0 dans attaquesimple\n"RESET);
             exit(2);
         }
-        equipeAdverse[cible].stat.pv_courant-=(degat(*personnage)-(equipeAdverse[cible].stat.defense)/100);
+        equipeAdverse[cible].stat.pv_courant-=(degat(*personnage)-(equipeAdverse[cible].stat.defense)/100);//actualise les pv de l'adversaire
         if (equipeAdverse[cible].stat.pv_courant <=1){
             equipeAdverse[cible].stat.pv_courant = 0;
         }
