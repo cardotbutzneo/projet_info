@@ -217,6 +217,12 @@ int main() {
     //choix des champions
     choix_des_champion(temp, &equipe1, &equipe2, choix_nb_joueur, tableau_champion_cachee);
 
+    //synergies
+    pause_ms(time_sleep);
+    verifie_classes(&equipe1);
+    pause_ms(time_sleep);
+    verifie_classes(&equipe2);
+
     int index = 0;
 
     
