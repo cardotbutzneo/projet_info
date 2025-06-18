@@ -1,5 +1,5 @@
 # MultiverSeus 
-ceci est le début du plus grand jeu sur terminal... ou pas :p
+Ceci est le début du plus grand jeu sur terminal... ou pas :p
 
 Jeu créé par :
 
