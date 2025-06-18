@@ -10,10 +10,10 @@ Jeu créé par :
 ## Compilation : 
 
 ### Sur windows avec mingw : 
-- make run pour compiler et executer  
-- make clean pour effacer les fichiers .o  
-- make pour compiler  
-- make degug pour compiler avec le degogeur de gcc  
+- **make run** pour compiler et executer  
+- **make clean** pour effacer les fichiers .o  
+- **make** pour compiler  
+- **make degug** pour compiler avec le degogeur de gcc  
 
 ### Sur linux :
 - make run pour compiler et executer
