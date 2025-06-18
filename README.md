@@ -20,9 +20,9 @@ MultiverSeus est un jeu de combat en terminal où deux équipes de champions s'a
 ## Fonctionnalités
 
 ### Modes de jeu :
-PvP : Deux joueurs humains s'affrontent.
+**PvP** : Deux joueurs humains s'affrontent.
 
-PvE : Un joueur humain affronte une IA avec plusieurs niveaux de difficulté.
+**PvE** : Un joueur humain affronte une IA avec plusieurs niveaux de difficulté.
 
 ### Choix des champions : 
 
@@ -40,11 +40,11 @@ Choisissez entre trois niveaux de difficulté pour l'IA (noob, facile, difficile
 
 Utilisation de couleurs pour une meilleure lisibilité.
 
-### Prérequis :
+## Prérequis :
 
-Système d'exploitation : Windows, Linux ou macOS.
+**Système d'exploitation** : Windows, Linux ou macOS.
 
-Compilateur : GCC (GNU Compiler Collection).
+**Compilateur** : GCC (GNU Compiler Collection).
 
 ### Outils nécessaires :
 
