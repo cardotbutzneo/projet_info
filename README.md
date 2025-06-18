@@ -3,9 +3,9 @@ ceci est le début du plus grand jeu sur terminal... ou pas :p
 
 Jeu créé par :
 
-**CARDOT-BUTZ Néo
-GODINEAU Alexandre
-PROUCHANDY Mathéo**
+**CARDOT-BUTZ Néo**
+**GODINEAU Alexandre**
+**PROUCHANDY Mathéo**
 
 ## Compilation : 
 
