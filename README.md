@@ -1,6 +1,8 @@
 # MultiverSeus 
 Ceci est le début du plus grand jeu sur terminal... ou pas :p
 
+MultiverSeus est un jeu de combat en terminal où deux équipes de champions s'affrontent dans un système de tours. Le jeu propose deux modes : PvP (Player vs Player) et PvE (Player vs Environment). Chaque équipe est composée de trois champions, et le but est d'éliminer tous les champions adverses pour remporter la partie.
+
 Jeu créé par :
 
 **CARDOT-BUTZ Néo**  
@@ -21,7 +23,7 @@ Jeu créé par :
 - **make debug** pour compiler avec le debogeur de gcc
 
 
-MultiverSeus est un jeu de combat en terminal où deux équipes de champions s'affrontent dans un système de tours. Le jeu propose deux modes : PvP (Player vs Player) et PvE (Player vs Environment). Chaque équipe est composée de trois champions, et le but est d'éliminer tous les champions adverses pour remporter la partie.
+
 
 ## Fonctionnalités
 
