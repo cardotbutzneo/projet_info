@@ -6,8 +6,8 @@ MultiverSeus est un jeu de combat en terminal où deux équipes de champions s'a
 Jeu créé par :
 
 **CARDOT-BUTZ Néo**  
-**GODINEAU Alexandre**  (https://github.com/Alegodix)
-**PROUCHANDY Mathéo**   (https://github.com/matheoprouchandy)
+**GODINEAU Alexandre**  (https://github.com/Alegodix) <br />
+**PROUCHANDY Mathéo**   (https://github.com/matheoprouchandy) <br />
 
 ## Compilation : 
 
